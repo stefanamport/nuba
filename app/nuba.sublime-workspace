@@ -1,0 +1,539 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"get",
+				"getToday"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 87.0,
+		"last_filter": "isntall",
+		"selected_items":
+		[
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"browse",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/stefanamport/repos/nuba",
+		"/Users/stefanamport/repos/nuba/node_modules"
+	],
+	"file_history":
+	[
+		"/Users/stefanamport/repos/gulp-test/build/main.css",
+		"/Users/stefanamport/repos/gulp-test/gulpfile.js",
+		"/Users/stefanamport/repos/gulp-test/node_modules/foundation-sites/scss/components/_dropdown-menu.scss",
+		"/Users/stefanamport/repos/gulp-test/scripts/testscript.js",
+		"/Users/stefanamport/repos/gulp-test/html/index.html",
+		"/Users/stefanamport/repos/gulp-test/build/main.js",
+		"/Users/stefanamport/Downloads/JointsWP-master/gulpfile.js",
+		"/Users/stefanamport/repos/gulp-test/styles/main.scss",
+		"/Users/stefanamport/repos/gulp-test/node_modules/foundation-sites/scss/_global.scss",
+		"/Users/stefanamport/repos/gulp-test/node_modules/glob-watcher/test/main.js",
+		"/Users/stefanamport/repos/gulp-test/node_modules/foundation-sites/js/foundation.core.js",
+		"/Users/stefanamport/repos/gulp-test/package.json",
+		"/Users/stefanamport/repos/gulp-test/styles/_include.scss",
+		"/Users/stefanamport/repos/gulp-test/css/main.css",
+		"/Users/stefanamport/repos/gulp-test/node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss",
+		"/Users/stefanamport/repos/cas-fee-projekt1/node_modules/gulp-express/index.js",
+		"/Users/stefanamport/repos/cas-fee-projekt1/public/index.html",
+		"/Users/stefanamport/repos/cas-fee-projekt1/public/styles/main.scss",
+		"/Users/stefanamport/repos/cas-fee-projekt1/README.md",
+		"/Users/stefanamport/repos/cas-fee-projekt1/server/public/index.html",
+		"/Users/stefanamport/repos/cas-fee-projekt1/server/public/gulpfile.js",
+		"/Users/stefanamport/repos/cas-fee-projekt1/server/package.json",
+		"/Users/stefanamport/repos/cas-fee-projekt1/package.json",
+		"/Users/stefanamport/repos/angular-quickstart/app/app.component.ts",
+		"/Users/stefanamport/repos/angular-quickstart/app/app.module.ts",
+		"/Users/stefanamport/repos/angular-quickstart/app/hero-detail.component.ts",
+		"/Users/stefanamport/repos/angular-quickstart/app/hero.service.ts",
+		"/Users/stefanamport/repos/angular-quickstart/app/dashboard.component.ts",
+		"/Users/stefanamport/repos/angular-quickstart/app/dashboard.component.html",
+		"/Users/stefanamport/repos/angular-quickstart/app/main.ts",
+		"/Users/stefanamport/repos/angular-quickstart/app/heroes.component.ts",
+		"/Users/stefanamport/repos/angular-quickstart/index.html",
+		"/Users/stefanamport/repos/angular-quickstart/app/mock-heroes.ts",
+		"/Users/stefanamport/repos/angular-quickstart/app/hero.ts",
+		"/Users/stefanamport/repos/angular-quickstart/quickstart.sublime-project",
+		"/Users/stefanamport/repos/angular-quickstart-master/app/app.sublime-workspace",
+		"/Users/stefanamport/Downloads/Angular2-Forms-master/src/app/basicForm/basicForm.component.ts",
+		"/Users/stefanamport/Downloads/Angular2-Forms-master/src/app/templateForm/templateForm.component.html",
+		"/Users/stefanamport/Downloads/Angular2-Forms-master/src/app/modelForm/modelForm.component.ts",
+		"/Users/stefanamport/Downloads/Angular2-Forms-master/src/app/modelForm/modelForm.component.html",
+		"/Users/stefanamport/Downloads/Angular2-Forms-master/src/app/basicForm/basicForm.component.html",
+		"/Users/stefanamport/Downloads/Angular2-Forms-master/src/app/templateForm/templateForm.component.ts",
+		"/Users/stefanamport/repos/angular-quickstart-master/app/app.module.ts",
+		"/Users/stefanamport/repos/angular-quickstart-master/app/main.ts",
+		"/Users/stefanamport/repos/angular-quickstart-master/app/hero.ts",
+		"/Users/stefanamport/repos/angular-quickstart-master/app/hero.js",
+		"/Users/stefanamport/repos/angular-quickstart-master/app/hero.service.js",
+		"/Users/stefanamport/repos/angular-quickstart-master/app/hero.service.ts",
+		"/Users/stefanamport/repos/angular-quickstart-master/app/hero.service.js.map",
+		"/Users/stefanamport/repos/angular-quickstart-master/app/hero-detail.component.ts",
+		"/Users/stefanamport/repos/angular-quickstart-master/app/app.module.js",
+		"/Users/stefanamport/repos/angular-quickstart-master/app/app.module.html",
+		"/Users/stefanamport/repos/angular-quickstart-master/app/app.component-ListHeroes.ts",
+		"/Users/stefanamport/repos/angular-quickstart-master/app/app.compListHeroes.js",
+		"/Users/stefanamport/repos/cas-fee-projekt1/server/public/styles/main.scss",
+		"/Users/stefanamport/repos/cas-fee-projekt1/server/routes/index.js",
+		"/Users/stefanamport/repos/cas-fee-projekt1/server/services/entryDatabase.js",
+		"/Users/stefanamport/repos/cas-fee-projekt1/server/db/entries",
+		"/Users/stefanamport/repos/cas-fee-projekt1/server/public/js/main-new.js",
+		"/Users/stefanamport/repos/cas-fee-projekt1/server/app.js",
+		"/Users/stefanamport/repos/cas-fee-projekt1/server/routes/db/entries",
+		"/Users/stefanamport/repos/cas-fee-projekt1/gulpfile.js",
+		"/Users/stefanamport/repos/cas-fee-projekt1/generator/services/database.js",
+		"/Users/stefanamport/repos/Vorlesung_Express/Vorlesung/2_demoData_umgebaut/package.json",
+		"/Users/stefanamport/repos/express-test/file/file.html",
+		"/Users/stefanamport/repos/express-test/app.js",
+		"/Users/stefanamport/repos/express-test/package 2.json",
+		"/Users/stefanamport/repos/cas-fee-projekt1/js/main-new.js",
+		"/Users/stefanamport/repos/cas-fee-projekt1/.gitignore",
+		"/Users/stefanamport/repos/cas-fee-projekt1/styles/main.scss",
+		"/Users/stefanamport/repos/npm-module/index.js",
+		"/Users/stefanamport/repos/cas-fee-projekt1/index.html",
+		"/Users/stefanamport/repos/cas-fee-projekt1/js/main.js",
+		"/Users/stefanamport/repos/cas-fee-projekt1/untitled.sublime-project",
+		"/Users/stefanamport/repos/cas-fee-projekt1/node_modules/bs-recipes/recipes/grunt.sass/app/scss/main.scss",
+		"/Users/stefanamport/repos/cas-fee-projekt1/new-note.html",
+		"/Users/stefanamport/Downloads/cas-fee-master/javascript_handlebars.js",
+		"/Users/stefanamport/Desktop/giphy.gif",
+		"/Users/stefanamport/Desktop/casFeeAbend3Demo+Uebung/Uebung/Music03InnerHTML+InlineEventsExercise.html",
+		"/Users/stefanamport/repos/cas-fee-projekt1/main.html",
+		"/Users/stefanamport/repos/cas-fee-projekt1/styles/reset.scss",
+		"/Users/stefanamport/Desktop/casFeeAbend3Demo+Uebung/DOM-API/domDemo3domAPI.html",
+		"/Users/stefanamport/Desktop/casFeeAbend3Demo+Uebung/DOM-API/domDemo4NodeListIteration.html",
+		"/Users/stefanamport/Desktop/casFeeAbend3Demo+Uebung/Uebung/Music01InnerHTMLBasicExercise.html",
+		"/Users/stefanamport/Desktop/Einladung Produtkions Sitzung.docx",
+		"/Users/stefanamport/repos/02-HTML-CSS/static/index.html",
+		"/Users/stefanamport/repos/02-HTML-CSS/index.js",
+		"/Users/stefanamport/repos/02-HTML-CSS/package.json",
+		"/Users/stefanamport/Dropbox/DP Privat/Web Entwicklung Grundkurs/projektordner-mein-webseite/index.html",
+		"/Users/stefanamport/Dropbox/DP Privat/Web Entwicklung Grundkurs/projektordner-mein-webseite/css/style.css",
+		"/Users/stefanamport/repos/test/test/style.css",
+		"/Users/stefanamport/repos/test/test/test-2.txt",
+		"/Users/stefanamport/Dropbox/DP Privat/CAS FEE/demo01/halli hallo"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"tiny-lr",
+			"tiny",
+			"done",
+			"showAll",
+			"class",
+			"alle",
+			"done",
+			"add",
+			"displayEntries",
+			"addEntry",
+			"addEntry\naddEntry",
+			"addEntry",
+			"displayEntries",
+			"addEntry",
+			"addentryform",
+			"addEntry",
+			"publicAddChangeEntryFromForm",
+			"addEntry",
+			"closeForm",
+			"close",
+			"publicAddChangeEntryFromForm",
+			"addEntryForm",
+			"push",
+			"done",
+			"hervor",
+			"logo",
+			"addEntryForm",
+			"publicAddChangeEntryFromForm",
+			"addChangeEntryFromForm",
+			"AddChangeEntryFromForm",
+			"publicAddChangeEntryFromForm",
+			"addEntry",
+			"ddd",
+			"$",
+			"push",
+			"toDo",
+			"toDo.entries",
+			"push",
+			"console",
+			"newEntryToServer",
+			"entries",
+			"server",
+			"updateEntry",
+			"autopref",
+			"uglyf",
+			"sort",
+			"component",
+			"=",
+			"selected",
+			"style",
+			"HeroService",
+			"selectedHero",
+			"HeroDetailComponent",
+			"onSelect",
+			"lite-server",
+			"e2e",
+			"protra",
+			"lite-serv",
+			"server",
+			"lite-server",
+			"little-server",
+			"concurrently",
+			"tsc",
+			"concurrently",
+			"tsc",
+			"systemjs",
+			"config",
+			"newEntryToServer",
+			"new",
+			"loading",
+			"animate",
+			"animation",
+			"loading",
+			"storage",
+			"displayEntries",
+			"show",
+			"design",
+			"updateEntry",
+			"setEntriesToLocal",
+			"updateThisOnServer",
+			"updateEntry",
+			"change",
+			"update",
+			"console.log",
+			"newEntrytoserver",
+			"addEntry",
+			"publicAddChangeEntryFromForm",
+			"addEntryForm",
+			"displayentries",
+			"entries",
+			"displayEntries",
+			"console",
+			"serialize",
+			"displayEntries",
+			"toggleDone",
+			"entrydone",
+			"formSubmit",
+			"addEntry",
+			"toDoDesign",
+			"todoDesign",
+			"displayEntries",
+			"show",
+			"updateThisOnServer",
+			"updateEntry",
+			"updateThisOnServer",
+			"update",
+			"entry",
+			"ddd",
+			"todo",
+			"getEntriesFromServer",
+			"entries",
+			"showEntryForm",
+			"console",
+			"newEntryToServer",
+			"newEntr",
+			"getEntries",
+			"getEntriesFromServer",
+			"getEntries",
+			"sort",
+			"getEntries",
+			"newEntryToServer",
+			"todoDate",
+			"ddd",
+			"newEntryToServer",
+			"ddd",
+			"saveentriesto",
+			"newEntry",
+			"getEntriesFromServer"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.doc":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "",
+	"project": "nuba.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"main.ts",
+				"main.ts"
+			],
+			[
+				"main.scss",
+				"styles/main.scss"
+			],
+			[
+				"gulp",
+				"gulpfile.js"
+			],
+			[
+				"main.",
+				"node_modules/glob-watcher/test/main.js"
+			],
+			[
+				"main.js",
+				"build/main.js"
+			],
+			[
+				"",
+				"styles/main.scss"
+			],
+			[
+				"index.html",
+				"html/index.html"
+			],
+			[
+				"main.s",
+				"styles/main.scss"
+			],
+			[
+				"app.",
+				"app/app.module.ts"
+			],
+			[
+				"detail",
+				"app/hero-detail.component.ts"
+			],
+			[
+				"dash",
+				"app/dashboard.component.ts"
+			],
+			[
+				"app",
+				"app/app.module.ts"
+			],
+			[
+				"dashboard",
+				"app/dashboard.component.ts"
+			],
+			[
+				"hero",
+				"app/hero.service.ts"
+			],
+			[
+				"moudle",
+				"app/app.module.ts"
+			],
+			[
+				"dt",
+				"app/hero-detail.component.ts"
+			],
+			[
+				"service",
+				"app/hero.service.ts"
+			],
+			[
+				"module",
+				"app/app.module.ts"
+			],
+			[
+				"inde",
+				"index.html"
+			],
+			[
+				"modul",
+				"app/app.module.ts"
+			],
+			[
+				"mock",
+				"app/mock-heroes.ts"
+			],
+			[
+				"comp",
+				"app/app.component.ts"
+			],
+			[
+				"main",
+				"app/main.ts"
+			],
+			[
+				"hero.",
+				"app/hero.ts"
+			],
+			[
+				"app.module",
+				"app/app.module.ts"
+			],
+			[
+				"index",
+				"index.html"
+			],
+			[
+				"listheroes",
+				"app/app.template.ListHeroes.html"
+			],
+			[
+				"tsc",
+				"~/repos/angular-quickstart-master/tsconfig.json"
+			],
+			[
+				"main.sc",
+				"styles/main.scss"
+			],
+			[
+				"main.html",
+				"main.html"
+			],
+			[
+				"scss",
+				"styles/main.scss"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 227.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
