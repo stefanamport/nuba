@@ -1,0 +1,154 @@
+// Diverse allgemeingültige Styles
+
+body {
+	font-family: $font-family-main;
+	background-color: $light-gray;
+
+	font-size: 0.9em;
+	line-height: 1.5rem;
+}
+
+.small {
+	font-size: 0.7em;
+
+	&.light {
+		color: $dark-gray-font;
+	}
+}
+
+h2 {
+	font-family: $font-family-headlines;
+	font-size: 1.5em;
+	line-height: 1.5em;
+	font-weight: 100;
+}
+
+h3 {
+	font-weight: bold;
+	font-size: 1.2em;
+
+	margin: $boxpadding 0 0 0;
+	padding: 0px;
+}
+
+.middler {
+	max-width: 800px;
+	margin: 0px auto;
+}
+
+button {
+	background: $main-color;
+	border: 0px;
+
+	border-radius: 3px;
+
+	transition: .2s all;
+	cursor: pointer;
+
+	color: lighten($main-color, 40);
+	text-shadow: 1px 1px 0px $main-color-dark;
+
+	&:hover {
+		background-color: $main-color;
+		color: #fff;
+		text-shadow: none;
+	}
+
+	&.small {
+		font-size: 0.8em;
+
+		span.fa {
+			margin-right: 4px;
+		}
+	}
+	&.light {
+		background: $darker-gray;
+		color: $dark-gray-font;
+		text-shadow: none;
+
+		&:hover {
+			background: $dark-gray;
+		}
+	}
+}
+
+.whitebox {
+	background: #fff;
+	margin-bottom: $boxpadding;
+	padding: $boxpadding;
+
+	position: relative;
+
+	box-shadow: 0 0 2px rgba(0,0,0,.2);
+
+	h2 {
+		margin: 0px -$boxpadding;
+		padding: $boxpadding/2 $boxpadding;
+
+		border-bottom: 1px solid $darker-gray;
+	}
+
+	.boxcontent {
+		padding-top: $boxpadding;
+		
+	}
+
+	&.coachTip {
+		margin-top: 65px;
+	}
+
+	.coachImage {
+		position: absolute;
+		right: 40px;
+		top: -95px;
+
+		img {
+			width: 80px;
+		}
+	}
+}
+
+.profileImage {
+
+	width: $headerheight;
+	height: $headerheight;
+	border-radius: 100%;
+
+	border: 1px solid $darker-gray;
+	background: $light-gray;
+
+	overflow: hidden;
+
+	img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+.grid {
+	
+	display: flex;
+	flex-flow: row wrap;
+
+	margin: 0 -$boxpadding/2;
+
+	.gridItem {
+		padding: 0 $boxpadding/2;
+		box-sizing: border-box;
+
+		&.w-8 {
+			width: 66.66%;
+		}
+		&.w-4 {
+			width: 33.33%;
+		}
+	}
+}
+
+.row {
+	padding: 20px 0;
+
+	&:first-of-type {
+		padding-top: $headerheight*2;
+	}
+}

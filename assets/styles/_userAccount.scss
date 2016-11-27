@@ -1,0 +1,33 @@
+// Module userAccount
+
+form#userData {
+	
+	.formrow {
+		display: block;
+		margin-bottom: 5px;
+	}
+
+	label {
+		@extend .small;
+	}
+
+	input, select {
+		width: 100%;
+		font-family: inherit;
+	}
+	
+	input {
+		border: 1px solid $darker-gray;
+		border-bottom: 2px solid $dark-gray;
+		padding: $boxpadding;
+		box-sizing: border-box;
+
+		&:focus {
+			outline: none;
+			box-shadow: 0 0 10px rgba(0,0,0,.2);
+			border-bottom: 2px solid $main-color;
+		}
+	}
+
+
+}

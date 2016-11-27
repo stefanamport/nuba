@@ -1,0 +1,74 @@
+// Styles für den Headerbereich
+
+header {
+	background: rgba(255,255,255,.95);
+	box-shadow: 0 0 3px rgba(0,0,0,.2);
+
+	position: fixed;
+	z-index: 10;
+
+	left: 0px;
+	width: 100%;
+
+	padding: 0 $boxpadding;
+	box-sizing: border-box;
+
+	display: flex;
+
+	#mainnav {
+		
+		margin-left: auto;
+
+		ul, li {
+			list-style: none;
+			margin: 0px;
+			padding: 0px;
+
+		}
+
+		li {
+			display: inline-block;
+		}
+
+		a {
+			display: block;
+			line-height: $headerheight;
+			padding: 4px 10px;
+
+			transition: .2s all;
+
+			text-decoration: none;
+
+			color: $main-color;
+
+			border-left: 1px solid $darker-gray;
+
+			&:hover, &.active {
+				background: $light-gray;
+			}
+		}
+
+		li.accountLink {
+
+			.profileImage {
+				float: right;
+				margin-left: $boxpadding;
+			}
+		}
+	}
+
+	.logo {
+		font-size: 2em;
+		color: $main-color;
+		line-height: $headerheight;
+
+		font-family: $font-family-headlines;
+
+		margin-top: 5px;
+		
+		sup {
+			font-size: 0.5em;
+			vertical-align: super;
+		}
+	}
+}

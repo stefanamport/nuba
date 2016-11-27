@@ -1,10 +1,17 @@
 $light-gray: #f7f7f7;
 $darker-gray: darken($light-gray, 5);
-$dark-gray: darken($light-gray,15);
+$dark-gray: darken($light-gray, 15);
+$dark-gray-font: darken($light-gray, 25);
 
 $main-color: #2fb56d;
 $main-color-dark: darken(#2fb56d, 10);
 
 $headerheight: 50px;
+$hero-form-height: 50px;
 $boxpadding: 10px;
 
+$font-family-main: 'Roboto', sans-serif;
+$font-family-headlines: 'Slabo 27px', serif;
+
+// Font Awesome
+$fa-font-path: "../fonts";

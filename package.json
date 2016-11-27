@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "QuickStart package.json from the documentation, supplemented with testing support",
   "scripts": {
-
     "start": "npm run watch",
-    
     "e2e": "tsc && concurrently \"http-server -s\" \"protractor protractor.config.js\" --kill-others --success first",
     "lint": "tslint ./app/**/*.ts -t verbose",
     "lite": "lite-server",
@@ -15,15 +13,12 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "clean": "rm -r dist/*",
-    
     "scss": "node-sass --output-style compressed -o dist/css assets/styles",
     "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
     "build:css": "npm run scss && npm run autoprefixer",
     "watch:css": "onchange 'assets/styles/*.scss' -- npm run build:css",
     "serve": "browser-sync start --server --files 'dist/css/*.css, dist/js/*.js'",
-    
     "watch": "tsc && parallelshell 'npm run watch:css' 'npm run tsc:w' 'npm run lite' "
-
   },
   "keywords": [],
   "author": "",
@@ -39,6 +34,7 @@
     "@angular/router": "~3.2.0",
     "angular-in-memory-web-api": "~0.1.15",
     "core-js": "^2.4.1",
+    "font-awesome": "^4.7.0",
     "reflect-metadata": "^0.1.8",
     "rxjs": "5.0.0-beta.12",
     "systemjs": "0.19.40",
