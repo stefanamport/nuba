@@ -6,7 +6,7 @@ npm install
 
 ## Start Server für Entwicklung
 npm start
-oder npm start watch
+oder npm run watch
 
 (.ts & .scss werden dabei automatisch kompiliert)
 
