@@ -15,7 +15,7 @@
     "clean": "rm -r dist/*",
     "scss": "node-sass --output-style compressed -o dist/css assets/styles",
     "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
-    "build:css": "npm run scss && npm run autoprefixer",
+    "build:css": "npm run scss",
     "watch:css": "onchange 'assets/styles/*.scss' -- npm run build:css",
     "serve": "browser-sync start --server --files 'dist/css/*.css, dist/js/*.js'",
     "watch": "tsc && parallelshell 'npm run watch:css' 'npm run tsc:w' 'npm run lite' "
