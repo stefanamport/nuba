@@ -19,6 +19,54 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "assets/styles/_header.scss",
+			"settings":
+			{
+				"buffer_size": 980,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/nubaUserAccount/nubaUserAccount.component.ts",
+			"settings":
+			{
+				"buffer_size": 207,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/nubaJournal/nubaJournal.component.ts",
+			"settings":
+			{
+				"buffer_size": 213,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/nubaAnalysis/nubaAnalysis.component.ts",
+			"settings":
+			{
+				"buffer_size": 214,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "bs-config.json",
+			"settings":
+			{
+				"buffer_size": 119,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 2549,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -65,18 +113,36 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/stefanamport/repos/nuba"
+		"/Users/stefanamport/repos/nuba",
+		"/Users/stefanamport/repos/nuba/app",
+		"/Users/stefanamport/repos/nuba/app/nubaAnalysis",
+		"/Users/stefanamport/repos/nuba/app/nubaJournal",
+		"/Users/stefanamport/repos/nuba/app/nubaUserAccount"
 	],
 	"file_history":
 	[
-		"/Users/stefanamport/repos/nuba/screens.html",
+		"/Users/stefanamport/repos/nuba/app/app.module.ts",
+		"/Users/stefanamport/repos/nuba/app/header/header.html",
+		"/Users/stefanamport/repos/nuba/app/routing/routing.module.ts",
+		"/Users/stefanamport/repos/nuba/app/nubaUserAccount/nubaUserAccount.component.ts",
+		"/Users/stefanamport/repos/nuba/app/nubaAnalysis/nubaAnalysis.component.ts",
+		"/Users/stefanamport/repos/nuba/app/nubaJournal/nubaJournal.component.ts",
 		"/Users/stefanamport/repos/nuba/assets/styles/_header.scss",
+		"/Users/stefanamport/repos/nuba/app/dailyFood/dailyFood.component.ts",
+		"/Users/stefanamport/repos/nuba/app/userAccount/userAccount.component.ts",
+		"/Users/stefanamport/repos/nuba/app/evaluation/evaluation.component.ts",
+		"/Users/stefanamport/repos/nuba/app/app.component.js",
+		"/Users/stefanamport/repos/nuba/node_modules/@angular/router/src/router.js",
+		"/Users/stefanamport/repos/nuba/app/dailyFood/dailyFood.component.js",
+		"/Users/stefanamport/repos/nuba/app/dailyFood/app.component.ts",
+		"/Users/stefanamport/repos/nuba/assets/styles/main.scss",
+		"/Users/stefanamport/repos/nuba/app/main.js",
+		"/Users/stefanamport/repos/nuba/app/app.component.ts",
+		"/Users/stefanamport/repos/nuba/screens.html",
 		"/Users/stefanamport/repos/nuba/dist/css/main.css",
 		"/Users/stefanamport/repos/nuba/assets/styles/_normalize.scss",
 		"/Users/stefanamport/repos/nuba/package.json",
 		"/Users/stefanamport/repos/nuba/karma-test-shim.js",
-		"/Users/stefanamport/repos/nuba/assets/styles/main.scss",
-		"/Users/stefanamport/repos/nuba/app/main.js",
 		"/Users/stefanamport/repos/nuba/bs-config.json",
 		"/Users/stefanamport/repos/nuba/app/main.ts",
 		"/Users/stefanamport/repos/nuba/bs-config.js",
@@ -183,7 +249,7 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -197,6 +263,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"daily",
+			"outlet",
 			"white",
 			"coach",
 			"dein",
@@ -322,9 +390,7 @@
 			"updateEntry",
 			"updateThisOnServer",
 			"update",
-			"entry",
-			"ddd",
-			"todo"
+			"entry"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -342,8 +408,189 @@
 	"groups":
 	[
 		{
+			"selected": 3,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "assets/styles/_header.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 980,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								734,
+								734
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": false,
+								"indentSize": 4,
+								"tabSize": 4
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 876.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/nubaUserAccount/nubaUserAccount.component.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 207,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								107,
+								107
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/nubaJournal/nubaJournal.component.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 213,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								103,
+								103
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/nubaAnalysis/nubaAnalysis.component.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 214,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								98,
+								98
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "bs-config.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 119,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								38,
+								38
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2549,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								818,
+								818
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 22.0,
+						"translation.y": 113.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -404,6 +651,54 @@
 		"selected_items":
 		[
 			[
+				"header.scss",
+				"assets/styles/_header.scss"
+			],
+			[
+				"header.",
+				"app/header/header.html"
+			],
+			[
+				"routing.module",
+				"app/routing/routing.module.ts"
+			],
+			[
+				"daily",
+				"app/dailyFood/dailyFood.component.ts"
+			],
+			[
+				"account",
+				"app/userAccount/userAccount.component.ts"
+			],
+			[
+				"evaluation",
+				"app/evaluation/evaluation.component.ts"
+			],
+			[
+				"router",
+				"node_modules/@angular/router/src/router.js"
+			],
+			[
+				"user",
+				"app/userAccount/userAccount.component.ts"
+			],
+			[
+				"evaul",
+				"app/evaluation/evaluation.component.ts"
+			],
+			[
+				"dailyfood",
+				"app/dailyFood/dailyFood.component.ts"
+			],
+			[
+				"main.scss",
+				"assets/styles/main.scss"
+			],
+			[
+				"main.js",
+				"app/main.js"
+			],
+			[
 				"global",
 				"assets/styles/_global.scss"
 			],
@@ -424,20 +719,12 @@
 				"main.ts"
 			],
 			[
-				"main.scss",
-				"styles/main.scss"
-			],
-			[
 				"gulp",
 				"gulpfile.js"
 			],
 			[
 				"main.",
 				"node_modules/glob-watcher/test/main.js"
-			],
-			[
-				"main.js",
-				"build/main.js"
 			],
 			[
 				"index.html",

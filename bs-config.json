@@ -1,5 +1,12 @@
 {
   "port": 8000,
-  "files": ["./dist/**/*.{css,js,jpg,png,svg}", "./app/**/*.{js}"],
-  "server": { "baseDir": "./" }
+  "logLevel": "silent",
+  "files": ["./dist/**/*.{css,jpg,png,svg}", "./app/**/*.{js}"],
+  "server": {
+  	"baseDir": "./",
+  	"middleware": {
+      "0": null
+    }
+  },
+  "injectChanges": true
 }
