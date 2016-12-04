@@ -16,7 +16,6 @@
     "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
     "build:css": "node-sass --output-style compressed -o dist/css assets/styles",
     "watch:css": "onchange 'assets/styles/*.scss' -- npm run build:css",
-    "serve": "browser-sync start --server --files 'dist/css/*.css, app/*/*.js'",
     "watch": "tsc & parallelshell 'npm run watch:css' 'npm run tsc:w' 'npm run lite' "
   },
   "keywords": [],
@@ -56,6 +55,7 @@
     "karma-htmlfile-reporter": "^0.3.4",
     "karma-jasmine": "^1.0.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-ng-html2js-preprocessor": "^1.0.0",
     "lite-server": "^2.2.2",
     "lodash": "^4.16.4",
     "node-sass": "^3.13.0",
