@@ -120,16 +120,13 @@
 
 			border-radius: 5px;
 
-			display: none;
+			display: block;
 
 			li {
 				padding: $boxpadding;
 			}
 		}
 
-		input:focus + .searchResults {
-			display: block;
-		}
 	}
 }
 

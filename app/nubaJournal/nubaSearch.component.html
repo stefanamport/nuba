@@ -1,0 +1,21 @@
+<div class="heroSearch row">
+        <div class="middler">
+          <div class="inner">
+            <form class="search">
+              <div class="fieldGroup food">
+                <input #food type="text" placeholder="Was hast du gegessen?" id="food" (keyup)="filterResults(food.value)">
+              </div>
+              <div class="fieldGroup quantity">
+                <input type="number" value="100" id="quanitity">
+                <label for="food" class="foodLabel">g</label>
+              </div>
+              <div class="fieldGroup submit">
+                 <button id="saveFood" type="submit"><span class="fa fa-check" aria-hidden="true"></span></button>
+              </div>  
+            </form>
+            <ul class="searchResults"> <!-- *ngIf="searchResults" -->
+               <li *ngFor="let result of searchResults">{{result.food}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
