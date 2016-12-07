@@ -1,36 +1,54 @@
 import { Component } from '@angular/core';
+import { FoodDatabaseService } from '../foodDatabase/food.service';
+
+import { Food } from '../foodDatabase/food';
 
 @Component({
   selector: "NubaSearch",
-  templateUrl: "./app/nubaJournal/nubaSearch.component.html"
+  templateUrl: "./app/nubaJournal/nubaSearch.component.html",
+  providers: [FoodDatabaseService]
 })
 export class NubaSearch  { 
 
-	searchResults: Object;
+  public searchResults: Object;
 
-	// dummy list
+  //TODO Müsste eigendlich activeFood: Food sein, aber reset funktioniert dann nicht...
+  public activeFood: Object;
 
-	foodDatabase = [
-      { "id": 11, "food": "Broccoli", "quant": "100", "measure": "g"},
-      { "id": 12, "food": "Brot", "quant": "100", "measure": "g" },
-      { "id": 13, "food": "Erbsen", "quant": "100", "measure": "g" },
-      { "id": 14, "food": "Poulet", "quant": "100", "measure": "g" },
-      { "id": 15, "food": "Butter", "quant": "100", "measure": "g" },
-      { "id": 16, "food": "Magerquark", "quant": "100", "measure": "g" },
-      { "id": 17, "food": "Salat", "quant": "100", "measure": "g" },
-      { "id": 18, "food": "Schoggi", "quant": "100", "measure": "g" },
-      { "id": 19, "food": "Hot Dog", "quant": "100", "measure": "g" },
-      { "id": 20, "food": "Kaugumi", "quant": "100", "measure": "g" }
-  ]
-
-  filterResults (val: string){
-  	//console.log(value);
-
-  	let results = this.foodDatabase.filter(function(item){ 
-	   return item.food.toLowerCase().indexOf(val.toLowerCase()) > -1;
-	 });
-
-  	this.searchResults = results;
+  constructor(private _FoodDatabaseService: FoodDatabaseService) {
 
   }
+
+  filterResults (val: string){
+  	
+  	if (val.length > 0) {
+  		this.searchResults = this._FoodDatabaseService.getFoodDB(val);
+  	} else {
+  		this.resetSearchResults();
+  	}
+
+  }
+
+  addToForm(id: number){
+  	this.activeFood = this._FoodDatabaseService.getFood(id);
+  	this.resetSearchResults();
+  }
+
+  resetSearchResults(){
+  	this.searchResults = [];
+  };
+
+  clearForm(){
+  	this.activeFood = [];
+  };
+
+  addToJournal (id: number){
+
+  	console.log("add Food Number " + id + " to Journal :-D");
+
+  	this.resetSearchResults();
+  	this.clearForm();
+  	
+  }
+
 }

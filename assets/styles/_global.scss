@@ -70,6 +70,11 @@ button {
 			background: $dark-gray;
 		}
 	}
+
+	&:disabled {
+		cursor: auto;
+		opacity: .3;
+	}
 }
 
 .whitebox {

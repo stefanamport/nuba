@@ -3,18 +3,18 @@
           <div class="inner">
             <form class="search">
               <div class="fieldGroup food">
-                <input #food type="text" placeholder="Was hast du gegessen?" id="food" (keyup)="filterResults(food.value)">
+                <input #food type="text" placeholder="Was hast du gegessen?" id="food" value="{{activeFood?.name}}" (keyup)="filterResults(food.value)">
               </div>
               <div class="fieldGroup quantity">
-                <input type="number" value="100" id="quanitity">
-                <label for="food" class="foodLabel">g</label>
+                <input type="number" value="{{activeFood?.quantityProposal}}" id="quanitity">
+                <label for="food" class="foodLabel">{{activeFood?.measurement}}</label>
               </div>
               <div class="fieldGroup submit">
-                 <button id="saveFood" type="submit"><span class="fa fa-check" aria-hidden="true"></span></button>
+                 <button type="submit" id="saveFood" (click)="addToJournal(activeFood.id); $event.preventDefault()" [disabled]="!activeFood?.id" ><span class="fa fa-check" aria-hidden="true"></span></button>
               </div>  
             </form>
             <ul class="searchResults"> <!-- *ngIf="searchResults" -->
-               <li *ngFor="let result of searchResults">{{result.food}}</li>
+               <li *ngFor="let result of searchResults" (click)="addToForm(result.id)">{{result.name}}</li>
             </ul>
           </div>
         </div>
