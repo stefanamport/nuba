@@ -1,3 +1,9 @@
+// Allgemeine TODO's
+// - nice to have - nach klick in Suchfeld Food Vorschläge anzeigen
+// - nice to have - gewicht & submit button entfernen, falls noch kein nahrungsmitte eingetragen
+// - nice to have - es ist nicht ganz klar, dass keine Freien Texte gespeichert werden können
+// - Search Dropdown: Zum food.name weitere Details zum Nahrungsmittel anzeigen
+
 import { Component } from '@angular/core';
 import { FoodDatabaseService } from '../foodDatabase/food.service';
 
