@@ -8,25 +8,26 @@ import { Component } from '@angular/core';
 import { FoodDatabaseService } from '../foodDatabase/food.service';
 
 import { Food } from '../foodDatabase/food';
+import {FirebaseService} from "../foodDatabase/firebase.service";
 
 @Component({
   selector: "NubaSearch",
   templateUrl: "./app/nubaJournal/nubaSearch.component.html",
-  providers: [FoodDatabaseService]
+  providers: [FoodDatabaseService, FirebaseService]
 })
-export class NubaSearch  { 
+export class NubaSearch  {
 
   public searchResults: Object;
 
   //TODO Müsste eigendlich activeFood: Food sein, aber reset funktioniert dann nicht...
   public activeFood: Object;
 
-  constructor(private _FoodDatabaseService: FoodDatabaseService) {
+  constructor(private _FoodDatabaseService: FoodDatabaseService, private _FirebaseService: FirebaseService) {
 
   }
 
   filterResults (val: string){
-  	
+
   	if (val.length > 0) {
   		this.searchResults = this._FoodDatabaseService.getFoodDB(val);
   	} else {
@@ -36,6 +37,8 @@ export class NubaSearch  {
   }
 
   addToForm(id: number){
+    //TODO: this is just a first test whether FirebaseService.getFood() can be correctly called.
+    this._FirebaseService.getFood(id);
   	this.activeFood = this._FoodDatabaseService.getFood(id);
   	this.resetSearchResults();
   }
@@ -54,7 +57,7 @@ export class NubaSearch  {
 
   	this.resetSearchResults();
   	this.clearForm();
-  	
+
   }
 
 }

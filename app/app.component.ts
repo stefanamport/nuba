@@ -11,6 +11,6 @@ export class AppComponent  {
   name = 'Angular';
   items: FirebaseListObservable<any>;
   constructor(af: AngularFire) {
-     this.items = af.database.list('/food');
+     this.items = af.database.list('food');
   }
 }
