@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 
-@Component({
-  template: "<div class='whitebox'>nubaJournal (Dashboard)<br>gesamte Template Vorlage im ../screens.html</div>",
 
+
+@Component({
+  templateUrl: "./app/nubaJournal/nubaJournal.component.html"
 })
 export class JournalComponent  { 
 
- }
+
+}

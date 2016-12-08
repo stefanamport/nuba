@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 @Component({
+  //moduleID: module.id,
   selector: 'my-app',
   templateUrl: './app/app.component.html'
 })

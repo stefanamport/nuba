@@ -10,6 +10,11 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto|Slabo+27px" rel="stylesheet">
     <link rel="stylesheet" href="dist/css/main.css">
 
+    <link rel="icon" type="image/jpg" href="/dist/images/favicon.jpg">
+    <link rel="apple-touch-icon" href="/dist/images/favicon.jpg"">
+
+
+
     <!-- Polyfill(s) for older browsers -->
     <script src="node_modules/core-js/client/shim.min.js"></script>
 
@@ -24,6 +29,12 @@
   </head>
 
   <body>
-    <my-app>Loading nuba ...</my-app>
+  
+    <my-app>
+      <div class="loadingAnimation">
+        <img src="/dist/images/favicon.jpg">
+      </div>
+    </my-app>
+
   </body>
 </html>
