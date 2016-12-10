@@ -1,0 +1,27 @@
+<div class="screen search">
+
+                  <h2>Das hast heute gegessen:</h2>
+                  
+                  <div class="boxcontent">
+
+                    <div class="foodList">
+                      <ul class="dateChooser">
+                        <li class="prev"><button class="small light"><</button></li>
+                        <li class="actualDate">11.11.2011</li>
+                        <li class="next"><button class="small light">></button></li>
+                      </ul>
+
+                      <table>
+                        <tr *ngFor="let entry of journalList">
+                          <td>Food ID: {{entry.foodID}}</td>
+                          <td>{{entry.quantity}} *measurment*</td>
+                          <td>
+                            <button class="small"><span class="fa fa-edit" aria-hidden="true"></span>bearbeiten</button>
+                            <button class="small"><span class="fa fa-minus" aria-hidden="true"></span>löschen</button>
+                            </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+
+                </div>
