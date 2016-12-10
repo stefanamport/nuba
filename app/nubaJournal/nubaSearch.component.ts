@@ -9,10 +9,14 @@ import { FoodDatabaseService } from '../foodDatabase/food.service';
 
 import { Food } from '../foodDatabase/food';
 
+import { journalEntry } from './journalEntry';
+import { JournalEntriesService } from './journalEntries.service';
+
+
 @Component({
   selector: "NubaSearch",
   templateUrl: "./app/nubaJournal/nubaSearch.component.html",
-  providers: [FoodDatabaseService]
+  providers: [FoodDatabaseService, JournalEntriesService]
 })
 export class NubaSearch  { 
 
@@ -21,7 +25,7 @@ export class NubaSearch  {
   //TODO Müsste eigendlich activeFood: Food sein, aber reset funktioniert dann nicht...
   public activeFood: Object;
 
-  constructor(private _FoodDatabaseService: FoodDatabaseService) {
+  constructor(private _FoodDatabaseService: FoodDatabaseService, private JournalEntriesService: JournalEntriesService) {
 
   }
 
@@ -35,7 +39,7 @@ export class NubaSearch  {
 
   }
 
-  addToForm(id: number){
+  addToForm (id: number){
   	this.activeFood = this._FoodDatabaseService.getFood(id);
   	this.resetSearchResults();
   }
@@ -48,9 +52,20 @@ export class NubaSearch  {
   	this.activeFood = [];
   };
 
-  addToJournal (id: number){
+  addToJournal (id: number, quantity: number){
 
   	console.log("add Food Number " + id + " to Journal :-D");
+
+    let newEntry = new journalEntry;
+
+    newEntry.id = 3;
+    newEntry.date = "mock-Date :-)";
+    newEntry.foodID = id;
+    newEntry.quantity = quantity;
+
+    this.JournalEntriesService.addEntry(newEntry);
+
+    console.log(newEntry);
 
   	this.resetSearchResults();
   	this.clearForm();
