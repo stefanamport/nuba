@@ -1,8 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
 import { journalEntry } from './journalEntry';
+
+import { EventEmitter } from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {Observer} from 'rxjs/Observer';
+
 
 @Injectable()
 export class JournalEntriesService {
+
+  //data: Observable<Array<number>>;
+  observer: any;
+  //tobserver: Observer;
+
+  @Output() data = new EventEmitter();
+
 
   // ist mit firebase nicht mehr nötig, da nicht immer alle Einträge geladen sein müssen
   entries: Array<journalEntry>;
@@ -15,12 +27,31 @@ export class JournalEntriesService {
     if (this.entries === null) {
       this.entries = [];
     }
+
+     //this.data = new EventEmitter();
+
+     this.data.emit(333);
+     
+       console.log('timeout start');
+       this.testTrigger();
+
+     //this.data = new Observable(observer => this.dataObserver = observer);
     
   }
 
+  testTrigger(){
+      
+    this.data.emit('sending a message');
+    console.log('33 sent');
+      
+  }
+
   getOfDate(date:string){
+
+    let date = new Date(date);
+
     let entries = this.entries.filter(function(entry){ 
-       return entry.date === date;
+       return new Date(entry.date).setHours(0,0,0,0) === date.setHours(0,0,0,0);
     });
 
     return entries;
@@ -37,6 +68,8 @@ export class JournalEntriesService {
   addEntry(entry: journalEntry){
     this.entries.push(entry);
     this.save();
+
+    this.data.next(this.entries);
   }
 
   removeEntry(id: number){

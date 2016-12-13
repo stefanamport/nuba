@@ -13,8 +13,9 @@
 
                       <table>
                         <tr *ngFor="let entry of journalList">
-                          <td>Food ID: {{entry.foodID}}</td>
-                          <td>{{entry.quantity}} *measurment*</td>
+                          <td> {{entry.date | date: 'h:mm' }} Uhr
+                          {{foodDatabase.getFood(entry.foodID).name}}</td>
+                          <td>{{entry.quantity}}{{foodDatabase.getFood(entry.foodID).measurement}}</td>
                           <td>
                             <button class="small"><span class="fa fa-edit" aria-hidden="true"></span>bearbeiten</button>
                             <button class="small"><span class="fa fa-minus" aria-hidden="true"></span>löschen</button>

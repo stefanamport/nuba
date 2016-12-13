@@ -10,14 +10,15 @@ import { FoodDatabaseService } from '../foodDatabase/food.service';
 import { Food } from '../foodDatabase/food';
 
 import { journalEntry } from './journalEntry';
-import { JournalList } from './journalList.component';
 import { JournalEntriesService } from './journalEntries.service';
+
+
 
 
 @Component({
   selector: "nuba-search",
   templateUrl: "./app/nubaJournal/nubaSearch.component.html",
-  providers: [FoodDatabaseService, JournalEntriesService, JournalList]
+  providers: [FoodDatabaseService]
 })
 export class NubaSearch  { 
 
@@ -25,6 +26,7 @@ export class NubaSearch  {
 
   //TODO Müsste eigendlich activeFood: Food sein, aber reset funktioniert dann nicht...
   public activeFood: Object;
+  public activeQuantity: number;
 
   constructor(
     private _FoodDatabaseService: FoodDatabaseService,
@@ -55,25 +57,20 @@ export class NubaSearch  {
   	this.activeFood = [];
   };
 
-  addToJournal (id: number, quantity: number){
-
-  	console.log("add Food Number " + id + " to Journal :-D");
-
+  addToJournal (value: Object){
+    
     let newEntry = new journalEntry;
 
-    newEntry.id = 3;
-    newEntry.date = "mock-Date :-)";
-    newEntry.foodID = id;
-    newEntry.quantity = quantity;
+    newEntry.date =  new Date();
+
+    newEntry.foodID = this.activeFood.id;
+    newEntry.quantity = value.quantity;
 
     this.JournalEntriesService.addEntry(newEntry);
 
-    // TODO - just Updating view... evtl. nicht ganz ideal so??
-    //this.JournalList.addEntry(newEntry);
-
   	this.resetSearchResults();
   	this.clearForm();
-  	
+    
   }
 
 }

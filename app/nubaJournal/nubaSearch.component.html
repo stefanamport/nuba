@@ -1,16 +1,16 @@
 <div class="heroSearch row">
         <div class="middler">
           <div class="inner">
-            <form class="search">
+            <form class="search" (ngSubmit)="addToJournal(searchForm.value)"  #searchForm="ngForm">
               <div class="fieldGroup food">
                 <input #food type="text" placeholder="Was hast du gegessen?" id="food" value="{{activeFood?.name}}" (keyup)="filterResults(food.value)">
               </div>
               <div class="fieldGroup quantity">
-                <input type="number" value="{{activeFood?.quantityProposal}}" id="quanitity">
+                <input type="number" value="{{activeFood?.quantityProposal}}" name="quantity" [(ngModel)]="quantity" >
                 <label for="food" class="foodLabel">{{activeFood?.measurement}}</label>
               </div>
               <div class="fieldGroup submit">
-                 <button type="submit" id="saveFood" (click)="addToJournal(activeFood.id); $event.preventDefault()" [disabled]="!activeFood?.id" ><span class="fa fa-check" aria-hidden="true"></span></button>
+                 <button type="submit" id="saveFood" [disabled]="!activeFood?.id" ><span class="fa fa-check" aria-hidden="true"></span></button>
               </div>  
             </form>
             <ul class="searchResults"> <!-- *ngIf="searchResults" -->
