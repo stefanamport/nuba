@@ -19,6 +19,9 @@ export class JournalEntriesService {
   // ist mit firebase nicht mehr nötig, da nicht immer alle Einträge geladen sein müssen
   entries: Array<journalEntry>;
 
+  // TODO umstellen auf Object...
+  activeListDate: any = new Date();
+
   constructor(){
     
     // ist mit firebase ebenfalls nicht mehr nötig
@@ -27,34 +30,31 @@ export class JournalEntriesService {
     if (this.entries === null) {
       this.entries = [];
     }
-
-     //this.data = new EventEmitter();
-
-     this.data.emit(333);
-     
-       console.log('timeout start');
-       this.testTrigger();
-
-     //this.data = new Observable(observer => this.dataObserver = observer);
     
   }
 
-  testTrigger(){
-      
-    this.data.emit('sending a message');
-    console.log('33 sent');
-      
-  }
 
-  getOfDate(date: any){
+  getOfActiveDate(){
 
-    let dateObj = new Date(date);
+    let activeListDateDay = this.activeListDate.setHours(0,0,0,0);
 
     let entries = this.entries.filter(function(entry){
-       return new Date(entry.date.toString()).setHours(0,0,0,0) === dateObj.setHours(0,0,0,0);
+       
+       let compareDate = new Date(entry.date.toString()).setHours(0,0,0,0);
+
+       return compareDate === activeListDateDay;
     });
 
     return entries;
+  }
+
+  changeDateInSteps(step: number){ 
+
+    let baseDate = this.activeListDate;
+
+    this.activeListDate = new Date(baseDate.setDate(baseDate.getDate() + step));
+
+    this.dataUpdated();
   }
 
   getSingle(id: number){
@@ -69,7 +69,21 @@ export class JournalEntriesService {
     this.entries.push(entry);
     this.save();
 
-    this.data.next(this.entries);
+    this.dataUpdated();
+  }
+
+  // Make Object for Subscribers
+  getMutableData () {
+    let mutableData = {
+      'entriesOfActiveDate' : this.getOfActiveDate(),
+      'activeDate' : this.activeListDate
+    }
+    return mutableData;
+  }
+
+  // Send Changes to Subscribers
+  dataUpdated (){
+    this.data.next(this.getMutableData());
   }
 
   removeEntry(id: number){
