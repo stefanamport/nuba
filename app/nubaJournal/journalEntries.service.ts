@@ -46,12 +46,12 @@ export class JournalEntriesService {
       
   }
 
-  getOfDate(date:string){
+  getOfDate(date: any){
 
-    let date = new Date(date);
+    let dateObj = new Date(date);
 
-    let entries = this.entries.filter(function(entry){ 
-       return new Date(entry.date).setHours(0,0,0,0) === date.setHours(0,0,0,0);
+    let entries = this.entries.filter(function(entry){
+       return new Date(entry.date.toString()).setHours(0,0,0,0) === dateObj.setHours(0,0,0,0);
     });
 
     return entries;

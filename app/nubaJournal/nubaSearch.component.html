@@ -3,10 +3,10 @@
           <div class="inner">
             <form class="search" (ngSubmit)="addToJournal(searchForm.value)"  #searchForm="ngForm">
               <div class="fieldGroup food">
-                <input #food type="text" placeholder="Was hast du gegessen?" id="food" value="{{activeFood?.name}}" (keyup)="filterResults(food.value)">
+                <input #food type="text" autocomplete="off" placeholder="Was hast du gegessen?" id="food" value="{{activeFood?.name}}" (keyup)="filterResults(food.value)">
               </div>
               <div class="fieldGroup quantity">
-                <input type="number" value="{{activeFood?.quantityProposal}}" name="quantity" [(ngModel)]="quantity" >
+                <input type="number" [(ngModel)]="activeQuantity" name="quantity" >
                 <label for="food" class="foodLabel">{{activeFood?.measurement}}</label>
               </div>
               <div class="fieldGroup submit">

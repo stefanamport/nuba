@@ -1,6 +1,6 @@
 export class journalEntry {
   id: number;
-  date: string;
+  date: Object;
   foodID: number;
   quantity: number;
 }

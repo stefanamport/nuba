@@ -13,21 +13,21 @@ import { FoodDatabaseService } from '../foodDatabase/food.service';
 export class JournalList  { 
   
   journalList: Array<journalEntry>;
-  showEntriesOfDate: string;
+  showEntriesOfDate: Object;
 
   subscription: any;
 
   constructor(private JournalEntriesService: JournalEntriesService, private foodDatabase: FoodDatabaseService) {
 
     // Mock... shows everytime entries of today
-  	this.showEntriesOfDate = new Date () ;
+  	this.showEntriesOfDate = new Date();
 
   	this.journalList = JournalEntriesService.getOfDate(this.showEntriesOfDate);
 
   }
 
   ngOnInit(){
-    this.JournalEntriesService.data.subscribe(data => {
+    this.JournalEntriesService.data.subscribe((data: any) => {
         this.journalList = data;
       });
   }
