@@ -66,14 +66,39 @@ export class JournalEntriesService {
   }
 
   addEntry(entry: journalEntry){
+    
+    // Firebase Save Mock 
+      // function(){} >> push to firebase
+      // rückmeldung mit ID
+      entry.id = Math.floor(Math.random() * (9999999999 - 1)) + 1;
+
+    // Rückmeldung von Firebase einlesen
     this.entries.push(entry);
+
+    // Mock Save
     this.save();
 
+    // Push to subscribers
     this.dataUpdated();
   }
 
-  // Make Object for Subscribers
+  deleteEntry(id: any){
+
+    for (let c = 0; c < this.entries.length; c++) {
+      if (this.entries[c].id && this.entries[c].id === id) { 
+          this.entries.splice(c, 1);
+          break;
+      }
+    }
+
+    this.dataUpdated();
+    this.save();
+  }
+
+  
   getMutableData () {
+    // Make Object for Subscribers
+
     let mutableData = {
       'entriesOfActiveDate' : this.getOfActiveDate(),
       'activeDate' : this.activeListDate
@@ -81,8 +106,9 @@ export class JournalEntriesService {
     return mutableData;
   }
 
-  // Send Changes to Subscribers
+  
   dataUpdated (){
+     // Send Changes to Subscribers
     this.data.next(this.getMutableData());
   }
 
@@ -91,7 +117,7 @@ export class JournalEntriesService {
   }
 
   save() {
-    // muss durch firebase ersetzt werden
+    // mock... wird dann in den einzelnen Funktionen durch Firebase ersetzt...
     localStorage.setItem("nubaJournalEntries", JSON.stringify(this.entries));
   }
 

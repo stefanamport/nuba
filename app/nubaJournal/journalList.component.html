@@ -18,7 +18,7 @@
                           <td>{{entry.quantity}}{{foodDatabase.getFood(entry.foodID).measurement}}</td>
                           <td>
                             <button class="small"><span class="fa fa-edit" aria-hidden="true"></span>bearbeiten</button>
-                            <button class="small"><span class="fa fa-minus" aria-hidden="true"></span>löschen</button>
+                            <button class="small" (click)="deleteEntry(entry.id)"><span class="fa fa-minus" aria-hidden="true"></span>löschen</button>
                             </td>
                         </tr>
                       </table>

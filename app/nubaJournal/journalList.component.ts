@@ -42,16 +42,14 @@ export class JournalList  {
 
   // *** siehe TODO oben
 
-  addEntry(entry: journalEntry){
-  	// TODO templateUrlJust for updating the view
-  	if (entry.date === this.showEntriesOfDate) {
-  		//this.journalList.push(entry);
-  	}
 
-   }
 
-   dateChange (step: number) {
+  deleteEntry (id: any){
+    this.JournalEntriesService.deleteEntry(id);
+  }
+
+  dateChange (step: number) {
      this.JournalEntriesService.changeDateInSteps(step);
-   }
+  }
 
 }
