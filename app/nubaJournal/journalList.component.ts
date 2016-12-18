@@ -42,6 +42,16 @@ export class JournalList  {
 
   // *** siehe TODO oben
 
+  isActiveListDateToday(){
+
+    let today = new Date();
+
+    if (this.activeListDate.setHours(0,0,0,0) == today.setHours(0,0,0,0) ){
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 
   deleteEntry (id: any){
