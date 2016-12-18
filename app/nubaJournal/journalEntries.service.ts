@@ -95,6 +95,17 @@ export class JournalEntriesService {
     this.save();
   }
 
+  updateEntry(id: any){
+    // Mock
+    // würde dann den einzelnen Entry auf Firebase ändern...
+
+    let newEntry = this.getSingle(id);
+    //sendToFirebase(new Entry) :-)
+
+    this.save();
+
+  }
+
   
   getMutableData () {
     // Make Object for Subscribers
@@ -112,9 +123,6 @@ export class JournalEntriesService {
     this.data.next(this.getMutableData());
   }
 
-  removeEntry(id: number){
-
-  }
 
   save() {
     // mock... wird dann in den einzelnen Funktionen durch Firebase ersetzt...

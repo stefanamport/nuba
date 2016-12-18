@@ -15,11 +15,22 @@
                         <tr *ngFor="let entry of journalList">
                           <td> {{entry.date | date: 'h:mm' }} Uhr
                           {{foodDatabase.getFood(entry.foodID).name}}</td>
-                          <td>{{entry.quantity}}{{foodDatabase.getFood(entry.foodID).measurement}}</td>
-                          <td>
-                            <button class="small"><span class="fa fa-edit" aria-hidden="true"></span>bearbeiten</button>
-                            <button class="small" (click)="deleteEntry(entry.id)"><span class="fa fa-minus" aria-hidden="true"></span>löschen</button>
-                            </td>
+
+                          <template [ngIf]="!entry.editable">
+                            <td>{{entry.quantity}}{{foodDatabase.getFood(entry.foodID).measurement}}</td>
+                            <td>
+                              <button class="small" (click)="makeEditable(entry)"><span class="fa fa-edit" aria-hidden="true"></span>bearbeiten</button>
+                              <button class="small" (click)="deleteEntry(entry.id)"><span class="fa fa-minus" aria-hidden="true"></span>löschen</button>
+                              </td>
+                          </template>
+                            
+                          <template [ngIf]="entry.editable">
+                              <td><input type="number" [(ngModel)]="entry.quantity" (keyup.enter)="updateEntry(entry)" name="quantity{{entry.id}}" id="quantity{{entry.id}}" class="quantity" /> {{foodDatabase.getFood(entry.foodID).measurement}}</td>
+                              <td>
+                                <button class="small" (click)="updateEntry(entry)"><span class="fa fa-check" aria-hidden="true"></span></button>
+                                </td>
+                          </template>
+
                         </tr>
                       </table>
                       <div *ngIf="!journalList.length">

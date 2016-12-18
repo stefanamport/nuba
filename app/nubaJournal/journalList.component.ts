@@ -53,6 +53,14 @@ export class JournalList  {
     }
   }
 
+  makeEditable(entry: Object){
+    entry.editable = true;
+  }
+
+  updateEntry (entry: Object){
+     entry.editable = false;
+     this.JournalEntriesService.updateEntry(entry.id);
+  }
 
   deleteEntry (id: any){
     this.JournalEntriesService.deleteEntry(id);
