@@ -47,6 +47,7 @@
 		.fieldGroup {
 
 			padding-right: $boxpadding/2;
+			transition: .4s all;
 
 			&.food {
 				width: 60%;
@@ -98,6 +99,25 @@
 				}
 			}
 
+		}
+
+		.foodNotSelected {
+			.fieldGroup {
+
+				&.food {
+					width: 100%;
+					padding: 0px;
+				}
+				
+				&.quantity, &.submit {
+					width: 0;
+					overflow: hidden;
+					padding: 0;
+					border: 0px;
+					margin: 0px;
+					opacity: 0;
+				}
+			}
 		}
 
 		#saveFood {

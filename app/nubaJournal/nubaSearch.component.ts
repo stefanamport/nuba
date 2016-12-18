@@ -2,6 +2,7 @@
 // - nice to have - nach klick in Suchfeld Food Vorschläge anzeigen
 // - nice to have - gewicht & submit button entfernen, falls noch kein nahrungsmitte eingetragen
 // - nice to have - es ist nicht ganz klar, dass keine Freien Texte gespeichert werden können
+// - Suchfeld Vorschläge: mit Pfeiltasten navigierbar machen
 // - Search Dropdown: Zum food.name weitere Details zum Nahrungsmittel anzeigen
 
 import { Component } from '@angular/core';
@@ -40,6 +41,11 @@ export class NubaSearch  {
   		this.resetSearchResults();
   	}
 
+    if (this.activeFood && this.activeFood.name != val) {
+      this.activeFood = {};
+      this.activeFood.name = val;
+    }
+
   }
 
   addToForm (id: number){
@@ -49,6 +55,8 @@ export class NubaSearch  {
     if (!this.activeQuantity) {
       this.activeQuantity = this.activeFood.quantityProposal;
     }
+
+    document.getElementById("quantity").focus();
 
   	this.resetSearchResults();
   }

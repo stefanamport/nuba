@@ -1,12 +1,12 @@
 <div class="heroSearch row">
         <div class="middler">
           <div class="inner">
-            <form class="search" (ngSubmit)="addToJournal(searchForm.value)"  #searchForm="ngForm">
+            <form class="search" (ngSubmit)="addToJournal(searchForm.value)"  #searchForm="ngForm" [ngClass]="{'foodNotSelected': !activeFood.id }">
               <div class="fieldGroup food">
                 <input #food type="text" autocomplete="off" placeholder="Was hast du gegessen?" id="food" value="{{activeFood?.name}}" (keyup)="filterResults(food.value)">
               </div>
               <div class="fieldGroup quantity">
-                <input type="number" [(ngModel)]="activeQuantity" name="quantity" >
+                <input type="number" [(ngModel)]="activeQuantity" id="quantity" name="quantity" >
                 <label for="food" class="foodLabel">{{activeFood?.measurement}}</label>
               </div>
               <div class="fieldGroup submit">
