@@ -63,6 +63,31 @@ h3 {
 	margin: 0px auto;
 }
 
+// Global Form STylings
+input {
+	border: 1px solid $darker-gray;
+	border-bottom: 2px solid $dark-gray;
+	padding: $boxpadding;
+	box-sizing: border-box;
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 10px rgba(0,0,0,.2);
+		border-bottom: 2px solid $main-color;
+	}
+
+	&.small {
+		padding: 2px 5px;
+		&, &:focus {
+			border-bottom-width: 1px;
+		}
+	}
+}
+
+
+
+// Global Button STylings
+
 button {
 	background: $main-color;
 	border: 0px;
@@ -74,6 +99,13 @@ button {
 
 	color: lighten($main-color, 40);
 	text-shadow: 1px 1px 0px $main-color-dark;
+	border: 1px solid $main-color;
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 10px rgba(0,0,0,.3);
+		border: 1px solid rgba(0,0,0,.2);
+	}
 
 	&:hover {
 		background-color: $main-color;
@@ -82,19 +114,21 @@ button {
 	}
 
 	&.small {
-		font-size: 0.8em;
-
-		span.fa {
-			margin-right: 4px;
-		}
+		font-size: 1em;
+		font-weight: bold;
 	}
 	&.light {
 		background: $darker-gray;
 		color: $dark-gray-font;
 		text-shadow: none;
+		border: 1px solid $darker-gray;
 
 		&:hover {
-			background: $dark-gray;
+			background: $darker-gray;
+			color: #000;
+		}
+		&:focus {
+			border: 1px solid rgba(0,0,0,.2);
 		}
 	}
 
@@ -102,6 +136,7 @@ button {
 		cursor: auto;
 		opacity: .3;
 	}
+	
 }
 
 .whitebox {

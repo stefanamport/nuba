@@ -95,7 +95,6 @@
 					width: 100%;
 					height: 100%;
 					font-size: 2em;
-
 				}
 			}
 
@@ -187,12 +186,31 @@
 	table {
 		width: 100%;
 
-		tr {
-			border-bottom: 1px solid $darker-gray;
+		tr:nth-child(1+2n) td {
+			
 		}
 
-		tr:nth-child(1+2n) {
-			background: #fff;
+		td {
+			border-bottom: 1px solid $darker-gray;
+			
+			&.time, &.quantity, &.triggers {
+				width:15%;
+			}
+
+			&.quantity input {
+				width: 50px;
+				font-family: inherit;
+				font-size: inherit;
+			}
+
+			&.foodName {
+				width: 55%;
+			}
+
+			&.triggers {
+				text-align: right;
+			}
 		}
+
 	}	
 }
