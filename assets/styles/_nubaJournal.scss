@@ -47,6 +47,7 @@
 		.fieldGroup {
 
 			padding-right: $boxpadding/2;
+			transition: .4s all;
 
 			&.food {
 				width: 60%;
@@ -94,10 +95,28 @@
 					width: 100%;
 					height: 100%;
 					font-size: 2em;
-
 				}
 			}
 
+		}
+
+		.foodNotSelected {
+			.fieldGroup {
+
+				&.food {
+					width: 100%;
+					padding: 0px;
+				}
+				
+				&.quantity, &.submit {
+					width: 0;
+					overflow: hidden;
+					padding: 0;
+					border: 0px;
+					margin: 0px;
+					opacity: 0;
+				}
+			}
 		}
 
 		#saveFood {
@@ -167,12 +186,31 @@
 	table {
 		width: 100%;
 
-		tr {
-			border-bottom: 1px solid $darker-gray;
+		tr:nth-child(1+2n) td {
+			
 		}
 
-		tr:nth-child(1+2n) {
-			background: #fff;
+		td {
+			border-bottom: 1px solid $darker-gray;
+			
+			&.time, &.quantity, &.triggers {
+				width:15%;
+			}
+
+			&.quantity input {
+				width: 50px;
+				font-family: inherit;
+				font-size: inherit;
+			}
+
+			&.foodName {
+				width: 55%;
+			}
+
+			&.triggers {
+				text-align: right;
+			}
 		}
+
 	}	
 }
