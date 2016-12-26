@@ -65,7 +65,7 @@
     "onchange": "^3.0.2",
     "parallelshell": "^2.0.0",
     "postcss-cli": "^2.6.0",
-    "protractor": "4.0.9",
+    "protractor": "4.0.14",
     "rimraf": "^2.5.4",
     "tslint": "^3.15.1",
     "typescript": "^2.0.10",
