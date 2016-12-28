@@ -3,4 +3,5 @@ export class journalEntry {
   date: Object;
   foodID: number;
   quantity: number;
+  editable: boolean;
 }

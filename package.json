@@ -41,7 +41,7 @@
   "devDependencies": {
     "@types/jasmine": "^2.5.36",
     "@types/node": "^6.0.46",
-    "@types/selenium-webdriver": "^2.53.33",
+    "@types/selenium-webdriver": "^2.53.36",
     "autoprefixer": "^6.5.3",
     "browser-sync": "^2.18.2",
     "canonical-path": "0.0.2",
