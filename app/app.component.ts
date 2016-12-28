@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import {Component} from '@angular/core';
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 @Component({
   //moduleID: module.id,
@@ -7,10 +7,11 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
   templateUrl: './app/app.component.html'
 })
 
-export class AppComponent  {
+export class AppComponent {
   name = 'Angular';
   items: FirebaseListObservable<any>;
+  
   constructor(af: AngularFire) {
-     this.items = af.database.list('food');
+    this.items = af.database.list('food');
   }
 }

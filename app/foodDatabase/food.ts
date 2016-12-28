@@ -1,6 +1,7 @@
 export interface Food {
-  id: number;
+  $key: number;
   name: string;
-  quantityProposal: number;
-  measurement: string;
+  category: string;
+  matrix_unit: string;
+  matrix_amount: number;
 }

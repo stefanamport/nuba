@@ -8,83 +8,70 @@ import { Component } from '@angular/core';
 import { FoodDatabaseService } from '../foodDatabase/food.service';
 
 import { Food } from '../foodDatabase/food';
-import {FirebaseService} from "../foodDatabase/firebase.service";
-
-import { journalEntry } from './journalEntry';
+import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
-
+import {FirebaseService} from '../foodDatabase/firebase.service';
 
 @Component({
-  selector: "nuba-search",
-  templateUrl: "./app/nubaJournal/nubaSearch.component.html",
+  selector: 'nuba-search',
+  templateUrl: './app/nubaJournal/nubaSearch.component.html',
   providers: [FoodDatabaseService, FirebaseService]
 })
 export class NubaSearch  {
 
-  public searchResults: Object;
-
-  //TODO Müsste eigendlich activeFood: Food sein, aber reset funktioniert dann nicht...
-  public activeFood: any;
-  public activeQuantity: any;
+  public searchResults: Array<Food>;
+  public selectedFood: Food = null;
+  public selectedQuantity: number = 0;
 
   constructor(
     private FoodDatabaseService: FoodDatabaseService,
-    private JournalEntriesService: JournalEntriesService,
-    private FirebaseService: FirebaseService) {
-      this.activeFood = false;
+    private JournalEntriesService: JournalEntriesService) {
   }
 
-  filterResults (val: string){
-
-  	if (val.length > 0) {
-  		this.searchResults = this.FoodDatabaseService.getFoodDB(val);
-  	} else {
-  		this.resetSearchResults();
-  	}
-
-    if (this.activeFood && this.activeFood.name != val) {
-      this.activeFood = {};
-      this.activeFood.name = val;
+  filterResults (val: string) {
+    if (val.length > 2) {
+      this.FoodDatabaseService.searchFood(val).subscribe(food => this.searchResults = food);
+    } else if (val.length === 0) {
+      this.resetSearchResults();
     }
 
+    if (this.selectedFood && this.selectedFood.name != val) {
+      this.selectedFood.name = val;
+    }
   }
 
   addToForm (id: number){
-    this.FirebaseService.getFood(id);
-  	this.activeFood = this.FoodDatabaseService.getFood(id);
+    this.FoodDatabaseService.getFood(id).subscribe(food => {
+      this.selectedFood = food;
+      if (this.selectedFood !== null) {
+        this.selectedQuantity = this.selectedFood.matrix_amount;
+      }
 
-    if (!this.activeQuantity) {
-      this.activeQuantity = this.activeFood.quantityProposal;
-    }
-
-    document.getElementById("quantity").focus();
-
-  	this.resetSearchResults();
+      document.getElementById('quantity').focus();
+      this.resetSearchResults();
+    });
   }
 
-  resetSearchResults(){
-  	this.searchResults = [];
+  resetSearchResults() {
+    this.searchResults = null;
   };
 
-  clearForm(){
-  	this.activeFood = false;
-    this.activeQuantity = false;
+  clearForm() {
+    this.selectedFood = null;
+    this.selectedQuantity = 0;
   };
 
-  addToJournal (value: any){
-
-    let newEntry = new journalEntry;
-
+  addToJournal (value: any) {
+    let newEntry = new JournalEntry;
     newEntry.date =  new Date();
-
-    newEntry.foodID = this.activeFood.id;
-    newEntry.quantity = this.activeQuantity;
+    newEntry.foodID = this.selectedFood.$key;
+    newEntry.name = this.selectedFood.name;
+    newEntry.quantity = this.selectedQuantity;
+    newEntry.unit = this.selectedFood.matrix_unit;
 
     this.JournalEntriesService.addEntry(newEntry);
 
-  	this.resetSearchResults();
-  	this.clearForm();
-
+    this.resetSearchResults();
+    this.clearForm();
   }
-
 }
