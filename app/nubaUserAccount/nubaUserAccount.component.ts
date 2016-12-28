@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 
+import { user } from './user';
+import { UserService } from './user.service';
+
 @Component({
-  template: "<br><br><br><br><div class='whitebox'>nubaUserAccount<br>gesamte Template Vorlage im ../screens.html</div>"
+  templateUrl: "./app/nubaUserAccount/nubaUserAccount.component.html"
 })
 export class UserAccountComponent  { 
 
