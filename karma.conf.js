@@ -59,6 +59,10 @@ module.exports = function(config) {
       { pattern: 'node_modules/@angular/**/*.js', included: false, watched: false },
       { pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false },
 
+      // angularfire2
+      { pattern: 'node_modules/firebase/**/*.js', included: false, watched: false },
+      { pattern: 'node_modules/angularfire2/bundles/angularfire2.umd.js', included: false, watched: false },
+
       { pattern: 'systemjs.config.js', included: false, watched: false },
       { pattern: 'systemjs.config.extras.js', included: false, watched: false },
       'karma-test-shim.js', // optionally extend SystemJS mapping e.g., with barrels
