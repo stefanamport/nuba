@@ -10,22 +10,22 @@
                       
                     <div class="formrow">
                       <label>Vorname</label>
-                      <input type="text" id="vorname">
+                      <input type="text" [(ngModel)]="user.name" name="vorname">
                     </div>
 
                     <div class="formrow">
-                      <label>Alter</label>
-                      <input type="text" id="vorname">
+                      <label>Geburtsdatum</label>
+                      <input type="text" [(ngModel)]="user.birthday" type="date" name="geburtsdatum">
                     </div>
 
                     <div class="formrow">
-                      <label>Gewicht</label>
-                      <input type="text" id="vorname">
+                      <label>Gewicht (kg)</label>
+                      <input type="text" [(ngModel)]="user.bodyweight" name="gewicht">
                     </div>
 
                     <div class="formrow">
-                      <label>Grösse</label>
-                      <input type="text" id="vorname">
+                      <label>Grösse (cm)</label>
+                      <input type="text" [(ngModel)]="user.bodyheight" name="groesse">
                     </div>
 
                     <div class="formrow">
@@ -36,10 +36,9 @@
                         <option value="3">5x pro Woche Sport</option>
                       </select>
                     </div>
-
+                    
                     <div class="formrow">
-                      <label>Passwort</label>
-                      <input type="password" id="vorname">
+                    <button class="big" aria-label="speichern" (click)="saveUser()"><span class="fa fa-check" aria-hidden="true"></span> speichern</button>
                     </div>
 
                   </form>
@@ -47,7 +46,16 @@
 
               </div>
             </main>
-            <aside class="gridItem w-4"></aside>
+            <aside class="gridItem w-4">
+              <div class="whitebox">
+                <h2>Berechnungen</h2>
+                
+                <div class="boxcontent">
+                    BMI: {{user.bmi}}<br>
+                    Alter: {{user.age}}
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </div>

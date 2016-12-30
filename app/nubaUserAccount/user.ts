@@ -1,6 +1,13 @@
-export interface Food {
-  id: number;
-  name: string;
-  quantityProposal: number;
-  measurement: string;
+export interface user {
+  id?: string;
+  name?: string;
+
+  birthday?: string; // Format: yyyy-mm-dd
+  age?: any;
+
+  bodyweight?: number;
+  bodyheight?: number;
+
+  bmi?: any;
+
 }
