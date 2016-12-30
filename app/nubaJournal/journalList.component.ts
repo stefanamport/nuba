@@ -1,22 +1,18 @@
 import { Component } from '@angular/core';
 
-import { journalEntry } from './journalEntry';
+import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
 
 import { FoodDatabaseService } from '../foodDatabase/food.service';
 
 @Component({
-  selector: "journal-list",
-  templateUrl: "./app/nubaJournal/journalList.component.html",
+  selector: 'journal-list',
+  templateUrl: './app/nubaJournal/journalList.component.html',
   providers: [FoodDatabaseService]
 })
-export class JournalList  { 
-  
-  journalList: Array<journalEntry>;
-  showEntriesOfDate: Object;
+export class JournalList  {
+  journalList: Array<JournalEntry>;
   activeListDate: any;
-
-  subscription: any;
 
   constructor(private JournalEntriesService: JournalEntriesService, private foodDatabase: FoodDatabaseService) {
 
@@ -42,8 +38,7 @@ export class JournalList  {
 
   // *** siehe TODO oben
 
-  isActiveListDateToday(){
-
+  isActiveListDateToday() {
     let today = new Date();
 
     if (this.activeListDate.setHours(0,0,0,0) == today.setHours(0,0,0,0) ){
@@ -53,16 +48,16 @@ export class JournalList  {
     }
   }
 
-  makeEditable(entry: Object){
+  makeEditable(entry: JournalEntry){
     entry.editable = true;
   }
 
-  updateEntry (entry: Object){
+  updateEntry (entry: JournalEntry){
      entry.editable = false;
      this.JournalEntriesService.updateEntry(entry.id);
   }
 
-  deleteEntry (id: any){
+  deleteEntry (id: number){
     this.JournalEntriesService.deleteEntry(id);
   }
 

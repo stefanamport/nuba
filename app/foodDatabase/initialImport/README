@@ -1,0 +1,18 @@
+The 'initialImport' folder contains files related to the initial import for the firebase database.
+
+All information about food is downloaded from here:
+Federal Department of Home Affairs FDHA
+Federal Food Safety and Veterinary Office FSVO
+http://www.naehrwertdaten.ch/
+
+The format of the original csv data was manually adjusted to fit our needs (see generic_food_prepared.csv).
+The data to be imported into the firebase database is included in food.database.ts.
+
+The data included in food.database.ts was generated with the tool csvtojson:
+- install csvtojson: https://www.npmjs.com/package/csvtojson
+- command line: csvtojson generic_food_prepared.csv > converted.json
+- copy paste output from converted.json to food.database.ts
+
+As this data is not expected to change the conversion of csv to json is not fully automated.
+
+When FirebaseImportService is executed the data in food.database.ts is imported to the firebase database.

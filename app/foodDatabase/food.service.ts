@@ -1,25 +1,49 @@
 import { Injectable } from '@angular/core';
-import { FoodDatabase } from './food.mock';
+import { Food } from './food';
+import { FirebaseService } from '../foodDatabase/firebase.service';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class FoodDatabaseService {
-  
-  getFoodDB(filter: string) {
 
-  	let filteredFoodDatabase = FoodDatabase.filter(function(item){ 
-	   return item.name.toLowerCase().indexOf(filter.toLowerCase()) > -1;
-	});
+  private cachedFoodList: Array<Food> = [];
 
-    return filteredFoodDatabase;
+  constructor(private FirebaseService: FirebaseService) {}
+
+  searchFood(filter: string): Observable<Array<Food>> {
+    if (this.cachedFoodList.length === 0) {
+      return this.FirebaseService.getAllFood().map(food => {
+        this.cachedFoodList = food;
+        return this.filterFood(filter);
+     });
+    } else {
+      return Observable.of(this.filterFood(filter));
+    }
   }
 
-  getFood(id: number) {
-    
-    let food = FoodDatabase.filter(function(item){ 
-	   return item.id === id;
-	});
+  getFood(id: number): Observable<Food> {
+    let food = this.filterFoodId(id);
+    if (food === null) {
+      return this.FirebaseService.getFood(id);
+    } else {
+      return Observable.of(food);
+    }
+  }
 
-	return food[0];
+  private filterFood(filter: string): Array<Food> {
+    let result: Array<Food> = this.cachedFoodList.filter(
+      food => food.name.toLowerCase().indexOf(filter.toLowerCase()) > -1);
+    return result;
+  }
 
+  private filterFoodId(id: number): Food {
+    let result: Food[] = this.cachedFoodList.filter(food => food.$key === id);
+    if (result.length > 0) {
+      return result[0];
+    } else {
+      return null;
+    }
   }
 }

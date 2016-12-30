@@ -1,6 +1,9 @@
-export class journalEntry {
+export class JournalEntry {
   id: number;
-  date: Object;
+  name: string;
+  date: Date;
   foodID: number;
   quantity: number;
+  unit: string;
+  editable: boolean;
 }
