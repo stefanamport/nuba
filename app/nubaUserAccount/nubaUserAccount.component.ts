@@ -2,26 +2,30 @@ import { Component } from '@angular/core';
 
 import { user } from './user';
 import { UserService } from './user.service';
+import { FirebaseService } from './firebase.service';
+
+
 
 @Component({
   templateUrl: "./app/nubaUserAccount/nubaUserAccount.component.html",
-  providers: [UserService]
+  providers: [UserService, FirebaseService]
 })
 export class UserAccountComponent  { 
 
 	user: user;
 
   	constructor( private UserService: UserService) {
-  		this.user = UserService.getUserData();
+  		this.user = {};
   	}
 
   	ngOnInit(){
-  		/*
-      this.user = {
-      	vorname: "stefan",
-      	gewicht: 30
-      }
-      */
+  		
+  	  this.UserService.getUserData().subscribe((data: user) => {
+        
+        this.user = data;
+        console.log(this.user);
+      });
+
     }
 
     saveUser(){

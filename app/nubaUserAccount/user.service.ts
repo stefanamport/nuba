@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
+import { FirebaseService } from './firebase.service';
+
 import { user } from './user';
 
 @Injectable()
@@ -7,24 +10,18 @@ export class UserService {
 
   userData: user;
 
-  constructor (){
+    constructor(private FirebaseService: FirebaseService) {
 
 
-    // mock... von globalem user holen
-    this.userData = {
-        id: 1,
-        name: "stefan",
-        bodyweight: 59,
-        bodyheight: 162,
-        birthday: "1986-07-11"
-     }
 
-    this.doCalculations();
+
+    //this.doCalculations();
 
   }
   
   getUserData(){
-    return this.userData;
+    // todo, static id - take id from google account...
+    return this.FirebaseService.getUser(1);
   }
 
   setUserData(user:user){
@@ -32,8 +29,8 @@ export class UserService {
     this.userData = user;
     this.doCalculations();
 
-    // TODO Send to firebase
-    console.log(this.userData);
+    // Send to firebase
+    this.FirebaseService.saveUser(this.userData);
 
   }
 

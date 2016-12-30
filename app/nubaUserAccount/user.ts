@@ -1,5 +1,5 @@
 export interface user {
-  id?: any;
+  $key?: any;
   name?: string;
 
   birthday?: string; // Format: yyyy-mm-dd

@@ -1,3 +1,4 @@
+
 <div class="userAccount row">
         <div class="middler">
           <div class="grid">
@@ -20,12 +21,12 @@
 
                     <div class="formrow">
                       <label>Gewicht (kg)</label>
-                      <input type="text" [(ngModel)]="user.bodyweight" name="gewicht">
+                      <input type="number" [(ngModel)]="user.bodyweight" name="gewicht">
                     </div>
 
                     <div class="formrow">
                       <label>Grösse (cm)</label>
-                      <input type="text" [(ngModel)]="user.bodyheight" name="groesse">
+                      <input type="number" [(ngModel)]="user.bodyheight" name="groesse">
                     </div>
 
                     <div class="formrow">
@@ -44,6 +45,7 @@
                   </form>
                 </div>
 
+
               </div>
             </main>
             <aside class="gridItem w-4">
@@ -51,16 +53,11 @@
                 <h2>Berechnungen</h2>
                 
                 <div class="boxcontent">
-                    BMI: {{user.bmi}}<br>
-                    Alter: {{user.age}}
+                    BMI: {{ user.bmi }}<br>
+                    Alter: {{ user.age }}
                     <hr>
                     <h3>Dein täglicher Bedarf:</h3>
                     Vitamin-C: xxx<br> 
                     Eisen: xxx<br>
                     etc...<br>
                 </div>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </div>
