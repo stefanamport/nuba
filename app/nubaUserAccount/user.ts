@@ -1,5 +1,5 @@
 export interface user {
-  id?: string;
+  id?: any;
   name?: string;
 
   birthday?: string; // Format: yyyy-mm-dd
