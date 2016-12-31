@@ -4,6 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent }  from './app.component';
+
+import { LogIn }   from './logIn/login.component';
+
 import { AppHeader }   from './header/header.component';
 
 import { JournalComponent }   from './nubaJournal/nubaJournal.component';
@@ -15,7 +18,7 @@ import { JournalEntriesService } from './nubaJournal/journalEntries.service';
 
 import { AnalysisComponent }   from './nubaAnalysis/nubaAnalysis.component';
 import { UserAccountComponent }  from './nubaUserAccount/nubaUserAccount.component';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthMethods, AuthProviders  } from 'angularfire2';
 
 
 import { AppRoutingModule }     from './routing/routing.module';
@@ -30,10 +33,19 @@ export const firebaseConfig = {
 }
 
 @NgModule({
-  imports:      [ BrowserModule, AppRoutingModule, FormsModule, AngularFireModule.initializeApp(firebaseConfig) ],
+  imports:      [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    AngularFireModule.initializeApp(firebaseConfig,{
+        provider: AuthProviders.Google,
+        method: AuthMethods.Popup
+      })
+    ],
   declarations: [
     AppComponent,
     AppHeader,
+    LogIn,
 
   	JournalComponent,
   	NubaSearch,

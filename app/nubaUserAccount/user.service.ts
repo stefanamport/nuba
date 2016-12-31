@@ -9,19 +9,26 @@ import { user } from './user';
 export class UserService {
 
   userData: user;
+  userAuth: any;
 
-    constructor(private FirebaseService: FirebaseService) {
-
-
-
-
-    //this.doCalculations();
-
+  constructor(private FirebaseService: FirebaseService, public af: AngularFire) {
+        this.userAuth = {};
   }
-  
+
+  getUserAuth(){
+    this.af.auth.subscribe((userAuth: any) => {
+      if(userAuth) {
+        return userAuth;
+      }
+    });
+  }
+
   getUserData(){
-    // todo, static id - take id from google account...
-    return this.FirebaseService.getUser(1);
+    //this.getUserAuth().subscribe((userAuth: any) => {
+    //  console.log('get user with ' + userAuth.uid)
+    //  return this.FirebaseService.getUser(userAuth.uid);
+    //}
+    
   }
 
   setUserData(user:user){
@@ -30,7 +37,7 @@ export class UserService {
     this.doCalculations();
 
     // Send to firebase
-    this.FirebaseService.saveUser(this.userData);
+    this.FirebaseService.saveUser(this.userData, this.userAuth.uid);
 
   }
 
