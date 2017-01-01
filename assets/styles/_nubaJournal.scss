@@ -133,6 +133,7 @@
 			position: absolute;
 			top: $hero-form-height + 10*2;
 			left: 0;
+			z-index: 99;
 
 			width: 100%;
 
@@ -143,6 +144,10 @@
 			display: block;
 
 			box-shadow: 0 1px 1px rgba(0,0,0,.2);
+
+			overflow-y: auto;
+
+			max-height: 50vh;
 
 			li {
 				padding: $boxpadding;
