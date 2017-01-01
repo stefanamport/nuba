@@ -1,25 +1,31 @@
 # nuba
 
-## Installation
-npm install
+This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.24.
 
+## Development server
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Start Server für Entwicklung
-npm start
-oder npm run watch
+## Code scaffolding
 
-(.ts & .scss werden dabei automatisch kompiliert)
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
 
-## HTML Templates
-befinden sich alle in der Datei screens.html
+## Build
 
-## AngularFire
-Tutorial: https://github.com/angular/angularfire2
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-In der Version 2.0.0-beta.6 von angularfire2 gibt es Momentan einen Bug.
+## Running unit tests
 
-Temporärer Fix:
-"firebase = firebase.firebase;" in angularfire2.umd.js (node_modules/angularfire2/bundles) hinzufügen
- vor "var _a = firebase.auth;". Dies muss manuell gemacht werden! Ohne diesen Fix kann die App nicht gestartet werden.
- (Error: (SystemJS) undefined is not an object (evaluating '_a.FacebookAuthProvider'))
- see https://github.com/angular/angularfire2/issues/576
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Before running the tests make sure you are serving the app via `ng serve`.
+
+## Deploying to Github Pages
+
+Run `ng github-pages:deploy` to deploy to Github Pages.
+
+## Further help
+
+To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
