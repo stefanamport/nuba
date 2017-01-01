@@ -52,7 +52,7 @@ export class UserService {
     this.af.auth.logout();
   }
 
-  collectUserData(){
+  getUser(){
     this.user.uid = this.userAut.uid;
 
     if (this.userAut.google) {
@@ -66,16 +66,16 @@ export class UserService {
 
   userUpdated (){
     if (this.userInfo || this.userAut) {
-      this.data.next(this.collectUserData());
+      console.log('update User to:');
+      console.log(this.getUser());
+      this.data.next(this.getUser());
     }
   }
 
   changeUserInfo(userInfo: any) {
-    
     this.userInfo = userInfo;
     this.doCalculations();
     this.saveUserToFirebase();
-
   }
 
   saveUserToFirebase(){
@@ -132,7 +132,7 @@ export class UserService {
       let birthday = new Date(this.userInfo.birthday);
       let today = new Date();
 
-      var age = today.getFullYear() - birthday.getFullYear();
+      age = today.getFullYear() - birthday.getFullYear();
       var monthDiff = today.getMonth() - birthday.getMonth();
       if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthday.getDate())) {
           age = age - 1;

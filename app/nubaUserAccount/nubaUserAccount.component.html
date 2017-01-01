@@ -1,4 +1,5 @@
-<div class="userAccount row">
+
+<div *ngIf="user" class="userAccount row">
         <div class="middler">
           <div class="grid">
             <main class="gridItem w-8">
@@ -51,9 +52,9 @@
               <div class="whitebox">
                 <h2>Berechnungen</h2>
                 
-                <div *ngIf="user.name" class="boxcontent">
-                    <div *ngIf="user.bmi>0">BMI: {{ user.bmi }}<br></div>
-                    <div *ngIf="user.age>0">BMI: {{ user.age }}<br></div>
+                <div class="boxcontent">
+                    BMI: {{ user.bmi }}<br>
+                    Alter: {{ user.age }}
                     <hr>
                     <h3>Dein täglicher Bedarf:</h3>
                     Vitamin-C: xxx<br> 

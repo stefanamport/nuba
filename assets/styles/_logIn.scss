@@ -1,0 +1,38 @@
+.welcome.row {
+	text-align: center;
+}
+
+.login-box {
+	
+	max-width: 300px;
+	margin: 0px auto;
+
+}
+
+button.loginbutton {
+	width: 100%;
+	background: $light-gray;
+
+	color: #000;
+	text-shadow: none;
+	border: 1px solid $dark-gray-font;
+
+	font-size: 1.2em;
+	padding: 10px 5px;
+
+	&:hover {
+		border-color: #000;
+	}
+	
+	&.logout {
+		margin-top: 20px;
+		font-size: 1.0em;
+		padding: 2px;
+
+		border: 0px;
+		background: none;
+		&:hover {
+			color: $main-color;
+		}
+	}
+}

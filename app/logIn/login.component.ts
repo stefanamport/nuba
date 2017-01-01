@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+import { user } from '../NubaUserAccount/user';
 import { UserService } from './user.service';
 
 @Component({
@@ -9,8 +10,20 @@ import { UserService } from './user.service';
 })
 export class LogIn {
 
-  constructor(private UserService: UserService) {
+  user: user = {};
 
+  constructor(private UserService: UserService) {
+    // Initial Load User
+      this.user = this.UserService.getUser();
+
+       //subscribe User changes
+       this.UserService.data.subscribe((data: any) => {
+          this.user = data;
+       });
+  }
+
+  ngOnInit(){
+    
   }
 
   login() {

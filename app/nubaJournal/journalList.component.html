@@ -1,44 +1,44 @@
 <div class="screen search">
 
-                  <h2>Das hast heute gegessen:</h2>
+  <h2>Das hast heute gegessen:</h2>
 
-                  <div class="boxcontent">
+  <div class="boxcontent">
 
-                    <div class="foodList">
+    <div class="foodList">
 
-                      <ul class="dateChooser">
-                        <li class="prev"><button class="small light" (click)="dateChange(-1)"><span class="fa fa-arrow-left" aria-hidden="true"></span></button></li>
-                        <li class="actualDate">{{activeListDate | date: 'd. MMM y'}}</li>
-                        <li class="next" *ngIf="!isActiveListDateToday()"><button class="small light" (click)="dateChange(1)"><span class="fa fa-arrow-right" aria-hidden="true"></span></button></li>
-                      </ul>
+      <ul class="dateChooser">
+        <li class="prev"><button class="small light" (click)="dateChange(-1)"><span class="fa fa-arrow-left" aria-hidden="true"></span></button></li>
+        <li class="actualDate">{{activeListDate | date: 'd. MMM y'}}</li>
+        <li class="next" *ngIf="!isActiveListDateToday()"><button class="small light" (click)="dateChange(1)"><span class="fa fa-arrow-right" aria-hidden="true"></span></button></li>
+      </ul>
 
-                      <table *ngIf="journalList.length > 0">
-                        <tr *ngFor="let entry of journalList">
-                          <td class="time"> {{entry.date | date: 'hh:mm' }} Uhr</td>
-                          <td class="foodName">
-                          {{entry.name}}</td>
+      <table *ngIf="journalList.length > 0">
+        <tr *ngFor="let entry of journalList">
+          <td class="time"> {{entry.date | date: 'hh:mm' }} Uhr</td>
+          <td class="foodName">
+          {{entry.name}}</td>
 
-                          <template [ngIf]="!entry.editable">
-                            <td class="quantity">{{entry.quantity}}{{foodDatabase.getFood(entry.foodID).measurement}}</td>
-                            <td class="triggers">
-                              <button class="small light" aria-label="bearbeiten" (click)="makeEditable(entry)"><span class="fa fa-edit" aria-hidden="true"></span></button>
-                              <button class="small light" aria-label="löschen" (click)="deleteEntry(entry.id)"><span class="fa fa-minus" aria-hidden="true"></span></button>
-                              </td>
-                          </template>
+          <template [ngIf]="!entry.editable">
+            <td class="quantity">{{entry.quantity}}{{foodDatabase.getFood(entry.foodID).measurement}}</td>
+            <td class="triggers">
+              <button class="small light" aria-label="bearbeiten" (click)="makeEditable(entry)"><span class="fa fa-edit" aria-hidden="true"></span></button>
+              <button class="small light" aria-label="löschen" (click)="deleteEntry(entry.id)"><span class="fa fa-minus" aria-hidden="true"></span></button>
+              </td>
+          </template>
 
-                          <template [ngIf]="entry.editable">
-                              <td class="quantity"><input type="number" [(ngModel)]="entry.quantity" (keyup.enter)="updateEntry(entry)" name="quantity{{entry.id}}" id="quantity{{entry.id}}" class="quantity small" /> {{foodDatabase.getFood(entry.foodID).measurement}}</td>
-                              <td class="triggers">
-                                <button class="small" aria-label="speichern" (click)="updateEntry(entry)"><span class="fa fa-check" aria-hidden="true"></span></button>
-                                </td>
-                          </template>
+          <template [ngIf]="entry.editable">
+              <td class="quantity"><input type="number" [(ngModel)]="entry.quantity" (keyup.enter)="updateEntry(entry)" name="quantity{{entry.id}}" id="quantity{{entry.id}}" class="quantity small" /> {{foodDatabase.getFood(entry.foodID).measurement}}</td>
+              <td class="triggers">
+                <button class="small" aria-label="speichern" (click)="updateEntry(entry)"><span class="fa fa-check" aria-hidden="true"></span></button>
+                </td>
+          </template>
 
-                        </tr>
-                      </table>
-                      <div *ngIf="!journalList.length">
-                        noch keine Einträge
-                      </div>
-                    </div>
-                  </div>
+        </tr>
+      </table>
+      <div *ngIf="!journalList.length">
+        noch keine Einträge
+      </div>
+    </div>
+  </div>
 
-                </div>
+</div>

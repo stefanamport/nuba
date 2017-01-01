@@ -11,11 +11,20 @@ export class AppHeader  {
 
 	user: user = {};
 
-	constructor(UserService: UserService) {
+	constructor(private UserService: UserService) {
 
-	    UserService.data.subscribe((data: any) => {
-	       this.user = data;
-	    });
+		// Initial Load User
+      this.user = this.UserService.getUser();
+
+       //subscribe User changes
+       this.UserService.data.subscribe((data: any) => {
+          this.user = data;
+       });
+	   
+	}
+
+	ngOnInit(){
+
 	}
 
 }

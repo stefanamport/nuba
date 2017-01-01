@@ -12,15 +12,24 @@ import { FirebaseService } from './firebase.service';
 })
 export class UserAccountComponent  { 
 
-	user: user = {};
+	user: user;
 
-  	constructor( private UserService: UserService) {
+    constructor (private UserService: UserService){
+      
+      // Initial Load User
+      this.user = this.UserService.getUser();
 
-      UserService.data.subscribe((data: any) => {
-         this.user = data;
-      });
+       //subscribe User changes
+       this.UserService.data.subscribe((data: any) => {
+          this.user = data;
+       });
 
-  	}
+    }
+
+    ngOnDestroy() {
+      //this.sub.unsubscribe();
+      //console.log('unsub done')
+    }
 
     saveUser(){
     	this.UserService.changeUserInfo(this.user);

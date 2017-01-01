@@ -1,6 +1,25 @@
-<button md-raised-button (click)="login()">
-  Use My Google Account
-</button>
-<button md-raised-button (click)="logout()">
-  Logout
-</button>
+
+<div class="welcome row">
+    <div class="middler">
+    	<h1>Willkommen bei nuba</h1>
+    	<p>Hier kommt ein kurzer Beschreibungstext.</p>
+    </div>
+</div>
+
+<div class="logIn row">
+    <div class="middler">
+
+    	<div class="login-box whitebox">
+    		<div class="login-buttons" *ngIf="!user.uid">
+		    	<button ng (click)="login()" class="loginbutton">
+				  <span class="fa fa-google" aria-hidden="true"></span> Login mit Google Konto
+				</button>
+			</div>
+			<div class="logout-button" *ngIf="user.uid">
+				<button (click)="logout()" class="loginbutton logout">
+				  Logout
+				</button>
+			</div>
+		</div>
+    </div>
+</div>
