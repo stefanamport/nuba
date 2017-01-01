@@ -38,9 +38,10 @@ export class UserService {
 
   }
 
-  login() {
+  login(method:string) {
+
     this.af.auth.login({
-      provider: AuthProviders.Google
+      provider: AuthProviders[method]
     });
 
   }

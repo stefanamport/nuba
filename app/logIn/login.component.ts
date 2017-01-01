@@ -42,8 +42,8 @@ export class LogIn {
     
   }
 
-  login() {
-	  this.UserService.login();
+  login(method:string) {
+    this.UserService.login(method);
 	}
 
 }

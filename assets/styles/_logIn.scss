@@ -19,6 +19,11 @@ button.loginbutton {
 
 	font-size: 1.2em;
 	padding: 10px 5px;
+	margin-bottom: 10px;
+
+	&:last-child {
+		margin-bottom: 0px;
+	}
 
 	&:hover {
 		border-color: #000;
