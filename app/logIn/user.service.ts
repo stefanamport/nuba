@@ -3,8 +3,10 @@ import { Injectable, Output } from '@angular/core';
 import { AngularFire, AuthProviders } from 'angularfire2';
 
 import { EventEmitter } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {Observer} from 'rxjs/Observer';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+
+import { Router} from '@angular/router';
 
 import { user } from '../nubaUserAccount/user';
 
@@ -17,7 +19,7 @@ export class UserService {
 
   @Output() data = new EventEmitter();
 
-  constructor( public af: AngularFire ) {
+  constructor( public af: AngularFire, private Router : Router) {
     
     this.user = {};
 
@@ -50,10 +52,22 @@ export class UserService {
 
   logout (){
     this.af.auth.logout();
+
+    this.resetUser();
+    this.userUpdated();
+  }
+
+  resetUser(){
+    this.user = {};
+    this.userAut = false;
+    this.userInfo = false;
   }
 
   getUser(){
-    this.user.uid = this.userAut.uid;
+    
+    if (this.userAut) {
+      this.user.uid = this.userAut.uid;
+    }
 
     if (this.userAut.google) {
       this.user.avatar = this.userAut.google.photoURL;
@@ -66,8 +80,6 @@ export class UserService {
 
   userUpdated (){
     if (this.userInfo || this.userAut) {
-      console.log('update User to:');
-      console.log(this.getUser());
       this.data.next(this.getUser());
     }
   }

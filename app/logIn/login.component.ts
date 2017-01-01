@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 import { user } from '../NubaUserAccount/user';
 import { UserService } from './user.service';
 
+import {Router} from '@angular/router';
+
+
 @Component({
   moduleId: module.id,
   selector: 'login',
@@ -12,14 +15,27 @@ export class LogIn {
 
   user: user = {};
 
-  constructor(private UserService: UserService) {
-    // Initial Load User
+  constructor(private UserService: UserService, private Router:Router) {
+      
       this.user = this.UserService.getUser();
 
-       //subscribe User changes
-       this.UserService.data.subscribe((data: any) => {
+      if (this.user.uid) {
+        this.redirectToHome();
+      }
+
+      this.UserService.data.subscribe((data: any) => {
+          
           this.user = data;
+
+          if (data.uid) {
+            this.redirectToHome();
+          }
+
        });
+  }
+
+  redirectToHome(){
+    this.Router.navigate(["/"]);
   }
 
   ngOnInit(){

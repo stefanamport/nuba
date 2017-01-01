@@ -15,7 +15,7 @@
 
       <li *ngIf="user.uid" class="accountLink">
         <a routerLink="/account" routerLinkActive="active">
-          <span class="fa fa-user" aria-hidden="true"></span> Meine Konto
+          <span class="fa fa-user" aria-hidden="true"></span> {{user.name}}'s Konto
           <div class="profileImage"><img src="{{user.avatar}}" alt="{{user.name}}"></div>
         </a>
       </li>
@@ -23,12 +23,6 @@
       <li *ngIf="!user.uid" >
         <a routerLink="/login" routerLinkActive="active">
           Login
-        </a>
-      </li>
-
-      <li *ngIf="user.uid" >
-        <a routerLink="/login" routerLinkActive="active">
-          Logout
         </a>
       </li>
 
