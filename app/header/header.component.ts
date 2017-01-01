@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { user } from '../NubaUserAccount/user';
+import { user } from '../logIn//user';
 import { UserService } from '../logIn/user.service';
 
 @Component({

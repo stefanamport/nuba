@@ -1,12 +1,11 @@
 export interface user {
-  $key?: any;
   uid?: any;
   name?: string;
 
-  avatar?: string;
-
   birthday?: string; // Format: yyyy-mm-dd
   age?: any;
+
+  avatar?: string;
 
   bodyweight?: number;
   bodyheight?: number;

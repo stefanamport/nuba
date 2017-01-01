@@ -6,9 +6,7 @@ import { EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 
-import { Router} from '@angular/router';
-
-import { user } from '../nubaUserAccount/user';
+import { user } from './user';
 
 @Injectable()
 export class UserService {
@@ -19,12 +17,9 @@ export class UserService {
 
   @Output() data = new EventEmitter();
 
-  constructor( public af: AngularFire, private Router : Router) {
+  constructor( public af: AngularFire ) {
     
-    this.user = {};
-
-    this.userAut =  false;
-    this.userInfo = false;
+    this.resetUser();
 
     this.af.auth.subscribe(user => {
       if(user) {
@@ -47,7 +42,7 @@ export class UserService {
     this.af.auth.login({
       provider: AuthProviders.Google
     });
-    
+
   }
 
   logout (){
@@ -55,12 +50,6 @@ export class UserService {
 
     this.resetUser();
     this.userUpdated();
-  }
-
-  resetUser(){
-    this.user = {};
-    this.userAut = false;
-    this.userInfo = false;
   }
 
   getUser(){
@@ -78,19 +67,25 @@ export class UserService {
     return this.user;
   }
 
-  userUpdated (){
-    if (this.userInfo || this.userAut) {
-      this.data.next(this.getUser());
-    }
-  }
-
-  changeUserInfo(userInfo: any) {
+  updateUserInfo(userInfo: any) {
     this.userInfo = userInfo;
     this.doCalculations();
     this.saveUserToFirebase();
   }
 
-  saveUserToFirebase(){
+  private resetUser(){
+    this.user = {};
+    this.userAut = false;
+    this.userInfo = false;
+  }
+
+  private userUpdated (){
+    if (this.userInfo || this.userAut) {
+      this.data.next(this.getUser());
+    }
+  }
+
+  private saveUserToFirebase(){
 
     let userkey = this.userAut.uid;
     let userInfoIntern = this.userInfo;
@@ -98,7 +93,6 @@ export class UserService {
     let userClean: user = {};
 
     // Cleanup Object
-    // Remove $ Values
     // Verhindert dass $funktionen von firebase zurück auf den server gespielt werden
     // TODO: uid & avatar werden auch manuell gelöscht... evtl. noch anders lösen?
     var keys = Object.keys(userInfoIntern).filter(function(key){
@@ -112,7 +106,6 @@ export class UserService {
     this.af.database.object('/userData/' + userkey).update(userClean);
     
   }
-
 
   private doCalculations(){
     this.setBMI();

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { user } from '../NubaUserAccount/user';
+import { user } from './user';
 import { UserService } from './user.service';
 
 import {Router} from '@angular/router';
@@ -44,10 +44,6 @@ export class LogIn {
 
   login() {
 	  this.UserService.login();
-	}
-	 
-	logout() {
-    this.UserService.logout();
 	}
 
 }

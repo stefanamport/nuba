@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 
-import { user } from './user';
+import { user } from '../logIn/user';
 import { UserService } from '../logIn/user.service';
-//import { UserService } from './user.service';
 
 import { FirebaseService } from './firebase.service';
 
@@ -16,24 +15,17 @@ export class UserAccountComponent  {
 
     constructor (private UserService: UserService){
       
-      // Initial Load User
-      this.user = this.UserService.getUser();
+       this.user = this.UserService.getUser();
 
-       //subscribe User changes
        this.UserService.data.subscribe((data: any) => {
           this.user = data;
        });
 
     }
 
-    ngOnDestroy() {
-      //this.sub.unsubscribe();
-      //console.log('unsub done')
-    }
 
     saveUser(){
-    	this.UserService.changeUserInfo(this.user);
+    	this.UserService.updateUserInfo(this.user);
     }
-
 
 }
