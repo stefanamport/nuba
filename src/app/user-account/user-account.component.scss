@@ -1,0 +1,22 @@
+// Module userAccount
+@import '../../assets/styles/_vars';
+@import '../../assets/styles/_global';
+
+form#userData {
+
+  .formrow {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  label {
+    @extend .small;
+  }
+
+  input, select {
+    width: 100%;
+    font-family: inherit;
+  }
+
+
+}
