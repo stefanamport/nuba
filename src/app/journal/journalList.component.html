@@ -31,7 +31,7 @@
           <template [ngIf]="entry.editable">
             <td class="quantity"><input type="number" [(ngModel)]="entry.quantity" (keyup.enter)="updateEntry(entry)"
                                         name="quantity{{entry.id}}" id="quantity{{entry.id}}" class="quantity small"/>
-              {{foodDatabase.getFood(entry.foodID).measurement}}
+              {{entry.unit}}
             </td>
             <td class="triggers">
               <button class="small" aria-label="speichern" (click)="updateEntry(entry)"><span class="fa fa-check" aria-hidden="true"></span>
