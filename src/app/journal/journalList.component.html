@@ -20,7 +20,7 @@
             {{entry.name}}
           </td>
           <template [ngIf]="!entry.editable">
-            <td class="quantity">{{entry.quantity}}{{foodDatabase.getFood(entry.foodID).measurement}}</td>
+            <td class="quantity">{{entry.quantity}}{{entry.unit}}</td>
             <td class="triggers">
               <button class="small light" aria-label="bearbeiten" (click)="makeEditable(entry)"><span class="fa fa-edit" aria-hidden="true"></span>
               </button>
