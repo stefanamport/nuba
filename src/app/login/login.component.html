@@ -21,6 +21,10 @@
                   <span class="fa fa-facebook" aria-hidden="true"></span> Login mit Facebook
                 </button>
 			</div>
+            <div class="logged-in-info" *ngIf="user.uid">
+                <p>Du bist erfolgreich eingeloggt.</p>
+                <p class="alert" *ngIf="!user.birthday || !user.bodyweight || !user.bodyheight">Bitte vervollständige dein Profil, dann kanns losgehen... <a href="account">zum deinem Account</a></p>
+            </div>
 		</div>
     </div>
 </div>

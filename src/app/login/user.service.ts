@@ -2,6 +2,8 @@ import { Injectable, Output } from '@angular/core';
 
 import { AngularFire, AuthProviders } from 'angularfire2';
 
+import { Router } from '@angular/router';
+
 import { EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
@@ -17,8 +19,12 @@ export class UserService {
 
   @Output() data = new EventEmitter();
 
-  constructor( public af: AngularFire ) {
+  constructor( public af: AngularFire, private router: Router) {
     
+    // Todo
+    // Falls User schon eingeloggt, Daten nicht neu laden...
+    // local storage?
+
     this.resetUser();
 
     this.af.auth.subscribe(user => {
@@ -29,21 +35,21 @@ export class UserService {
            this.userInfo = userInfo;
            this.userUpdated();
         });
+
       }
       else {
         this.userAut = {};
         this.userUpdated();
+        this.router.navigate(['']);
       }
     });
 
   }
 
   login(method:string) {
-
     this.af.auth.login({
       provider: AuthProviders[method]
     });
-
   }
 
   logout (){

@@ -7,6 +7,10 @@ import { AngularFireModule, AuthMethods, AuthProviders  } from 'angularfire2';
 import { AppRoutingModule }     from './app-routing/app-routing.module';
 
 import { AppComponent } from './app.component';
+
+import { LoginGuard } from './login/login.guard';
+import { UserService } from './login/user.service';
+
 import { JournalList } from "./journal/journalList.component";
 import { NubaSearch } from "./journal/nubaSearch.component";
 import { LogIn }   from './login/login.component';
@@ -46,7 +50,7 @@ export const firebaseConfig = {
         method: AuthMethods.Popup
       })
   ],
-  providers: [],
+  providers: [ UserService, LoginGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
