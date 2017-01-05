@@ -1,1 +1,79 @@
-"<br><br><br><br><div class='whitebox'>nubaUserAccount<br>gesamte Template Vorlage im ../screens.html</div>"
+<div *ngIf="user.uid" class="userAccount row">
+  <div class="middler">
+    <div class="grid">
+
+      <main class="gridItem w-8">
+
+        <div class="whitebox">
+          <h2>Deine Daten</h2>
+          
+          <div class="boxcontent">
+            <form id="userData">
+                
+              <div class="formrow">
+                <label>Vorname</label>
+                <input type="text" [(ngModel)]="user.name" name="vorname">
+              </div>
+
+              <div class="formrow">
+                <label>Geburtsdatum</label>
+                <input type="text" [(ngModel)]="user.birthday" type="date" name="geburtsdatum">
+              </div>
+
+              <div class="formrow">
+                <label>Gewicht (kg)</label>
+                <input type="number" [(ngModel)]="user.bodyweight" name="gewicht">
+              </div>
+
+              <div class="formrow">
+                <label>Grösse (cm)</label>
+                <input type="number" [(ngModel)]="user.bodyheight" name="groesse">
+              </div>
+
+              <div class="formrow">
+                <label>Aktivitätslevel</label>
+                <select name="activityLevel" id="activityLevel">
+                  <option value="1">Sitzende Tätigkeit</option>
+                  <option value="2">2x pro Woche Sport</option>
+                  <option value="3">5x pro Woche Sport</option>
+                </select>
+              </div>
+              
+              <div class="formrow">
+              <button class="big" aria-label="speichern" (click)="saveUser()"><span class="fa fa-check" aria-hidden="true"></span> speichern</button>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </main>
+
+      <aside class="gridItem w-4">
+        <div class="whitebox">
+          <h2>Berechnungen</h2>
+          
+          <div class="boxcontent">
+              BMI: {{ user.bmi }}<br>
+              Alter: {{ user.age }}
+              <hr>
+              <h3>Dein täglicher Bedarf:</h3>
+              Vitamin-C: xxx<br> 
+              Eisen: xxx<br>
+              etc...<br>
+          </div>
+        </div>
+
+        <div class="whitebox">
+          <h2>Log Out</h2>
+          <div class="boxcontent">
+              <button (click)="UserService.logout()" class="light small">
+                Logout
+              </button>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</div>

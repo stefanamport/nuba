@@ -1,6 +1,7 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { LogIn }   from '../login/login.component';
 import { JournalComponent }   from '../journal/journal.component';
 import { AnalysisComponent }   from '../analysis/analysis.component';
 import { UserAccountComponent }  from '../user-account/user-account.component';
@@ -10,7 +11,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/journal', pathMatch: 'full' },
   { path: 'journal',  component: JournalComponent },
   { path: 'analysis', component: AnalysisComponent },
-  { path: 'account',     component: UserAccountComponent }
+  { path: 'account',     component: UserAccountComponent },
+  { path: 'login',     component: LogIn }
 ];
 
 @NgModule({

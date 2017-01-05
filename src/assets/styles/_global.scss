@@ -108,7 +108,7 @@ button {
 		border: 1px solid rgba(0,0,0,.2);
 	}
 
-	&:hover {
+	&:enabled:hover {
 		background-color: $main-color;
 		color: #fff;
 		text-shadow: none;

@@ -1,15 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { user } from '../login/user';
+import { UserService } from '../login/user.service';
+
+import { FirebaseService } from './firebase.service';
 
 @Component({
-  selector: 'app-user-account',
-  templateUrl: './user-account.component.html',
-  styleUrls: ['./user-account.component.scss']
+  templateUrl: "./user-account.component.html",
+  providers: [ UserService, FirebaseService ]
 })
-export class UserAccountComponent implements OnInit {
+export class UserAccountComponent  { 
 
-  constructor() { }
+	user: user;
 
-  ngOnInit() {
-  }
+    constructor (private UserService: UserService){
+      
+       this.user = this.UserService.getUser();
+
+       this.UserService.data.subscribe((data: any) => {
+          this.user = data;
+       });
+
+    }
+
+
+    saveUser(){
+    	this.UserService.updateUserInfo(this.user);
+    }
 
 }

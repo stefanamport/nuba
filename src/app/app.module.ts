@@ -2,13 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthMethods, AuthProviders  } from 'angularfire2';
 
 import { AppRoutingModule }     from './app-routing/app-routing.module';
 
 import { AppComponent } from './app.component';
-import {JournalList} from "./journal/journalList.component";
-import {NubaSearch} from "./journal/nubaSearch.component";
+import { JournalList } from "./journal/journalList.component";
+import { NubaSearch } from "./journal/nubaSearch.component";
+import { LogIn }   from './login/login.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { AnalysisComponent } from './analysis/analysis.component';
 import { FoodDatabaseComponent } from './food-database/food-database.component';
@@ -28,6 +29,7 @@ export const firebaseConfig = {
     AppComponent,
     NubaSearch,
     JournalList,
+    LogIn,
     UserAccountComponent,
     AnalysisComponent,
     FoodDatabaseComponent,
@@ -39,7 +41,10 @@ export const firebaseConfig = {
     AppRoutingModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig,{
+        provider: AuthProviders.Google,
+        method: AuthMethods.Popup
+      })
   ],
   providers: [],
   bootstrap: [AppComponent]
