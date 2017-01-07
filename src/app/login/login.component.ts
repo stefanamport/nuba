@@ -30,7 +30,7 @@ export class LogIn {
   }
 
   redirectToHome(){
-    this.Router.navigate(["journal"]);
+    this.Router.navigate(['journal']);
   }
 
   login(method:string) {

@@ -6,7 +6,7 @@ import { UserService } from '../login/user.service';
 import { FirebaseService } from './firebase.service';
 
 @Component({
-  templateUrl: "./user-account.component.html",
+  templateUrl: './user-account.component.html',
   providers: [ UserService, FirebaseService ]
 })
 export class UserAccountComponent  { 

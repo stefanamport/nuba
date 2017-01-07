@@ -3,7 +3,7 @@ import { Router, CanActivate } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
-import { AngularFireAuth } from "angularfire2/angularfire2";
+import { AngularFireAuth } from 'angularfire2/angularfire2';
 
 //import { user } from './user';
 import { UserService } from './user.service';
