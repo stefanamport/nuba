@@ -1,3 +1,4 @@
+# Travis CI configuration
 language: node_js
 sudo: true
 cache:
