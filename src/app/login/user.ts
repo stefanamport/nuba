@@ -12,6 +12,8 @@ export interface user {
 
   gender?: string;
   activityLevel?: number;
+  hoursOfSport?: number;
+  metabolicRate?: number;
 
   bmi?: any;
 

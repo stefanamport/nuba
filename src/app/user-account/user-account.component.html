@@ -14,7 +14,7 @@
                 <label>Geschlecht</label>
                 <select [(ngModel)]="user.gender" name="gender" id="gender">
                   <option value="">bitte auswählen...</option>
-                    <option *ngFor="let gender of genders" value="{{gender.id}}">{{gender.title}}</option>
+                    <option *ngFor="let gender of this.objKeys(genders)" value="{{gender}}">{{genders[gender].title}}</option>
                 </select>
               </div>
                 
@@ -39,11 +39,16 @@
               </div>
 
               <div class="formrow">
-                <label>Aktivitätslevel</label>
+                <label>allgemeines Aktivitätslevel</label>
                 <select [(ngModel)]="user.activityLevel" name="activityLevel" id="activityLevel">
                   <option value="">bitte auswählen...</option>
-                  <option *ngFor="let level of activityLevels" value="{{level.id}}">{{level.title}}</option>
+                  <option *ngFor="let level of this.objKeys(activityLevels)" value="{{level}}">{{activityLevels[level].title}}</option>
                 </select>
+              </div>
+
+              <div class="formrow">
+                <label>Anzahl Stunden Sport pro Woche (cm)</label>
+                <input type="number" [(ngModel)]="user.hoursOfSport" name="hoursOfSport">
               </div>
               
               <div class="formrow">
@@ -62,7 +67,8 @@
           
           <div class="boxcontent">
               BMI: {{ user.bmi }}<br>
-              Alter: {{ user.age }}
+              Alter: {{ user.age }}<br>
+              Geschätzter Kalorien Grundumsatz: {{ user.metabolicRate }} kcal
               <hr>
               <h3>Dein täglicher Bedarf:</h3>
               Vitamin-C: xxx<br> 

@@ -30,6 +30,10 @@ export class UserAccountComponent  {
 
     }
 
+    // helper that *ngFoor can loop over object keys
+    objKeys(object) : Array<string> {
+      return Object.keys(object);
+    }
 
     saveUser(){
     	this.UserService.updateUserInfo(this.user);
