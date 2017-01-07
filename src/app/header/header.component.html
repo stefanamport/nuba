@@ -5,22 +5,22 @@
   <nav id="mainnav">
     <ul>
       
-      <li *ngIf="user.uid">
+      <li *ngIf="this.UserService.auth">
         <a routerLink="/journal" routerLinkActive="active"><span class="fa fa-cutlery" aria-hidden="true"></span> erfassen</a>
       </li>
       
-      <li *ngIf="user.uid">
+      <li *ngIf="this.UserService.auth">
         <a routerLink="/analysis" routerLinkActive="active"><span class="fa fa-pie-chart" aria-hidden="true"></span> auswerten</a>
       </li>
 
-      <li *ngIf="user.uid" class="accountLink">
+      <li *ngIf="this.UserService.auth" class="accountLink">
         <a routerLink="/account" routerLinkActive="active">
-          <span class="fa fa-user" aria-hidden="true"></span> {{user.name}}'s Konto
+          <span class="fa fa-user" aria-hidden="true"></span> Dein Konto
           <div class="profileImage"><img src="{{user.avatar}}" alt="{{user.name}}"></div>
         </a>
       </li>
 
-      <li *ngIf="!user.uid" >
+      <li *ngIf="!this.UserService.auth" >
         <a routerLink="/login" routerLinkActive="active">
           Login
         </a>

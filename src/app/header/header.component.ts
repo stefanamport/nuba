@@ -9,7 +9,7 @@ import { UserService } from '../login/user.service';
 })
 export class HeaderComponent  { 
 
-	user: user = {};
+	user: user;
 
 	constructor(private UserService: UserService) {
 

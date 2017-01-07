@@ -3,8 +3,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import {HeaderComponent} from "./header/header.component";
-import {NubaSearch} from "./journal/nubaSearch.component";
+import { HeaderComponent} from "./header/header.component";
+import { NubaSearch } from "./journal/nubaSearch.component";
 import {JournalComponent} from "./journal/journal.component";
 import {JournalList} from "./journal/journalList.component";
 import {FormsModule} from "@angular/forms";

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+import { user } from './login/user';
+import { UserService } from './login/user.service';
+
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -7,5 +10,11 @@ import { Component } from '@angular/core';
   providers: [ ]
 })
 export class AppComponent {
+	user: user;
 
+	constructor (private UserService: UserService){
+		this.UserService.data.subscribe((data: any) => {
+          this.user = data;
+      });
+	}
 }

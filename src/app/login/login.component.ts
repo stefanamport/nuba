@@ -12,15 +12,11 @@ import {Router} from '@angular/router';
 })
 export class LogIn {
 
-  user: user = {};
+  user: user;
 
   constructor(private UserService: UserService, private Router:Router) {
       
       this.user = this.UserService.getUser();
-
-      if (this.user.uid) {
-        this.redirectToHome();
-      }
 
       this.UserService.data.subscribe((data: any) => {
 
@@ -30,15 +26,11 @@ export class LogIn {
             this.redirectToHome();
           }
 
-       });
+      });
   }
 
   redirectToHome(){
-    this.Router.navigate(["/"]);
-  }
-
-  ngOnInit(){
-    
+    this.Router.navigate(["journal"]);
   }
 
   login(method:string) {

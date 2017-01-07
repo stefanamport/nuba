@@ -1,6 +1,6 @@
 import { Injectable, Output } from '@angular/core';
 
-import { AngularFire, AuthProviders } from 'angularfire2';
+import { AngularFire, AuthProviders, AngularFireAuth } from 'angularfire2';
 
 import { Router } from '@angular/router';
 
@@ -19,12 +19,8 @@ export class UserService {
 
   @Output() data = new EventEmitter();
 
-  constructor( public af: AngularFire, private router: Router) {
+  constructor( public af: AngularFire, private auth: AngularFireAuth, private router: Router) {
     
-    // Todo
-    // Falls User schon eingeloggt, Daten nicht neu laden...
-    // local storage?
-
     this.resetUser();
 
     this.af.auth.subscribe(user => {
@@ -40,10 +36,13 @@ export class UserService {
       else {
         this.userAut = {};
         this.userUpdated();
-        this.router.navigate(['']);
       }
     });
 
+  }
+
+  isLoggedIn(){
+    return this.auth;
   }
 
   login(method:string) {
@@ -57,6 +56,8 @@ export class UserService {
 
     this.resetUser();
     this.userUpdated();
+
+    this.router.navigate(['login']);
   }
 
   getUser(){
@@ -89,6 +90,8 @@ export class UserService {
   private userUpdated (){
     if (this.userInfo || this.userAut) {
       this.data.next(this.getUser());
+    } else {
+      this.data.next(false);
     }
   }
 
