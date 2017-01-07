@@ -10,6 +10,9 @@ export interface user {
   bodyweight?: number;
   bodyheight?: number;
 
+  gender?: string;
+  activityLevel?: number;
+
   bmi?: any;
 
 }

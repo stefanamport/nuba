@@ -5,7 +5,6 @@ import { UserService } from './user.service';
 
 import {Router} from '@angular/router';
 
-
 @Component({
   selector: 'login',
   templateUrl: './login.component.html'
@@ -14,8 +13,8 @@ export class LogIn {
 
   user: user;
 
-  constructor(private UserService: UserService, private Router:Router) {
-      
+  constructor( private UserService: UserService, private Router:Router) {
+
       this.user = this.UserService.getUser();
 
       this.UserService.data.subscribe((data: any) => {

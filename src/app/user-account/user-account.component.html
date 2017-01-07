@@ -9,6 +9,14 @@
           
           <div class="boxcontent">
             <form id="userData">
+
+              <div class="formrow">
+                <label>Geschlecht</label>
+                <select [(ngModel)]="user.gender" name="gender" id="gender">
+                  <option value="">bitte auswählen...</option>
+                    <option *ngFor="let gender of genders" value="{{gender.id}}">{{gender.title}}</option>
+                </select>
+              </div>
                 
               <div class="formrow">
                 <label>Vorname</label>
@@ -32,10 +40,9 @@
 
               <div class="formrow">
                 <label>Aktivitätslevel</label>
-                <select name="activityLevel" id="activityLevel">
-                  <option value="1">Sitzende Tätigkeit</option>
-                  <option value="2">2x pro Woche Sport</option>
-                  <option value="3">5x pro Woche Sport</option>
+                <select [(ngModel)]="user.activityLevel" name="activityLevel" id="activityLevel">
+                  <option value="">bitte auswählen...</option>
+                  <option *ngFor="let level of activityLevels" value="{{level.id}}">{{level.title}}</option>
                 </select>
               </div>
               

@@ -20,7 +20,7 @@ export class UserService {
   @Output() data = new EventEmitter();
 
   constructor( public af: AngularFire, private auth: AngularFireAuth, private router: Router) {
-    
+
     this.resetUser();
 
     this.af.auth.subscribe(user => {
