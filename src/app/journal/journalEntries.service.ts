@@ -2,9 +2,6 @@ import { Injectable, Output } from '@angular/core';
 import { JournalEntry } from './journalEntry';
 
 import { EventEmitter } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {Observer} from 'rxjs/Observer';
-
 
 @Injectable()
 export class JournalEntriesService {

@@ -10,16 +10,15 @@ import { FoodDatabaseService } from '../food-database/food.service';
 import { Food } from '../food-database/food';
 import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
-import {FirebaseService} from '../food-database/firebase.service';
 
 @Component({
   selector: 'nuba-search',
   templateUrl: './nubaSearch.component.html',
-  providers: [FoodDatabaseService, FirebaseService]
+  providers: [FoodDatabaseService]
 })
 export class NubaSearch  {
 
-  public searchResults: Array<Food>;
+  public searchResults: Array<Food> = [];
   public selectedFood: Food = null;
   public selectedQuantity: number = 0;
 
@@ -35,12 +34,12 @@ export class NubaSearch  {
       this.resetSearchResults();
     }
 
-    if (this.selectedFood && this.selectedFood.name != val) {
+    if (this.selectedFood && this.selectedFood.name !== val) {
       this.selectedFood.name = val;
     }
   }
 
-  addToForm (id: number){
+  addToForm(id: number) {
     this.FoodDatabaseService.getFood(id).subscribe(food => {
       this.selectedFood = food;
       if (this.selectedFood !== null) {
@@ -53,7 +52,7 @@ export class NubaSearch  {
   }
 
   resetSearchResults() {
-    this.searchResults = null;
+    this.searchResults = [];
   };
 
   clearForm() {
@@ -62,13 +61,8 @@ export class NubaSearch  {
   };
 
   addToJournal (value: any) {
-    let newEntry = new JournalEntry;
-    newEntry.date =  new Date();
-    newEntry.foodID = this.selectedFood.$key;
-    newEntry.name = this.selectedFood.name;
-    newEntry.quantity = this.selectedQuantity;
-    newEntry.unit = this.selectedFood.matrix_unit;
-
+    let newEntry = new JournalEntry(this.selectedFood.name, new Date(), this.selectedFood.$key,  this.selectedQuantity,
+                                      this.selectedFood.matrix_unit, true);
     this.JournalEntriesService.addEntry(newEntry);
 
     this.resetSearchResults();
