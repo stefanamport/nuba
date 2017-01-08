@@ -1,6 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
+import {FIREBASE_PROVIDERS, defaultFirebase, AngularFire} from 'angularfire2';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HeaderComponent} from "./header/header.component";
@@ -10,7 +11,18 @@ import {JournalList} from "./journal/journalList.component";
 import {FormsModule} from "@angular/forms";
 
 describe('AppComponent', () => {
+
+    const firebaseConfig = {
+    apiKey: 'AIzaSyBf7RiiafbN6IKzYoDdsZtOaQqFK-54oB0',
+    authDomain: 'nuba-c3e84.firebaseapp.com',
+    databaseURL: 'https://nuba-c3e84.firebaseio.com/',
+    storageBucket: 'nuba-c3e84.appspot.com',
+    messagingSenderId: '126418702718'
+  }
+
   beforeEach(() => {
+
+    const spy = spyOn(router, 'navigateByUrl');
     
     TestBed.configureTestingModule({
       declarations: [
@@ -23,7 +35,8 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         FormsModule
-      ]
+      ],
+      providers: [AngularFire]
     });
     TestBed.compileComponents();
   });

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 import { user } from '../login/user';
 import { UserService } from '../login/user.service';
 
@@ -33,6 +34,10 @@ export class UserAccountComponent  {
     // helper that *ngFoor can loop over object keys
     objKeys(object) : Array<string> {
       return Object.keys(object);
+    }
+
+    test(){
+      return "test erfolgreich";
     }
 
     saveUser(){

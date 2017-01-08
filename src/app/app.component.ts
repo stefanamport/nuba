@@ -7,7 +7,7 @@ import { UserService } from './login/user.service';
   selector: 'my-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ ]
+  providers: [ UserService ]
 })
 export class AppComponent {
 	user: user;
