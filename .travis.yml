@@ -7,9 +7,6 @@ cache:
 dist: trusty
 node_js:
   - '5.6.0'
-branches:
-  only:
-  - upgrade_to_angular_cli
 before_install:
  - npm install -g angular-cli
  - export CHROME_BIN=/usr/bin/google-chrome
