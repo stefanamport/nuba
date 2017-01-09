@@ -18,14 +18,14 @@ export class UserAccountComponent  {
   genders: any;
   activityLevels: any;
 
-    constructor (private UserService: UserService){
+    constructor (private userService: UserService){
 
       this.genders = Genders;
       this.activityLevels = ActivityLevels;
 
-       this.user = this.UserService.getUser();
+       this.user = this.userService.getUser();
 
-       this.UserService.data.subscribe((data: any) => {
+       this.userService.data.subscribe((data: any) => {
           this.user = data;
        });
 
@@ -36,12 +36,8 @@ export class UserAccountComponent  {
       return Object.keys(object);
     }
 
-    test(){
-      return "test erfolgreich";
-    }
-
     saveUser(){
-    	this.UserService.updateUserInfo(this.user);
+    	this.userService.updateUserInfo(this.user);
     }
 
 }

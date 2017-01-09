@@ -1,10 +1,10 @@
 /* tslint:disable:no-unused-variable */
-import { ModuleWithProviders } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+
+import {FormsModule} from '@angular/forms';
 
 import {FIREBASE_PROVIDERS, defaultFirebase, AngularFire} from 'angularfire2';
 
@@ -15,32 +15,16 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { user } from '../login/user';
 import { UserService } from '../login/user.service';
+import { UserServiceStub } from '../login/testing/fake.user.service';
 
 import { Genders, ActivityLevels } from '../login/user.specs';
 
-// TODO: Integrate fake User Service instead of real user service
-class fakeUserService {
-
-  getUser(){
-    let mockUser = {
-      name: 'Kurt',
-    };
-    return mockUser;
-  }
-
-  testing(){
-    return 'testing';
-  }
-
-}
 
 describe('UserAccountComponent', () => {
 
   let component: UserAccountComponent;
   let fixture: ComponentFixture<UserAccountComponent>;
-  let UserService: any;
-  let fakeUserService: fakeUserService;
-  //let routr: Router; 
+  let UserServiceReference: UserServiceStub;
 
   const firebaseConfig = {
     apiKey: 'AIzaSyBf7RiiafbN6IKzYoDdsZtOaQqFK-54oB0',
@@ -51,10 +35,8 @@ describe('UserAccountComponent', () => {
   }
 
   beforeAll(() => {
-        //router = jasmine.createSpyObj('Router', ['navigate']);
-        //component = new UserAccountComponent(router);
-    });
 
+  });
 
   beforeEach(async(() => {
 
@@ -62,33 +44,34 @@ describe('UserAccountComponent', () => {
       imports: [ FormsModule, RouterTestingModule ],
       declarations: [ UserAccountComponent ],
       providers: [
-        {provide: UserService, useValue: fakeUserService },
         AngularFire,
         FIREBASE_PROVIDERS,
         defaultFirebase(firebaseConfig)
       ]
-    })
+    }).overrideComponent(UserAccountComponent, {
+      set: {
+        providers: [
+          {provide: UserService, useClass: UserServiceStub}
+        ]
+      }})
     .compileComponents();
-
   }));
 
   beforeEach(() => {  
     fixture = TestBed.createComponent(UserAccountComponent);
     component = fixture.componentInstance;
-
-    // Inject Mock User Service
-    //UserService = fixture.debugElement.injector.get(UserService);
-    //componentUserService = userService;
-
-    // UserService from the root injector
-    UserService = TestBed.get(UserService);
+    
+    UserServiceReference = new UserServiceStub();
 
     fixture.detectChanges();
   });
 
- 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should load user', () => {
+    expect(UserServiceReference.getUser()).toEqual(component.user);
   });
 
   it('should load genders', () => {
@@ -100,6 +83,5 @@ describe('UserAccountComponent', () => {
     this.activityLevels = ActivityLevels;
     expect(this.activityLevels).toBe(component.activityLevels);
   });
-
 
 });
