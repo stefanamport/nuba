@@ -78,15 +78,10 @@ describe('NubaSearchComponent', () => {
   }));
 
   it('should filter results', async(() => {
-    fixture.debugElement.componentInstance.filterResults('abc');
+    debugElement.componentInstance.filterResults('abc');
     fixture.detectChanges();
     expect(component.searchResults.length).toBe(1);
-    expect(component.searchResults[0].name).toBe('Banane');
-    expect(component.searchResults[0].matrix_amount).toBe(100);
-    expect(component.searchResults[0].$key).toBe(1);
-    expect(component.searchResults[0].category).toBe('Frucht');
-    expect(component.searchResults[0].matrix_unit).toBe('g');
-
+    expect(component.searchResults[0]).toEqual(banana);
   }));
 
   it('should not filter results', async(() => {
@@ -96,7 +91,7 @@ describe('NubaSearchComponent', () => {
   }));
 
   it('should add to form', async(() => {
-    debugElement.componentInstance.addToForm(1);
+    component.addToForm(1);
     fixture.detectChanges();
     expect(component.searchResults.length).toBe(0);
     expect(component.selectedQuantity).toBe(100);
@@ -104,28 +99,31 @@ describe('NubaSearchComponent', () => {
 
   it('should not add to form', async(() => {
     // no id passed, therefore no food item can be added
-    debugElement.componentInstance.addToForm();
+    component.addToForm();
     fixture.detectChanges();
     expect(component.searchResults.length).toBe(0);
     expect(component.selectedQuantity).toBe(0);
   }));
 
-  it('should clear form', async(() => {
-    debugElement.componentInstance.clearForm();
+  it('should clear form', () => {
+    component.selectedFood = banana;
+    component.selectedQuantity = 100;
+    fixture.detectChanges();
+    component.clearForm();
     fixture.detectChanges();
     expect(component.selectedFood).toEqual(null);
     expect(component.selectedQuantity).toBe(0);
-  }));
+  });
 
   it('should add entry to journal', async(() => {
-    debugElement.componentInstance.selectedFood = banana;
+    component.selectedFood = banana;
     let selectedQuantity = 200;
     // let journalEntry = new JournalEntry(banana.name, date, banana.$key, selectedQuantity, banana.matrix_unit, true);
 
-    debugElement.componentInstance.selectedQuantity = selectedQuantity;
-    spyOn(debugElement.componentInstance, 'resetSearchResults');
+    component.selectedQuantity = selectedQuantity;
+    spyOn(component, 'resetSearchResults');
 
-    debugElement.componentInstance.addToJournal();
+    component.addToJournal();
     fixture.detectChanges();
 
     expect(journalEntriesServiceSpy.addEntry.calls.count()).toBe(1);
@@ -133,6 +131,17 @@ describe('NubaSearchComponent', () => {
      * FIXME: sonja, 08.01.2017, test is currently not successful because I don't know how I can mock the new Date() in the addEntry() function
      * expect(journalEntriesServiceSpy.addEntry).toHaveBeenCalledWith(journalEntry);
      */
-    expect(debugElement.componentInstance.resetSearchResults).toHaveBeenCalled();
+    expect(component.resetSearchResults).toHaveBeenCalled();
   }));
+  
+  it('should display search results', async(() => {
+    component.filterResults('abc');
+    fixture.detectChanges();
+    let lis = debugElement.nativeElement.querySelectorAll('li');
+    expect(lis.length).toBe(1);
+  }));
+  
+  it('should display search form', () => {
+    expect(debugElement.nativeElement.querySelector('input#food').placeholder).toEqual('Was hast du gegessen?');
+  });
 });
