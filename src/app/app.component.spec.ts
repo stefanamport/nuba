@@ -1,7 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import {FIREBASE_PROVIDERS, defaultFirebase, AngularFire} from 'angularfire2';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HeaderComponent} from "./header/header.component";
@@ -9,20 +8,23 @@ import { NubaSearch } from "./journal/nubaSearch.component";
 import {JournalComponent} from "./journal/journal.component";
 import {JournalList} from "./journal/journalList.component";
 import {FormsModule} from "@angular/forms";
+import {UserService} from "./login/user.service";
+import {Output} from "@angular/core/src/metadata/directives";
+import {EventEmitter} from "@angular/core";
+import {AngularFire} from "angularfire2";
 
 describe('AppComponent', () => {
-
-    const firebaseConfig = {
-    apiKey: 'AIzaSyBf7RiiafbN6IKzYoDdsZtOaQqFK-54oB0',
-    authDomain: 'nuba-c3e84.firebaseapp.com',
-    databaseURL: 'https://nuba-c3e84.firebaseio.com/',
-    storageBucket: 'nuba-c3e84.appspot.com',
-    messagingSenderId: '126418702718'
+  class AngularFireStub {}
+  
+  class UserServiceStub implements UserService {
+    @Output() data = new EventEmitter();
+  
+    public getUser() {}
   }
-
+  
   beforeEach(() => {
-
-    const spy = spyOn(router, 'navigateByUrl');
+    // FIXME: @Stefan: what was this spy intended for? I could not figure out as router is not defined.
+    //const spy = spyOn(router, 'navigateByUrl');
     
     TestBed.configureTestingModule({
       declarations: [
@@ -36,9 +38,16 @@ describe('AppComponent', () => {
         RouterTestingModule,
         FormsModule
       ],
-      providers: [AngularFire]
-    });
-    TestBed.compileComponents();
+      providers: [
+        { provide: AngularFire, useClass: AngularFireStub },
+      ]
+    }).overrideComponent(AppComponent, {
+      set: {
+        providers: [
+          { provide: UserService, useClass: UserServiceStub }
+        ]
+      }
+    }).compileComponents();
   });
   
   it('should create AppComponent', async(() => {
@@ -46,20 +55,4 @@ describe('AppComponent', () => {
       let app = fixture.debugElement.componentInstance;
       expect(app).toBeTruthy();
   }));
-
-  /*
-  it(`should have as title 'app works!'`, async(() => {
-    let fixture = TestBed.createComponent(AppComponent);
-    let app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    let fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
-  }));
-  */
-  
 });
