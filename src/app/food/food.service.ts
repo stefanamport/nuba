@@ -6,7 +6,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class FoodDatabaseService {
+export class FoodService {
 
   private cachedFoodList: Array<Food> = [];
 

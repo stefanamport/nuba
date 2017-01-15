@@ -5,9 +5,9 @@
 // - Search Dropdown: Zum food.name weitere Details zum Nahrungsmittel anzeigen
 
 import { Component } from '@angular/core';
-import { FoodDatabaseService } from '../food-database/food.service';
+import { FoodService } from '../food/food.service';
 
-import { Food } from '../food-database/food';
+import { Food } from '../food/food';
 import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
 import { FirebaseService } from '../firebase/firebase.service';
@@ -15,7 +15,7 @@ import { FirebaseService } from '../firebase/firebase.service';
 @Component({
   selector: 'app-search',
   templateUrl: './nubaSearch.component.html',
-  providers: [FoodDatabaseService, FirebaseService]
+  providers: [FoodService, FirebaseService]
 })
 export class SearchComponent  {
 
@@ -24,7 +24,7 @@ export class SearchComponent  {
   public selectedQuantity: number = 0;
 
   constructor(
-    private FoodDatabaseService: FoodDatabaseService,
+    private FoodDatabaseService: FoodService,
     private JournalEntriesService: JournalEntriesService) {
   }
 

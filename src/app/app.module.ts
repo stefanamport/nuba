@@ -17,7 +17,6 @@ import { SearchComponent } from './journal/nubaSearch.component';
 import { LogInComponent } from './login/login.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { AnalysisComponent } from './analysis/analysis.component';
-import { FoodDatabaseComponent } from './food-database/food-database.component';
 import { HeaderComponent } from './header/header.component';
 import { JournalComponent } from './journal/journal.component';
 import { FirebaseService } from './firebase/firebase.service';
@@ -38,7 +37,6 @@ export const firebaseConfig = {
     LogInComponent,
     UserAccountComponent,
     AnalysisComponent,
-    FoodDatabaseComponent,
     HeaderComponent,
     JournalComponent
   ],

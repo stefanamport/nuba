@@ -3,12 +3,12 @@ import {Component, OnInit} from '@angular/core';
 import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
 
-import { FoodDatabaseService } from '../food-database/food.service';
+import { FoodService } from '../food/food.service';
 
 @Component({
   selector: 'app-journal-list',
   templateUrl: './journalList.component.html',
-  providers: [FoodDatabaseService]
+  providers: [FoodService]
 })
 
 export class JournalListComponent implements OnInit {

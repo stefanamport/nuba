@@ -2,11 +2,11 @@ import {ComponentFixture, TestBed, async} from '@angular/core/testing';
 
 import {SearchComponent} from './nubaSearch.component';
 import {FormsModule} from '@angular/forms';
-import {FoodDatabaseService} from '../food-database/food.service';
+import {FoodService} from '../food/food.service';
 import {FirebaseService} from '../firebase/firebase.service';
 import {JournalEntriesService} from './journalEntries.service';
 import {Observable} from 'rxjs';
-import {Food} from '../food-database/food';
+import {Food} from '../food/food';
 import {JournalEntry} from './journalEntry';
 import {DebugElement} from '@angular/core';
 
@@ -70,7 +70,7 @@ describe('SearchComponent', () => {
     }).overrideComponent(SearchComponent, {
       set: {
         providers: [
-          {provide: FoodDatabaseService, useClass: FoodDatabaseServiceStub}
+          {provide: FoodService, useClass: FoodDatabaseServiceStub}
         ]
       }})
       .compileComponents();
