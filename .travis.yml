@@ -11,6 +11,14 @@ node_js:
   - '5.6.0'
 before_install:
  - npm install -g angular-cli
+ # Eventhough the package.json has zone.js@0.7.2 has a dependency version
+ # 0.7.5 is installed instead which causes a test error.
+ # Workaround: install 0.7.2 explicitely
+ # Remove this workaround once it is fixed here:
+ # see https://github.com/angular/zone.js/issues/427
+ - npm uninstall zone.js@0.7.5
+ - npm install --save zone.js@0.7.2
+
  - export CHROME_BIN=/usr/bin/google-chrome
  - export DISPLAY=:99.0
  - sh -e /etc/init.d/xvfb start

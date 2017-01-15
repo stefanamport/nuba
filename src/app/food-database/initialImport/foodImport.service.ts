@@ -43,5 +43,3 @@ function createFoodDetails(food: any, af: AngularFire) {
   delete food.id;
   toSaveFoodDetails.set(food);
 }
-
-

@@ -61,12 +61,12 @@ describe('UserAccountComponent', () => {
   });
 
   it('should load genders', () => {
-    this.genders = Genders;
-    expect(this.genders).toBe(component.genders);
+    component.genders = Genders;
+    expect(component.genders).toBe(component.genders);
   });
 
   it('should load activity levels', () => {
-    this.activityLevels = ActivityLevels;
-    expect(this.activityLevels).toBe(component.activityLevels);
+    component.activityLevels = ActivityLevels;
+    expect(component.activityLevels).toBe(component.activityLevels);
   });
 });

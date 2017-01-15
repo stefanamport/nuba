@@ -1,7 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Output } from '@angular/core';
 
-
 export class UserServiceStub {
 
   @Output() data = new EventEmitter();

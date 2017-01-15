@@ -10,4 +10,3 @@ export const ActivityLevels = {
   3: {title: 'hauptsächlich stehend und gehend', pal: 1.8},
   4: {title: 'körperlich anstrengende Arbeit', pal: 2}
 };
-

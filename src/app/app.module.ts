@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AngularFireModule, AuthMethods, AuthProviders  } from 'angularfire2';
 
-import { AppRoutingModule }     from './app-routing/app-routing.module';
+import { AppRoutingModule } from './app-routing/app-routing.module';
 
 import { AppComponent } from './app.component';
 
@@ -14,7 +14,7 @@ import { UserService } from './login/user.service';
 
 import { JournalListComponent } from './journal/journalList.component';
 import { SearchComponent } from './journal/nubaSearch.component';
-import { LogInComponent }   from './login/login.component';
+import { LogInComponent } from './login/login.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { AnalysisComponent } from './analysis/analysis.component';
 import { FoodDatabaseComponent } from './food-database/food-database.component';

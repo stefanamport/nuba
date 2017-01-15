@@ -11,6 +11,7 @@
     "curly": true,
     "eofline": true,
     "forin": true,
+    "import-spacing": true,
     "indent": [
       true,
       "spaces"
@@ -28,6 +29,7 @@
     ],
     "no-arg": true,
     "no-bitwise": true,
+    "no-consecutive-blank-lines": true,
     "no-console": [
       true,
       "debug",
@@ -37,11 +39,13 @@
       "trace"
     ],
     "no-construct": true,
+    "no-console": true,
     "no-debugger": true,
     "no-duplicate-variable": true,
     "no-empty": false,
     "no-eval": true,
     "no-inferrable-types": true,
+    "no-invalid-this": true,
     "no-shadowed-variable": true,
     "no-string-literal": false,
     "no-switch-case-fall-through": true,
@@ -57,6 +61,7 @@
       "check-else",
       "check-whitespace"
     ],
+    "one-variable-per-declaration": true,
     "quotemark": [
       true,
       "single"
