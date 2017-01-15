@@ -19,7 +19,7 @@ import {FirebaseService} from '../food-database/firebase.service';
 })
 export class SearchComponent  {
 
-  public searchResults: Array<Food>;
+  public searchResults: Array<Food> = [];
   public selectedFood: Food = null;
   public selectedQuantity: number = 0;
 
@@ -40,7 +40,7 @@ export class SearchComponent  {
     }
   }
 
-  addToForm (id: number) {
+  addToForm(id: number) {
     this.FoodDatabaseService.getFood(id).subscribe(food => {
       this.selectedFood = food;
       if (this.selectedFood !== null) {
@@ -53,7 +53,7 @@ export class SearchComponent  {
   }
 
   resetSearchResults() {
-    this.searchResults = null;
+    this.searchResults = [];
   };
 
   clearForm() {
@@ -61,13 +61,14 @@ export class SearchComponent  {
     this.selectedQuantity = 0;
   };
 
-  addToJournal () {
-    let newEntry = new JournalEntry;
-    newEntry.date =  new Date();
-    newEntry.foodID = this.selectedFood.$key;
+  addToJournal() {
+    let newEntry = new JournalEntry();
     newEntry.name = this.selectedFood.name;
+    newEntry.date = new Date();
+    newEntry.foodID = this.selectedFood.$key;
     newEntry.quantity = this.selectedQuantity;
     newEntry.unit = this.selectedFood.matrix_unit;
+    newEntry.editable = true;
 
     this.JournalEntriesService.addEntry(newEntry);
 
