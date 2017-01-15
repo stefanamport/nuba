@@ -27,10 +27,15 @@ before_install:
  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
  - sudo dpkg -i google-chrome*.deb
 script:
+ - ng build --prod
  - ng lint
  - ng test --watch false # http://mseemann.de/frontend/2016/05/31/setup-angular-2-app-part-1.html
  - ng serve &
  - ng e2e
+after_success:
+  if [ "$TRAVIS_BRANCH" == "master" ]; then
+    firebase deploy --token $FIREBASE_TOKEN;
+  fi
 notifications:
   webhooks:
     on_success: change  # options: [always|never|change] default: always
