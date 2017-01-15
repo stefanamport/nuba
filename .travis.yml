@@ -35,7 +35,7 @@ script:
  - ng e2e
 after_success:
   if [ "$TRAVIS_BRANCH" == "master" ]; then
-    firebase deploy --token $FIREBASE_TOKEN;
+    firebase deploy --token ${FIREBASE_TOKEN};
   fi
 notifications:
   webhooks:
