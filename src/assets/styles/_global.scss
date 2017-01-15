@@ -3,10 +3,16 @@
 body {
 	font-family: $font-family-main;
 	background-color: $light-gray;
+	
+	color: $main-font-color;
 
 	font-size: 0.9em;
 	line-height: 1.5rem;
 	font-weight: 400;
+}
+
+a {
+	color: $main-font-color;
 }
 
 @keyframes rotate {
@@ -43,6 +49,14 @@ body {
 		color: $dark-gray-font;
 	}
 }
+
+.alert {
+	border: 1px solid darken($alert-color, 10);
+	background: $alert-color;
+	padding: $boxpadding/2;
+}
+
+
 
 h2 {
 	font-family: $font-family-headlines;
@@ -108,7 +122,7 @@ button {
 		border: 1px solid rgba(0,0,0,.2);
 	}
 
-	&:hover {
+	&:enabled:hover {
 		background-color: $main-color;
 		color: #fff;
 		text-shadow: none;

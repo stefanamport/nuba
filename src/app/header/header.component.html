@@ -1,17 +1,31 @@
-<header>
+<header >
   <a routerLink="/" class="logo">
     nu<sup>ba</sup>
   </a>
   <nav id="mainnav">
     <ul>
-      <li><a routerLink="/journal" routerLinkActive="active"><span class="fa fa-cutlery" aria-hidden="true"></span> erfassen</a></li>
-      <li><a routerLink="/analysis" routerLinkActive="active"><span class="fa fa-pie-chart" aria-hidden="true"></span> auswerten</a></li>
-      <li class="accountLink">
+      
+      <li *ngIf="this.UserService.auth">
+        <a routerLink="/journal" routerLinkActive="active"><span class="fa fa-cutlery" aria-hidden="true"></span> erfassen</a>
+      </li>
+      
+      <li *ngIf="this.UserService.auth">
+        <a routerLink="/analysis" routerLinkActive="active"><span class="fa fa-pie-chart" aria-hidden="true"></span> auswerten</a>
+      </li>
+
+      <li *ngIf="this.UserService.auth" class="accountLink">
         <a routerLink="/account" routerLinkActive="active">
-          <span class="fa fa-user" aria-hidden="true"></span> Meine Konto
-          <div class="profileImage"><img src="./assets/images/fake-user.jpg" alt="User Name"></div>
+          <span class="fa fa-user" aria-hidden="true"></span> Dein Konto
+          <div class="profileImage"><img src="{{user.avatar}}" alt="{{user.name}}"></div>
         </a>
       </li>
+
+      <li *ngIf="!this.UserService.auth" >
+        <a routerLink="/login" routerLinkActive="active">
+          Login
+        </a>
+      </li>
+
     </ul>
   </nav>
 </header>
