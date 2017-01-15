@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { JournalEntriesService } from './journalEntries.service';
-import { FirebaseService } from '../food-database/firebase.service';
+import { FirebaseService } from '../firebase/firebase.service';
 
 @Component({
   selector: 'app-journal',

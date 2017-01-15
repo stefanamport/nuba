@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Food } from './food';
-import { FirebaseService } from '../food-database/firebase.service';
+import { FirebaseService } from '../firebase/firebase.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
@@ -14,7 +14,7 @@ export class FoodDatabaseService {
 
   searchFood(filter: string): Observable<Array<Food>> {
     if (this.cachedFoodList.length === 0) {
-      return this.FirebaseService.getAllFood().map(food => {
+      return this.FirebaseService.getList('food').map(food => {
         this.cachedFoodList = food;
         return this.filterFood(filter);
      });
@@ -26,7 +26,7 @@ export class FoodDatabaseService {
   getFood(id: number): Observable<Food> {
     let food = this.filterFoodId(id);
     if (food === null) {
-      return this.FirebaseService.getFood(id);
+      return this.FirebaseService.getObject('food', id);
     } else {
       return Observable.of(food);
     }

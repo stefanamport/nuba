@@ -20,6 +20,7 @@ import { AnalysisComponent } from './analysis/analysis.component';
 import { FoodDatabaseComponent } from './food-database/food-database.component';
 import { HeaderComponent } from './header/header.component';
 import { JournalComponent } from './journal/journal.component';
+import { FirebaseService } from './firebase/firebase.service';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBf7RiiafbN6IKzYoDdsZtOaQqFK-54oB0',
@@ -51,7 +52,7 @@ export const firebaseConfig = {
         method: AuthMethods.Popup
       })
   ],
-  providers: [ UserService, LoginGuard ],
-  bootstrap: [AppComponent]
+  providers: [ UserService, FirebaseService, LoginGuard ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

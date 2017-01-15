@@ -4,13 +4,13 @@ import { JournalComponent } from './journal.component';
 import {SearchComponent} from './nubaSearch.component';
 import {JournalListComponent} from './journalList.component';
 import {FormsModule} from '@angular/forms';
-import {FirebaseService} from '../food-database/firebase.service';
+import {FirebaseFoodService, FirebaseService} from '../firebase/firebase.service';
 import {AngularFire} from 'angularfire2';
 import {JournalEntriesService} from './journalEntries.service';
 import {EventEmitter} from '@angular/core';
 import {Output} from '@angular/core/src/metadata/directives';
 
-class FirebaseServiceStub {}
+class FirebaseServiceStub { }
 
 class AngularFireStub {}
 

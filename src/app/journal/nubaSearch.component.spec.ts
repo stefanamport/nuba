@@ -3,7 +3,7 @@ import {ComponentFixture, TestBed, async} from '@angular/core/testing';
 import {SearchComponent} from './nubaSearch.component';
 import {FormsModule} from '@angular/forms';
 import {FoodDatabaseService} from '../food-database/food.service';
-import {FirebaseService} from '../food-database/firebase.service';
+import {FirebaseService} from '../firebase/firebase.service';
 import {JournalEntriesService} from './journalEntries.service';
 import {Observable} from 'rxjs';
 import {Food} from '../food-database/food';

@@ -10,7 +10,7 @@ import { FoodDatabaseService } from '../food-database/food.service';
 import { Food } from '../food-database/food';
 import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
-import {FirebaseService} from '../food-database/firebase.service';
+import { FirebaseService } from '../firebase/firebase.service';
 
 @Component({
   selector: 'app-search',
@@ -68,7 +68,7 @@ export class SearchComponent  {
     newEntry.foodID = this.selectedFood.$key;
     newEntry.quantity = this.selectedQuantity;
     newEntry.unit = this.selectedFood.matrix_unit;
-    newEntry.editable = true;
+    newEntry.editable = false;
 
     this.JournalEntriesService.addEntry(newEntry);
 

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { User } from '../login/user';
 import { UserService } from '../login/user.service';
-import { FirebaseService } from './firebase.service';
+import { FirebaseService } from '../firebase/firebase.service';
 import { Genders, ActivityLevels } from '../login/user.specs';
 
 @Component({

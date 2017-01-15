@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { User } from './user';
 import { ActivityLevels } from '../login/user.specs';
+import { FirebaseService } from '../firebase/firebase.service';
 
 @Injectable()
 export class UserService {
@@ -13,18 +14,20 @@ export class UserService {
 
   @Output() data = new EventEmitter();
 
-  constructor( public af: AngularFire, private auth: AngularFireAuth, private router: Router) {
+  constructor(public af: AngularFire,
+              private auth: AngularFireAuth,
+              private firebaseService: FirebaseService,
+              private router: Router) {
     this.resetUser();
 
     this.af.auth.subscribe(user => {
       if (user) {
         this.userAut = user;
 
-        this.af.database.object('/userData/' + this.userAut.uid).subscribe( userInfo => {
-           this.userInfo = userInfo;
-           this.userUpdated();
+        this.firebaseService.getObject('userData', this.userAut.uid).subscribe(userInfo => {
+          this.userInfo = userInfo;
+          this.userUpdated();
         });
-
       } else {
         this.userAut = {};
         this.userUpdated();
@@ -98,7 +101,7 @@ export class UserService {
     keys.map(function(key) {
       userClean[key] = userInfoIntern[key];
     });
-    this.af.database.object('/userData/' + userkey).update(userClean);
+    this.firebaseService.updateObject('userData', userkey, userClean);
   }
 
   private doCalculations() {
