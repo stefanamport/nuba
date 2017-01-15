@@ -4,19 +4,30 @@ import { JournalComponent } from './journal.component';
 import {SearchComponent} from './nubaSearch.component';
 import {JournalListComponent} from './journalList.component';
 import {FormsModule} from '@angular/forms';
-import {FIREBASE_PROVIDERS, defaultFirebase} from 'angularfire2';
+import {FirebaseService} from '../food-database/firebase.service';
+import {AngularFire} from 'angularfire2';
+import {JournalEntriesService} from './journalEntries.service';
+import {EventEmitter} from '@angular/core';
+import {Output} from '@angular/core/src/metadata/directives';
+
+class FirebaseServiceStub {}
+
+class AngularFireStub {}
+
+class JournalEntriesServiceStub implements JournalEntriesService {
+  @Output() data = new EventEmitter();
+
+  public getMutableData () {
+    return {
+      'entriesOfActiveDate': new Date(),
+      'activeDate': new Date()
+    };
+  }
+}
 
 describe('JournalComponent', () => {
   let component: JournalComponent;
   let fixture: ComponentFixture<JournalComponent>;
-
-  const firebaseConfig = {
-    apiKey: 'AIzaSyBf7RiiafbN6IKzYoDdsZtOaQqFK-54oB0',
-    authDomain: 'nuba-c3e84.firebaseapp.com',
-    databaseURL: 'https://nuba-c3e84.firebaseio.com/',
-    storageBucket: 'nuba-c3e84.appspot.com',
-    messagingSenderId: '126418702718'
-  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -29,8 +40,15 @@ describe('JournalComponent', () => {
         FormsModule
       ],
       providers: [
-        FIREBASE_PROVIDERS, defaultFirebase(firebaseConfig)
+        { provide: AngularFire, useClass: AngularFireStub }
       ]
+    }).overrideComponent(JournalComponent, {
+      set: {
+        providers: [
+          { provide: FirebaseService, useClass: FirebaseServiceStub },
+          { provide: JournalEntriesService, useClass: JournalEntriesServiceStub }
+        ]
+      }
     })
     .compileComponents();
   }));
