@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
-import { user } from '../logIn/user';
+import { user } from '../login/user';
 
 @Injectable()
 export class FirebaseService  {
@@ -22,7 +22,7 @@ export class FirebaseService  {
       return typeof user[key] !== 'function' && key.indexOf('$') !== 0;
     });
 
-    keys.map(function(key){ userClean[key] = user[key] }); 
+    keys.map(function(key){ userClean[key] = user[key] });
 
     this.af.database.object('/userData/' + userkey).update(userClean);
     
