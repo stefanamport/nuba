@@ -1,4 +1,4 @@
-export interface user {
+export interface User {
   uid?: any;
   name?: string;
 
@@ -16,5 +16,4 @@ export interface user {
   metabolicRate?: number;
 
   bmi?: any;
-
 }

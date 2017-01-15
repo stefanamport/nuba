@@ -6,6 +6,6 @@ export class AngularCliProjectPage {
   }
 
   getParagraphText() {
-    return element(by.css('my-app h1')).getText();
+    return element(by.css('app-component h1')).getText();
   }
 }

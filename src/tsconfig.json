@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowUnusedLabels": false,
     "baseUrl": "",
     "declaration": false,
     "emitDecoratorMetadata": true,
@@ -8,6 +9,9 @@
     "mapRoot": "./",
     "module": "es6",
     "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
     "outDir": "../dist/out-tsc",
     "sourceMap": true,
     "target": "es5",

@@ -1,30 +1,23 @@
 import { Component } from '@angular/core';
 
-import { user } from '../login//user';
+import { User } from '../login//User';
 import { UserService } from '../login/user.service';
 
 @Component({
   selector: 'app-header',
-  templateUrl: "./header.component.html"
+  templateUrl: './header.component.html'
 })
-export class HeaderComponent  { 
+export class HeaderComponent  {
 
-	user: user;
+  user: User;
 
-	constructor(private UserService: UserService) {
+  constructor(private UserService: UserService) {
+    // Initial Load User
+    this.user = this.UserService.getUser();
 
-		// Initial Load User
-      this.user = this.UserService.getUser();
-
-       //subscribe User changes
-       this.UserService.data.subscribe((data: any) => {
-          this.user = data;
-       });
-	   
-	}
-
-	ngOnInit(){
-
-	}
-
+    // subscribe User changes
+    this.UserService.data.subscribe((data: any) => {
+      this.user = data;
+    });
+  }
 }

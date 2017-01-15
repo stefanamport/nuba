@@ -6,7 +6,7 @@
 
         <div class="whitebox">
           <h2>Deine Daten</h2>
-          
+
           <div class="boxcontent">
             <form id="userData">
 
@@ -17,7 +17,7 @@
                     <option *ngFor="let gender of this.objKeys(genders)" value="{{gender}}">{{genders[gender].title}}</option>
                 </select>
               </div>
-                
+
               <div class="formrow">
                 <label>Vorname</label>
                 <input type="text" [(ngModel)]="user.name" name="vorname">
@@ -50,7 +50,7 @@
                 <label>Anzahl Stunden Sport pro Woche (cm)</label>
                 <input type="number" [(ngModel)]="user.hoursOfSport" name="hoursOfSport">
               </div>
-              
+
               <div class="formrow">
               <button class="big" aria-label="speichern" (click)="saveUser()"><span class="fa fa-check" aria-hidden="true"></span> speichern</button>
               </div>
@@ -64,14 +64,14 @@
       <aside class="gridItem w-4">
         <div class="whitebox">
           <h2>Berechnungen</h2>
-          
+
           <div class="boxcontent">
               BMI: {{ user.bmi }}<br>
               Alter: {{ user.age }}<br>
               Geschätzter Kalorien Grundumsatz: {{ user.metabolicRate }} kcal
               <hr>
               <h3>Dein täglicher Bedarf:</h3>
-              Vitamin-C: xxx<br> 
+              Vitamin-C: xxx<br>
               Eisen: xxx<br>
               etc...<br>
           </div>
@@ -80,7 +80,7 @@
         <div class="whitebox">
           <h2>Log Out</h2>
           <div class="boxcontent">
-              <button (click)="UserService.logout()" class="light small">
+              <button (click)="userService.logout()" class="light small">
                 Logout
               </button>
           </div>

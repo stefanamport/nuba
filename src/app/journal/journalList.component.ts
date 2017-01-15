@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
@@ -6,32 +6,31 @@ import { JournalEntriesService } from './journalEntries.service';
 import { FoodDatabaseService } from '../food-database/food.service';
 
 @Component({
-  selector: 'journal-list',
+  selector: 'app-journal-list',
   templateUrl: './journalList.component.html',
   providers: [FoodDatabaseService]
 })
-export class JournalList  {
+
+export class JournalListComponent implements OnInit {
   journalList: Array<JournalEntry>;
   activeListDate: any;
 
-  constructor(private JournalEntriesService: JournalEntriesService, private foodDatabase: FoodDatabaseService) {
-
+  constructor(private JournalEntriesService: JournalEntriesService) {
     // ****
     // get all mutable Data
     // TODO, evtl. setMutable Data mit ngOnInit zusammenführen?
     let mutableData = JournalEntriesService.getMutableData();
     this.setMutableData(mutableData);
-
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.JournalEntriesService.data.subscribe((data: any) => {
         this.activeListDate = data.activeDate;
         this.journalList = data.entriesOfActiveDate;
       });
   }
 
-  setMutableData (mutableData: any){
+  setMutableData (mutableData: any) {
     this.activeListDate = mutableData.activeDate;
     this.journalList = mutableData.entriesOfActiveDate;
   }
@@ -41,23 +40,23 @@ export class JournalList  {
   isActiveListDateToday() {
     let today = new Date();
 
-    if (this.activeListDate.setHours(0,0,0,0) == today.setHours(0,0,0,0) ){
+    if (this.activeListDate.setHours(0, 0, 0, 0) === today.setHours(0, 0, 0, 0) ) {
       return true;
     } else {
       return false;
     }
   }
 
-  makeEditable(entry: JournalEntry){
+  makeEditable(entry: JournalEntry) {
     entry.editable = true;
   }
 
-  updateEntry (entry: JournalEntry){
+  updateEntry (entry: JournalEntry) {
      entry.editable = false;
      this.JournalEntriesService.updateEntry(entry.id);
   }
 
-  deleteEntry (id: number){
+  deleteEntry (id: number) {
     this.JournalEntriesService.deleteEntry(id);
   }
 

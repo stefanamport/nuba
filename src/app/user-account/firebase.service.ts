@@ -1,31 +1,30 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
-import { user } from '../login/user';
+import { AngularFire, FirebaseObjectObservable} from 'angularfire2';
+import { User } from '../login/user';
 
 @Injectable()
 export class FirebaseService  {
   constructor(private af: AngularFire) {}
 
-  getUser(userUid: any): FirebaseObjectObservable<user> {
-  	return this.af.database.object('/userData/' + userUid);
+  getUser(userUid: any): FirebaseObjectObservable<User> {
+    return this.af.database.object('/userData/' + userUid);
   }
 
-  saveUser(user:user, userUid: any){
-
+  saveUser(user: User, userUid: any) {
     let userkey = userUid;
-    let userClean: user = {};
+    let userClean: User = {};
 
     // Remove $ Values
     // Verhindert dass $funktionen von firebase zurück auf den server gespielt werden
     // nur Values werden gesendet, keine Funktionen
-    var keys = Object.keys(user).filter(function(key){
+    let keys = Object.keys(user).filter(function(key){
       return typeof user[key] !== 'function' && key.indexOf('$') !== 0;
     });
 
-    keys.map(function(key){ userClean[key] = user[key] });
+    keys.map(function(key) {
+      userClean[key] = user[key];
+    });
 
     this.af.database.object('/userData/' + userkey).update(userClean);
-    
   }
-
 }

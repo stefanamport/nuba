@@ -14,9 +14,7 @@ export class FirebaseImportService  {
    * - foodDetails: contains detail information about food
    */
   importToFirebase() {
-    let allFood = FoodInitialData;
-    for (let food of allFood) {
-      let key = food.id;
+    for (let food of FoodInitialData) {
       createFood(food, this.af);
       createFoodDetails(food, this.af);
     }
@@ -27,14 +25,13 @@ export class FirebaseImportService  {
  * Save food to the node 'food' in the firebase database
  */
 function createFood(food: any, af: AngularFire) {
-  console.log(af);
-  const toSaveFood = af.database.object('food/'+food.id);
+  const toSaveFood = af.database.object('food/' + food.id);
   toSaveFood.set({
-    "name": food.name,
-    "synonyms": food.synonyms,
-    "category": food.category,
-    "matrix_unit": food.matrix_unit,
-    "matrix_amount": food.matrix_amount
+    'name': food.name,
+    'synonyms': food.synonyms,
+    'category': food.category,
+    'matrix_unit': food.matrix_unit,
+    'matrix_amount': food.matrix_amount
   });
 }
 
@@ -42,7 +39,7 @@ function createFood(food: any, af: AngularFire) {
  * Save food details to the node 'foodDetails' in the firebase database
  */
 function createFoodDetails(food: any, af: AngularFire) {
-  const toSaveFoodDetails = af.database.object('foodDetails/'+food.id);
+  const toSaveFoodDetails = af.database.object('foodDetails/' + food.id);
   delete food.id;
   toSaveFoodDetails.set(food);
 }

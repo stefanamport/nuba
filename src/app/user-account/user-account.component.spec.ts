@@ -1,27 +1,15 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import {FIREBASE_PROVIDERS, defaultFirebase, AngularFire} from 'angularfire2';
 
 import { UserAccountComponent } from './user-account.component';
-
-// import {Router, ROUTER_PROVIDERS} from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
-
-import { user } from '../login/user';
 import { UserService } from '../login/user.service';
 import { UserServiceStub } from '../login/testing/fake.user.service';
-
 import { Genders, ActivityLevels } from '../login/user.specs';
 
-
 describe('UserAccountComponent', () => {
-
   let component: UserAccountComponent;
   let fixture: ComponentFixture<UserAccountComponent>;
   let UserServiceReference: UserServiceStub;
@@ -32,14 +20,13 @@ describe('UserAccountComponent', () => {
     databaseURL: 'https://nuba-c3e84.firebaseio.com/',
     storageBucket: 'nuba-c3e84.appspot.com',
     messagingSenderId: '126418702718'
-  }
+  };
 
   beforeAll(() => {
 
   });
 
   beforeEach(async(() => {
-
     TestBed.configureTestingModule({
       imports: [ FormsModule, RouterTestingModule ],
       declarations: [ UserAccountComponent ],
@@ -57,10 +44,9 @@ describe('UserAccountComponent', () => {
     .compileComponents();
   }));
 
-  beforeEach(() => {  
+  beforeEach(() => {
     fixture = TestBed.createComponent(UserAccountComponent);
     component = fixture.componentInstance;
-    
     UserServiceReference = new UserServiceStub();
 
     fixture.detectChanges();
@@ -70,7 +56,7 @@ describe('UserAccountComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load user', () => {
+  it('should load User', () => {
     expect(UserServiceReference.getUser()).toEqual(component.user);
   });
 
@@ -83,5 +69,4 @@ describe('UserAccountComponent', () => {
     this.activityLevels = ActivityLevels;
     expect(this.activityLevels).toBe(component.activityLevels);
   });
-
 });

@@ -13,11 +13,11 @@ import { JournalEntriesService } from './journalEntries.service';
 import {FirebaseService} from '../food-database/firebase.service';
 
 @Component({
-  selector: 'nuba-search',
+  selector: 'app-search',
   templateUrl: './nubaSearch.component.html',
   providers: [FoodDatabaseService, FirebaseService]
 })
-export class NubaSearch  {
+export class SearchComponent  {
 
   public searchResults: Array<Food>;
   public selectedFood: Food = null;
@@ -35,12 +35,12 @@ export class NubaSearch  {
       this.resetSearchResults();
     }
 
-    if (this.selectedFood && this.selectedFood.name != val) {
+    if (this.selectedFood && this.selectedFood.name !== val) {
       this.selectedFood.name = val;
     }
   }
 
-  addToForm (id: number){
+  addToForm (id: number) {
     this.FoodDatabaseService.getFood(id).subscribe(food => {
       this.selectedFood = food;
       if (this.selectedFood !== null) {
@@ -61,7 +61,7 @@ export class NubaSearch  {
     this.selectedQuantity = 0;
   };
 
-  addToJournal (value: any) {
+  addToJournal () {
     let newEntry = new JournalEntry;
     newEntry.date =  new Date();
     newEntry.foodID = this.selectedFood.$key;

@@ -1,31 +1,23 @@
-import { Injectable, Output } from '@angular/core';
-
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { AngularFire, AuthProviders, AngularFireAuth } from 'angularfire2';
-
 import { Router } from '@angular/router';
 
-import { EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-
-import { user } from './user';
+import { User } from './user';
 import { ActivityLevels } from '../login/user.specs';
 
 @Injectable()
 export class UserService {
-
   userAut: any;
   userInfo: any;
-  user: user;
+  user: User;
 
   @Output() data = new EventEmitter();
 
   constructor( public af: AngularFire, private auth: AngularFireAuth, private router: Router) {
-
     this.resetUser();
 
     this.af.auth.subscribe(user => {
-      if(user) {
+      if (user) {
         this.userAut = user;
 
         this.af.database.object('/userData/' + this.userAut.uid).subscribe( userInfo => {
@@ -33,36 +25,31 @@ export class UserService {
            this.userUpdated();
         });
 
-      }
-      else {
+      } else {
         this.userAut = {};
         this.userUpdated();
       }
     });
-
   }
 
-  isLoggedIn(){
+  isLoggedIn() {
     return this.auth;
   }
 
-  login(method:string) {
+  login(method: string) {
     this.af.auth.login({
       provider: AuthProviders[method]
     });
   }
 
-  logout (){
+  logout () {
     this.af.auth.logout();
-
     this.resetUser();
     this.userUpdated();
-
     this.router.navigate(['login']);
   }
 
-  getUser(){
-    
+  getUser() {
     if (this.userAut) {
       this.user.uid = this.userAut.uid;
     }
@@ -82,13 +69,13 @@ export class UserService {
     this.saveUserToFirebase();
   }
 
-  private resetUser(){
+  private resetUser() {
     this.user = {};
     this.userAut = false;
     this.userInfo = false;
   }
 
-  private userUpdated (){
+  private userUpdated () {
     if (this.userInfo || this.userAut) {
       this.data.next(this.getUser());
     } else {
@@ -96,39 +83,32 @@ export class UserService {
     }
   }
 
-  private saveUserToFirebase(){
-
+  private saveUserToFirebase() {
     let userkey = this.userAut.uid;
     let userInfoIntern = this.userInfo;
-
-    let userClean: user = {};
+    let userClean: User = {};
 
     // Cleanup Object
     // Verhindert dass $funktionen von firebase zurück auf den server gespielt werden
     // TODO: uid & avatar werden auch manuell gelöscht... evtl. noch anders lösen?
-    var keys = Object.keys(userInfoIntern).filter(function(key){
-      if (key.indexOf('$') && key.indexOf('uid') && key.indexOf('avatar')){
-        return key;
-      }
+    let keys = Object.keys(userInfoIntern).filter(function (key) {
+      return (key.indexOf('$') && key.indexOf('uid') && key.indexOf('avatar'));
     });
 
-    keys.map(function(key){ userClean[key] = userInfoIntern[key] }); 
-
+    keys.map(function(key) {
+      userClean[key] = userInfoIntern[key];
+    });
     this.af.database.object('/userData/' + userkey).update(userClean);
-    
   }
 
-  private doCalculations(){
+  private doCalculations() {
     this.setBMI();
     this.setAge();
     this.setMetabolicRate();
   };
 
   // Kaloreien Grundumsatz
-  private setMetabolicRate(){
-
-    let mr = 0;
-
+  private setMetabolicRate() {
     const calcVars = {
        male: {
          cv1: 66.47,
@@ -146,7 +126,7 @@ export class UserService {
 
     // Grundumsatz nach Harris-Benedict Formel
     // http://www.sportunterricht.ch/Theorie/Energie/energie.php
-    mr = calcVars[this.user.gender]['cv1'] +
+    let mr = calcVars[this.user.gender]['cv1'] +
          (calcVars[this.user.gender]['cv2'] * this.user.bodyweight) +
          (calcVars[this.user.gender]['cv3'] * this.user.bodyheight) -
          (calcVars[this.user.gender]['cv3'] * this.user.age);
@@ -154,8 +134,8 @@ export class UserService {
     // Multiplikation mit Aktivitätslevel
     // Ausgehend von 8 Arbeitsstunden
     let workingHours = 8;
-    let hourlyMetabolic = mr/24;
-    let dailySportHours = this.userInfo.hoursOfSport/7;
+    let hourlyMetabolic = mr / 24;
+    let dailySportHours = this.userInfo.hoursOfSport / 7;
 
     let workingMetabolic = (hourlyMetabolic * workingHours) * ActivityLevels[this.userInfo.activityLevel]['pal'];
     let sportMetabolic = (hourlyMetabolic * dailySportHours) * 2;
@@ -165,27 +145,20 @@ export class UserService {
 
     this.userInfo.metabolicRate = mr;
   }
-  
 
-  private setBMI(){
-
+  private setBMI() {
     let bmi = 0;
 
     if (this.userInfo.bodyweight > 0 && this.userInfo.bodyheight > 0) {
-        
-      let bodyHeightMeter = this.userInfo.bodyheight/100;
-
+      let bodyHeightMeter = this.userInfo.bodyheight / 100;
       bmi = this.userInfo.bodyweight / (bodyHeightMeter * bodyHeightMeter);
-      
       bmi = Math.round(bmi * 10) / 10 ;
     }
 
     this.userInfo.bmi = bmi;
-
   }
 
-  private setAge(){
-
+  private setAge() {
     let age = 0;
 
     if (this.userInfo.birthday) {
@@ -193,15 +166,12 @@ export class UserService {
       let today = new Date();
 
       age = today.getFullYear() - birthday.getFullYear();
-      var monthDiff = today.getMonth() - birthday.getMonth();
+      let monthDiff = today.getMonth() - birthday.getMonth();
       if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthday.getDate())) {
           age = age - 1;
       }
-
     }
 
     this.userInfo.age = age;
-    
   }
-
 }
