@@ -61,8 +61,14 @@ export class NubaSearch  {
   };
 
   addToJournal (value: any) {
-    let newEntry = new JournalEntry(this.selectedFood.name, new Date(), this.selectedFood.$key,  this.selectedQuantity,
-                                      this.selectedFood.matrix_unit, true);
+    let newEntry = new JournalEntry();
+    newEntry.name = this.selectedFood.name;
+    newEntry.date = new Date();
+    newEntry.foodID = this.selectedFood.$key;
+    newEntry.quantity = this.selectedQuantity;
+    newEntry.unit = this.selectedFood.matrix_unit;
+    newEntry.editable = true;
+    
     this.JournalEntriesService.addEntry(newEntry);
 
     this.resetSearchResults();

@@ -16,12 +16,23 @@ const date = new Date('February 3, 2001');
 class FirebaseServiceStub {}
 
 class JournalEntriesServiceSpy {
-  newEntry: JournalEntry = new JournalEntry('Banane', date, 1, 100, 'g', true);
-
+  getNewEntry(): JournalEntry {
+    let newEntry: JournalEntry = new JournalEntry();
+    newEntry.date = date;
+    newEntry.editable = true;
+    newEntry.foodID = 1;
+    newEntry.id = 1;
+    newEntry.name = 'Banana';
+    newEntry.quantity = 200;
+    newEntry.unit = 'g';
+    
+    return newEntry;
+  }
+  
   addEntry = jasmine.createSpy('addEntry').and.callFake(
     (entry: JournalEntry) => Promise
       .resolve(true)
-      .then(() => Object.assign(this.newEntry, entry))
+      .then(() => Object.assign(this.getNewEntry(), entry))
   );
 }
 
@@ -90,6 +101,7 @@ describe('NubaSearchComponent', () => {
     expect(component.searchResults.length).toBe(0);
   }));
 
+  //noinspection TsLint
   it('should add to form', async(() => {
     component.addToForm(1);
     fixture.detectChanges();
@@ -117,19 +129,23 @@ describe('NubaSearchComponent', () => {
 
   it('should add entry to journal', async(() => {
     component.selectedFood = banana;
-    let selectedQuantity = 200;
-    // let journalEntry = new JournalEntry(banana.name, date, banana.$key, selectedQuantity, banana.matrix_unit, true);
+    component.selectedQuantity = 200;
+    fixture.detectChanges();
 
-    component.selectedQuantity = selectedQuantity;
+    let expectedJournalEntry = journalEntriesServiceSpy.getNewEntry();
+
+    
     spyOn(component, 'resetSearchResults');
 
     component.addToJournal();
     fixture.detectChanges();
 
     expect(journalEntriesServiceSpy.addEntry.calls.count()).toBe(1);
+    
     /*
-     * FIXME: sonja, 08.01.2017, test is currently not successful because I don't know how I can mock the new Date() in the addEntry() function
-     * expect(journalEntriesServiceSpy.addEntry).toHaveBeenCalledWith(journalEntry);
+     * FIXME: sonja, 08.01.2017, test is currently not successful because I don't know how I can mock the new Date()
+     * in the addEntry() function
+     * expect(journalEntriesServiceSpy.addEntry).toHaveBeenCalledWith(expectedJournalEntry);
      */
     expect(component.resetSearchResults).toHaveBeenCalled();
   }));
