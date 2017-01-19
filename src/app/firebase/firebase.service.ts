@@ -14,7 +14,13 @@ export class FirebaseService {
     return this.af.database.object(resource + '/' + id);
   }
 
-  updateObject(resource: string, id: number, object: any) {
-    this.af.database.object(resource + '/' + id).update(object);
+  // adds a new object to a list
+  addItem(resource: string, item: any) {
+    return this.af.database.list(resource).push(item);
+  }
+
+  // updates an existing item in a list
+  updateItem(resource: string, id: string, item: any) {
+    return this.af.database.list(resource).update(id, item);
   }
 }

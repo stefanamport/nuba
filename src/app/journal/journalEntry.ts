@@ -1,4 +1,5 @@
 export class JournalEntry {
+  userId: string;
   id: number;
   name: string;
   date: Date;

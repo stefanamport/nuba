@@ -101,7 +101,7 @@ export class UserService {
     keys.map(function(key) {
       userClean[key] = userInfoIntern[key];
     });
-    this.firebaseService.updateObject('userData', userkey, userClean);
+    this.firebaseService.updateItem('userData', userkey, userClean);
   }
 
   private doCalculations() {

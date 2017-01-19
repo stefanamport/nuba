@@ -4,33 +4,41 @@
 // - Suchfeld Vorschläge: mit Pfeiltasten navigierbar machen
 // - Search Dropdown: Zum food.name weitere Details zum Nahrungsmittel anzeigen
 
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FoodService } from '../food/food.service';
 
 import { Food } from '../food/food';
 import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
 import { FirebaseService } from '../firebase/firebase.service';
+import {UserService} from '../login/user.service';
+import {User} from '../login/user';
 
 @Component({
   selector: 'app-search',
   templateUrl: './nubaSearch.component.html',
   providers: [FoodService, FirebaseService]
 })
-export class SearchComponent  {
+export class SearchComponent implements OnInit {
 
   public searchResults: Array<Food> = [];
   public selectedFood: Food = null;
   public selectedQuantity: number = 0;
+  private user: User;
 
   constructor(
-    private FoodDatabaseService: FoodService,
-    private JournalEntriesService: JournalEntriesService) {
+    private FoodService: FoodService,
+    private JournalEntriesService: JournalEntriesService,
+    private UserService: UserService
+  ) { }
+
+  ngOnInit() {
+    this.user = this.UserService.getUser();
   }
 
   filterResults (val: string) {
     if (val.length > 2) {
-      this.FoodDatabaseService.searchFood(val).subscribe(food => this.searchResults = food);
+      this.FoodService.searchFood(val).subscribe(food => this.searchResults = food);
     } else if (val.length === 0) {
       this.resetSearchResults();
     }
@@ -41,7 +49,7 @@ export class SearchComponent  {
   }
 
   addToForm(id: number) {
-    this.FoodDatabaseService.getFood(id).subscribe(food => {
+    this.FoodService.getFood(id).subscribe(food => {
       this.selectedFood = food;
       if (this.selectedFood !== null) {
         this.selectedQuantity = this.selectedFood.matrix_amount;
@@ -63,6 +71,7 @@ export class SearchComponent  {
 
   addToJournal() {
     let newEntry = new JournalEntry();
+    newEntry.userId = this.user.uid;
     newEntry.name = this.selectedFood.name;
     newEntry.date = new Date();
     newEntry.foodID = this.selectedFood.$key;

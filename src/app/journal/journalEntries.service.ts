@@ -2,6 +2,7 @@ import { Injectable, Output } from '@angular/core';
 import { JournalEntry } from './journalEntry';
 
 import { EventEmitter } from '@angular/core';
+import {FirebaseService} from '../firebase/firebase.service';
 
 @Injectable()
 export class JournalEntriesService {
@@ -18,7 +19,7 @@ export class JournalEntriesService {
   // TODO umstellen auf Object...
   activeListDate: any = new Date();
 
-  constructor() {
+  constructor(private firebaseService: FirebaseService) {
     // ist mit firebase ebenfalls nicht mehr nötig
     this.entries = JSON.parse(localStorage.getItem('nubaJournalEntries'));
 
@@ -50,17 +51,10 @@ export class JournalEntriesService {
   }
 
   addEntry(entry: JournalEntry) {
-
-      // Firebase Save Mock
-      // function(){} >> push to firebase
-      // rückmeldung mit ID
-      entry.id = Math.floor(Math.random() * (9999999999 - 1)) + 1;
+    this.firebaseService.addItem('journalEntries/' + entry.userId, entry);
 
     // Rückmeldung von Firebase einlesen
     this.entries.push(entry);
-
-    // Mock Save
-    this.save();
 
     // Push to subscribers
     this.dataUpdated();
