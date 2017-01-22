@@ -5,23 +5,33 @@ import {SearchComponent} from './nubaSearch.component';
 import {JournalListComponent} from './journalList.component';
 import {FormsModule} from '@angular/forms';
 import {FirebaseFoodService, FirebaseService} from '../firebase/firebase.service';
-import {AngularFire} from 'angularfire2';
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import {JournalEntriesService} from './journalEntries.service';
-import {EventEmitter} from '@angular/core';
-import {Output} from '@angular/core/src/metadata/directives';
+import {FoodService} from '../food/food.service';
+import {UserService} from '../login/user.service';
+import {User} from '../login/user';
+import {JournalEntry} from './journalEntry';
+import {Subject, Observable} from 'rxjs';
 
 class FirebaseServiceStub { }
 
 class AngularFireStub {}
 
-class JournalEntriesServiceStub implements JournalEntriesService {
-  @Output() data = new EventEmitter();
+class JournalEntriesServiceStub {
+  private addJournalEntrySource = new Subject<JournalEntry>();
+  addJournalEntryNotification$ = this.addJournalEntrySource.asObservable();
+  public notifyAddJournalEntry(journalEntry: JournalEntry) { }
+  public getJournalEntries(date: Date, userId: string): FirebaseListObservable<JournalEntry[]> {
+    let journalEntry = new JournalEntry();
+    return Observable.of(journalEntry);
+  }
+}
 
-  public getMutableData () {
-    return {
-      'entriesOfActiveDate': new Date(),
-      'activeDate': new Date()
-    };
+class FoodServiceStub { }
+
+class UserServiceStub {
+  public getUser() {
+    return new User();
   }
 }
 
@@ -46,7 +56,9 @@ describe('JournalComponent', () => {
       set: {
         providers: [
           { provide: FirebaseService, useClass: FirebaseServiceStub },
-          { provide: JournalEntriesService, useClass: JournalEntriesServiceStub }
+          { provide: FoodService, useClass: FoodServiceStub },
+          { provide: JournalEntriesService, useClass: JournalEntriesServiceStub },
+          { provide: UserService, useClass: UserServiceStub }
         ]
       }
     })

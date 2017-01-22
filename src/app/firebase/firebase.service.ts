@@ -23,4 +23,10 @@ export class FirebaseService {
   updateItem(resource: string, id: string, item: any) {
     return this.af.database.list(resource).update(id, item);
   }
+
+  // removes an item from a list
+  deleteItem(resource: string, id: string) {
+    const items = this.af.database.list(resource);
+    items.remove(id);
+  }
 }

@@ -1,104 +1,70 @@
-import { Injectable, Output } from '@angular/core';
-import { JournalEntry } from './journalEntry';
+import { Injectable } from '@angular/core';
+import {JournalEntry, JournalEntryFirebase} from './journalEntry';
 
-import { EventEmitter } from '@angular/core';
-import {FirebaseService} from '../firebase/firebase.service';
+import { FirebaseService } from '../firebase/firebase.service';
+import { FirebaseListObservable } from 'angularfire2';
+import {Subject} from 'rxjs';
 
 @Injectable()
 export class JournalEntriesService {
+  private addJournalEntrySource = new Subject<JournalEntry>();
+  addJournalEntryNotification$ = this.addJournalEntrySource.asObservable();
 
-  // data: Observable<Array<number>>;
-  // observer: any;
-  // tobserver: Observer;
+  constructor(private firebaseService: FirebaseService) { }
 
-  @Output() data = new EventEmitter();
-
-  // ist mit firebase nicht mehr nötig, da nicht immer alle Einträge geladen sein müssen
-  entries: Array<JournalEntry>;
-
-  // TODO umstellen auf Object...
-  activeListDate: any = new Date();
-
-  constructor(private firebaseService: FirebaseService) {
-    // ist mit firebase ebenfalls nicht mehr nötig
-    this.entries = JSON.parse(localStorage.getItem('nubaJournalEntries'));
-
-    if (this.entries === null) {
-      this.entries = [];
-    }
+  notifyAddJournalEntry(journalEntry: JournalEntry) {
+    this.addJournalEntrySource.next(journalEntry);
   }
 
-  getOfActiveDate() {
-    let activeListDateDay = this.activeListDate.setHours(0, 0, 0, 0);
-    let entries = this.entries.filter(function(entry) {
-       let compareDate = new Date(entry.date.toString()).setHours(0, 0, 0, 0);
-       return compareDate === activeListDateDay;
-    });
-    return entries;
+  getJournalEntries(date: Date, userId: string): FirebaseListObservable<JournalEntry[]> {
+    let url: string = this.getUrl(userId, date);
+    return this.firebaseService.getList(url);
   }
 
-  changeDateInSteps(step: number) {
-    let baseDate = this.activeListDate;
-    this.activeListDate = new Date(baseDate.setDate(baseDate.getDate() + step));
-    this.dataUpdated();
+  addEntry(journalEntry: JournalEntry) {
+    let firebaseEntry: JournalEntryFirebase = this.convertToJournalEntryFirebase(journalEntry);
+    let url: string = this.getUrl(journalEntry.userId, journalEntry.date);
+    this.firebaseService.addItem(url, firebaseEntry);
   }
 
-  getSingle(id: number) {
-    let entry = this.entries.filter(function() {
-       return entry.id === id;
-    });
-    return entry[0];
+  deleteEntry(journalEntry: JournalEntry) {
+    let url: string = this.getUrl(journalEntry.userId, journalEntry.date);
+    this.firebaseService.deleteItem(url, journalEntry.$key);
   }
 
-  addEntry(entry: JournalEntry) {
-    this.firebaseService.addItem('journalEntries/' + entry.userId, entry);
-
-    // Rückmeldung von Firebase einlesen
-    this.entries.push(entry);
-
-    // Push to subscribers
-    this.dataUpdated();
+  updateEntry(journalEntry: JournalEntry) {
+    let firebaseEntry: JournalEntryFirebase = this.convertToJournalEntryFirebase(journalEntry);
+    firebaseEntry.$key = journalEntry.$key;
+    let url: string = this.getUrl(journalEntry.userId, journalEntry.date);
+    this.firebaseService.updateItem(url, journalEntry.userId, firebaseEntry);
   }
 
-  deleteEntry(id: any) {
-    for (let c = 0; c < this.entries.length; c++) {
-      if (this.entries[c].id && this.entries[c].id === id) {
-          this.entries.splice(c, 1);
-          break;
-      }
-    }
-    this.dataUpdated();
-    this.save();
+  private getUrl(userId: string, date: Date): string {
+    let dateKey: string = this.getDateAsKey(date);
+
+    return 'journalEntries/' + userId + '/' + dateKey;
   }
 
-  updateEntry(id: any) {
-    // Mock
-    // würde dann den einzelnen Entry auf Firebase ändern...
+  private getDateAsKey(date: Date): string {
+    // FIXME: sonja, 22.01.2016: convert string date retrieved from the firebase back to real dates.
+    let realDate = new Date(date);
+    let year: string = realDate.getUTCFullYear().toString();
+    let month: string = (realDate.getUTCMonth() + 1).toString();
+    let day: string = realDate.getUTCDate().toString();
 
-    // let newEntry = this.getSingle(id);
-    // sendToFirebase(new Entry) :-)
-    id = id;
-    this.save();
+    return year + month + day;
   }
 
-  getMutableData () {
-    // Make Object for Subscribers
+  private convertToJournalEntryFirebase(journalEntry: JournalEntry): JournalEntryFirebase {
+    let entry = new JournalEntryFirebase();
+    entry.date = journalEntry.date.toString();
+    entry.editable = journalEntry.editable;
+    entry.foodID = journalEntry.foodID;
+    entry.name = journalEntry.name;
+    entry.quantity = journalEntry.quantity;
+    entry.unit = journalEntry.unit;
+    entry.userId = journalEntry.userId;
 
-    let mutableData = {
-      'entriesOfActiveDate' : this.getOfActiveDate(),
-      'activeDate' : this.activeListDate
-    };
-    return mutableData;
+    return entry;
   }
-
-  dataUpdated () {
-     // Send Changes to Subscribers
-    this.data.next(this.getMutableData());
-  }
-
-  save() {
-    // mock... wird dann in den einzelnen Funktionen durch Firebase ersetzt...
-    localStorage.setItem('nubaJournalEntries', JSON.stringify(this.entries));
-  }
-
 }

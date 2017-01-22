@@ -1,67 +1,69 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, EventEmitter} from '@angular/core';
 
 import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
 
-import { FoodService } from '../food/food.service';
+import {UserService} from '../login/user.service';
+import {User} from '../login/user';
+import {FirebaseListObservable} from 'angularfire2';
+import {Output, Input} from '@angular/core/src/metadata/directives';
 
 @Component({
   selector: 'app-journal-list',
   templateUrl: './journalList.component.html',
-  providers: [FoodService]
 })
 
 export class JournalListComponent implements OnInit {
-  journalList: Array<JournalEntry>;
-  activeListDate: any;
+  journalList: Array<JournalEntry> = [];
 
-  constructor(private JournalEntriesService: JournalEntriesService) {
-    // ****
-    // get all mutable Data
-    // TODO, evtl. setMutable Data mit ngOnInit zusammenführen?
-    let mutableData = JournalEntriesService.getMutableData();
-    this.setMutableData(mutableData);
-  }
+  @Input()
+  selectedDate: Date;
+
+  @Output()
+  dateChangeEmitter: EventEmitter<Date> = new EventEmitter<Date>();
+
+  private user: User;
+  journalListObs: FirebaseListObservable<JournalEntry[]>;
+
+  constructor(private journalEntriesService: JournalEntriesService,
+              private userService: UserService
+  ) { }
 
   ngOnInit() {
-    this.JournalEntriesService.data.subscribe((data: any) => {
-        this.activeListDate = data.activeDate;
-        this.journalList = data.entriesOfActiveDate;
-      });
-  }
-
-  setMutableData (mutableData: any) {
-    this.activeListDate = mutableData.activeDate;
-    this.journalList = mutableData.entriesOfActiveDate;
-  }
-
-  // *** siehe TODO oben
-
-  isActiveListDateToday() {
-    let today = new Date();
-
-    if (this.activeListDate.setHours(0, 0, 0, 0) === today.setHours(0, 0, 0, 0) ) {
-      return true;
-    } else {
-      return false;
-    }
+    this.selectedDate = new Date();
+    this.user = this.userService.getUser();
+    this.getJournalEntries(this.selectedDate);
+    this.journalEntriesService.addJournalEntryNotification$.subscribe(
+      journalEntry => {
+        journalEntry.date = this.selectedDate;
+        journalEntry.userId = this.user.uid;
+        this.journalEntriesService.addEntry(journalEntry);
+    });
   }
 
   makeEditable(entry: JournalEntry) {
     entry.editable = true;
   }
 
-  updateEntry (entry: JournalEntry) {
+  updateEntry(entry: JournalEntry) {
      entry.editable = false;
-     this.JournalEntriesService.updateEntry(entry.id);
+     this.journalEntriesService.updateEntry(entry);
   }
 
-  deleteEntry (id: number) {
-    this.JournalEntriesService.deleteEntry(id);
+  deleteEntry(entry: JournalEntry) {
+    this.journalEntriesService.deleteEntry(entry);
   }
 
-  dateChange (step: number) {
-     this.JournalEntriesService.changeDateInSteps(step);
+  dateChange(step: number) {
+    this.selectedDate.setDate(this.selectedDate.getDate() + step);
+    this.dateChangeEmitter.emit(this.selectedDate);
+    this.getJournalEntries(this.selectedDate);
   }
 
+  private getJournalEntries(date: Date) {
+    this.journalListObs = this.journalEntriesService.getJournalEntries(date, this.user.uid);
+    this.journalListObs.subscribe((journalEntries: JournalEntry[]) => {
+      this.journalList = journalEntries;
+    });
+  }
 }

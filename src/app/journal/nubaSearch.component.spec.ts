@@ -3,40 +3,38 @@ import {ComponentFixture, TestBed, async} from '@angular/core/testing';
 import {SearchComponent} from './nubaSearch.component';
 import {FormsModule} from '@angular/forms';
 import {FoodService} from '../food/food.service';
-import {FirebaseService} from '../firebase/firebase.service';
 import {JournalEntriesService} from './journalEntries.service';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {Food} from '../food/food';
 import {JournalEntry} from './journalEntry';
 import {DebugElement} from '@angular/core';
 
 const banana: Food = { $key: 1, name: 'Banane', category: 'Frucht', matrix_unit: 'g', matrix_amount: 100 };
-const date = new Date('February 3, 2001');
-
-class FirebaseServiceStub {}
 
 class JournalEntriesServiceSpy {
-  addEntry = jasmine.createSpy('addEntry').and.callFake(
+  private addJournalEntrySource = new Subject<JournalEntry>();
+
+  notifyAddJournalEntry = jasmine.createSpy('notifyAddJournalEntry').and.callFake(
     (entry: JournalEntry) => Promise
       .resolve(true)
       .then(() => Object.assign(this.getNewEntry(), entry))
   );
 
+  addJournalEntryNotification$ = this.addJournalEntrySource.asObservable();
+
   getNewEntry(): JournalEntry {
     let newEntry: JournalEntry = new JournalEntry();
-    newEntry.date = date;
-    newEntry.editable = true;
-    newEntry.foodID = 1;
-    newEntry.id = 1;
-    newEntry.name = 'Banana';
+    newEntry.name = banana.name;
+    newEntry.foodID = banana.$key;
     newEntry.quantity = 200;
-    newEntry.unit = 'g';
+    newEntry.unit = banana.matrix_unit;
+    newEntry.editable = false;
 
     return newEntry;
   }
 }
 
-class FoodDatabaseServiceStub {
+class FoodServiceStub {
   public searchFood(filter: string): Observable<Array<Food>> {
     let foodList: Array<Food> = [ banana];
     return Observable.of(foodList);
@@ -64,17 +62,11 @@ describe('SearchComponent', () => {
         FormsModule
       ],
       providers: [
-        {provide: FirebaseService, useClass: FirebaseServiceStub},
-        {provide: JournalEntriesService, useClass: JournalEntriesServiceSpy}
+        {provide: JournalEntriesService, useClass: JournalEntriesServiceSpy},
+        {provide: FoodService, useClass: FoodServiceStub}
       ]
-    }).overrideComponent(SearchComponent, {
-      set: {
-        providers: [
-          {provide: FoodService, useClass: FoodDatabaseServiceStub}
-        ]
-      }})
-      .compileComponents();
-    }));
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchComponent);
@@ -139,13 +131,8 @@ describe('SearchComponent', () => {
     component.addToJournal();
     fixture.detectChanges();
 
-    expect(journalEntriesServiceSpy.addEntry.calls.count()).toBe(1);
-
-    /*
-     * FIXME: sonja, 08.01.2017, test is currently not successful because I don't know how I can mock the new Date()
-     * in the addEntry() function
-     * expect(journalEntriesServiceSpy.addEntry).toHaveBeenCalledWith(expectedJournalEntry);
-     */
+    expect(journalEntriesServiceSpy.notifyAddJournalEntry.calls.count()).toBe(1);
+    expect(journalEntriesServiceSpy.notifyAddJournalEntry).toHaveBeenCalledWith(expectedJournalEntry);
     expect(component.resetSearchResults).toHaveBeenCalled();
   }));
 

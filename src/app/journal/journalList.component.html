@@ -7,15 +7,15 @@
           <button class="small light" (click)="dateChange(-1)"><span class="fa fa-arrow-left" aria-hidden="true"></span>
           </button>
         </li>
-        <li class="actualDate">{{activeListDate | date: 'd. MMM y'}}</li>
-        <li class="next" *ngIf="!isActiveListDateToday()">
+        <li class="actualDate">{{ selectedDate | date: 'd. MMM y' }}</li>
+        <li class="next">
           <button class="small light" (click)="dateChange(1)"><span class="fa fa-arrow-right" aria-hidden="true"></span>
           </button>
         </li>
       </ul>
       <table *ngIf="journalList.length > 0">
         <tr *ngFor="let entry of journalList">
-          <td class="time"> {{entry.date | date: 'hh:mm' }} Uhr</td>
+          <td class="time"> {{entry.date | date: 'HH:mm' }} Uhr</td>
           <td class="foodName">
             {{entry.name}}
           </td>
@@ -24,7 +24,7 @@
             <td class="triggers">
               <button class="small light" aria-label="bearbeiten" (click)="makeEditable(entry)"><span class="fa fa-edit" aria-hidden="true"></span>
               </button>
-              <button class="small light" aria-label="löschen" (click)="deleteEntry(entry.id)"><span class="fa fa-minus" aria-hidden="true"></span>
+              <button class="small light" aria-label="löschen" (click)="deleteEntry(entry)"><span class="fa fa-minus" aria-hidden="true"></span>
               </button>
             </td>
           </template>
