@@ -1,21 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { JournalComponent } from './journal.component';
-import {SearchComponent} from './nubaSearch.component';
-import {JournalListComponent} from './journalList.component';
-import {FormsModule} from '@angular/forms';
-import {FirebaseFoodService, FirebaseService} from '../firebase/firebase.service';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
-import {JournalEntriesService} from './journalEntries.service';
-import {FoodService} from '../food/food.service';
-import {UserService} from '../login/user.service';
-import {User} from '../login/user';
-import {JournalEntry} from './journalEntry';
-import {Subject, Observable} from 'rxjs';
-
-class FirebaseServiceStub { }
-
-class AngularFireStub {}
+import { SearchComponent } from './nubaSearch.component';
+import { JournalListComponent } from './journalList.component';
+import { FormsModule } from '@angular/forms';
+import { FirebaseListObservable } from 'angularfire2';
+import { JournalEntriesService } from './journalEntries.service';
+import { FoodService } from '../food/food.service';
+import { UserService } from '../login/user.service';
+import { User } from '../login/user';
+import { JournalEntry } from './journalEntry';
+import { Subject, Observable } from 'rxjs';
 
 class JournalEntriesServiceStub {
   private addJournalEntrySource = new Subject<JournalEntry>();
@@ -48,14 +43,10 @@ describe('JournalComponent', () => {
       ],
       imports: [
         FormsModule
-      ],
-      providers: [
-        { provide: AngularFire, useClass: AngularFireStub }
       ]
     }).overrideComponent(JournalComponent, {
       set: {
         providers: [
-          { provide: FirebaseService, useClass: FirebaseServiceStub },
           { provide: FoodService, useClass: FoodServiceStub },
           { provide: JournalEntriesService, useClass: JournalEntriesServiceStub },
           { provide: UserService, useClass: UserServiceStub }
