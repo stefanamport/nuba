@@ -34,9 +34,8 @@ export class JournalEntriesService {
 
   updateEntry(journalEntry: JournalEntry) {
     let firebaseEntry: JournalEntryFirebase = this.convertToJournalEntryFirebase(journalEntry);
-    firebaseEntry.$key = journalEntry.$key;
     let url: string = this.getUrl(journalEntry.userId, journalEntry.date);
-    this.firebaseService.updateItem(url, journalEntry.userId, firebaseEntry);
+    this.firebaseService.updateItem(url, journalEntry.$key, firebaseEntry);
   }
 
   private getUrl(userId: string, date: Date): string {

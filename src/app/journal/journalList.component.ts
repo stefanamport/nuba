@@ -56,11 +56,13 @@ export class JournalListComponent implements OnInit {
 
   dateChange(step: number) {
     this.selectedDate.setDate(this.selectedDate.getDate() + step);
+    this.selectedDate = new Date(this.selectedDate);
     this.dateChangeEmitter.emit(this.selectedDate);
     this.getJournalEntries(this.selectedDate);
   }
 
   private getJournalEntries(date: Date) {
+    this.journalList = [];
     this.journalListObs = this.journalEntriesService.getJournalEntries(date, this.user.uid);
     this.journalListObs.subscribe((journalEntries: JournalEntry[]) => {
       this.journalList = journalEntries;

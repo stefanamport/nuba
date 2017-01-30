@@ -1,37 +1,20 @@
-import {ComponentFixture, TestBed, async} from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
-import {SearchComponent} from './nubaSearch.component';
-import {FormsModule} from '@angular/forms';
-import {FoodService} from '../food/food.service';
-import {JournalEntriesService} from './journalEntries.service';
-import {Observable, Subject} from 'rxjs';
-import {Food} from '../food/food';
-import {JournalEntry} from './journalEntry';
-import {DebugElement} from '@angular/core';
+import { SearchComponent } from './nubaSearch.component';
+import { FormsModule } from '@angular/forms';
+import { FoodService } from '../food/food.service';
+import { JournalEntriesService } from './journalEntries.service';
+import { Observable, Subject } from 'rxjs';
+import { Food } from '../food/food';
+import { JournalEntry } from './journalEntry';
+import { DebugElement } from '@angular/core';
 
 const banana: Food = { $key: 1, name: 'Banane', category: 'Frucht', matrix_unit: 'g', matrix_amount: 100 };
 
 class JournalEntriesServiceSpy {
   private addJournalEntrySource = new Subject<JournalEntry>();
-
-  notifyAddJournalEntry = jasmine.createSpy('notifyAddJournalEntry').and.callFake(
-    (entry: JournalEntry) => Promise
-      .resolve(true)
-      .then(() => Object.assign(this.getNewEntry(), entry))
-  );
-
+  notifyAddJournalEntry = jasmine.createSpy('notifyAddJournalEntry');
   addJournalEntryNotification$ = this.addJournalEntrySource.asObservable();
-
-  getNewEntry(): JournalEntry {
-    let newEntry: JournalEntry = new JournalEntry();
-    newEntry.name = banana.name;
-    newEntry.foodID = banana.$key;
-    newEntry.quantity = 200;
-    newEntry.unit = banana.matrix_unit;
-    newEntry.editable = false;
-
-    return newEntry;
-  }
 }
 
 class FoodServiceStub {
@@ -124,7 +107,12 @@ describe('SearchComponent', () => {
     component.selectedQuantity = 200;
     fixture.detectChanges();
 
-    let expectedJournalEntry = journalEntriesServiceSpy.getNewEntry();
+    let expectedJournalEntry: JournalEntry = new JournalEntry();
+    expectedJournalEntry.name = banana.name;
+    expectedJournalEntry.foodID = banana.$key;
+    expectedJournalEntry.quantity = 200;
+    expectedJournalEntry.unit = banana.matrix_unit;
+    expectedJournalEntry.editable = false;
 
     spyOn(component, 'resetSearchResults');
 
