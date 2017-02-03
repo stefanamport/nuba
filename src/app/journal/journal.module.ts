@@ -10,14 +10,14 @@ import { SearchComponent } from './nubaSearch.component';
 
 @NgModule({
     declarations: [
-    	JournalComponent,
-    	SearchComponent,
-    	JournalListComponent
+      JournalComponent,
+      SearchComponent,
+      JournalListComponent
     ],
     imports: [
-    	journalRouting,
-    	CommonModule,
-    	FormsModule
-    ]   
+      journalRouting,
+      CommonModule,
+      FormsModule
+    ]
 })
 export class JournalModule { }
