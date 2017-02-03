@@ -4,8 +4,9 @@
     <div class="searchbar__inner">
 
       <form class="searchbar__form" (ngSubmit)="addToJournal(searchForm.value)"  #searchForm="ngForm" [ngClass]="{'searchbar__form-noSelection': selectedFood===null }">
+      
         <div class="searchbar__food">
-          <input #food type="text" autocomplete="off" placeholder="Was hast du gegessen?" id="food" value="{{selectedFood?.name}}" (keyup)="filterResults(food.value)">
+          <input type="text" autocomplete="off" placeholder="Was hast du gegessen?" id="food" class="searchbar__form" value="{{selectedFood?.name}}" (keyup)="filterResults(food.value)">
         </div>
         <div class="searchbar__quantity searchbar__fieldgroup">
           <input type="number" [(ngModel)]="selectedQuantity" id="quantity" name="quantity" >
@@ -15,7 +16,8 @@
            <button type="submit" id="saveFood" [disabled]="selectedFood===null" ><span class="fa fa-check" aria-hidden="true"></span></button>
         </div>
       </form>
-      <ul class="searchbar__results searchbar__fieldgroup resultlist"> <!-- *ngIf="searchResults" -->
+
+      <ul class="searchbar__results searchbar__fieldgroup resultlist">
          <li *ngFor="let result of searchResults" (click)="addToForm(result.$key)" class="resultlist__entry">{{result.name}}</li>
       </ul>
 

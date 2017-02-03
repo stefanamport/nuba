@@ -9,20 +9,6 @@
   background-size: cover;
   background-position: center center;
 
-  &__inner {
-
-    background: $darker-gray;
-    padding: $boxpadding;
-    border-radius: 6px;
-
-    position: relative;
-  }
-
-  form {
-    display: flex;
-    flex-flow: row nowrap;
-  }
-
   input {
     box-sizing : border-box;
     width: 100%;
@@ -46,12 +32,26 @@
       box-shadow: 0 0 20px rgba(0,0,0,.1);
     }
   }
+  
+  // First inner Wrap
+  &__inner {
 
+    background: $darker-gray;
+    padding: $boxpadding;
+    border-radius: 6px;
+
+    position: relative;
+  }
+  
+  // Form Wrap
+  &__form {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+  
   &__fieldgroup {
-
     padding-right: $boxpadding/2;
     transition: .4s all;
-
   }
 
   &__food {
@@ -95,16 +95,15 @@
 
   &__submit {
     width: 20%;
+  }
 
-    button {
-      width: 100%;
-      height: 100%;
-      font-size: 2em;
-    }
+  &__submitbutton {
+    width: 100%; 
+    height: 100%;
+    font-size: 2em;
   }
 
   &__results {
-
     position: absolute;
     top: $hero-form-height + 10*2;
     left: 0;
@@ -112,8 +111,8 @@
     width: 100%;
 
     z-index: 99;
-
   }
+  
 }
 
   // Hide fileds when nothing is selected
@@ -135,7 +134,7 @@
     }
 
   }
-  
+
 
 .resultlist {
 
