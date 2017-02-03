@@ -8,19 +8,18 @@ import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'analysis', 
+  { path: 'analysis',
     loadChildren: 'app/analysis/analysis.module#AnalysisModule',
     canActivate: [LoginGuard]
   },
-  { path: 'journal', 
+  { path: 'journal',
     loadChildren: 'app/journal/journal.module#JournalModule',
     canActivate: [LoginGuard]
   },
-  { path: 'account', 
+  { path: 'account',
     loadChildren: 'app/user-account/user-account.module#UserAccountModule',
     canActivate: [LoginGuard]
   },
-  
   { path: 'login', component: LogInComponent }
 ];
 
