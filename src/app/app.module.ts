@@ -15,7 +15,6 @@ import { UserService } from './login/user.service';
 import { JournalListComponent } from './journal/journalList.component';
 import { SearchComponent } from './journal/nubaSearch.component';
 import { LogInComponent } from './login/login.component';
-import { UserAccountComponent } from './user-account/user-account.component';
 import { AnalysisComponent } from './analysis/analysis.component';
 import { HeaderComponent } from './header/header.component';
 import { JournalComponent } from './journal/journal.component';
@@ -35,7 +34,6 @@ export const firebaseConfig = {
     SearchComponent,
     JournalListComponent,
     LogInComponent,
-    UserAccountComponent,
     AnalysisComponent,
     HeaderComponent,
     JournalComponent
