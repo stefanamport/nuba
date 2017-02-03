@@ -132,6 +132,6 @@ describe('SearchComponent', () => {
   }));
 
   it('should display search form', () => {
-    expect(debugElement.nativeElement.querySelector('input#food').placeholder).toEqual('Was hast du gegessen?');
+    expect(debugElement.nativeElement.querySelector('input.searchbar__form').placeholder).toEqual('Was hast du gegessen?');
   });
 });
