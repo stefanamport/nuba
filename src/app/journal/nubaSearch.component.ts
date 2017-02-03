@@ -26,6 +26,7 @@ export class SearchComponent {
   ) { }
 
   filterResults (val: string) {
+    console.log();
     if (val.length > 2) {
       this.foodService.searchFood(val).subscribe(food => this.searchResults = food);
     } else if (val.length === 0) {

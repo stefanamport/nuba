@@ -12,12 +12,9 @@ import { AppComponent } from './app.component';
 import { LoginGuard } from './login/login.guard';
 import { UserService } from './login/user.service';
 
-import { JournalListComponent } from './journal/journalList.component';
-import { SearchComponent } from './journal/nubaSearch.component';
 import { LogInComponent } from './login/login.component';
 import { AnalysisComponent } from './analysis/analysis.component';
 import { HeaderComponent } from './header/header.component';
-import { JournalComponent } from './journal/journal.component';
 import { FirebaseService } from './firebase/firebase.service';
 
 export const firebaseConfig = {
@@ -31,12 +28,9 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent,
-    JournalListComponent,
     LogInComponent,
     AnalysisComponent,
-    HeaderComponent,
-    JournalComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
