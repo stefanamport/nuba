@@ -13,7 +13,6 @@ import { LoginGuard } from './login/login.guard';
 import { UserService } from './login/user.service';
 
 import { LogInComponent } from './login/login.component';
-import { AnalysisComponent } from './analysis/analysis.component';
 import { HeaderComponent } from './header/header.component';
 import { FirebaseService } from './firebase/firebase.service';
 
@@ -29,7 +28,6 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     LogInComponent,
-    AnalysisComponent,
     HeaderComponent
   ],
   imports: [

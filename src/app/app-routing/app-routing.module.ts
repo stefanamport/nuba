@@ -4,12 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginGuard } from '../login/login.guard';
 
 import { LogInComponent } from '../login/login.component';
-import { AnalysisComponent } from '../analysis/analysis.component';
 import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'analysis', component: AnalysisComponent, canActivate: [LoginGuard] },
+  { path: 'analysis', 
+    loadChildren: 'app/analysis/analysis.module#AnalysisModule',
+    canActivate: [LoginGuard]
+  },
   { path: 'journal', 
     loadChildren: 'app/journal/journal.module#JournalModule',
     canActivate: [LoginGuard]
