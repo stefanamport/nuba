@@ -17,7 +17,7 @@ import { JournalEntriesService } from './journalEntries.service';
 })
 export class SearchComponent {
 
-  public foodList: Array<Food> = [];
+  public foodList: Array<Food>;
 
   public selectedFood: Food = null;
   public selectedQuantity: number = 0;
@@ -29,12 +29,22 @@ export class SearchComponent {
     private journalEntriesService: JournalEntriesService
   ) {
 
-    this.foodService.getAllFoods().subscribe(food => this.foodList = food);
+    this.foodList = this.foodService.getFoodList();
+
+    this.foodService.foodList.subscribe((data: any) => {
+      this.foodList = data;
+    });
 
   }
 
   updateFilter (searchFilterString: string) {
     this.searchFilterString = searchFilterString;
+
+    if (this.selectedFood) {
+      this.clearForm();
+      this.resetSearchResults();
+    }
+
   }
 
   addToForm(id: number) {

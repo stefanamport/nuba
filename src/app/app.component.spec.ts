@@ -13,6 +13,8 @@ import { JournalComponent } from './journal/journal.component';
 import { JournalListComponent } from './journal/journalList.component';
 import { UserService } from './login/user.service';
 
+import { SearchFilterPipe } from './journal/pipes/searchFilter.pipe';
+
 describe('AppComponent', () => {
   class AngularFireStub {}
 
@@ -32,7 +34,8 @@ describe('AppComponent', () => {
         HeaderComponent,
         SearchComponent,
         JournalComponent,
-        JournalListComponent
+        JournalListComponent,
+        SearchFilterPipe
       ],
       imports: [
         RouterTestingModule,

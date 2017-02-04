@@ -16,6 +16,8 @@ import { LogInComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { FirebaseService } from './firebase/firebase.service';
 
+import { FoodService } from './food/food.service';
+
 export const firebaseConfig = {
   apiKey: 'AIzaSyBf7RiiafbN6IKzYoDdsZtOaQqFK-54oB0',
   authDomain: 'nuba-c3e84.firebaseapp.com',
@@ -40,7 +42,7 @@ export const firebaseConfig = {
         method: AuthMethods.Popup
       })
   ],
-  providers: [ UserService, FirebaseService, LoginGuard ],
+  providers: [ UserService, FirebaseService, LoginGuard, FoodService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

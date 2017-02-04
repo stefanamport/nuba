@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Food } from './food';
 import { FirebaseService } from '../firebase/firebase.service';
 import { Observable } from 'rxjs/Observable';
@@ -10,30 +10,23 @@ export class FoodService {
 
   private cachedFoodList: Array<Food> = [];
 
-  constructor(private FirebaseService: FirebaseService) {}
+  @Output() foodList = new EventEmitter();
 
-  /*
-  searchFood(filter: string): Observable<Array<Food>> {
-    if (this.cachedFoodList.length === 0) {
-      return this.FirebaseService.getList('food').map(food => {
+  constructor(private FirebaseService: FirebaseService) {
+
+    this.FirebaseService.getList('food').subscribe(food => {
         this.cachedFoodList = food;
-        return this.filterFood(filter);
+        this.foodListUpdated();
      });
-    } else {
-      return Observable.of(this.filterFood(filter));
-    }
+
   }
-  */
 
-  getAllFoods(): Observable<Array<Food>> {
-    if (this.cachedFoodList.length === 0) {
-      return this.FirebaseService.getList('food').map(food => {
-        this.cachedFoodList = food;
-        return this.cachedFoodList;
-     });
-    } else {
-      return Observable.of(this.cachedFoodList);
-    }
+  foodListUpdated() {
+    this.foodList.next(this.cachedFoodList);
+  }
+
+  getFoodList() {
+    return this.cachedFoodList;
   }
 
   getFood(id: number): Observable<Food> {
@@ -44,14 +37,6 @@ export class FoodService {
       return Observable.of(food);
     }
   }
-
-  /*
-  private filterFood(filter: string): Array<Food> {
-    let result: Array<Food> = this.cachedFoodList.filter(
-      food => food.name.toLowerCase().indexOf(filter.toLowerCase()) > -1);
-    return result;
-  }
-  */
 
   private filterFoodId(id: number): Food {
     let result: Food[] = this.cachedFoodList.filter(food => food.$key === id);

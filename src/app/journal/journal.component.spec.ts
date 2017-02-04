@@ -12,6 +12,10 @@ import { User } from '../login/user';
 import { JournalEntry } from './journalEntry';
 import { Subject, Observable } from 'rxjs';
 
+import { SearchFilterPipe } from './pipes/searchFilter.pipe';
+import { Injectable, Output, EventEmitter } from '@angular/core';
+
+
 class JournalEntriesServiceStub {
   private addJournalEntrySource = new Subject<JournalEntry>();
   addJournalEntryNotification$ = this.addJournalEntrySource.asObservable();
@@ -22,7 +26,15 @@ class JournalEntriesServiceStub {
   }
 }
 
-class FoodServiceStub { }
+class FoodServiceStub {
+
+  @Output() foodList = new EventEmitter();
+
+  public getFoodList() {
+    return [];
+  }
+
+}
 
 class UserServiceStub {
   public getUser() {
@@ -39,7 +51,8 @@ describe('JournalComponent', () => {
       declarations: [
         JournalComponent,
         SearchComponent,
-        JournalListComponent
+        JournalListComponent,
+        SearchFilterPipe
       ],
       imports: [
         FormsModule
