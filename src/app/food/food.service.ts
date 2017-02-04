@@ -12,6 +12,7 @@ export class FoodService {
 
   constructor(private FirebaseService: FirebaseService) {}
 
+  /*
   searchFood(filter: string): Observable<Array<Food>> {
     if (this.cachedFoodList.length === 0) {
       return this.FirebaseService.getList('food').map(food => {
@@ -20,6 +21,18 @@ export class FoodService {
      });
     } else {
       return Observable.of(this.filterFood(filter));
+    }
+  }
+  */
+
+  getAllFoods(): Observable<Array<Food>> {
+    if (this.cachedFoodList.length === 0) {
+      return this.FirebaseService.getList('food').map(food => {
+        this.cachedFoodList = food;
+        return this.cachedFoodList;
+     });
+    } else {
+      return Observable.of(this.cachedFoodList);
     }
   }
 
@@ -32,11 +45,13 @@ export class FoodService {
     }
   }
 
+  /*
   private filterFood(filter: string): Array<Food> {
     let result: Array<Food> = this.cachedFoodList.filter(
       food => food.name.toLowerCase().indexOf(filter.toLowerCase()) > -1);
     return result;
   }
+  */
 
   private filterFoodId(id: number): Food {
     let result: Food[] = this.cachedFoodList.filter(food => food.$key === id);

@@ -8,11 +8,14 @@ import { journalRouting } from './journal.routes';
 import { JournalListComponent } from './journalList.component';
 import { SearchComponent } from './nubaSearch.component';
 
+import { SearchFilterPipe } from './pipes/searchFilter.pipe';
+
 @NgModule({
     declarations: [
       JournalComponent,
       SearchComponent,
-      JournalListComponent
+      JournalListComponent,
+      SearchFilterPipe
     ],
     imports: [
       journalRouting,

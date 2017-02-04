@@ -4,7 +4,7 @@
 // - Suchfeld Vorschläge: mit Pfeiltasten navigierbar machen
 // - Search Dropdown: Zum food.name weitere Details zum Nahrungsmittel anzeigen
 
-import {Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { FoodService } from '../food/food.service';
 
 import { Food } from '../food/food';
@@ -16,26 +16,25 @@ import { JournalEntriesService } from './journalEntries.service';
   templateUrl: './nubaSearch.component.html',
 })
 export class SearchComponent {
-  public searchResults: Array<Food> = [];
+
+  public foodList: Array<Food> = [];
+
   public selectedFood: Food = null;
   public selectedQuantity: number = 0;
+
+  private searchFilterString: string = '';
 
   constructor(
     private foodService: FoodService,
     private journalEntriesService: JournalEntriesService
-  ) { }
+  ) {
 
-  filterResults (val: string) {
-    console.log();
-    if (val.length > 2) {
-      this.foodService.searchFood(val).subscribe(food => this.searchResults = food);
-    } else if (val.length === 0) {
-      this.resetSearchResults();
-    }
+    this.foodService.getAllFoods().subscribe(food => this.foodList = food);
 
-    if (this.selectedFood && this.selectedFood.name !== val) {
-      this.selectedFood.name = val;
-    }
+  }
+
+  updateFilter (searchFilterString: string) {
+    this.searchFilterString = searchFilterString;
   }
 
   addToForm(id: number) {
@@ -51,7 +50,7 @@ export class SearchComponent {
   }
 
   resetSearchResults() {
-    this.searchResults = [];
+    this.searchFilterString = '';
   };
 
   clearForm() {
