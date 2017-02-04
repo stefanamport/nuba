@@ -2,10 +2,14 @@
   <div class="middler">
 
     <div class="searchbar__inner">
-
-      <form class="searchbar__form" (ngSubmit)="addToJournal(searchForm.value)"  #searchForm="ngForm" [ngClass]="{'searchbar__form-noSelection': selectedFood===null }">
       
-        <div class="searchbar__food">
+      <form class="searchbar__form" (ngSubmit)="addToJournal(searchForm.value)"  #searchForm="ngForm" [ngClass]="{'searchbar__form-noSelection': selectedFood===null }">
+        
+        <div class="loading-placeholder searchbar__loading" *ngIf="foodList?.length == 0">
+          Loading Food...
+        </div>
+
+        <div class="searchbar__food" *ngIf="foodList?.length > 0">
           <input #food type="text" autocomplete="off" placeholder="Was hast du gegessen?" class="searchbar__form" value="{{selectedFood?.name}}" (keyup)="updateFilter(food.value)">
         </div>
         <div class="searchbar__quantity searchbar__fieldgroup">
@@ -15,6 +19,7 @@
         <div class="searchbar__submit searchbar__fieldgroup">
            <button type="submit" id="saveFood" class="searchbar__submitbutton" [disabled]="selectedFood===null" ><span class="fa fa-check" aria-hidden="true"></span></button>
         </div>
+  
       </form>
 
       <ul class="searchbar__results searchbar__fieldgroup resultlist">
