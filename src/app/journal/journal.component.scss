@@ -9,7 +9,8 @@
   background-size: cover;
   background-position: center center;
 
-  input {
+  input,
+  .searchbar__loading {
     box-sizing : border-box;
     width: 100%;
 
@@ -32,6 +33,11 @@
       box-shadow: 0 0 20px rgba(0,0,0,.1);
     }
   }
+
+  .searchbar__loading {
+    color: $dark-gray;
+  }
+
   
   // First inner Wrap
   &__inner {
@@ -45,6 +51,7 @@
   
   // Form Wrap
   &__form {
+    position: relative;
     display: flex;
     flex-flow: row nowrap;
   }

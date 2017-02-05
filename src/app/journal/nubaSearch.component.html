@@ -6,11 +6,11 @@
       <form class="searchbar__form" (ngSubmit)="addToJournal(searchForm.value)"  #searchForm="ngForm" [ngClass]="{'searchbar__form-noSelection': selectedFood===null }">
         
         <div class="loading-placeholder searchbar__loading" *ngIf="foodList?.length == 0">
-          Loading Food...
+          
         </div>
 
         <div class="searchbar__food" *ngIf="foodList?.length > 0">
-          <input #food type="text" autocomplete="off" placeholder="Was hast du gegessen?" class="searchbar__form" value="{{selectedFood?.name}}" (keyup)="updateFilter(food.value)">
+          <input #food type="text" autocomplete="off" placeholder="Was hast du gegessen?" value="{{selectedFood?.name}}" (keyup)="updateFilter(food.value)">
         </div>
         <div class="searchbar__quantity searchbar__fieldgroup">
           <input type="number" [(ngModel)]="selectedQuantity" id="quantity" name="quantity" >

@@ -4,6 +4,9 @@
 // - Suchfeld Vorschläge: mit Pfeiltasten navigierbar machen
 // - Search Dropdown: Zum food.name weitere Details zum Nahrungsmittel anzeigen
 
+// - nice loading animations
+// - tests :-/
+
 import { Component } from '@angular/core';
 import { FoodService } from '../food/food.service';
 
