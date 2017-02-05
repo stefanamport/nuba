@@ -6,7 +6,7 @@
       <form class="searchbar__form" (ngSubmit)="addToJournal(searchForm.value)"  #searchForm="ngForm" [ngClass]="{'searchbar__form-noSelection': selectedFood===null }">
         
         <div class="loading-placeholder searchbar__loading" *ngIf="foodList?.length == 0">
-          
+          Wir laden deine Nahrungsmittel...
         </div>
 
         <div class="searchbar__food" *ngIf="foodList?.length > 0">

@@ -65,11 +65,11 @@ a {
 
 	background: #fff;
     background: linear-gradient(to right, #fff 10%, $light-gray 20%, #fff 30%);
-
+	
+	animation-name: placeholderLoading;
 	animation-duration: 3s;
     animation-fill-mode: forwards;
     animation-iteration-count: infinite;
-    animation-name: placeholderLoading;
     animation-timing-function: linear;
 }
 
