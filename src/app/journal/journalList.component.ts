@@ -24,6 +24,7 @@ export class JournalListComponent implements OnInit {
 
   private user: User;
   journalListObs: FirebaseListObservable<JournalEntry[]>;
+  componentIsLoading: boolean = true;
 
   constructor(private journalEntriesService: JournalEntriesService,
               private userService: UserService
@@ -66,6 +67,7 @@ export class JournalListComponent implements OnInit {
     this.journalListObs = this.journalEntriesService.getJournalEntries(date, this.user.uid);
     this.journalListObs.subscribe((journalEntries: JournalEntry[]) => {
       this.journalList = journalEntries;
+      this.componentIsLoading = false;
     });
   }
 }

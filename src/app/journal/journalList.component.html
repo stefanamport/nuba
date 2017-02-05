@@ -1,7 +1,10 @@
 <div class="screen search">
   <h2>Das hast heute gegessen:</h2>
   <div class="boxcontent">
-    <div class="foodList">
+    
+    <div class="loading-placeholder searchbar__loading" *ngIf="componentIsLoading"></div>
+
+    <div class="foodList" *ngIf="componentIsLoading == false">
       <ul class="dateChooser">
         <li class="prev">
           <button class="small light" (click)="dateChange(-1)"><span class="fa fa-arrow-left" aria-hidden="true"></span>
