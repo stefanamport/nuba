@@ -16,7 +16,6 @@ import { JournalEntriesService } from './journalEntries.service';
 
 import { UserService } from '../login/user.service';
 
-
 @Component({
   selector: 'app-search',
   templateUrl: './nubaSearch.component.html',
@@ -31,6 +30,7 @@ export class SearchComponent {
   private searchFilterString: string = '';
 
   private foodShortlist: Array<number> = [];
+  private foodListActive: boolean = false;
 
   constructor(
     private foodService: FoodService,
@@ -98,5 +98,14 @@ export class SearchComponent {
 
     this.resetSearchResults();
     this.clearForm();
+  }
+
+  activateFoodlist(){
+    this.foodListActive = true;
+  }
+  deactivateFoodlist(){
+
+    this.foodListActive = false;
+    console.log(this.foodListActive);
   }
 }

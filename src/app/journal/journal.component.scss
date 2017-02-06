@@ -157,6 +157,16 @@
    background: #fff;
    box-shadow: 0 1px 1px rgba(0,0,0,.2);
    border-radius: 0 0 5px 5px;
+   
+   max-height: 30vh;
+   overflow-y: scroll;
+
+   transition: .2s all;
+
+  &-hidden {
+   visibility: none;
+   opacity: 0;
+  }
 
   
   &__entry {
