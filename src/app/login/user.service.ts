@@ -72,6 +72,32 @@ export class UserService {
     this.saveUserToFirebase();
   }
 
+  addMostUsedFoods (foodID: number){
+
+    let shortListMaxLength = 5;
+
+    if (!this.userInfo.foodShortlist) {
+      this.userInfo.foodShortlist = [];
+    }
+
+    // Add Food if it's not already on list
+    if (this.userInfo.foodShortlist.indexOf(foodID) < 0 ) {
+     
+      this.userInfo.foodShortlist.push(Number(foodID));
+
+      // remove Food if List is to long
+      if (this.userInfo.foodShortlist.length > shortListMaxLength) {
+        this.userInfo.foodShortlist.shift();
+      }
+
+      this.saveUserToFirebase();
+      
+    }
+
+    
+    
+  }
+
   private resetUser() {
     this.user = {};
     this.userAut = false;

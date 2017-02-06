@@ -14,6 +14,9 @@ import { Food } from '../food/food';
 import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
 
+import { UserService } from '../login/user.service';
+
+
 @Component({
   selector: 'app-search',
   templateUrl: './nubaSearch.component.html',
@@ -27,15 +30,25 @@ export class SearchComponent {
 
   private searchFilterString: string = '';
 
+  private foodShortlist: Array<number> = [];
+
   constructor(
     private foodService: FoodService,
-    private journalEntriesService: JournalEntriesService
+    private journalEntriesService: JournalEntriesService,
+    private userService: UserService
   ) {
 
     this.foodList = this.foodService.getFoodList();
 
     this.foodService.foodList.subscribe((data: any) => {
       this.foodList = data;
+    });
+
+    // most used Foods
+    this.userService.data.subscribe((data: any) => {
+      if (data.foodShortlist){
+        this.foodShortlist = data.foodShortlist;
+      }
     });
 
   }
@@ -80,6 +93,8 @@ export class SearchComponent {
     newEntry.editable = false;
 
     this.journalEntriesService.notifyAddJournalEntry(newEntry);
+
+    this.userService.addMostUsedFoods(this.selectedFood.$key);
 
     this.resetSearchResults();
     this.clearForm();

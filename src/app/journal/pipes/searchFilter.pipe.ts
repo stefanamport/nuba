@@ -6,15 +6,23 @@ import { Food } from '../../food/food';
     pure: false
 })
 export class SearchFilterPipe implements PipeTransform {
-    transform(value: Array<Food>, exponent: string): Array<Food> {
+    transform(foodList: Array<Food>, filter: string, mostUsedFoods: Array<number>): Array<Food> {
 
-    let filter = exponent;
-    let foodList = value;
+    let foodShortlist = mostUsedFoods;
 
     if (filter.length > 2) {
 
+      // show string filtered List
       let filteredList: Array<Food> = foodList.filter(
       food => food.name.toLowerCase().indexOf(filter.toLowerCase()) > -1);
+
+      return filteredList;
+
+    } else if (foodShortlist) {
+
+      // show Shortlist
+      let filteredList: Array<Food> = foodList.filter(
+      food => foodShortlist.indexOf(Number(food.$key)) >= 0);
 
       return filteredList;
 

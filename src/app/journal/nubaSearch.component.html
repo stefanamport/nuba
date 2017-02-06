@@ -22,8 +22,10 @@
   
       </form>
 
+      <!-- *ngIf="(foodList | searchFilter: searchFilterString).length == 0" -->
+
       <ul class="searchbar__results searchbar__fieldgroup resultlist">
-         <li *ngFor="let result of foodList | searchFilter: searchFilterString" (click)="addToForm(result.$key)" class="resultlist__entry">{{result.name}}</li>
+         <li *ngFor="let result of foodList | searchFilter: searchFilterString:foodShortlist" (click)="addToForm(result.$key)" class="resultlist__entry">{{result.name}}</li>
       </ul>
 
     </div>

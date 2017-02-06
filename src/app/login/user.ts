@@ -16,4 +16,6 @@ export class User {
   metabolicRate?: number;
 
   bmi?: any;
+
+  foodShortlist?: Array<number>;
 }
