@@ -10,7 +10,7 @@
         </div>
 
         <div class="searchbar__food" *ngIf="foodList?.length > 0">
-          <input #food type="text" autocomplete="off" placeholder="Was hast du gegessen?" value="{{selectedFood?.name}}" (keyup)="keyDown(food.value, $event)" (focus)="activateFoodlist()" (focusout)="deactivateFoodlist()" >
+          <input #food class="searchbar__maininput" type="text" autocomplete="off" placeholder="Was hast du gegessen?" value="{{selectedFood?.name}}" (keyup)="keyDown(food.value, $event)" (focus)="activateFoodlist()" (focusout)="deactivateFoodlist()" >
         </div>
         <div class="searchbar__quantity searchbar__fieldgroup">
           <input type="number" [(ngModel)]="selectedQuantity" id="quantity" name="quantity" >

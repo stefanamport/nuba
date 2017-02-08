@@ -15,12 +15,27 @@ import { SearchFilterPipe } from './pipes/searchFilter.pipe';
 
 import { Injectable, Output, EventEmitter } from '@angular/core';
 
+import { UserService } from '../login/user.service';
+
 const banana: Food = { $key: 1, name: 'Banane', category: 'Frucht', matrix_unit: 'g', matrix_amount: 100 };
 
 class JournalEntriesServiceSpy {
   private addJournalEntrySource = new Subject<JournalEntry>();
   notifyAddJournalEntry = jasmine.createSpy('notifyAddJournalEntry');
   addJournalEntryNotification$ = this.addJournalEntrySource.asObservable();
+}
+
+class UserServiceStub {
+
+  @Output() data = new EventEmitter();
+
+  public getFoodList() {
+    let data.foodShortlist: Array<number> = [1,2,3,4];
+    return data;
+  }
+
+  public addMostUsedFoods(){  }
+
 }
 
 class FoodServiceStub {
@@ -40,6 +55,12 @@ class FoodServiceStub {
     }
   }
 
+  /*
+  public getFood(id: number): Observable<Food> {
+    return Observable.of(getFoodList());
+  }
+  */
+
 }
 
 describe('SearchComponent', () => {
@@ -55,6 +76,7 @@ describe('SearchComponent', () => {
         FormsModule
       ],
       providers: [
+        {provide: UserService, useClass: UserServiceStub},
         {provide: JournalEntriesService, useClass: JournalEntriesServiceSpy},
         {provide: FoodService, useClass: FoodServiceStub}
       ]
@@ -73,22 +95,22 @@ describe('SearchComponent', () => {
     expect(component).toBeTruthy();
   }));
 
-  /*
+  
   //noinspection TsLint
   it('should add to form', async(() => {
     component.addToForm(1);
     fixture.detectChanges();
-    expect(component.selectedQuantity).toBe(0);
+    expect(component.selectedQuantity).toBe(100);
   }));
 
+  
   it('should not add to form', async(() => {
     // no id passed, therefore no food item can be added
     component.addToForm();
     fixture.detectChanges();
-    expect(component.searchResults.length).toBe(0);
     expect(component.selectedQuantity).toBe(0);
   }));
-  */
+  
 
   it('should clear form', () => {
     component.selectedFood = banana;
@@ -122,17 +144,19 @@ describe('SearchComponent', () => {
     expect(component.resetSearchResults).toHaveBeenCalled();
   }));
 
-  /*
   it('should display search results', async(() => {
-    component.updateFilter('abc');
+
+    component.searchFilterString = 'Banane';
     fixture.detectChanges();
+
     let lis = debugElement.nativeElement.querySelectorAll('li');
+
     expect(lis.length).toBe(1);
+
   }));
-  */
 
   it('should display search form', () => {
-    expect(debugElement.nativeElement.querySelector('input.searchbar__form').placeholder).toEqual('Was hast du gegessen?');
+    expect(debugElement.nativeElement.querySelector('input.searchbar__maininput').placeholder).toEqual('Was hast du gegessen?');
   });
  
 });

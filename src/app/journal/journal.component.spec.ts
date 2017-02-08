@@ -37,8 +37,16 @@ class FoodServiceStub {
 }
 
 class UserServiceStub {
+  
+  @Output() data = new EventEmitter();
+
   public getUser() {
     return new User();
+  }
+
+  public getFoodList() {
+    let data.foodShortlist: Array<number> = [1,2,3,4];
+    return data;
   }
 }
 
