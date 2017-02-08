@@ -1,12 +1,3 @@
-// Allgemeine TODO's
-// - nice to have - nach klick in Suchfeld "most used" Food Vorschläge anzeigen
-// - nice to have - es ist nicht ganz klar, dass keine Freien Texte gespeichert werden können
-// - Suchfeld Vorschläge: mit Pfeiltasten navigierbar machen
-// - Search Dropdown: Zum food.name weitere Details zum Nahrungsmittel anzeigen
-
-// - nice loading animations
-// - tests :-/
-
 import { Component } from '@angular/core';
 import { FoodService } from '../food/food.service';
 
@@ -31,6 +22,9 @@ export class SearchComponent {
 
   private foodShortlist: Array<number> = [];
   private foodListActive: boolean = false;
+  private foodListCanIncrease: boolean = true;
+  private foodListActiveRow: number = 0;
+  private foodListActiveItemFoodObj: any;
 
   constructor(
     private foodService: FoodService,
@@ -53,12 +47,30 @@ export class SearchComponent {
 
   }
 
-  updateFilter (searchFilterString: string) {
-    this.searchFilterString = searchFilterString;
+  keyDown (searchFilterString: string, event: any) {
+    
+    if (this.searchFilterString != searchFilterString){
 
-    if (this.selectedFood) {
-      this.clearForm();
-      this.resetSearchResults();
+      this.searchFilterString = searchFilterString;
+
+      if (this.selectedFood) {
+        this.clearForm();
+        this.resetSearchResults();
+      }
+
+    }
+
+    if (event.key === "ArrowUp"){
+      this.listSelect(-1);
+    }
+    if (event.key === "ArrowDown"){
+      this.listSelect(1);
+    }
+
+    if (event.key === "Enter"){
+      if (this.foodListActiveItemFoodObj.$key) {
+        this.addToForm(this.foodListActiveItemFoodObj.$key);
+      }
     }
 
   }
@@ -77,11 +89,16 @@ export class SearchComponent {
 
   resetSearchResults() {
     this.searchFilterString = '';
+
+    this.selectListItemReset();
   };
 
   clearForm() {
     this.selectedFood = null;
     this.selectedQuantity = 0;
+
+    this.selectListItemReset();
+
   };
 
   addToJournal() {
@@ -104,8 +121,40 @@ export class SearchComponent {
     this.foodListActive = true;
   }
   deactivateFoodlist(){
-
     this.foodListActive = false;
-    console.log(this.foodListActive);
   }
+
+  listSelect(incdec: number){
+    if (
+      incdec == -1 && this.foodListActiveRow >= 1 ||
+      incdec == 1 && this.foodListCanIncrease
+      ) {
+      
+      this.foodListActiveRow = this.foodListActiveRow + incdec;
+    }
+  }
+
+  selectListItemReset(){
+    this.foodListActiveRow = 0;
+    this.foodListActiveItemFoodObj = false;
+    this.foodListCanIncrease = true;
+  }
+
+  isSelectedItem(active: boolean, last: boolean, item: Food){
+    
+    if (active && last){
+      this.foodListCanIncrease = false;
+    } else {
+      this.foodListCanIncrease = true;
+    }
+
+    if (active){
+      this.foodListActiveItemFoodObj = item;
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
 }

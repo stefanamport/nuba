@@ -10,7 +10,7 @@
         </div>
 
         <div class="searchbar__food" *ngIf="foodList?.length > 0">
-          <input #food type="text" autocomplete="off" placeholder="Was hast du gegessen?" value="{{selectedFood?.name}}" (keyup)="updateFilter(food.value)" (focus)="activateFoodlist()" (focusout)="deactivateFoodlist()" >
+          <input #food type="text" autocomplete="off" placeholder="Was hast du gegessen?" value="{{selectedFood?.name}}" (keyup)="keyDown(food.value, $event)" (focus)="activateFoodlist()" (focusout)="deactivateFoodlist()" >
         </div>
         <div class="searchbar__quantity searchbar__fieldgroup">
           <input type="number" [(ngModel)]="selectedQuantity" id="quantity" name="quantity" >
@@ -21,9 +21,12 @@
         </div>
   
       </form>
-
+      
       <ul class="searchbar__results searchbar__fieldgroup resultlist" [ngClass]="{'resultlist-hidden': !foodListActive }">
-         <li *ngFor="let result of foodList | searchFilter: searchFilterString:foodShortlist" (click)="addToForm(result.$key)" class="resultlist__entry">{{result.name}}</li>
+         <li
+          *ngFor="
+            let result of foodList | searchFilter: searchFilterString:foodShortlist; let i = index; let last = last"
+            (click)="addToForm(result.$key)" class="resultlist__entry" [ngClass]="{'resultlist__entry-active': isSelectedItem(i == foodListActiveRow, last, result) }" >{{result.name}}</li>
       </ul>
 
     </div>
