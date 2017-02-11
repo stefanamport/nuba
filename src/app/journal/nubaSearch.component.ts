@@ -21,7 +21,7 @@ export class SearchComponent {
   private searchFilterString: string = '';
 
   private foodShortlist: Array<number> = [];
-  private foodListActive: boolean = false;
+  public foodListActive: boolean = false;
   private foodListCanIncrease: boolean = true;
   private foodListActiveRow: number = 0;
   private foodListActiveItemFoodObj: any;
@@ -40,7 +40,7 @@ export class SearchComponent {
 
     // most used Foods
     this.userService.data.subscribe((data: any) => {
-      if (data.foodShortlist){
+      if ( data.foodShortlist ) {
         this.foodShortlist = data.foodShortlist;
       }
     });
@@ -48,27 +48,27 @@ export class SearchComponent {
   }
 
   keyDown (searchFilterString: string, event: any) {
-    
-    if (this.searchFilterString != searchFilterString){
+
+    if ( this.searchFilterString !== searchFilterString ) {
 
       this.searchFilterString = searchFilterString;
 
-      if (this.selectedFood) {
+      if ( this.selectedFood ) {
         this.clearForm();
         this.resetSearchResults();
       }
 
     }
 
-    if (event.key === "ArrowUp"){
+    if ( event.key === 'ArrowUp' ) {
       this.listSelect(-1);
     }
-    if (event.key === "ArrowDown"){
+    if ( event.key === 'ArrowDown' ) {
       this.listSelect(1);
     }
 
-    if (event.key === "Enter"){
-      if (this.foodListActiveItemFoodObj.$key) {
+    if ( event.key === 'Enter' ) {
+      if ( this.foodListActiveItemFoodObj.$key ) {
         this.addToForm(this.foodListActiveItemFoodObj.$key);
       }
     }
@@ -78,7 +78,7 @@ export class SearchComponent {
   addToForm(id: number) {
     this.foodService.getFood(id).subscribe(food => {
       this.selectedFood = food;
-      if (this.selectedFood !== null) {
+      if ( this.selectedFood !== null ) {
         this.selectedQuantity = this.selectedFood.matrix_amount;
       }
 
@@ -117,38 +117,38 @@ export class SearchComponent {
     this.clearForm();
   }
 
-  activateFoodlist(){
+  activateFoodlist() {
     this.foodListActive = true;
   }
-  deactivateFoodlist(){
+  deactivateFoodlist() {
     this.foodListActive = false;
   }
 
-  listSelect(incdec: number){
+  listSelect(incdec: number) {
     if (
-      incdec == -1 && this.foodListActiveRow >= 1 ||
-      incdec == 1 && this.foodListCanIncrease
+      incdec === -1 && this.foodListActiveRow >= 1 ||
+      incdec === 1 && this.foodListCanIncrease
       ) {
-      
+
       this.foodListActiveRow = this.foodListActiveRow + incdec;
     }
   }
 
-  selectListItemReset(){
+  selectListItemReset() {
     this.foodListActiveRow = 0;
     this.foodListActiveItemFoodObj = false;
     this.foodListCanIncrease = true;
   }
 
-  isSelectedItem(active: boolean, last: boolean, item: Food){
-    
-    if (active && last){
+  isSelectedItem(active: boolean, last: boolean, item: Food) {
+
+    if (active && last) {
       this.foodListCanIncrease = false;
     } else {
       this.foodListCanIncrease = true;
     }
 
-    if (active){
+    if (active) {
       this.foodListActiveItemFoodObj = item;
       return true;
     } else {

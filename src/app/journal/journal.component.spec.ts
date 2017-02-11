@@ -15,7 +15,6 @@ import { Subject, Observable } from 'rxjs';
 import { SearchFilterPipe } from './pipes/searchFilter.pipe';
 import { Injectable, Output, EventEmitter } from '@angular/core';
 
-
 class JournalEntriesServiceStub {
   private addJournalEntrySource = new Subject<JournalEntry>();
   addJournalEntryNotification$ = this.addJournalEntrySource.asObservable();
@@ -37,7 +36,7 @@ class FoodServiceStub {
 }
 
 class UserServiceStub {
-  
+
   @Output() data = new EventEmitter();
 
   public getUser() {
@@ -45,8 +44,8 @@ class UserServiceStub {
   }
 
   public getFoodList() {
-    let data.foodShortlist: Array<number> = [1,2,3,4];
-    return data;
+    let foodShortlist = [1, 2, 3, 4];
+    return foodShortlist;
   }
 }
 

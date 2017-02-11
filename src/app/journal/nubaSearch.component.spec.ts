@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
-import { EventEmitter } from '@angular/core';
-
 import { SearchComponent } from './nubaSearch.component';
 import { FormsModule } from '@angular/forms';
 import { FoodService } from '../food/food.service';
@@ -30,11 +28,11 @@ class UserServiceStub {
   @Output() data = new EventEmitter();
 
   public getFoodList() {
-    let data.foodShortlist: Array<number> = [1,2,3,4];
-    return data;
+    let foodShortlist: Array<number> = [1, 2, 3, 4];
+    return foodShortlist;
   }
 
-  public addMostUsedFoods(){  }
+  public addMostUsedFoods() {  }
 
 }
 
@@ -95,7 +93,6 @@ describe('SearchComponent', () => {
     expect(component).toBeTruthy();
   }));
 
-  
   //noinspection TsLint
   it('should add to form', async(() => {
     component.addToForm(1);
@@ -103,14 +100,12 @@ describe('SearchComponent', () => {
     expect(component.selectedQuantity).toBe(100);
   }));
 
-  
   it('should not add to form', async(() => {
     // no id passed, therefore no food item can be added
     component.addToForm();
     fixture.detectChanges();
     expect(component.selectedQuantity).toBe(0);
   }));
-  
 
   it('should clear form', () => {
     component.selectedFood = banana;
@@ -158,5 +153,5 @@ describe('SearchComponent', () => {
   it('should display search form', () => {
     expect(debugElement.nativeElement.querySelector('input.searchbar__maininput').placeholder).toEqual('Was hast du gegessen?');
   });
- 
+
 });
