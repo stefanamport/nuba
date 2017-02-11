@@ -8,9 +8,12 @@ import {User} from '../login/user';
 import {FirebaseListObservable} from 'angularfire2';
 import {Output, Input} from '@angular/core/src/metadata/directives';
 
+import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-journal-list',
   templateUrl: './journalList.component.html',
+  providers: [DatePipe]
 })
 
 export class JournalListComponent implements OnInit {
@@ -27,7 +30,8 @@ export class JournalListComponent implements OnInit {
   componentIsLoading: boolean = true;
 
   constructor(private journalEntriesService: JournalEntriesService,
-              private userService: UserService
+              private userService: UserService,
+              private datePipe: DatePipe
   ) { }
 
   ngOnInit() {
@@ -43,12 +47,38 @@ export class JournalListComponent implements OnInit {
   }
 
   makeEditable(entry: JournalEntry) {
+    entry.timeProv = this.datePipe.transform(entry.date, 'HH:mm');
     entry.editable = true;
   }
 
+  toTime(input) {
+    return input;
+  }
+
   updateEntry(entry: JournalEntry) {
-     entry.editable = false;
-     this.journalEntriesService.updateEntry(entry);
+
+    // change entry time & save entry if time is valide
+    if (entry.timeProv.match('([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]')) {
+
+      let newTimeSplit = entry.timeProv.split(':');
+      let newDate = new Date(entry.date);
+
+      newDate.setHours(
+        Number(newTimeSplit[0]),
+        Number(newTimeSplit[1]),
+        0 );
+
+      entry.date = newDate;
+
+      entry.editable = false;
+      this.journalEntriesService.updateEntry(entry);
+
+    } else {
+
+      alert('Bitte gebe eine gültige Zeit im Format 11:15 an');
+
+    }
+
   }
 
   deleteEntry(entry: JournalEntry) {

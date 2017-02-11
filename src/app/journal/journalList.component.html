@@ -18,11 +18,12 @@
       </ul>
       <table *ngIf="journalList.length > 0">
         <tr *ngFor="let entry of journalList">
-          <td class="time"> {{entry.date | date: 'HH:mm' }} Uhr</td>
-          <td class="foodName">
-            {{entry.name}}
-          </td>
-          <template [ngIf]="!entry.editable">
+
+        <template [ngIf]="!entry.editable">
+            <td class="time"> {{entry.date | date: 'HH:mm' }} Uhr</td>
+            <td class="foodName">
+              {{entry.name}}
+            </td>
             <td class="quantity">{{entry.quantity}}{{entry.unit}}</td>
             <td class="triggers">
               <button class="small light" aria-label="bearbeiten" (click)="makeEditable(entry)"><span class="fa fa-edit" aria-hidden="true"></span>
@@ -32,8 +33,11 @@
             </td>
           </template>
           <template [ngIf]="entry.editable">
-            <td class="quantity"><input type="number" [(ngModel)]="entry.quantity" (keyup.enter)="updateEntry(entry)"
-                                        name="quantity{{entry.id}}" id="quantity{{entry.id}}" class="quantity small"/>
+            <td class="time"><input type="text" [(ngModel)]="entry.timeProv" (keyup.enter)="updateEntry(entry)" maxlength="5" class="time small"/> Uhr</td>
+            <td class="foodName">
+              {{entry.name}}
+            </td>
+            <td class="quantity"><input type="number" [(ngModel)]="entry.quantity" (keyup.enter)="updateEntry(entry)" class="quantity small"/>
               {{entry.unit}}
             </td>
             <td class="triggers">

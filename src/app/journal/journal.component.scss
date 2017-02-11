@@ -247,7 +247,8 @@
         width:15%;
       }
 
-      &.quantity input {
+      &.quantity input,
+      &.time input {
         width: 50px;
         font-family: inherit;
         font-size: inherit;
