@@ -47,6 +47,7 @@ export class SearchComponent {
 
   }
 
+  // List-Navigation with Keyboard
   keyDown (searchFilterString: string, event: any) {
 
     if ( this.searchFilterString !== searchFilterString ) {
@@ -75,6 +76,36 @@ export class SearchComponent {
 
   }
 
+  // helper function for arrow navigation
+  private listSelect(incdec: number) {
+    if (
+      incdec === -1 && this.foodListActiveRow >= 1 ||
+      incdec === 1 && this.foodListCanIncrease
+      ) {
+
+      this.foodListActiveRow = this.foodListActiveRow + incdec;
+    }
+  }
+
+  // helper function for ngFor List
+  isSelectedItem(active: boolean, last: boolean, item: Food) {
+
+    if (active && last) {
+      this.foodListCanIncrease = false;
+    } else {
+      this.foodListCanIncrease = true;
+    }
+
+    if (active) {
+      this.foodListActiveItemFoodObj = item;
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
+  // add food by id to Add-Form
   addToForm(id: number) {
     this.foodService.getFood(id).subscribe(food => {
       this.selectedFood = food;
@@ -82,25 +113,14 @@ export class SearchComponent {
         this.selectedQuantity = this.selectedFood.matrix_amount;
       }
 
-      document.getElementById('quantity').focus();
+      if (document.getElementById('quantity')) {
+        document.getElementById('quantity').focus();
+      }
       this.resetSearchResults();
     });
   }
 
-  resetSearchResults() {
-    this.searchFilterString = '';
-
-    this.selectListItemReset();
-  };
-
-  clearForm() {
-    this.selectedFood = null;
-    this.selectedQuantity = 0;
-
-    this.selectListItemReset();
-
-  };
-
+  // Add selected Food to NubaJournal
   addToJournal() {
     let newEntry = new JournalEntry();
     newEntry.name = this.selectedFood.name;
@@ -117,6 +137,7 @@ export class SearchComponent {
     this.clearForm();
   }
 
+  // Show / Hide Food list above search Form
   activateFoodlist() {
     this.foodListActive = true;
   }
@@ -124,37 +145,25 @@ export class SearchComponent {
     this.foodListActive = false;
   }
 
-  listSelect(incdec: number) {
-    if (
-      incdec === -1 && this.foodListActiveRow >= 1 ||
-      incdec === 1 && this.foodListCanIncrease
-      ) {
+    // UI Reset Methods
+  resetSearchResults() {
+    this.searchFilterString = '';
 
-      this.foodListActiveRow = this.foodListActiveRow + incdec;
-    }
-  }
+    this.selectListItemReset();
+  };
 
+  clearForm() {
+    this.selectedFood = null;
+    this.selectedQuantity = 0;
+
+    this.selectListItemReset();
+  };
+
+  // selected Food Reset
   selectListItemReset() {
     this.foodListActiveRow = 0;
     this.foodListActiveItemFoodObj = false;
     this.foodListCanIncrease = true;
-  }
-
-  isSelectedItem(active: boolean, last: boolean, item: Food) {
-
-    if (active && last) {
-      this.foodListCanIncrease = false;
-    } else {
-      this.foodListCanIncrease = true;
-    }
-
-    if (active) {
-      this.foodListActiveItemFoodObj = item;
-      return true;
-    } else {
-      return false;
-    }
-
   }
 
 }

@@ -27,18 +27,22 @@ class UserServiceStub {
 
   @Output() data = new EventEmitter();
 
+  addMostUsedFoods = jasmine.createSpy('addMostUsedFoods');
+
   public getFoodList() {
     let foodShortlist: Array<number> = [1, 2, 3, 4];
     return foodShortlist;
-  }
-
-  public addMostUsedFoods() {  }
+  };
 
 }
 
 class FoodServiceStub {
 
   @Output() foodList = new EventEmitter();
+
+  constructor() {
+    this.cachedFoodList = [banana];
+  }
 
   public getFoodList() {
     let foodList: Array<Food> = [banana];
@@ -53,74 +57,64 @@ class FoodServiceStub {
     }
   }
 
-  /*
-  public getFood(id: number): Observable<Food> {
-    return Observable.of(getFoodList());
-  }
-  */
-
 }
 
 describe('SearchComponent', () => {
-  let component: SearchComponent;
-  let fixture: ComponentFixture<SearchComponent>;
-  let debugElement: DebugElement;
-  let journalEntriesServiceSpy: JournalEntriesServiceSpy;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [SearchComponent, SearchFilterPipe ],
-      imports: [
-        FormsModule
-      ],
-      providers: [
-        {provide: UserService, useClass: UserServiceStub},
-        {provide: JournalEntriesService, useClass: JournalEntriesServiceSpy},
-        {provide: FoodService, useClass: FoodServiceStub}
-      ]
-    }).compileComponents();
-  }));
+  let component: SearchComponent;
+  let foodService: FoodService;
+  let userService: UserService;
+  let journalEntriesService: JournalEntriesService;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchComponent);
-    component = fixture.componentInstance;
-    debugElement = fixture.debugElement;
-    journalEntriesServiceSpy = debugElement.injector.get(JournalEntriesService);
-    fixture.detectChanges();
+    foodService = new FoodServiceStub();
+    userService = new UserServiceStub();
+    journalEntriesService = new JournalEntriesServiceSpy();
+
+    component = new SearchComponent(
+        foodService,
+        journalEntriesService,
+        userService);
   });
 
-  it('should create NubaSearchComponent', async(() => {
+  it('should create NubaSearchComponent', () => {
     expect(component).toBeTruthy();
-  }));
+  });
 
-  //noinspection TsLint
-  it('should add to form', async(() => {
+  it('should add to Form', () => {
+
+    spyOn(component, 'resetSearchResults');
+
     component.addToForm(1);
-    fixture.detectChanges();
-    expect(component.selectedQuantity).toBe(100);
-  }));
+
+    expect(component.selectedFood).toBe(banana);
+    expect(component.selectedQuantity).toBe(banana.matrix_amount);
+    expect(component.resetSearchResults).toHaveBeenCalled();
+  });
 
   it('should not add to form', async(() => {
+
+    spyOn(component, 'resetSearchResults');
+
     // no id passed, therefore no food item can be added
     component.addToForm();
-    fixture.detectChanges();
+
+    expect(component.selectedFood).toBeFalsy();
     expect(component.selectedQuantity).toBe(0);
   }));
 
   it('should clear form', () => {
     component.selectedFood = banana;
-    component.selectedQuantity = 100;
-    fixture.detectChanges();
+    component.selectedQuantity = 300;
     component.clearForm();
-    fixture.detectChanges();
     expect(component.selectedFood).toEqual(null);
     expect(component.selectedQuantity).toBe(0);
   });
 
   it('should add entry to journal', async(() => {
+    // arrange
     component.selectedFood = banana;
     component.selectedQuantity = 200;
-    fixture.detectChanges();
 
     let expectedJournalEntry: JournalEntry = new JournalEntry();
     expectedJournalEntry.name = banana.name;
@@ -130,28 +124,17 @@ describe('SearchComponent', () => {
     expectedJournalEntry.editable = false;
 
     spyOn(component, 'resetSearchResults');
+    spyOn(component, 'clearForm');
 
+    // act
     component.addToJournal();
-    fixture.detectChanges();
 
-    expect(journalEntriesServiceSpy.notifyAddJournalEntry.calls.count()).toBe(1);
-    expect(journalEntriesServiceSpy.notifyAddJournalEntry).toHaveBeenCalledWith(expectedJournalEntry);
+    // assert
+    expect(component.journalEntriesService.notifyAddJournalEntry).toHaveBeenCalledWith(expectedJournalEntry);
+    expect(component.userService.addMostUsedFoods).toHaveBeenCalledWith(expectedJournalEntry.foodID);
+
     expect(component.resetSearchResults).toHaveBeenCalled();
+    expect(component.clearForm).toHaveBeenCalled();
   }));
-
-  it('should display search results', async(() => {
-
-    component.searchFilterString = 'Banane';
-    fixture.detectChanges();
-
-    let lis = debugElement.nativeElement.querySelectorAll('li');
-
-    expect(lis.length).toBe(1);
-
-  }));
-
-  it('should display search form', () => {
-    expect(debugElement.nativeElement.querySelector('input.searchbar__maininput').placeholder).toEqual('Was hast du gegessen?');
-  });
 
 });
