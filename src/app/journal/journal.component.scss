@@ -249,9 +249,29 @@
 
       &.quantity input,
       &.time input {
-        width: 50px;
+        width: 40px;
+        padding: 0px;
+        border-width: 0 0 2px 0;
         font-family: inherit;
         font-size: inherit;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+
+      &.time input {
+        display: inline;
+        width: 20px;
+      
+        -moz-appearance:textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
       }
 
       &.foodName {

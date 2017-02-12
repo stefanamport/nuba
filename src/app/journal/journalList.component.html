@@ -33,7 +33,10 @@
             </td>
           </template>
           <template [ngIf]="entry.editable">
-            <td class="time"><input type="text" [(ngModel)]="entry.timeProv" (keyup.enter)="updateEntry(entry)" maxlength="5" class="time small"/> Uhr</td>
+            <td class="time">
+              <input type="number" [(ngModel)]="entry.timeProvH" (keyup.enter)="updateEntry(entry)" maxlength="2" min="0" max="24" size="2" class="time small"/> :
+              <input type="number" [(ngModel)]="entry.timeProvM" (keyup.enter)="updateEntry(entry)" maxlength="2" min="0" max="59" size="2" class="time small"/>
+            </td>
             <td class="foodName">
               {{entry.name}}
             </td>

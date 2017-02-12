@@ -47,7 +47,8 @@ export class JournalListComponent implements OnInit {
   }
 
   makeEditable(entry: JournalEntry) {
-    entry.timeProv = this.datePipe.transform(entry.date, 'HH:mm');
+    entry.timeProvH = this.datePipe.transform(entry.date, 'HH');
+    entry.timeProvM = this.datePipe.transform(entry.date, 'mm');
     entry.editable = true;
   }
 
@@ -57,27 +58,18 @@ export class JournalListComponent implements OnInit {
 
   updateEntry(entry: JournalEntry) {
 
-    // change entry time & save entry if time is valide
-    if (entry.timeProv.match('([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]')) {
-
-      let newTimeSplit = entry.timeProv.split(':');
+    // change entry time
       let newDate = new Date(entry.date);
 
       newDate.setHours(
-        Number(newTimeSplit[0]),
-        Number(newTimeSplit[1]),
+        Number(entry.timeProvH),
+        Number(entry.timeProvM),
         0 );
 
       entry.date = newDate;
 
       entry.editable = false;
       this.journalEntriesService.updateEntry(entry);
-
-    } else {
-
-      alert('Bitte gebe eine gültige Zeit im Format 11:15 an');
-
-    }
 
   }
 

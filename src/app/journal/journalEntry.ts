@@ -5,7 +5,8 @@ export class JournalEntry {
   id: string;
   name: string;
   date: Date;
-  timeProv?: string;
+  timeProvH?: any;
+  timeProvM?: any;
   foodID: number;
   quantity: number;
   unit: string;
