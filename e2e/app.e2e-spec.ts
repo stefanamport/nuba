@@ -10,5 +10,6 @@ describe('angular-cli-project App', function() {
   it('should display welcome message', () => {
     // page.navigateTo();
     // expect(page.getParagraphText()).toEqual('Willkommen bei nuba');
+    return true;
   });
 });
