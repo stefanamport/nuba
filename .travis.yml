@@ -31,7 +31,6 @@ script:
  - ng build --prod
  - ng lint
  - ng test --watch false # http://mseemann.de/frontend/2016/05/31/setup-angular-2-app-part-1.html
- - ng serve &
  - ng e2e
 after_success:
   if [ "$TRAVIS_BRANCH" == "master" ]; then
