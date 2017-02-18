@@ -16,20 +16,20 @@ export class SearchComponent {
   public foodList: Array<Food>;
 
   public selectedFood: Food = null;
-  public selectedQuantity: number = 0;
+  public selectedQuantity = 0;
 
-  private searchFilterString: string = '';
+  public searchFilterString = '';
 
-  private foodShortlist: Array<number> = [];
-  public foodListActive: boolean = false;
-  private foodListCanIncrease: boolean = true;
-  private foodListActiveRow: number = 0;
+  public foodShortlist: Array<number> = [];
+  public foodListActive = false;
+  private foodListCanIncrease = true;
+  public foodListActiveRow = 0;
   private foodListActiveItemFoodObj: any;
 
   constructor(
     private foodService: FoodService,
     private journalEntriesService: JournalEntriesService,
-    private userService: UserService
+    public userService: UserService
   ) {
 
     this.foodList = this.foodService.getFoodList();

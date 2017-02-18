@@ -11,7 +11,7 @@ export class HeaderComponent  {
 
   user: User;
 
-  constructor(private UserService: UserService) {
+  constructor(public UserService: UserService) {
     // Initial Load User
     this.user = this.UserService.getUser();
 

@@ -1,17 +1,16 @@
 {
   "compilerOptions": {
-    "allowUnusedLabels": false,
     "baseUrl": "",
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": ["es6", "dom"],
+    "lib": [
+      "es2016",
+      "dom"
+    ],
     "mapRoot": "./",
-    "module": "es6",
+    "module": "es2015",
     "moduleResolution": "node",
-    "noImplicitReturns": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
     "outDir": "../dist/out-tsc",
     "sourceMap": true,
     "target": "es5",
