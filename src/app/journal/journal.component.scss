@@ -1,11 +1,27 @@
 // Module dailyFood
 @import '../../assets/styles/_vars';
 
+.searchbar__overlay {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  top: 0px;
+  left: 0px;
+  
+  background: $main-gradient;
+  opacity: .3;
+
+}
+
 .searchbar {
+
+  position: relative;
 
   padding: calc(4rem + 50px) 0 4rem 0;
 
-  background-image: url('/assets/images/food2.jpg');
+  background-image: url('/assets/images/food2-k.jpg');
   background-size: cover;
   background-position: center center;
 

@@ -1,28 +1,44 @@
-<header>
-  <a routerLink="/" class="logo">
+<header class="header">
+  <a routerLink="/" class="header__left logo">
     nu<sup>ba</sup>
   </a>
-  <nav id="mainnav">
-    <ul>
+  <nav class="header__right mainnav">
+    <ul class="mainnav__wrap">
       
-      <li *ngIf="this.UserService.auth">
-        <a routerLink="/journal" routerLinkActive="active"><span class="fa fa-cutlery" aria-hidden="true"></span> erfassen</a>
+      <li *ngIf="this.UserService.auth" class="mainnav__link">
+          <a routerLink="/journal" routerLinkActive="navbutton-active" class="navbutton">
+            <div class="navbutton__inner">
+              <div class="fa fa-cutlery navbutton__icon" aria-hidden="true"></div>
+              <div class="navbutton__title">erfassen</div>
+            </div>
+          </a>
       </li>
       
-      <li *ngIf="this.UserService.auth">
-        <a routerLink="/analysis" routerLinkActive="active"><span class="fa fa-pie-chart" aria-hidden="true"></span> auswerten</a>
-      </li>
-
-      <li *ngIf="this.UserService.auth" class="accountLink">
-        <a routerLink="/account" routerLinkActive="active">
-          <span class="fa fa-user" aria-hidden="true"></span> Dein Konto
-          <div class="profileImage"><img src="{{user.avatar}}" alt="{{user.name}}"></div>
+      <li *ngIf="this.UserService.auth" class="mainnav__link">
+        <a routerLink="/analysis" routerLinkActive="navbutton-active" class="navbutton">
+        <div class="navbutton__inner">
+            <div class="fa fa-pie-chart navbutton__icon" aria-hidden="true"></div>
+            <div class="navbutton__title">auswerten</div>
+          </div>
         </a>
       </li>
 
-      <li *ngIf="!this.UserService.auth" >
-        <a routerLink="/login" routerLinkActive="active">
-          Login
+      <li *ngIf="this.UserService.auth" class="mainnav__link">
+        <a routerLink="/account" routerLinkActive="navbutton-active" class="navbutton navbutton-account">
+          <div class="navbutton__inner">
+            <div class="fa fa-user navbutton__icon" aria-hidden="true"></div>
+            <div class="navbutton__title ">Konto</div>
+            <div class="avatar"><img src="{{user.avatar}}" alt="{{user.name}}" class="avatar__image">
+            </div>
+          </div>
+        </a>
+      </li>
+
+      <li *ngIf="!this.UserService.auth" class="mainnav__link">
+        <a routerLink="/login" routerLinkActive="navbutton-active" class="navbutton">
+          <div class="navbutton__inner">
+            <div class="navbutton__title">Login</div>
+          </div>
         </a>
       </li>
 

@@ -3,7 +3,16 @@ $darker-gray: darken($light-gray, 5);
 $dark-gray: darken($light-gray, 15);
 $dark-gray-font: darken($light-gray, 25);
 
-$main-color: #2fb56d;
+$white: #fff;
+$black: #000;
+
+//main gradient
+$grad-bright: #DCE35B;
+$grad-dark: #45B649;
+$main-gradient: linear-gradient(to left top, $grad-bright , $grad-dark);
+
+// main colors
+$main-color: $grad-dark;
 $main-color-dark: darken(#2fb56d, 10);
 $main-font-color: #000;
 
@@ -18,3 +27,7 @@ $font-family-headlines: 'Slabo 27px', serif;
 
 // Font Awesome
 $fa-font-path: "../fonts";
+
+// breakpoints
+$bp-big: 800px;
+$bp-mobile: 650px;

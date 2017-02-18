@@ -1,8 +1,7 @@
 // Styles für den Headerbereich
-@import '../../assets/styles/_vars';
 
-header {
-  background: rgba(255,255,255,.95);
+.header {
+  background: $main-gradient;
   box-shadow: 0 0 3px rgba(0,0,0,.2);
 
   position: fixed;
@@ -11,68 +10,204 @@ header {
   left: 0px;
   width: 100%;
 
-  padding: 0 $boxpadding;
   box-sizing: border-box;
-
   display: flex;
+}
 
-  #mainnav {
+  .header__left {
+    margin-left: 10px;
 
-    margin-left: auto;
+  }
+  .header__right {
+    margin-right: 0;
+  }
+
+.navigation {
+
+}
+
+.mainnav {
+  margin-left: auto;
 
     ul, li {
       list-style: none;
       margin: 0px;
       padding: 0px;
-
     }
+}
 
-    li {
-      display: inline-block;
-    }
-
-    a {
-      display: block;
-      line-height: $headerheight;
-      padding: 4px 10px;
-
-      transition: .2s all;
-
-      text-decoration: none;
-
-      color: $main-color;
-
-      border-left: 1px solid $darker-gray;
-
-      &:hover, &.active {
-        background: $light-gray;
-      }
-    }
-
-    li.accountLink {
-
-      .profileImage {
-        float: right;
-        margin-left: $boxpadding;
-      }
-
-    }
+  .mainnav__link {
+    display: inline-block;
   }
 
-  .logo {
-    font-size: 2em;
-    color: $main-color;
+  .navbutton {
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
     line-height: $headerheight;
+    padding: 4px 10px;
 
-    font-family: $font-family-headlines;
-
-    margin-top: 5px;
+    transition: .2s all;
 
     text-decoration: none;
 
-    sup {
-      font-size: 0.5em;
-      vertical-align: super;
+    color: $white;
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      height: 3px;
+      width: 100%;
+      background: $white;
+
+      transform: scale(0, 1);
+
+      transition: transform .2s;
     }
   }
+  
+  .navbutton__inner {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navbutton:hover,
+  .navbutton-active{
+  
+    background: rgba($black, .05);
+
+    &:after {
+      transform: none;
+    }
+  }
+
+  .navbutton:hover {
+    &:after {
+      opacity: .8;
+    }
+  }
+
+  .navbutton__icon {
+    margin-right: 5px;
+  }
+ 
+.avatar {
+
+    width: $headerheight - 5;
+    height: $headerheight - 5;
+    border-radius: 100%;
+
+    margin-left: 10px;
+
+    overflow: hidden;
+
+    display: inline-block;
+} 
+  .avatar__image {
+    width: 100%;
+  }
+
+
+.logo {
+  font-size: 2em;
+  color: $white;
+  line-height: $headerheight;
+
+  font-family: $font-family-headlines;
+  font-weight: bold;
+  
+  margin-top: 5px;
+
+  text-decoration: none;
+
+  sup {
+    font-size: 0.5em;
+    vertical-align: super;
+  }
+}
+
+@media screen and (max-width: $bp-mobile) {
+
+   .header {
+      height: auto;
+      overflow: visible;
+   }
+
+   .header__left {
+    margin: auto;
+   }
+
+   .logo {
+      transform: scale(.8,.8);
+      line-height: normal;
+   }
+
+   .mainnav {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background: $main-gradient;
+
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
+   }
+
+   .mainnav__wrap {
+    display: flex;
+   }
+
+   .mainnav__link {
+      width: 33.33%;
+      display: block;
+      
+      flex-flow: row wrap;
+      justify-content: center;
+      align-items: center;
+   }
+
+   .navbutton {
+    display: block;
+    line-height: normal;
+
+    &:after {
+      bottom: auto;
+      top: 0px;
+    }
+   }
+
+   .navbutton__inner {
+    display: flex;
+    flex-flow: row wrap;
+
+    padding: 5px 0;
+
+    > * {
+      display: inline;
+      width: 100%;
+      padding: 0px;
+      height: auto;
+
+      text-align: center;
+    }
+  }
+
+  .navbutton__icon.fa {
+    font-size: 1.6em;
+    margin: 0px;
+  }
+  .navbutton__title {
+    font-size: 0.8em;
+    margin-top: 5px;
+  }
+
+   .avatar {
+    display: none;
+   }
+
 }
