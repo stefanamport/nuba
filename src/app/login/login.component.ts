@@ -14,22 +14,21 @@ export class LogInComponent {
   user: User;
 
   constructor( private UserService: UserService, private Router: Router) {
-      this.user = this.UserService.getUser();
 
-      this.UserService.data.subscribe((data: any) => {
-          this.user = data;
+        this.user = this.UserService.getUser();
 
-          if (data.uid) {
-            this.redirectToHome();
-          }
-      });
+        this.UserService.data.subscribe((data: any) => {
+            this.user = data;
+
+            if (data.uid) {
+              this.redirectToHome();
+            }
+        });
   }
 
   redirectToHome() {
-    this.Router.navigate(['journal']);
   }
 
   login(method: string) {
-    this.UserService.login(method);
   }
 }
