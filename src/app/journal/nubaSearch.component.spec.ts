@@ -9,8 +9,6 @@ import { Food } from '../food/food';
 import { JournalEntry } from './journalEntry';
 import { DebugElement } from '@angular/core';
 
-import { SearchFilterPipe } from './pipes/searchFilter.pipe';
-
 import { Injectable, Output, EventEmitter } from '@angular/core';
 
 import { UserService } from '../login/user.service';

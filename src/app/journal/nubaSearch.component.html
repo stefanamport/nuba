@@ -28,7 +28,7 @@
         <ul class="resultlist__wrap">
            <li
             *ngFor="
-              let result of foodList | searchFilter: searchFilterString:foodShortlist; let i = index; let last = last"
+              let result of foodList | searchFilter: searchFilterString:foodShortlist | orderByAlphabet: 'name'; let i = index; let last = last"
               (click)="addToForm(result.$key)" class="resultlist__entry" [ngClass]="{'resultlist__entry-active': isSelectedItem(i == foodListActiveRow, last, result) }" >{{result.name}}</li>
         </ul>
       </div>

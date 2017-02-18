@@ -13,6 +13,7 @@ import { JournalComponent } from './journal/journal.component';
 import { JournalListComponent } from './journal/journalList.component';
 import { UserService } from './login/user.service';
 
+import { OrderByAlphabetPipe } from './journal/pipes/orderByAlphabet.pipe';
 import { SearchFilterPipe } from './journal/pipes/searchFilter.pipe';
 
 describe('AppComponent', () => {
@@ -25,8 +26,6 @@ describe('AppComponent', () => {
   }
 
   beforeEach(() => {
-    // FIXME: @Stefan: what was this spy intended for? I could not figure out as router is not defined.
-    // const spy = spyOn(router, 'navigateByUrl');
 
     TestBed.configureTestingModule({
       declarations: [
@@ -35,6 +34,7 @@ describe('AppComponent', () => {
         SearchComponent,
         JournalComponent,
         JournalListComponent,
+        OrderByAlphabetPipe,
         SearchFilterPipe
       ],
       imports: [

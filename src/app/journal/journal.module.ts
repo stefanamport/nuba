@@ -9,13 +9,15 @@ import { JournalListComponent } from './journalList.component';
 import { SearchComponent } from './nubaSearch.component';
 
 import { SearchFilterPipe } from './pipes/searchFilter.pipe';
+import { OrderByAlphabetPipe } from './pipes/orderByAlphabet.pipe';
 
 @NgModule({
     declarations: [
       JournalComponent,
       SearchComponent,
       JournalListComponent,
-      SearchFilterPipe
+      SearchFilterPipe,
+      OrderByAlphabetPipe
     ],
     imports: [
       journalRouting,

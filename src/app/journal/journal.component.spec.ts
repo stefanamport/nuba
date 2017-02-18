@@ -13,6 +13,8 @@ import { JournalEntry } from './journalEntry';
 import { Subject, Observable } from 'rxjs';
 
 import { SearchFilterPipe } from './pipes/searchFilter.pipe';
+import { OrderByAlphabetPipe } from './pipes/orderByAlphabet.pipe';
+
 import { Injectable, Output, EventEmitter } from '@angular/core';
 
 class JournalEntriesServiceStub {
@@ -59,7 +61,8 @@ describe('JournalComponent', () => {
         JournalComponent,
         SearchComponent,
         JournalListComponent,
-        SearchFilterPipe
+        SearchFilterPipe,
+        OrderByAlphabetPipe
       ],
       imports: [
         FormsModule
