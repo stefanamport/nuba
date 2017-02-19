@@ -5,7 +5,7 @@
   <nav class="header__right mainnav">
     <ul class="mainnav__wrap">
       
-      <li *ngIf="this.UserService.auth" class="mainnav__link">
+      <li *ngIf="this.user.uid" class="mainnav__link">
           <a routerLink="/journal" routerLinkActive="navbutton-active" class="navbutton">
             <div class="navbutton__inner">
               <div class="fa fa-cutlery navbutton__icon" aria-hidden="true"></div>
@@ -14,7 +14,7 @@
           </a>
       </li>
       
-      <li *ngIf="this.UserService.auth" class="mainnav__link">
+      <li *ngIf="this.user.uid" class="mainnav__link">
         <a routerLink="/analysis" routerLinkActive="navbutton-active" class="navbutton">
         <div class="navbutton__inner">
             <div class="fa fa-pie-chart navbutton__icon" aria-hidden="true"></div>
@@ -23,7 +23,7 @@
         </a>
       </li>
 
-      <li *ngIf="this.UserService.auth" class="mainnav__link">
+      <li *ngIf="this.user.uid" class="mainnav__link">
         <a routerLink="/account" routerLinkActive="navbutton-active" class="navbutton navbutton-account">
           <div class="navbutton__inner">
             <div class="fa fa-user navbutton__icon" aria-hidden="true"></div>
@@ -34,7 +34,7 @@
         </a>
       </li>
 
-      <li *ngIf="!this.UserService.auth" class="mainnav__link">
+      <li *ngIf="!this.user.uid" class="mainnav__link">
         <a routerLink="/login" routerLinkActive="navbutton-active" class="navbutton">
           <div class="navbutton__inner">
             <div class="navbutton__title">Login</div>

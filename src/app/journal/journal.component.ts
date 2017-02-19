@@ -37,7 +37,7 @@ export class JournalComponent implements OnInit {
   	// shakes Coach Box by CSS Animation :-)
     this.switchShowNewHint();
 
-    var scope = this;
+    let scope = this;
 
     setTimeout(function(){
        scope.switchShowNewHint();
@@ -45,7 +45,7 @@ export class JournalComponent implements OnInit {
 
   }
 
-  private switchShowNewHint(){
+  private switchShowNewHint() {
     this.newHintAvailable = !this.newHintAvailable;
   }
 

@@ -10,3 +10,16 @@
 	max-width: 300px;
 	margin: 0px auto;
 }
+
+@media screen and (max-width: $bp-mobile) {
+	
+	.row-welcome {
+		padding-top: 50px
+	}
+
+	.loginbox {
+		width: auto;
+		max-width: none;
+	}
+
+}

@@ -9,14 +9,13 @@ import { UserService } from '../login/user.service';
 })
 export class HeaderComponent  {
 
-  user: User;
+  user: User = [];
 
-  constructor(public UserService: UserService) {
+  constructor(public userService: UserService) {
     // Initial Load User
-    this.user = this.UserService.getUser();
+    this.user = this.userService.getUser();
 
-    // subscribe User changes
-    this.UserService.data.subscribe((data: any) => {
+    this.userService.data.subscribe((data: any) => {
       this.user = data;
     });
   }

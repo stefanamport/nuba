@@ -423,11 +423,21 @@ input {
 	.w-8, .w-4 {
 		width: 100%;
 	}
-
-
-
+	
 	.button-small {
 		padding: 6px 9px;
+	}
+
+	.button-login {
+
+		font-size: .8em;
+
+		.fa {
+			font-size: 1.8em;
+			margin-bottom: 3px;
+			display: block;
+		}
+		
 	}
 
 }
