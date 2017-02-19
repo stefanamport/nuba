@@ -258,6 +258,13 @@ button {
 
 @media screen and (max-width: $bp-mobile) {
 	
+	.row {
+
+		&:first-of-type {
+			padding-top: 20px;
+		}
+	}
+
 	// floating action button
 	.coachTip {
 		position: fixed;
@@ -329,4 +336,26 @@ button {
 		}
 
 	}
+}
+@media screen and (max-width: $bp-mobile) {
+	
+	body {
+		padding-bottom: $headerheight;
+	}
+
+	.grid {
+
+		.gridItem {
+
+			&.w-8, &.w-4 {
+				width: 100%;
+			}
+
+		}
+	}
+
+	button.small {
+		padding: 6px 9px;
+	}
+
 }

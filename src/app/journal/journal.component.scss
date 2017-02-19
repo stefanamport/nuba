@@ -23,9 +23,10 @@
 
   background-image: url('/assets/images/food2-k.jpg');
   background-size: cover;
-  background-position: center center;
+  background-position: center left;
+}
 
-  input,
+  .searchbar input,
   .searchbar__loading {
     box-sizing : border-box;
     width: 100%;
@@ -35,17 +36,17 @@
     font-size: 1.4em;
     font-family: inherit;
 
-    border: 1px solid $dark-gray;
+    border: 0px;
 
     transition: .4s all;
 
-    border-radius: 6px;
+    border-radius: 4px;
 
     height: $hero-form-height;
 
     &:focus {
       outline: none;
-      border: 1px solid $dark-gray;
+      border: 0px;
       box-shadow: 0 0 20px rgba(0,0,0,.1);
     }
   }
@@ -56,9 +57,9 @@
 
   
   // First inner Wrap
-  &__inner {
+  .searchbar__inner {
 
-    background: $darker-gray;
+    background: rgba(0,0,0,.5);
     padding: $boxpadding;
     border-radius: 6px;
 
@@ -66,31 +67,30 @@
   }
   
   // Form Wrap
-  &__form {
+  .searchbar__form {
     position: relative;
     display: flex;
     flex-flow: row nowrap;
   }
   
-  &__fieldgroup {
+  .searchbar__fieldgroup {
     padding-right: $boxpadding/2;
     transition: .4s all;
   }
 
-  &__food {
+  .searchbar__food {
     width: 60%;
   }
 
-  &__quantity {
+  .searchbar__quantity {
 
-      border: 1px solid $dark-gray;
       border-radius: 5px;
       overflow: hidden;
 
       width: 20%;
 
       padding-right: 30px;
-      margin-right: $boxpadding/2;
+      margin: 0 $boxpadding/2;
 
       position: relative;
 
@@ -105,6 +105,8 @@
         height: $hero-form-height;
         line-height: $hero-form-height;
 
+        background: $white;
+
         width: 25px;
         padding-right: 4px;
         text-align: center;
@@ -116,17 +118,17 @@
       }
   }
 
-  &__submit {
+  .searchbar__submit {
     width: 20%;
   }
 
-  &__submitbutton {
+  .searchbar__submitbutton {
     width: 100%; 
-    height: 100%;
+    height: $hero-form-height;
     font-size: 2em;
   }
 
-  &__results {
+  .searchbar__results {
     position: absolute;
     top: $hero-form-height + 10*2 + 2;
     left: 0;
@@ -135,8 +137,6 @@
 
     z-index: 99;
   }
-  
-}
 
   // Hide fileds when nothing is selected
   .searchbar__form-noSelection {
@@ -159,16 +159,14 @@
   }
 
 
+$dropdownMaxHeight: 50vh;
+
 .resultlist {
 
-    $dropdownMaxHeight: 50vh;
-
     // reset
-    &, &__entry {
-      list-style: none;
-      margin: 0px;
-      padding: 0px;
-    }
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
 
    display: block;
    overflow: hidden;
@@ -176,20 +174,19 @@
    background: #fff;
    box-shadow: 0 1px 1px rgba(0,0,0,.2);
    border-radius: 5px;
+}
 
-   transition: .2s all;
-
-  &-hidden {
+  .resultlist-hidden {
    visibility: none;
-   opacity: 0;
+   left: -9999em;
   }
 
-  &__infomessage {
+  .resultlist__infomessage {
     padding: $boxpadding/2 $boxpadding;
     color: $dark-gray-font;
   }
 
-  &__scrollshadow {
+  .resultlist__scrollshadow {
     position: absolute;
     bottom: 0px;
     top: $dropdownMaxHeight;
@@ -199,7 +196,7 @@
     box-shadow: 0 0px 40px rgba(0,0,0,.6);
   }
 
-  &__wrap {
+  .resultlist__wrap {
     padding: 0px;
     margin: 0px;
 
@@ -207,7 +204,7 @@
    overflow-y: scroll;
   }
   
-  &__entry {
+  .resultlist__entry {
     padding: $boxpadding;
 
     &:hover {
@@ -215,23 +212,26 @@
       background: $light-gray;
     }
 
-    &-active {
-      background: $light-gray;
-    }
-
   }
-
-}
+  .resultlist__entry-active {
+    background: $light-gray;
+  }
 
 .foodList {
 
   margin-top: 20px;
+}
+    
+  .foodlist__date {
+    padding: 20px 0 20px 0;
+    margin: 0px;
+  }
 
-  .dateChooser {
-    li {
+  .datechooser__block {
       list-style: none;
       margin: 0px;
       padding: 0px 10px;
+      display: inline-block;
 
       &:first-child {
         padding-left: 0px;
@@ -241,31 +241,27 @@
       }
     }
 
-    padding: 0 0 20px 0;
-    margin: 0px;
 
-    li {
-      display: inline-block;
-    }
-  }
-
-  table {
+  .foodtable {
     width: 100%;
-
-    tr:nth-child(1+2n) td {
-
+  }
+  
+    .foodentry {
+      border-bottom: 1px solid $darker-gray;
     }
 
-    td {
-      border-bottom: 1px solid $darker-gray;
+    .foodentry__block-time,
+    .foodentry__block-triggers {
+      width:20%;
+    }
+    .foodentry__block-quantity {
+      width: 15%;
+    }
 
-      &.time, &.quantity, &.triggers {
-        width:15%;
-      }
-
-      &.quantity input,
-      &.time input {
-        width: 40px;
+    .foodentry__block-quantity,
+    .foodentry__block-time {
+      input {
+        width: 50px;
         padding: 0px;
         border-width: 0 0 2px 0;
         font-family: inherit;
@@ -275,10 +271,12 @@
           box-shadow: none;
         }
       }
+    }
 
-      &.time input {
+    .foodentry__block-time {
+      input {
         display: inline;
-        width: 20px;
+        width: 30px;
       
         -moz-appearance:textfield;
 
@@ -287,17 +285,103 @@
             -webkit-appearance: none;
             margin: 0;
         }
-
-      }
-
-      &.foodName {
-        width: 55%;
-      }
-
-      &.triggers {
-        text-align: right;
       }
     }
 
+      .foodentry__block-foodname {
+        width: 45%;
+      }
+
+      .foodentry__block-triggers {
+        text-align: right;
+      }
+
+
+@media screen and (max-width: $bp-mobile) {
+  
+  .searchbar {
+    padding: 40px 10px 10px 10px;
+    min-height: 50vh;
+
+    display: flex;
+    align-items: center;
+
+    > * {
+      width: 100%;
+    }
   }
+
+  .searchbar__form {
+    flex-flow: row wrap;
+  }
+  
+  .searchbar__food,
+  .searchbar__quantity,
+  .searchbar__submit {
+    width: 100%;
+
+    margin: 0 0 4px 0;
+    padding: 0px;
+
+    * {
+      text-align: center;
+    }
+  }
+
+  .searchbar__submit {
+    margin-bottom: 0px;
+  }
+
+  .searchbar__form-noSelection {
+    .searchbar__food {
+      margin-bottom: 0px;
+    }
+  }
+
+  .foodtable__entry {
+      border: 0px;
+      background: $light-gray;
+      padding: 5px;
+      margin-bottom: 3px;
+  }
+
+
+  .foodentry {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  .foodentry__block {
+    display: block;
+    box-sizing: border-box;
+  }
+
+  .foodentry__block-time {
+    width: 50%;
+    order: 1;
+
+    font-size: 0.8em;
+    color: $dark-gray-font;
+  }
+  
+  .foodentry__block-triggers {
+    width: 50%;
+    order: 2;
+  }
+
+  .foodentry__block-foodname {
+    width: auto;
+    order: 4;
+  }
+
+  .foodentry__block-quantity {
+    width: auto;
+    order: 3;
+    text-align: right;
+
+    &:after {
+      content: " -";
+    }
+  }
+
 }
