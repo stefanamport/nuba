@@ -305,10 +305,12 @@ button, .button {
 	}
 
 	.row {
-
 		&:first-of-type {
-			padding-top: 20px;
+			padding-top: 55px;
 		}
+	}
+	.row-noMobPadding:first-of-type {
+		padding-top: 20px;
 	}
 
 	// floating action button
