@@ -1,13 +1,12 @@
 // Module login
 @import '../../assets/styles/_vars';
 
-.welcome.row {
+.row-welcome {
 	text-align: center;
+	padding-top: 150px
 }
 
-.login-box {
-	
+.loginbox {
 	max-width: 300px;
 	margin: 0px auto;
-
 }
