@@ -177,8 +177,7 @@ $dropdownMaxHeight: 50vh;
 }
 
   .resultlist-hidden {
-   visibility: none;
-   left: -9999em;
+   visibility: hidden;
   }
 
   .resultlist__infomessage {

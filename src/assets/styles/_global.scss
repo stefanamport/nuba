@@ -80,7 +80,7 @@ a {
     }
 }
 
-.loading-placeholder {
+.loadingPlaceholder {
 	position: absolute;
 	left: 0px;
 	top: 0px;
@@ -163,7 +163,7 @@ input {
 
 // Global Button STylings
 
-button, .button {
+.button {
 	background: $main-color;
 	border: 0px;
 	text-decoration: none;
@@ -191,33 +191,54 @@ button, .button {
 		color: #fff;
 		text-shadow: none;
 	}
-
-	&.small {
-		font-size: 1em;
-		padding: 2px 3px;
-		font-weight: bold;
-	}
-	&.light {
+	&:hover {
 		background: $darker-gray;
-		color: $dark-gray-font;
-		text-shadow: none;
-		border: 1px solid $darker-gray;
-
-		&:hover {
-			background: $darker-gray;
-			color: #000;
-		}
-		&:focus {
-			border: 1px solid rgba(0,0,0,.2);
-		}
+		color: #000;
+	}
+	&:focus {
+		border: 1px solid rgba(0,0,0,.2);
 	}
 
 	&:disabled {
 		cursor: auto;
 		opacity: .3;
 	}
-	
 }
+	.button-small {
+		font-size: 1em;
+		padding: 2px 3px;
+		font-weight: bold;
+	}
+	.button-light {
+		background: $darker-gray;
+		color: $dark-gray-font;
+		text-shadow: none;
+		border: 1px solid $darker-gray;
+	}
+	.button-login {
+
+		width: 100%;
+		background: $light-gray;
+
+		color: #000;
+		text-shadow: none;
+		border: 1px solid $dark-gray-font;
+
+		font-size: 1.2em;
+		padding: 10px 5px;
+		margin-bottom: 10px;
+
+		&:last-child {
+			margin-bottom: 0px;
+		}
+
+		&:enabled:hover {
+			color: #000;
+			background: darken($light-gray, 5);
+		}
+		
+	}
+
 
 .whitebox {
 	background: #fff;
@@ -227,19 +248,19 @@ button, .button {
 	position: relative;
 
 	box-shadow: 0 0 2px rgba(0,0,0,.2);
+}
 
-	h2 {
+	.whitebox__title {
 		margin: 0px -$boxpadding;
 		padding: $boxpadding/2 $boxpadding;
 
 		border-bottom: 1px solid $darker-gray;
 	}
 
-	.boxcontent {
+	.whitebox__content {
 		padding-top: $boxpadding;
 		
 	}
-}
 
 .coachTip {
 	margin-top: 0px;
@@ -270,19 +291,17 @@ button, .button {
 	flex-flow: row wrap;
 
 	margin: 0 -$boxpadding/2;
-
-	.gridItem {
+}	
+	.grid__item {
 		padding: 0 $boxpadding/2;
 		box-sizing: border-box;
-
-		&.w-8 {
+	}
+		.w-8 {
 			width: 66.66%;
 		}
-		&.w-4 {
+		.w-4 {
 			width: 33.33%;
 		}
-	}
-}
 
 .row {
 	padding: 20px 0;
@@ -401,18 +420,13 @@ button, .button {
 		padding-bottom: $headerheight;
 	}
 
-	.grid {
-
-		.gridItem {
-
-			&.w-8, &.w-4 {
-				width: 100%;
-			}
-
-		}
+	.w-8, .w-4 {
+		width: 100%;
 	}
 
-	button.small {
+
+
+	.button-small {
 		padding: 6px 9px;
 	}
 

@@ -4,7 +4,7 @@
 
     <div class="grid">
 
-      <div class="gridItem w-8">
+      <div class="grid__item w-8">
         <main class="dailyFood whitebox">
 
           <app-journal-list></app-journal-list>
@@ -12,7 +12,7 @@
         </main>
       </div>
 
-      <aside class="gridItem w-4">
+      <aside class="grid__item w-4">
 
         <div
           class="whitebox coachTip"
@@ -28,7 +28,7 @@
           <div class="coachTip__image">
             <img src="../assets/images/coach-box.png" alt="dein Coach"></div>
 
-          <div class="boxcontent">
+          <div class="whitebox__content">
 
             <div class="coachTip__hint">
               «{{coachTip}}»
@@ -42,8 +42,8 @@
           </div>
         </div>
         <div class="whitebox">
-          <h2>Auswertung</h2>
-          <div class="boxcontent">
+          <h2 class="whitebox__title">Auswertung</h2>
+          <div class="whitebox__content">
 
                   <span class="small  light">
                   > Die Charts müssen noch per Javascript angesteuert werden um die breite data-percent auf die breite der :after elemente zu übertragen

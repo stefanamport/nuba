@@ -11,13 +11,13 @@
 
     	<div class="login-box whitebox">
     		<div class="login-buttons" *ngIf="!user.uid">
-		    	<button ng (click)="login('Mail')" class="loginbutton" disabled>
+		    	<button ng (click)="login('Mail')" class="button button-login" disabled>
                   <span class="fa fa-envelope" aria-hidden="true"></span> Login mit E-Mail
                 </button>
-                <button ng (click)="login('Google')" class="loginbutton">
+                <button ng (click)="login('Google')" class="button button-login">
 				  <span class="fa fa-google" aria-hidden="true"></span> Login mit Google Konto
 				</button>
-                <button ng (click)="login('Facebook')" class="loginbutton" disabled>
+                <button ng (click)="login('Facebook')" class="button button-login" disabled>
                   <span class="fa fa-facebook" aria-hidden="true"></span> Login mit Facebook
                 </button>
 			</div>
