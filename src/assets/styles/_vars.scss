@@ -13,7 +13,7 @@ $main-gradient: linear-gradient(to left top, $grad-bright , $grad-dark);
 
 // main colors
 $main-color: $grad-dark;
-$main-color-dark: darken(#2fb56d, 10);
+$main-color-dark: darken($grad-dark, 10);
 $main-font-color: #000;
 
 $alert-color: #ffead3;

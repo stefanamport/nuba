@@ -14,15 +14,31 @@
 
       <aside class="gridItem w-4">
 
-        <div class="whitebox coachTip">
+        <div
+          class="whitebox coachTip"
+          *ngIf="coachTip"
+          (click)="mobCoachVisibility()"
+          [ngClass]="
+            {'coachTip-visible': mobCoachVisible,
+            'coachTip-newHint': newHintAvailable}"
+        >
 
-          <h2 class="whitebox__title">dein Coach</h2>
+          <h2 class="whitebox__title">Kari's Tipp:</h2>
 
           <div class="coachTip__image">
             <img src="../assets/images/coach-box.png" alt="dein Coach"></div>
 
           <div class="boxcontent">
-            ...
+
+            <div class="coachTip__hint">
+              «{{coachTip}}»
+            </div>
+
+            <div class="coachTip__buttons justmobile">
+              <div class="button">schliessen</div>
+              <a class="button" href="/analysis">Detailauswertung</a>
+            </div>
+            
           </div>
         </div>
         <div class="whitebox">

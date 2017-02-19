@@ -20,6 +20,35 @@ a {
     to {transform: rotate(360deg)}
 }
 
+// From animate.css
+@keyframes shake {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+.shake {
+  animation-name: shake;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+}
+
+.justmobile {
+	display: none;
+}
+
 .loadingAnimation {
 	opacity: .7;
 	
@@ -134,9 +163,13 @@ input {
 
 // Global Button STylings
 
-button {
+button, .button {
 	background: $main-color;
 	border: 0px;
+	text-decoration: none;
+
+	display: inline;
+	padding: 5px 10px;
 
 	border-radius: 3px;
 
@@ -161,6 +194,7 @@ button {
 
 	&.small {
 		font-size: 1em;
+		padding: 2px 3px;
 		font-weight: bold;
 	}
 	&.light {
@@ -208,8 +242,12 @@ button {
 }
 
 .coachTip {
-	margin-top: 65px;
+	margin-top: 0px;
 }
+	
+	.coachTip-newHint {
+		@extend .shake;
+	}
 
 	.coachTip__image {
 		position: absolute;
@@ -219,6 +257,10 @@ button {
 		img {
 			width: 80px;
 		}
+	}
+
+	.coachTip__hint {
+		font-weight: bold;
 	}
 
 
@@ -257,7 +299,11 @@ button {
 }
 
 @media screen and (max-width: $bp-mobile) {
-	
+
+	.justmobile {
+		display: block;
+	}
+
 	.row {
 
 		&:first-of-type {
@@ -267,9 +313,10 @@ button {
 
 	// floating action button
 	.coachTip {
+
 		position: fixed;
 		right: 10px;
-		bottom: 65px;
+		top: 50px;
 		z-index: 88;
 		
 		box-sizing: border-box;
@@ -284,7 +331,7 @@ button {
 		overflow: hidden;
 		
 		transition: .4s all;
-	}
+	}	
 		.coachTip__image {
 			
 			transition: .4s all;
@@ -297,17 +344,28 @@ button {
 			}
 		}
 
-	.coachTip .boxcontent {
-		display: none;
-	}
+		.coachTip__hint {
+			margin-top: 10px;
+			font-weight: bold;
+			font-size: 2em;
+			line-height: normal;
+		}
+
+		.coachTip__buttons {
+			margin-top: 20px;
+		}
+	
+	.coachTip .boxcontent,
 	.coachTip .whitebox__title {
-		display: none;
+		opacity: 0;
+		transition: .2s opacity;
+		transition-delay: .4s;
 	}
 
-	.coachTip:hover {
+	.coachTip-visible {
 		
 		right: 0px;
-		bottom: 0px;
+		top: 30vh;
 		z-index: 88;
 
 		width: 100%;
@@ -317,11 +375,9 @@ button {
 
 		overflow: visible;
 
+		.whitebox__title,
 		.boxcontent {
-			display: block;
-		}
-		.whitebox__title {
-			display: block;
+			opacity: 1;
 		}
 		
 		.coachTip__image {
