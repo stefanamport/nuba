@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { FoodInitialData } from './foodInitialData';
+import {TargetConsumption} from './targetConsumption';
 
 @Injectable()
 export class FirebaseImportService  {
@@ -17,6 +18,12 @@ export class FirebaseImportService  {
     for (let food of FoodInitialData) {
       createFood(food, this.af);
       createFoodDetails(food, this.af);
+    }
+  }
+
+  importTargetConsumption() {
+    for (let target of TargetConsumption) {
+      this.af.database.list('targetMale').push(target);
     }
   }
 }
