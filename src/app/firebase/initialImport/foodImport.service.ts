@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { FoodInitialData } from './foodInitialData';
-import {TargetConsumption} from './targetConsumption';
+import { TargetConsumption } from './targetConsumption';
 
 @Injectable()
 export class FirebaseImportService  {
@@ -32,7 +32,7 @@ export class FirebaseImportService  {
  * Save food to the node 'food' in the firebase database
  */
 function createFood(food: any, af: AngularFire) {
-  const toSaveFood = af.database.object('food/' + food.id);
+  const toSaveFood = af.database.object('food/' + food.ID);
   toSaveFood.set({
     'name': food.name,
     'synonyms': food.synonyms,
@@ -46,7 +46,7 @@ function createFood(food: any, af: AngularFire) {
  * Save food details to the node 'foodDetails' in the firebase database
  */
 function createFoodDetails(food: any, af: AngularFire) {
-  const toSaveFoodDetails = af.database.object('foodDetails/' + food.id);
+  const toSaveFoodDetails = af.database.object('foodDetails/' + food.ID);
   delete food.id;
   toSaveFoodDetails.set(food);
 }

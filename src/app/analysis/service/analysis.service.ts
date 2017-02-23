@@ -4,10 +4,11 @@ import {User} from '../../login/user';
 import {FirebaseService} from '../../firebase/firebase.service';
 import {ComponentAnalysis} from '../model/componentAnalysis';
 import {AgeRange} from '../model/ageRange';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {JournalEntriesService} from '../../journal/journalEntries.service';
 import {JournalEntry} from '../../journal/journalEntry';
 import {FoodDetails} from '../../food/foodDetails';
+import {ConsumptionReport} from '../model/consumptionReport';
 
 @Injectable()
 export class AnalysisService {
@@ -22,35 +23,55 @@ export class AnalysisService {
 
   }
 
-  public analyzeConsumption() {
-    let first: Observable<Map<string, ComponentAnalysis>> = this.calculateTargetConsumption();
-    first.flatMap(() => {
+  /*
+   * Compares the current consumption of a given day with the optimal target consumption.
+   * Returns a consumption report with a recommendation.
+   */
+  public analyzeConsumption(): Observable<Map<string, ComponentAnalysis>> {
+    return this.calculateTargetConsumption()
+    .concatMap(() => {
       return this.calculateCurrentConsumption();
-    }).subscribe(() => {
-        this.createAnalysis();
-      }
-    );
+    });
+    /* Two concatMaps in a row do not work.
+    .concatMap(() => {
+        return this.createConsumptionReport();
+    });*/
+  }
+
+  public createConsumptionReport(analysis: Map<string, ComponentAnalysis>): Observable<ConsumptionReport> {
+    let report: ConsumptionReport = new ConsumptionReport();
+    console.log(analysis);
+    let res: ConsumptionReport = report.createConsumptionReport(analysis);
+    return Observable.of(res);
   }
 
   private calculateCurrentConsumption(): Observable<Map<string, ComponentAnalysis>> {
-    return this.journalEntriesService.getJournalEntries(new Date(), this.user.uid).map((journalEntries: JournalEntry[]) => {
+    return this.journalEntriesService.getJournalEntries(new Date(), this.user.uid).flatMap((journalEntries: JournalEntry[]) => {
+      this.resetCurrentConsumption();
       for (let journalEntry of journalEntries) {
-        let second: Observable<FoodDetails> = this.firebaseService.getObject('foodDetails', journalEntry.foodID);
-        second.map((foodDetails: FoodDetails) => {
+        this.firebaseService.getObject('foodDetails', journalEntry.foodID).subscribe((foodDetails: FoodDetails) => {
           for (let component of foodDetails.components) {
-            let analysis: ComponentAnalysis = this.consumptionMap.get(component.name);
-            if (analysis !== undefined && component.name !== '' && component.name !== undefined) {
-              let consumedUnits: number = component.amount / foodDetails.matrix_amount * journalEntry.quantity;
-              analysis.currentAmount += consumedUnits;
-              this.consumptionMap.set(component.name, analysis);
+            if (component !== undefined && component.name !== '' && component.name !== undefined) {
+              let analysis: ComponentAnalysis = this.consumptionMap.get(component.name);
+              if (analysis !== undefined) {
+                let consumedUnits: number = component.amount / foodDetails.matrix_amount * journalEntry.quantity;
+                analysis.currentAmount = analysis.currentAmount + consumedUnits;
+                this.consumptionMap.set(component.name, analysis);
+              }
             }
           }
-          return this.consumptionMap;
         });
+
       }
-      return this.consumptionMap;
+      return Observable.of(this.consumptionMap);
     }
     );
+  }
+
+  private resetCurrentConsumption() {
+    this.consumptionMap.forEach((analysis: ComponentAnalysis, key: string) => {
+      analysis.currentAmount = 0;
+    });
   }
 
   private calculateTargetConsumption(): Observable<Map<string, ComponentAnalysis>> {
@@ -62,8 +83,8 @@ export class AnalysisService {
         if (targetConsumption.age === ageRange) {
           for (let comp of targetConsumption.components) {
             let component = new ComponentAnalysis();
-            component.componentName = comp.name;
-            component.targetAmount = comp.amount;
+            component.name = comp.name;
+            component.targetAmount = +comp.amount;
             component.currentAmount = 0;
             component.unit = comp.unit;
             this.consumptionMap.set(comp.name, component);
@@ -71,13 +92,6 @@ export class AnalysisService {
         }
       }
       return this.consumptionMap;
-    });
-
-  }
-
-  private createAnalysis() {
-    this.consumptionMap.forEach((value: ComponentAnalysis, key: string) => {
-      console.log(key, value);
     });
   }
 

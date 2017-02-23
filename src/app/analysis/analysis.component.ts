@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AnalysisService} from './service/analysis.service';
 import {JournalEntriesService} from '../journal/journalEntries.service';
+import {ComponentAnalysis} from './model/componentAnalysis';
 
 @Component({
   selector: 'app-analysis',
@@ -13,7 +14,11 @@ export class AnalysisComponent implements OnInit {
   constructor(private analysisService: AnalysisService) { }
 
   ngOnInit() {
-    this.analysisService.analyzeConsumption();
+    console.log('init Analysis');
+    this.analysisService.analyzeConsumption().subscribe((analysis: Map<string, ComponentAnalysis>) => {
+       this.analysisService.createConsumptionReport(analysis).subscribe((report) => {
+        console.log(report);
+      });
+    });
   }
-
 }
