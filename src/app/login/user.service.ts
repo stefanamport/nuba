@@ -26,6 +26,7 @@ export class UserService {
 
         this.firebaseService.getObject('userData', this.userAut.uid).subscribe(userInfo => {
           this.userInfo = userInfo;
+          this.userInfo.dataCompleted = true;
           this.userUpdated();
         });
       } else {

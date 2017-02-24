@@ -18,4 +18,6 @@ export class User {
   bmi?: any;
 
   foodShortlist?: Array<number>;
+
+  dataCompleted?: boolean;
 }

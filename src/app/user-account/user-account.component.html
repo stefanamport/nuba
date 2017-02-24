@@ -8,7 +8,10 @@
           <h2 class="whitebox__title">Deine Daten</h2>
 
           <div class="whitebox__content">
-            <form id="userData">
+            
+            <div class="loadingPlaceholder searchbar__loading" *ngIf="!user.dataCompleted"></div>
+
+            <form id="userData" *ngIf="user.dataCompleted">
 
               <div class="formrow">
                 <label>Geschlecht</label>
@@ -77,7 +80,9 @@
         <div class="whitebox">
           <h2 class="whitebox__title">Berechnungen</h2>
 
-          <div class="whitebox__content">
+          <div class="loadingPlaceholder" *ngIf="!user.dataCompleted"></div>
+
+          <div class="whitebox__content" *ngIf="user.dataCompleted">
               BMI: {{ user.bmi }}<br>
               Alter: {{ user.age }}<br>
               Geschätzter Kalorien Grundumsatz: {{ user.metabolicRate }} kcal
@@ -89,8 +94,9 @@
           </div>
         </div>
 
-        <div class="whitebox">
+        <div class="whitebox" *ngIf="user.dataCompleted">
           <h2 class="whitebox__title">Log Out</h2>
+
           <div class="whitebox__content">
               <button (click)="userService.logout()" class="button button-light button-small">
                 Logout

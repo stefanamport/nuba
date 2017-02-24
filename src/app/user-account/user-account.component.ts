@@ -18,7 +18,6 @@ export class UserAccountComponent  {
   savedMessage = '';
 
   constructor (private userService: UserService) {
-    this.formValidation.valid = true;
 
     this.genders = Genders;
     this.activityLevels = ActivityLevels;
@@ -27,6 +26,7 @@ export class UserAccountComponent  {
     this.userService.data.subscribe((data: any) => {
       this.user = data;
     });
+
   }
 
   // helper that *ngFoor can loop over object keys
