@@ -35,7 +35,6 @@
       padding: 0px;
     }
 }
-
   .mainnav__link {
     display: inline-block;
   }
@@ -47,6 +46,7 @@
     position: relative;
 
     line-height: $headerheight;
+    height: $headerheight;
     padding: 4px 10px;
 
     transition: .2s all;

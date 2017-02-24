@@ -104,11 +104,11 @@ a {
 
 .small {
 	font-size: 0.7em;
+}
 
-	&.light {
+.light {
 		color: $dark-gray-font;
 	}
-}
 
 .alert {
 	border: 1px solid darken($alert-color, 10);
