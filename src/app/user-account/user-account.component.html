@@ -47,12 +47,16 @@
               </div>
 
               <div class="formrow">
-                <label>Anzahl Stunden Sport pro Woche (cm)</label>
+                <label>Anzahl Stunden Sport pro Woche</label>
                 <input type="number" [(ngModel)]="user.hoursOfSport" name="hoursOfSport">
               </div>
 
               <div class="formrow">
               <button class="button button-big" aria-label="speichern" (click)="saveUser()"><span class="fa fa-check" aria-hidden="true"></span> speichern</button>
+              </div>
+
+              <div class="validation validation__message" *ngIf="!formValidation.valid">
+               {{formValidation.message}}
               </div>
 
             </form>

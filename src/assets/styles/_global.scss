@@ -159,6 +159,13 @@ input {
 	}
 }
 
+.validation__message {
+	background-color: $alert-color;
+	color: #fff;
+
+	padding: $boxpadding;
+	font-weight: bold;
+}
 
 
 // Global Button STylings
