@@ -148,7 +148,12 @@ input {
 	&:focus {
 		outline: none;
 		box-shadow: 0 0 10px rgba(0,0,0,.2);
-		border-bottom: 2px solid $main-color;
+		border-bottom-color: $main-color;
+	}
+
+	&:invalid {
+		border-bottom-color: $alert-color;
+		background: lighten($alert-color, 30);
 	}
 
 	&.small {
@@ -157,6 +162,7 @@ input {
 			border-bottom-width: 1px;
 		}
 	}
+
 }
 
 .validation__message {
@@ -174,6 +180,7 @@ input {
 	background: $main-color;
 	border: 0px;
 	text-decoration: none;
+	z-index: 4;
 
 	display: inline;
 	padding: 5px 10px;
@@ -244,6 +251,19 @@ input {
 			background: darken($light-gray, 5);
 		}
 		
+	}
+
+	.button-message {
+		&, &:hover {
+			color: darken($dark-gray-font, 20);
+			cursor: auto;
+
+			transition: .6s opacity;
+		}
+	}
+
+	.button-hidden {
+		opacity: 0;
 	}
 
 

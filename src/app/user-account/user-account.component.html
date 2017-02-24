@@ -25,17 +25,17 @@
 
               <div class="formrow">
                 <label>Geburtsdatum</label>
-                <input type="text" [(ngModel)]="user.birthday" type="date" name="geburtsdatum">
+                <input [(ngModel)]="user.birthday" type="date" name="geburtsdatum" required>
               </div>
 
               <div class="formrow">
                 <label>Gewicht (kg)</label>
-                <input type="number" [(ngModel)]="user.bodyweight" name="gewicht">
+                <input type="number" [(ngModel)]="user.bodyweight" name="gewicht" min="30" max="200" required>
               </div>
 
               <div class="formrow">
                 <label>Grösse (cm)</label>
-                <input type="number" [(ngModel)]="user.bodyheight" name="groesse">
+                <input type="number" [(ngModel)]="user.bodyheight" name="groesse" min="60" max="200" required>
               </div>
 
               <div class="formrow">
@@ -48,15 +48,23 @@
 
               <div class="formrow">
                 <label>Anzahl Stunden Sport pro Woche</label>
-                <input type="number" [(ngModel)]="user.hoursOfSport" name="hoursOfSport">
+                <input type="number" [(ngModel)]="user.hoursOfSport" name="hoursOfSport" min="0" max="50">
               </div>
 
               <div class="formrow">
-              <button class="button button-big" aria-label="speichern" (click)="saveUser()"><span class="fa fa-check" aria-hidden="true"></span> speichern</button>
+
+              <button type="submit" class="button button-big" aria-label="speichern" (click)="saveUser()"><span class="fa fa-check" aria-hidden="true"></span> speichern</button>
+              
+
+              <div class="button button-message button-big button-light" [ngClass]="{'button-hidden': savedMessage.length <= 0 }">
+                {{savedMessage}}
               </div>
 
-              <div class="validation validation__message" *ngIf="!formValidation.valid">
-               {{formValidation.message}}
+              </div>
+
+              <div class="validation validation__message" *ngFor="
+              let error of formValidation.messages">
+               {{error}}
               </div>
 
             </form>
