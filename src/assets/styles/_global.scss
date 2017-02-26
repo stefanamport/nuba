@@ -20,6 +20,35 @@ a {
     to {transform: rotate(360deg)}
 }
 
+// From animate.css
+@keyframes shake {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+.shake {
+  animation-name: shake;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+}
+
+.justmobile {
+	display: none;
+}
+
 .loadingAnimation {
 	opacity: .7;
 	
@@ -51,7 +80,7 @@ a {
     }
 }
 
-.loading-placeholder {
+.loadingPlaceholder {
 	position: absolute;
 	left: 0px;
 	top: 0px;
@@ -75,11 +104,11 @@ a {
 
 .small {
 	font-size: 0.7em;
+}
 
-	&.light {
+.light {
 		color: $dark-gray-font;
 	}
-}
 
 .alert {
 	border: 1px solid darken($alert-color, 10);
@@ -105,7 +134,7 @@ h3 {
 }
 
 .middler {
-	max-width: 800px;
+	max-width: $bp-big;
 	margin: 0px auto;
 }
 
@@ -119,7 +148,12 @@ input {
 	&:focus {
 		outline: none;
 		box-shadow: 0 0 10px rgba(0,0,0,.2);
-		border-bottom: 2px solid $main-color;
+		border-bottom-color: $main-color;
+	}
+
+	&:invalid {
+		border-bottom-color: $alert-color;
+		background: lighten($alert-color, 30);
 	}
 
 	&.small {
@@ -128,15 +162,28 @@ input {
 			border-bottom-width: 1px;
 		}
 	}
+
 }
 
+.validation__message {
+	background-color: $alert-color;
+	color: #fff;
+
+	padding: $boxpadding;
+	font-weight: bold;
+}
 
 
 // Global Button STylings
 
-button {
+.button {
 	background: $main-color;
 	border: 0px;
+	text-decoration: none;
+	z-index: 4;
+
+	display: inline;
+	padding: 5px 10px;
 
 	border-radius: 3px;
 
@@ -158,32 +205,67 @@ button {
 		color: #fff;
 		text-shadow: none;
 	}
-
-	&.small {
-		font-size: 1em;
-		font-weight: bold;
-	}
-	&.light {
+	&:hover {
 		background: $darker-gray;
-		color: $dark-gray-font;
-		text-shadow: none;
-		border: 1px solid $darker-gray;
-
-		&:hover {
-			background: $darker-gray;
-			color: #000;
-		}
-		&:focus {
-			border: 1px solid rgba(0,0,0,.2);
-		}
+		color: #000;
+	}
+	&:focus {
+		border: 1px solid rgba(0,0,0,.2);
 	}
 
 	&:disabled {
 		cursor: auto;
 		opacity: .3;
 	}
-	
 }
+	.button-small {
+		font-size: 1em;
+		padding: 2px 3px;
+		font-weight: bold;
+	}
+	.button-light {
+		background: $darker-gray;
+		color: $dark-gray-font;
+		text-shadow: none;
+		border: 1px solid $darker-gray;
+	}
+	.button-login {
+
+		width: 100%;
+		background: $light-gray;
+
+		color: #000;
+		text-shadow: none;
+		border: 1px solid $dark-gray-font;
+
+		font-size: 1.2em;
+		padding: 10px 5px;
+		margin-bottom: 10px;
+
+		&:last-child {
+			margin-bottom: 0px;
+		}
+
+		&:enabled:hover {
+			color: #000;
+			background: darken($light-gray, 5);
+		}
+		
+	}
+
+	.button-message {
+		&, &:hover {
+			color: darken($dark-gray-font, 20);
+			cursor: auto;
+
+			transition: .6s opacity;
+		}
+	}
+
+	.button-hidden {
+		opacity: 0;
+	}
+
 
 .whitebox {
 	background: #fff;
@@ -193,24 +275,29 @@ button {
 	position: relative;
 
 	box-shadow: 0 0 2px rgba(0,0,0,.2);
+}
 
-	h2 {
+	.whitebox__title {
 		margin: 0px -$boxpadding;
 		padding: $boxpadding/2 $boxpadding;
 
 		border-bottom: 1px solid $darker-gray;
 	}
 
-	.boxcontent {
+	.whitebox__content {
 		padding-top: $boxpadding;
 		
 	}
 
-	&.coachTip {
-		margin-top: 65px;
+.coachTip {
+	margin-top: 0px;
+}
+	
+	.coachTip-newHint {
+		@extend .shake;
 	}
 
-	.coachImage {
+	.coachTip__image {
 		position: absolute;
 		right: 40px;
 		top: -95px;
@@ -219,24 +306,11 @@ button {
 			width: 80px;
 		}
 	}
-}
 
-.profileImage {
-
-	width: $headerheight;
-	height: $headerheight;
-	border-radius: 100%;
-
-	border: 1px solid $darker-gray;
-	background: $light-gray;
-
-	overflow: hidden;
-
-	img {
-		width: 100%;
-		height: auto;
+	.coachTip__hint {
+		font-weight: bold;
 	}
-}
+
 
 .grid {
 	
@@ -244,19 +318,17 @@ button {
 	flex-flow: row wrap;
 
 	margin: 0 -$boxpadding/2;
-
-	.gridItem {
+}	
+	.grid__item {
 		padding: 0 $boxpadding/2;
 		box-sizing: border-box;
-
-		&.w-8 {
+	}
+		.w-8 {
 			width: 66.66%;
 		}
-		&.w-4 {
+		.w-4 {
 			width: 33.33%;
 		}
-	}
-}
 
 .row {
 	padding: 20px 0;
@@ -264,4 +336,135 @@ button {
 	&:first-of-type {
 		padding-top: $headerheight*2;
 	}
+}
+
+@media screen and (max-width: $bp-big + 20) {
+	.middler {
+		padding: 0 10px; 
+	}
+}
+
+@media screen and (max-width: $bp-mobile) {
+
+	.justmobile {
+		display: block;
+	}
+
+	.row {
+		&:first-of-type {
+			padding-top: 55px;
+		}
+	}
+	.row-noMobPadding:first-of-type {
+		padding-top: 20px;
+	}
+
+	// floating action button
+	.coachTip {
+
+		position: fixed;
+		right: 10px;
+		top: 50px;
+		z-index: 88;
+		
+		box-sizing: border-box;
+
+		background: $white;
+		width: 52px;
+		height: 52px;
+		box-shadow: 0 0 5px rgba(0,0,0,.5);
+
+		border-radius: 100%;
+
+		overflow: hidden;
+		
+		transition: .4s all;
+	}	
+		.coachTip__image {
+			
+			transition: .4s all;
+
+			top: -5px;
+			left: 0px;
+
+			img {
+				width: 55px;
+			}
+		}
+
+		.coachTip__hint {
+			margin-top: 10px;
+			font-weight: bold;
+			font-size: 2em;
+			line-height: normal;
+		}
+
+		.coachTip__buttons {
+			margin-top: 20px;
+		}
+	
+	.coachTip .boxcontent,
+	.coachTip .whitebox__title {
+		opacity: 0;
+		transition: .2s opacity;
+		transition-delay: .4s;
+	}
+
+	.coachTip-visible {
+		
+		right: 0px;
+		top: 30vh;
+		z-index: 88;
+
+		width: 100%;
+		height: 70vh;
+
+		border-radius: 0;
+
+		overflow: visible;
+
+		.whitebox__title,
+		.boxcontent {
+			opacity: 1;
+		}
+		
+		.coachTip__image {
+			top: -31.4vh;
+			left: auto;
+			right: 0;
+
+			img {
+				height: 35vh;
+				width: auto;
+			}
+		}
+
+	}
+}
+@media screen and (max-width: $bp-mobile) {
+	
+	body {
+		padding-bottom: $headerheight;
+	}
+
+	.w-8, .w-4 {
+		width: 100%;
+	}
+	
+	.button-small {
+		padding: 6px 9px;
+	}
+
+	.button-login {
+
+		font-size: .8em;
+
+		.fa {
+			font-size: 1.8em;
+			margin-bottom: 3px;
+			display: block;
+		}
+		
+	}
+
 }

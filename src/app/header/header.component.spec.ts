@@ -20,7 +20,9 @@ describe('HeaderComponent', () => {
   class UserServiceStub implements UserService {
     @Output() data = new EventEmitter();
 
-    public getUser() {}
+    public getUser() {
+      return [];
+    }
   }
 
   // FIXME: @Stefan: I commented this out as it did not work and I don't fully understand it.

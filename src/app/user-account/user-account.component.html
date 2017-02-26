@@ -2,13 +2,16 @@
   <div class="middler">
     <div class="grid">
 
-      <main class="gridItem w-8">
+      <main class="grid__item w-8">
 
         <div class="whitebox">
-          <h2>Deine Daten</h2>
+          <h2 class="whitebox__title">Deine Daten</h2>
 
-          <div class="boxcontent">
-            <form id="userData">
+          <div class="whitebox__content">
+            
+            <div class="loadingPlaceholder searchbar__loading" *ngIf="!user.dataCompleted"></div>
+
+            <form id="userData" *ngIf="user.dataCompleted">
 
               <div class="formrow">
                 <label>Geschlecht</label>
@@ -25,17 +28,17 @@
 
               <div class="formrow">
                 <label>Geburtsdatum</label>
-                <input type="text" [(ngModel)]="user.birthday" type="date" name="geburtsdatum">
+                <input [(ngModel)]="user.birthday" type="date" name="geburtsdatum" required>
               </div>
 
               <div class="formrow">
                 <label>Gewicht (kg)</label>
-                <input type="number" [(ngModel)]="user.bodyweight" name="gewicht">
+                <input type="number" [(ngModel)]="user.bodyweight" name="gewicht" min="30" max="200" required>
               </div>
 
               <div class="formrow">
                 <label>Grösse (cm)</label>
-                <input type="number" [(ngModel)]="user.bodyheight" name="groesse">
+                <input type="number" [(ngModel)]="user.bodyheight" name="groesse" min="60" max="200" required>
               </div>
 
               <div class="formrow">
@@ -47,12 +50,24 @@
               </div>
 
               <div class="formrow">
-                <label>Anzahl Stunden Sport pro Woche (cm)</label>
-                <input type="number" [(ngModel)]="user.hoursOfSport" name="hoursOfSport">
+                <label>Anzahl Stunden Sport pro Woche</label>
+                <input type="number" [(ngModel)]="user.hoursOfSport" name="hoursOfSport" min="0" max="50">
               </div>
 
               <div class="formrow">
-              <button class="big" aria-label="speichern" (click)="saveUser()"><span class="fa fa-check" aria-hidden="true"></span> speichern</button>
+
+              <button type="submit" class="button button-big" aria-label="speichern" (click)="saveUser()"><span class="fa fa-check" aria-hidden="true"></span> speichern</button>
+              
+
+              <div class="button button-message button-big button-light" [ngClass]="{'button-hidden': savedMessage.length <= 0 }">
+                {{savedMessage}}
+              </div>
+
+              </div>
+
+              <div class="validation validation__message" *ngFor="
+              let error of formValidation.messages">
+               {{error}}
               </div>
 
             </form>
@@ -61,11 +76,13 @@
         </div>
       </main>
 
-      <aside class="gridItem w-4">
+      <aside class="grid__item w-4">
         <div class="whitebox">
-          <h2>Berechnungen</h2>
+          <h2 class="whitebox__title">Berechnungen</h2>
 
-          <div class="boxcontent">
+          <div class="loadingPlaceholder" *ngIf="!user.dataCompleted"></div>
+
+          <div class="whitebox__content" *ngIf="user.dataCompleted">
               BMI: {{ user.bmi }}<br>
               Alter: {{ user.age }}<br>
               Geschätzter Kalorien Grundumsatz: {{ user.metabolicRate }} kcal
@@ -77,10 +94,11 @@
           </div>
         </div>
 
-        <div class="whitebox">
-          <h2>Log Out</h2>
-          <div class="boxcontent">
-              <button (click)="userService.logout()" class="light small">
+        <div class="whitebox" *ngIf="user.dataCompleted">
+          <h2 class="whitebox__title">Log Out</h2>
+
+          <div class="whitebox__content">
+              <button (click)="userService.logout()" class="button button-light button-small">
                 Logout
               </button>
           </div>

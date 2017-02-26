@@ -26,6 +26,7 @@ export class UserService {
 
         this.firebaseService.getObject('userData', this.userAut.uid).subscribe(userInfo => {
           this.userInfo = userInfo;
+          this.userInfo.dataCompleted = true;
           this.userUpdated();
         });
       } else {
@@ -186,19 +187,29 @@ export class UserService {
   }
 
   private setAge() {
-    let age = 0;
 
-    if (this.userInfo.birthday) {
-      let birthday = new Date(this.userInfo.birthday);
+    let age = this.calcAge(this.userInfo.birthday);
+
+    this.userInfo.age = age;
+  }
+
+   public calcAge ( birthday: string ) {
+
+    let age = 0;
+    let inputbirthday = birthday;
+
+    if (inputbirthday) {
+      let birthdayDate = new Date( inputbirthday );
       let today = new Date();
 
-      age = today.getFullYear() - birthday.getFullYear();
-      let monthDiff = today.getMonth() - birthday.getMonth();
-      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthday.getDate())) {
+      age = today.getFullYear() - birthdayDate.getFullYear();
+      let monthDiff = today.getMonth() - birthdayDate.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdayDate.getDate())) {
           age = age - 1;
       }
     }
 
-    this.userInfo.age = age;
+    return age;
   }
+
 }

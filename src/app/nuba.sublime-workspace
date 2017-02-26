@@ -1,0 +1,1926 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"max",
+				"maxlength\tAttr"
+			],
+			[
+				"dar",
+				"dark-gray-font"
+			],
+			[
+				"background",
+				"background-size"
+			],
+			[
+				"gray",
+				"light-gray"
+			],
+			[
+				"get",
+				"getToday"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "header/header.component.html",
+			"settings":
+			{
+				"buffer_size": 1731,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "user-account/user-account.component.ts",
+			"settings":
+			{
+				"buffer_size": 913,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "header/header.component.ts",
+			"settings":
+			{
+				"buffer_size": 482,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "header/header.component.spec.ts",
+			"settings":
+			{
+				"buffer_size": 1690,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "journal/nubaSearch.component.html",
+			"settings":
+			{
+				"buffer_size": 2104,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "journal/journal.component.scss",
+			"settings":
+			{
+				"buffer_size": 5867,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/stefanamport/repos/nuba/src/assets/styles/_global.scss",
+			"settings":
+			{
+				"buffer_size": 6133,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 203.0,
+		"last_filter": "list pack",
+		"selected_items":
+		[
+			[
+				"list pack",
+				"Package Control: List Packages"
+			],
+			[
+				"lint",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"SublimeLinter: Toggle Linter",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"A File Icon: Clean Patches"
+			],
+			[
+				"linter",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"INSTALL",
+				"Package Control: Install Package"
+			],
+			[
+				"REMOVE",
+				"Package Control: Remove Package"
+			],
+			[
+				"material",
+				"Material Theme: Configuration"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"browse",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 456.0
+	},
+	"console":
+	{
+		"height": 99.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/stefanamport/repos/nuba",
+		"/Users/stefanamport/repos/nuba/src/assets/images",
+		"/Users/stefanamport/repos/nuba/src/assets/styles"
+	],
+	"file_history":
+	[
+		"/Users/stefanamport/repos/nuba/.travis.yml",
+		"/Users/stefanamport/repos/nuba/src/assets/styles/_global.scss",
+		"/Users/stefanamport/repos/nuba/src/app/login/login.scss",
+		"/Users/stefanamport/repos/nuba/src/app/login/login.component.html",
+		"/Users/stefanamport/repos/nuba/src/app/journal/journal.component.ts",
+		"/Users/stefanamport/repos/nuba/src/app/user-account/user-account.component.html",
+		"/Users/stefanamport/repos/nuba/src/app/journal/journal.component.html",
+		"/Users/stefanamport/repos/nuba/src/app/journal/journalList.component.ts",
+		"/Users/stefanamport/repos/nuba/src/assets/styles/_vars.scss",
+		"/Users/stefanamport/repos/nuba/src/app/journal/nubaSearch.component.html",
+		"/Users/stefanamport/repos/nuba/src/app/journal/journal.component.scss",
+		"/Users/stefanamport/repos/nuba/src/app/journal/journalList.component.html",
+		"/Users/stefanamport/repos/nuba/node_modules/@angular/cli/blueprints/component/files/__path__/__name__.component.ts",
+		"/Users/stefanamport/repos/nuba/src/app/header/header.component.scss",
+		"/Users/stefanamport/repos/nuba/src/app/header/header.component.html",
+		"/Users/stefanamport/repos/nuba/node_modules/font-awesome/scss/_variables.scss",
+		"/Users/stefanamport/repos/stefanamport-ch/.htaccess.js",
+		"/Users/stefanamport/repos/stefanamport-ch/.htaccess.json",
+		"/Users/stefanamport/repos/stefanamport-ch/scripts/main.js",
+		"/Users/stefanamport/repos/stefanamport-ch/index.html",
+		"/Users/stefanamport/repos/stefanamport-ch/html/index.html",
+		"/Users/stefanamport/repos/stefanamport-ch/dist/styles/styles.css",
+		"/Users/stefanamport/repos/stefanamport-ch/package.json",
+		"/Users/stefanamport/repos/stefanamport-ch/gulpfile.js",
+		"/Users/stefanamport/repos/test-cli/tslint.json",
+		"/Users/stefanamport/repos/nuba/README.md",
+		"/Users/stefanamport/repos/nuba/package.json",
+		"/Users/stefanamport/repos/nuba/src/app/journal/pipes/searchFilter.pipe.ts",
+		"/Users/stefanamport/repos/nuba/src/app/journal/pipes/orderByAlphabet.pipe.ts",
+		"/Users/stefanamport/repos/nuba/src/app/journal/pipes/orderByAlphabet.pipe.spec.ts",
+		"/Users/stefanamport/repos/nuba/src/app/journal/nubaSearch.component.spec.ts",
+		"/Users/stefanamport/repos/nuba/src/app/journal/journal.module.ts",
+		"/Users/stefanamport/repos/nuba/src/app/app.component.ts",
+		"/Users/stefanamport/repos/nuba/src/app/login/user.service.ts",
+		"/Users/stefanamport/repos/nuba/src/app/journal/nubaSearch.component.ts",
+		"/Users/stefanamport/repos/nuba/src/app/journal/journalEntry.ts",
+		"/Users/stefanamport/repos/nuba/node_modules/broccoli-merge-trees/entry.js",
+		"/Users/stefanamport/repos/nuba/src/app/journal/pipes/searchFilter.pipe.spec.ts",
+		"/Users/stefanamport/repos/nuba/src/app/food/food.service.ts",
+		"/Users/stefanamport/repos/nuba/src/app/journal/journalEntries.service.ts",
+		"/Users/stefanamport/repos/nuba/src/app/journal/journalEntries.service.spec.ts",
+		"/Users/stefanamport/repos/nuba/src/app/login/user.ts",
+		"/Users/stefanamport/repos/nuba/dist/assets/styles/_global.scss",
+		"/Users/stefanamport/repos/nuba/src/app/app.component.spec.ts",
+		"/Users/stefanamport/repos/nuba/src/app/journal/journal.component.spec.ts",
+		"/Users/stefanamport/repos/nuba/karma.conf.js",
+		"/Users/stefanamport/repos/nuba/protractor.conf.js",
+		"/Users/stefanamport/repos/nuba/e2e/app.e2e-spec.ts",
+		"/Users/stefanamport/repos/SynchHubSteps-New/src/app/shared/error-logger.service.spec.ts",
+		"/Users/stefanamport/repos/nuba/src/app/food/food.ts",
+		"/Users/stefanamport/repos/nuba/src/app/firebase/firebase.service.ts",
+		"/Users/stefanamport/repos/nuba/node_modules/fstream/examples/pipe.js",
+		"/Users/stefanamport/repos/nuba/src/app/app.module.ts",
+		"/Users/stefanamport/repos/nuba/src/app/user-account/user-account.module.ts",
+		"/Users/stefanamport/repos/nuba/src/app/user-account/user-account.routes.ts",
+		"/Users/stefanamport/repos/nuba/src/app/app-routing/app-routing.module.ts",
+		"/Users/stefanamport/repos/nuba/src/app/analysis/analysis.module.ts",
+		"/Users/stefanamport/repos/nuba/src/app/analysis/analysis.routes.ts",
+		"/Users/stefanamport/repos/nuba/src/app/journal/journal.routes.ts",
+		"/Users/stefanamport/repos/nuba/src/app/user-account/user-account.component.scss",
+		"/Users/stefanamport/repos/nuba/src/app/analysis/analysis.component.ts",
+		"/Users/stefanamport/repos/nuba/src/app/user-account/user-account.component.ts",
+		"/Users/stefanamport/repos/modular-frontend/exercises/2_html__outline.html",
+		"/Users/stefanamport/Desktop/html",
+		"/Users/stefanamport/Desktop/test.scss",
+		"/Users/stefanamport/Desktop/untitled.ts",
+		"/Users/stefanamport/repos/nuba/src/app/login/testing/fakeUser.service.ts",
+		"/Users/stefanamport/repos/nuba/src/app/food-database/food-database.component.spec.ts",
+		"/Users/stefanamport/repos/nuba/src/app/food-database/food-database.component.ts",
+		"/Users/stefanamport/repos/nuba/src/app/header/header.component.spec.ts-",
+		"/Users/stefanamport/repos/nuba/src/app/app.component.spec.ts-",
+		"/Users/stefanamport/repos/nuba/src/app/header/header.component.ts",
+		"/Users/stefanamport/repos/nuba/src/app/header/header.component.spec.ts",
+		"/Users/stefanamport/repos/nuba/src/main.ts",
+		"/Users/stefanamport/repos/nuba/src/app/user-account/user-account.component.spec.ts",
+		"/Users/stefanamport/repos/nuba/src/test.ts",
+		"/Users/stefanamport/repos/nuba/src/app/login/user.specs.ts",
+		"/Users/stefanamport/repos/nuba/src/tsconfig.json",
+		"/Users/stefanamport/repos/nuba/src/app/login/login.component.ts",
+		"/Users/stefanamport/repos/nuba/src/app/login/login.guard.ts",
+		"/Users/stefanamport/repos/nuba/src/app/app.component.html",
+		"/Users/stefanamport/repos/nuba/src/app/login/logged-in.guard.ts",
+		"/Users/stefanamport/Downloads/nuba-userAccount/app/header/header.html",
+		"/Users/stefanamport/Downloads/nuba-userAccount/app/header/header.component.ts",
+		"/Users/stefanamport/Downloads/nuba-userAccount/app/app.component.ts",
+		"/Users/stefanamport/Downloads/nuba-userAccount/app/app.module.ts",
+		"/Users/stefanamport/Downloads/nuba-userAccount/app/nubaUserAccount/nubaUserAccount.component.ts",
+		"/Users/stefanamport/Downloads/nuba-userAccount/assets/styles/_nubaUserAccount.scss",
+		"/Users/stefanamport/Downloads/nuba-userAccount/app/nubaUserAccount/nubaUserAccount.component.html",
+		"/Users/stefanamport/repos/nuba/src/styles.scss",
+		"/Users/stefanamport/repos/nuba/app/nubaUserAccount/firebase.service.ts",
+		"/Users/stefanamport/repos/nuba/app/nubaUserAccount/nubaUserAccount.component.ts",
+		"/Users/stefanamport/repos/nuba/app/logIn/user.service.ts",
+		"/Users/stefanamport/repos/nuba/app/routing/routing.module.ts",
+		"/Users/stefanamport/repos/nuba/app/app.module.ts",
+		"/Users/stefanamport/repos/nuba/app/logIn/login.component.ts",
+		"/Users/stefanamport/repos/nuba/app/logIn/user.ts",
+		"/Users/stefanamport/repos/nuba/app/header/header.component.ts",
+		"/Users/stefanamport/repos/nuba/app/nubaUserAccount/user.ts",
+		"/Users/stefanamport/repos/nuba/app/header/header.html",
+		"/Users/stefanamport/repos/nuba/app/nubaUserAccount/nubaUserAccount.component.html",
+		"/Users/stefanamport/repos/nuba/assets/styles/_global.scss",
+		"/Users/stefanamport/repos/nuba/assets/styles/_nubaJournal.scss",
+		"/Users/stefanamport/repos/nuba/app/logIn/login.component.js",
+		"/Users/stefanamport/repos/nuba/app/logIn/login.component.html",
+		"/Users/stefanamport/repos/nuba/app/app.component.ts",
+		"/Users/stefanamport/repos/nuba/app/nubaJournal/journalList.component.ts",
+		"/Users/stefanamport/repos/nuba/app/nubaJournal/nubaJournal.component.ts",
+		"/Users/stefanamport/repos/nuba/assets/styles/main.scss",
+		"/Users/stefanamport/repos/nuba/assets/styles/_logIn.scss",
+		"/Users/stefanamport/repos/nuba/app/nubaUserAccount/-user.service.ts",
+		"/Users/stefanamport/repos/nuba/assets/styles/_vars.scss",
+		"/Users/stefanamport/repos/nuba/app/app.component.html",
+		"/Users/stefanamport/repos/nuba/app/header/header.component.js",
+		"/Users/stefanamport/repos/nuba/app/nubaJournal/journalList.component.html",
+		"/Users/stefanamport/repos/nuba/assets/styles/_nubaUserAccount.scss",
+		"/Users/stefanamport/repos/nuba/app/logIn/user.service.js",
+		"/Users/stefanamport/repos/nuba/app/nubaUserAccount/user.service.ts",
+		"/Users/stefanamport/repos/nuba/app/nubaUserAccount/user.service.js",
+		"/Users/stefanamport/repos/nuba/app/nubaJournal/journalEntries.service.ts",
+		"/Users/stefanamport/repos/nuba/app/nubaUserAccount/food.service.js",
+		"/Users/stefanamport/repos/nuba/tsconfig.json",
+		"/Users/stefanamport/repos/nuba/app/app.module.js",
+		"/Users/stefanamport/repos/nuba/app/nubaUserAccount/firebase.service.js",
+		"/Users/stefanamport/repos/nuba/nuba.sublime-project",
+		"/Users/stefanamport/repos/nuba/index.html",
+		"/Users/stefanamport/repos/nuba/app/foodDatabase/food.service.ts",
+		"/Users/stefanamport/repos/nuba/app/nubaJournal/journalEntry.js"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 106.0,
+		"where_history":
+		[
+			"/Users/stefanamport/repos/nuba"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"searchbar__submitbutton",
+			"whitebox",
+			"button",
+			"light",
+			"button",
+			"buttonbutton",
+			"button",
+			"load",
+			"grid",
+			"grid__",
+			"grid",
+			"griditem",
+			"coach",
+			"shake",
+			"coach",
+			"shake",
+			"coach",
+			"coachTipp",
+			"coachTip",
+			"coachTip__buttons",
+			"button",
+			"coachTip",
+			"coach",
+			"coachTip-visible",
+			"class",
+			"ngclass",
+			"class",
+			"coach",
+			"whitebox",
+			"main",
+			"foodentry",
+			"entry",
+			"4px",
+			"height",
+			"searchbar__quantity",
+			".searchbar__quantity",
+			"submit",
+			".searchbar__quantity",
+			"border: 1px",
+			"quantity",
+			"gray",
+			"searchbar",
+			"searchbar__results",
+			"list",
+			"food-2",
+			"searchbar ",
+			"searchbar__submit",
+			"searchbar__quantity",
+			".searchbar",
+			"foodentry__block-quantity",
+			"input",
+			"red",
+			"foodentry__block-time",
+			"entry",
+			"resultlist__entry",
+			"dropdownMaxHeight",
+			"search",
+			"title",
+			"whitebox__title",
+			"coachTip__image",
+			"coach",
+			"logo",
+			"transform",
+			"logo",
+			".fa",
+			"fa",
+			"active",
+			"navbutton",
+			"navbutton__inner",
+			"span",
+			"mainnav__linkbutton",
+			"linkbutton",
+			"linkbutton\nlinkbutton\nlinkbutton",
+			"inner",
+			"avatar",
+			"font-size",
+			"button",
+			"hover",
+			"overlay",
+			"font-weight",
+			"angular-c",
+			"angular-cli",
+			"path",
+			"@",
+			"angular-cli",
+			"angular",
+			"cli",
+			"glob",
+			"webpack",
+			"fallback",
+			"angular-cli",
+			"cli",
+			"angular-cli",
+			"cli",
+			"pipe",
+			"appComp",
+			"pipe",
+			"appcompo",
+			"AppComponent",
+			"SearchFilterPipe",
+			"pipe",
+			"searchFilter",
+			"spy",
+			"searchFilter",
+			"pipe",
+			"searchFilter",
+			"filter",
+			"searchFilter",
+			"pipe",
+			"orderby",
+			"searchFilter",
+			"pipe",
+			"orderAlphabet",
+			"OrderByAlphabetPipe",
+			"pipe",
+			"searchFilter",
+			"pipe",
+			"searchFilter",
+			"search",
+			"pipe",
+			"SearchFilterPipe",
+			"orderByAlphabet",
+			"pipe",
+			"uhr",
+			"time",
+			"timeProv",
+			"foodShortlist",
+			"shortlist"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "header/header.component.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1731,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1454,
+								1454
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1477,
+										1478
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/angle_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1429,
+										1430
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": true,
+								"indentSize": 2,
+								"tabSize": 2
+							}
+						},
+						"translation.x": 0.0,
+						"translation.y": 478.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "user-account/user-account.component.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 913,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								715,
+								590
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										718,
+										719
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										514,
+										515
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": true,
+								"indentSize": 2,
+								"tabSize": 2
+							},
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 104.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "header/header.component.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 482,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								299,
+								299
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										317,
+										318
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										285,
+										286
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": true,
+								"indentSize": 2,
+								"tabSize": 2
+							},
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "header/header.component.spec.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1690,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1058,
+								1058
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1686,
+										1687
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										447,
+										448
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": true,
+								"indentSize": 2,
+								"tabSize": 2
+							},
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 465.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "journal/nubaSearch.component.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2104,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1179,
+								1179
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1202,
+										1203
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1171,
+										1172
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 155.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "journal/journal.component.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5867,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1960,
+								1960
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1963,
+										1964
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1890,
+										1891
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1858.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/Users/stefanamport/repos/nuba/src/assets/styles/_global.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6133,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2497,
+								2503
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2521.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.doc":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 25.0
+	},
+	"pinned_build_system": "",
+	"project": "nuba.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"global",
+				"src/assets/styles/_global.scss"
+			],
+			[
+				"travis",
+				".travis.yml"
+			],
+			[
+				"header",
+				"src/app/header/header.component.ts"
+			],
+			[
+				"user-a",
+				"src/app/user-account/user-account.component.ts"
+			],
+			[
+				"global.",
+				"src/assets/styles/_global.scss"
+			],
+			[
+				"login",
+				"src/app/login/login.scss"
+			],
+			[
+				"global.s",
+				"src/assets/styles/_global.scss"
+			],
+			[
+				"vars",
+				"src/assets/styles/_vars.scss"
+			],
+			[
+				"journal",
+				"src/app/journal/journal.component.ts"
+			],
+			[
+				"account",
+				"src/app/user-account/user-account.component.html"
+			],
+			[
+				"var",
+				"src/assets/styles/_vars.scss"
+			],
+			[
+				"header.scss",
+				"src/app/header/header.component.scss"
+			],
+			[
+				"variab",
+				"node_modules/font-awesome/scss/_variables.scss"
+			],
+			[
+				"",
+				"global"
+			],
+			[
+				"readme",
+				"README.md"
+			],
+			[
+				"orderbyalph",
+				"src/app/journal/pipes/orderByAlphabet.pipe.ts"
+			],
+			[
+				"search",
+				"src/app/journal/nubaSearch.component.html"
+			],
+			[
+				"journalentry",
+				"src/app/journal/journalEntry.ts"
+			],
+			[
+				"entry",
+				"node_modules/broccoli-merge-trees/entry.js"
+			],
+			[
+				"user.service",
+				"src/app/login/user.service.ts"
+			],
+			[
+				"journalentries",
+				"src/app/journal/journalEntries.service.ts"
+			],
+			[
+				"foodservice",
+				"src/app/food/food.service.ts"
+			],
+			[
+				"user",
+				"src/app/login/user.ts"
+			],
+			[
+				"entry.ts",
+				"src/app/journal/journalEntry.ts"
+			],
+			[
+				"global.sc",
+				"dist/assets/styles/_global.scss"
+			],
+			[
+				"nubasearch.component.spec.ts",
+				"src/app/journal/nubaSearch.component.spec.ts"
+			],
+			[
+				"nubasearc",
+				"src/app/journal/nubaSearch.component.ts"
+			],
+			[
+				"app.compnent.spec",
+				"src/app/app.component.spec.ts"
+			],
+			[
+				"search.component",
+				"src/app/journal/nubaSearch.component.spec.ts"
+			],
+			[
+				"journal.component",
+				"src/app/journal/journal.component.spec.ts"
+			],
+			[
+				"journal.component.spec",
+				"src/app/journal/journal.component.spec.ts"
+			],
+			[
+				"package",
+				"package.json"
+			],
+			[
+				"error-handler",
+				"src/app/shared/error-handler.service.ts"
+			],
+			[
+				"nubasear",
+				"src/app/journal/nubaSearch.component.html"
+			],
+			[
+				"component.spec",
+				"src/app/app.component.spec.ts"
+			],
+			[
+				"foodser",
+				"src/app/food/food.service.ts"
+			],
+			[
+				"userservice",
+				"src/app/login/user.service.ts"
+			],
+			[
+				"food.",
+				"src/app/food/food.ts"
+			],
+			[
+				"search.compon",
+				"src/app/journal/nubaSearch.component.ts"
+			],
+			[
+				"pipe",
+				"node_modules/fstream/examples/pipe.js"
+			],
+			[
+				"food",
+				"src/app/food/food.service.ts"
+			],
+			[
+				"food.ser",
+				"src/app/food/food.service.ts"
+			],
+			[
+				"user.ts",
+				"src/app/login/user.ts"
+			],
+			[
+				"firebaseseriv",
+				"src/app/firebase/firebase.service.ts"
+			],
+			[
+				"searchcomponent",
+				"src/app/journal/nubaSearch.component.html"
+			],
+			[
+				"journallist",
+				"src/app/journal/journalList.component.ts"
+			],
+			[
+				"global.css",
+				"src/assets/styles/_global.scss"
+			],
+			[
+				"nubaser",
+				"src/app/journal/nubaSearch.component.ts"
+			],
+			[
+				"journal.",
+				"src/app/journal/journal.component.ts"
+			],
+			[
+				"foodservic",
+				"src/app/food/food.service.ts"
+			],
+			[
+				"nubasearch",
+				"src/app/journal/nubaSearch.component.spec.ts"
+			],
+			[
+				"firebaseservice",
+				"src/app/firebase/firebase.service.ts"
+			],
+			[
+				"user-account.routes",
+				"src/app/user-account/user-account.routes.ts"
+			],
+			[
+				"user-account",
+				"src/app/user-account/user-account.module.ts"
+			],
+			[
+				"journal.module",
+				"src/app/journal/journal.module.ts"
+			],
+			[
+				"journal.routes",
+				"src/app/journal/journal.routes.ts"
+			],
+			[
+				"analysis.routes",
+				"src/app/analysis/analysis.routes.ts"
+			],
+			[
+				"analysis.",
+				"src/app/analysis/analysis.module.ts"
+			],
+			[
+				"analysis.module",
+				"src/app/analysis/analysis.module.ts"
+			],
+			[
+				"user-account.module",
+				"src/app/user-account/user-account.module.ts"
+			],
+			[
+				"app-routing",
+				"src/app/app-routing/app-routing.module.ts"
+			],
+			[
+				"app.routes",
+				"src/app/journal/journal.routes.ts"
+			],
+			[
+				"app",
+				"app/app.component.spec.ts"
+			],
+			[
+				"useraccount",
+				"app/user-account/user-account.component.ts"
+			],
+			[
+				"header.",
+				"app/header/header.component.ts"
+			],
+			[
+				"user.ser",
+				"app/login/user.service.ts"
+			],
+			[
+				"hreader",
+				"app/header/header.component.spec.ts"
+			],
+			[
+				"router",
+				"app/app-routing/app-routing.module.ts"
+			],
+			[
+				"module",
+				"app/app.module.ts"
+			],
+			[
+				"main",
+				"main.ts"
+			],
+			[
+				"moudle",
+				"app/app.module.ts"
+			],
+			[
+				"user.",
+				"app/login/user.ts"
+			],
+			[
+				"specs",
+				"app/login/user.specs.ts"
+			],
+			[
+				"login.servi",
+				"app/login/user.service.ts"
+			],
+			[
+				"head",
+				"app/header/header.component.ts"
+			],
+			[
+				"guard",
+				"app/login/login.guard.ts"
+			],
+			[
+				"accouut",
+				"app/user-account/user-account.component.spec.ts"
+			],
+			[
+				"loginguard",
+				"app/login/login.guard.ts"
+			],
+			[
+				"login.guard",
+				"app/login/login.guard.ts"
+			],
+			[
+				"app.com",
+				"app/app.component.ts"
+			],
+			[
+				"rout",
+				"app/app-routing/app-routing.module.ts"
+			],
+			[
+				"app.module",
+				"app/app.module.ts"
+			],
+			[
+				"accunt",
+				"app/user-account/user-account.component.html"
+			],
+			[
+				"loggeid",
+				"app/login/logged-in.guard.ts"
+			],
+			[
+				"routing",
+				"app/app-routing/app-routing.module.ts"
+			],
+			[
+				"style",
+				"assets/styles/_vars.scss"
+			],
+			[
+				"header.comp",
+				"app/header/header.component.ts"
+			],
+			[
+				"glba",
+				"assets/styles/_global.scss"
+			],
+			[
+				"login.",
+				"app/logIn/login.component.ts"
+			],
+			[
+				"login.service",
+				"app/logIn/user.service.ts"
+			],
+			[
+				"nubauser",
+				"app/nubaUserAccount/nubaUserAccount.component.ts"
+			],
+			[
+				"login.comp",
+				"app/logIn/login.component.ts"
+			],
+			[
+				"login.ser",
+				"app/logIn/user.service.ts"
+			],
+			[
+				"rit",
+				"app/routing/routing.module.ts"
+			],
+			[
+				"tsconfig",
+				"tsconfig.json"
+			],
+			[
+				"nubajournal",
+				"app/nubaJournal/nubaJournal.component.ts"
+			],
+			[
+				"index",
+				"index.html"
+			],
+			[
+				"nubalist",
+				"app/nubaJournal/journalList.component.html"
+			],
+			[
+				"service",
+				"app/foodDatabase/food.service.ts"
+			],
+			[
+				"list",
+				"app/nubaJournal/journalList.component.ts"
+			],
+			[
+				"main.",
+				"assets/styles/main.scss"
+			],
+			[
+				"njubasearch",
+				"app/nubaJournal/nubaSearch.component.html"
+			],
+			[
+				"nubasera",
+				"app/nubaJournal/nubaSearch.component.html"
+			],
+			[
+				"entries.serv",
+				"app/nubaJournal/journalEntries.service.ts"
+			],
+			[
+				"entries.ser",
+				"app/nubaJournal/journalEntries.service.js"
+			],
+			[
+				"styles",
+				"assets/styles/_global.scss"
+			],
+			[
+				"routing.module",
+				"app/routing/routing.module.ts"
+			],
+			[
+				"daily",
+				"app/dailyFood/dailyFood.component.ts"
+			],
+			[
+				"evaluation",
+				"app/evaluation/evaluation.component.ts"
+			],
+			[
+				"evaul",
+				"app/evaluation/evaluation.component.ts"
+			],
+			[
+				"dailyfood",
+				"app/dailyFood/dailyFood.component.ts"
+			],
+			[
+				"main.scss",
+				"assets/styles/main.scss"
+			],
+			[
+				"main.js",
+				"app/main.js"
+			],
+			[
+				"inde",
+				"index.html"
+			],
+			[
+				"main.ts",
+				"main.ts"
+			],
+			[
+				"gulp",
+				"gulpfile.js"
+			],
+			[
+				"index.html",
+				"html/index.html"
+			],
+			[
+				"main.s",
+				"styles/main.scss"
+			],
+			[
+				"app.",
+				"app/app.module.ts"
+			],
+			[
+				"detail",
+				"app/hero-detail.component.ts"
+			],
+			[
+				"dash",
+				"app/dashboard.component.ts"
+			],
+			[
+				"dashboard",
+				"app/dashboard.component.ts"
+			],
+			[
+				"hero",
+				"app/hero.service.ts"
+			],
+			[
+				"dt",
+				"app/hero-detail.component.ts"
+			],
+			[
+				"modul",
+				"app/app.module.ts"
+			],
+			[
+				"mock",
+				"app/mock-heroes.ts"
+			],
+			[
+				"comp",
+				"app/app.component.ts"
+			],
+			[
+				"hero.",
+				"app/hero.ts"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Desktop/nuba.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 262.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,48 +1,25 @@
 // Module login
 @import '../../assets/styles/_vars';
 
-.welcome.row {
+.row-welcome {
 	text-align: center;
+	padding-top: 150px
 }
 
-.login-box {
-	
+.loginbox {
 	max-width: 300px;
 	margin: 0px auto;
-
 }
 
-button.loginbutton {
-
-	width: 100%;
-	background: $light-gray;
-
-	color: #000;
-	text-shadow: none;
-	border: 1px solid $dark-gray-font;
-
-	font-size: 1.2em;
-	padding: 10px 5px;
-	margin-bottom: 10px;
-
-	&:last-child {
-		margin-bottom: 0px;
-	}
-
-	&:enabled:hover {
-		color: #000;
-		background: darken($light-gray, 5);
-	}
+@media screen and (max-width: $bp-mobile) {
 	
-	&.logout {
-		margin-top: 20px;
-		font-size: 1.0em;
-		padding: 2px;
-
-		border: 0px;
-		background: none;
-		&:hover {
-			color: $main-color;
-		}
+	.row-welcome {
+		padding-top: 50px
 	}
+
+	.loginbox {
+		width: auto;
+		max-width: none;
+	}
+
 }

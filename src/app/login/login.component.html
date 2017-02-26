@@ -1,23 +1,23 @@
 
-<div class="welcome row">
+<div class="row-welcome">
     <div class="middler">
-    	<h1>Willkommen bei nuba</h1>
-    	<p>Hier kommt ein kurzer Beschreibungstext.</p>
+    	<h1>Willkommen bei nu<sup>ba</sup></h1>
+    	<p>Das digtale Ess-Coaching.</p>
     </div>
 </div>
 
 <div class="logIn row">
     <div class="middler">
 
-    	<div class="login-box whitebox">
-    		<div class="login-buttons" *ngIf="!user.uid">
-		    	<button ng (click)="login('Mail')" class="loginbutton" disabled>
+    	<div class="loginbox whitebox">
+    		<div class="loginbox__buttons" *ngIf="!user.uid">
+		    	<button ng (click)="login('Mail')" class="button button-login" disabled>
                   <span class="fa fa-envelope" aria-hidden="true"></span> Login mit E-Mail
                 </button>
-                <button ng (click)="login('Google')" class="loginbutton">
+                <button ng (click)="login('Google')" class="button button-login">
 				  <span class="fa fa-google" aria-hidden="true"></span> Login mit Google Konto
 				</button>
-                <button ng (click)="login('Facebook')" class="loginbutton" disabled>
+                <button ng (click)="login('Facebook')" class="button button-login" disabled>
                   <span class="fa fa-facebook" aria-hidden="true"></span> Login mit Facebook
                 </button>
 			</div>

@@ -1,11 +1,14 @@
 <div class="searchbar">
+  
+  <div class="searchbar__overlay"></div>
+
   <div class="middler">
 
     <div class="searchbar__inner">
       
       <form class="searchbar__form" (ngSubmit)="addToJournal(searchForm.value)"  #searchForm="ngForm" [ngClass]="{'searchbar__form-noSelection': selectedFood===null }">
         
-        <div class="loading-placeholder searchbar__loading" *ngIf="foodList?.length == 0">
+        <div class="loadingPlaceholder searchbar__loading" *ngIf="foodList?.length == 0">
           Wir laden deine Nahrungsmittel...
         </div>
 
@@ -17,7 +20,7 @@
           <label for="food" class="foodLabel">{{selectedFood?.matrix_unit}}</label>
         </div>
         <div class="searchbar__submit searchbar__fieldgroup">
-           <button type="submit" id="saveFood" class="searchbar__submitbutton" [disabled]="selectedFood===null" ><span class="fa fa-check" aria-hidden="true"></span></button>
+           <button type="submit" id="saveFood" class="button searchbar__submitbutton" [disabled]="selectedFood===null" ><span class="fa fa-check" aria-hidden="true"></span></button>
         </div>
   
       </form>
