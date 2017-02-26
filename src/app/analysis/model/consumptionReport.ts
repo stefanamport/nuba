@@ -11,7 +11,6 @@ export class ConsumptionReport {
   private tooMuch: Array<string> = [];
 
   public createConsumptionReport(compAnalysis: Map<string, ComponentAnalysis>): ConsumptionReport {
-    console.log(compAnalysis);
     this.compareTargetCurrentConsumption(compAnalysis);
     this.createRecommendation();
 

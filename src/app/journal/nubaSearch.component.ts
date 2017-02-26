@@ -44,7 +44,6 @@ export class SearchComponent {
         this.foodShortlist = data.foodShortlist;
       }
     });
-
   }
 
   // List-Navigation with Keyboard
