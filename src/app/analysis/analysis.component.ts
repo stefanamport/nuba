@@ -26,6 +26,7 @@ export class AnalysisComponent implements OnInit {
     this.analysisService.initConsumptionTracking();
     this.analysisService.getConsumptionReport().subscribe((report) => {
       console.log(report);
+      this.report = report;
     });
   }
 }
