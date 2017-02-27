@@ -8,13 +8,13 @@ import {User} from '../login/user';
 import {FirebaseListObservable} from 'angularfire2';
 import {Output, Input} from '@angular/core/src/metadata/directives';
 
-import { DatePipe } from '@angular/common';
+import { MomentPipe } from './pipes/momentjs.pipe';
 import { AnalysisService } from '../analysis/service/analysis.service';
 
 @Component({
   selector: 'app-journal-list',
   templateUrl: './journalList.component.html',
-  providers: [DatePipe]
+  providers: [MomentPipe]
 })
 
 export class JournalListComponent implements OnInit {
@@ -32,7 +32,7 @@ export class JournalListComponent implements OnInit {
 
   constructor(private journalEntriesService: JournalEntriesService,
               private userService: UserService,
-              private datePipe: DatePipe
+              private momentPipe: MomentPipe
   ) { }
 
   ngOnInit() {
@@ -48,8 +48,8 @@ export class JournalListComponent implements OnInit {
   }
 
   makeEditable(entry: JournalEntry) {
-    entry.timeProvH = this.datePipe.transform(entry.date, 'HH');
-    entry.timeProvM = this.datePipe.transform(entry.date, 'mm');
+    entry.timeProvH = this.momentPipe.transform(entry.date, 'HH');
+    entry.timeProvM = this.momentPipe.transform(entry.date, 'mm');
     entry.editable = true;
   }
 

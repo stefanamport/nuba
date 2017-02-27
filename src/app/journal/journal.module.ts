@@ -10,6 +10,7 @@ import { SearchComponent } from './nubaSearch.component';
 
 import { SearchFilterPipe } from './pipes/searchFilter.pipe';
 import { OrderByAlphabetPipe } from './pipes/orderByAlphabet.pipe';
+import { MomentPipe } from './pipes/momentjs.pipe';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { OrderByAlphabetPipe } from './pipes/orderByAlphabet.pipe';
       SearchComponent,
       JournalListComponent,
       SearchFilterPipe,
-      OrderByAlphabetPipe
+      OrderByAlphabetPipe,
+      MomentPipe
     ],
     imports: [
       journalRouting,
