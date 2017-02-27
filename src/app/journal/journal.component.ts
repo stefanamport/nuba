@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import { JournalEntriesService } from './journalEntries.service';
+import { AnalysisService } from '../analysis/service/analysis.service';
 
 @Component({
   selector: 'app-journal',
   templateUrl: './journal.component.html',
   styleUrls: ['./journal.component.scss'],
-  providers: [ JournalEntriesService ]
+  providers: [ JournalEntriesService, AnalysisService ]
 })
 export class JournalComponent implements OnInit {
 
@@ -14,7 +15,7 @@ export class JournalComponent implements OnInit {
   newHintAvailable = false;
   coachTip: any;
 
-  constructor() {
+  constructor(private analysisService: AnalysisService) {
 
   }
 
@@ -26,6 +27,11 @@ export class JournalComponent implements OnInit {
        this.showNewHint();
     // end mock
 
+    this.analysisService.initConsumptionTracking();
+    this.analysisService.getConsumptionReport().subscribe((report) => {
+      this.coachTip = report.recommendation;
+      console.log(report);
+    });
   }
 
   public mobCoachVisibility() {

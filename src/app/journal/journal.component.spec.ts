@@ -16,6 +16,8 @@ import { SearchFilterPipe } from './pipes/searchFilter.pipe';
 import { OrderByAlphabetPipe } from './pipes/orderByAlphabet.pipe';
 
 import { Injectable, Output, EventEmitter } from '@angular/core';
+import { AnalysisService } from '../analysis/service/analysis.service';
+import { ConsumptionReport } from '../analysis/model/consumptionReport';
 
 class JournalEntriesServiceStub {
   private addJournalEntrySource = new Subject<JournalEntry>();
@@ -24,6 +26,14 @@ class JournalEntriesServiceStub {
   public getJournalEntries(date: Date, userId: string): FirebaseListObservable<JournalEntry[]> {
     let journalEntry = new JournalEntry();
     return Observable.of(journalEntry);
+  }
+}
+
+class AnalysisServiceStub {
+  public initConsumptionTracking() { }
+  public getConsumptionReport() {
+    let report = new ConsumptionReport();
+    return Observable.of(report);
   }
 }
 
@@ -72,7 +82,8 @@ describe('JournalComponent', () => {
         providers: [
           { provide: FoodService, useClass: FoodServiceStub },
           { provide: JournalEntriesService, useClass: JournalEntriesServiceStub },
-          { provide: UserService, useClass: UserServiceStub }
+          { provide: UserService, useClass: UserServiceStub },
+          { provide:  AnalysisService, useClass: AnalysisServiceStub }
         ]
       }
     })

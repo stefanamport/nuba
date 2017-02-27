@@ -9,6 +9,7 @@ import {FirebaseListObservable} from 'angularfire2';
 import {Output, Input} from '@angular/core/src/metadata/directives';
 
 import { DatePipe } from '@angular/common';
+import { AnalysisService } from '../analysis/service/analysis.service';
 
 @Component({
   selector: 'app-journal-list',
