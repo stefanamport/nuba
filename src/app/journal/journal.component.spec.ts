@@ -12,6 +12,7 @@ import { User } from '../login/user';
 import { JournalEntry } from './journalEntry';
 import { Subject, Observable } from 'rxjs';
 
+import { MomentPipe } from './pipes/momentjs.pipe';
 import { SearchFilterPipe } from './pipes/searchFilter.pipe';
 import { OrderByAlphabetPipe } from './pipes/orderByAlphabet.pipe';
 
@@ -72,7 +73,8 @@ describe('JournalComponent', () => {
         SearchComponent,
         JournalListComponent,
         SearchFilterPipe,
-        OrderByAlphabetPipe
+        OrderByAlphabetPipe,
+        MomentPipe
       ],
       imports: [
         FormsModule
