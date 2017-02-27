@@ -23,6 +23,7 @@ export class AnalysisComponent implements OnInit {
     this.analysisService.initConsumptionAnalysis(selectedDate);
     this.analysisService.getConsumptionReport().subscribe((report) => {
       console.log(report);
+      this.report = report;
     });
   }
 }
