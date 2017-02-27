@@ -1,1 +1,28 @@
-"<br><br><br><br><br><div class='whitebox'>nubaAnalysis (auswertung)<br>gesamte Template Vorlage im ../screens.html</div>"
+<div class="userAccount row">
+  <div class="middler">
+    <div class="grid">
+
+      <main class="grid__item w-8">
+
+        <div class="whitebox">
+          <h2 class="whitebox__title">Deine Auswertung</h2>
+
+          <div class="whitebox__content">
+			<ul>
+				<li *ngFor="let entry of report.componentAnalysis">
+					{{entry.name}}<br>
+					current: {{entry.currentAmount}} {{entry.unit}}<br>
+					state: {{entry.state}}<br>
+					target: {{entry.targetAmount}}<br>
+				</li>
+			</ul>
+
+          </div>
+        </div>
+
+     </main>
+
+
+   </div>
+  </div>
+</div>
