@@ -8,8 +8,6 @@ describe('MomentPipe', () => {
     let format = 'HH:mm YYYY Do MMMM';
     let output = '21:22 2017 27. Februar';
 
-    console.log(new Date());
-
     beforeEach(() => {
         pipe = new MomentPipe();
     });
