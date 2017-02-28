@@ -13,6 +13,7 @@ import { JournalComponent } from './journal/journal.component';
 import { JournalListComponent } from './journal/journalList.component';
 import { UserService } from './login/user.service';
 
+import { MomentPipe } from './journal/pipes/momentjs.pipe';
 import { OrderByAlphabetPipe } from './journal/pipes/orderByAlphabet.pipe';
 import { SearchFilterPipe } from './journal/pipes/searchFilter.pipe';
 
@@ -35,7 +36,8 @@ describe('AppComponent', () => {
         JournalComponent,
         JournalListComponent,
         OrderByAlphabetPipe,
-        SearchFilterPipe
+        SearchFilterPipe,
+        MomentPipe
       ],
       imports: [
         RouterTestingModule,

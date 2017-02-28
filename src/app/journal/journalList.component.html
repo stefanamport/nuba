@@ -10,7 +10,7 @@
           <button class="button button-small button-light" (click)="dateChange(-1)"><span class="fa fa-arrow-left" aria-hidden="true"></span>
           </button>
         </li>
-        <li class="datechooser__block datechooser___actualdate">{{ selectedDate | date: 'd. MMM y' }}</li>
+        <li class="datechooser__block datechooser___actualdate">{{ selectedDate | momentjs: 'Do MMMM YYYY' }}</li>
         <li class="datechooser__block datechooser___next">
           <button class="button button-small button-light" (click)="dateChange(1)"><span class="fa fa-arrow-right" aria-hidden="true"></span>
           </button>
@@ -20,7 +20,7 @@
         <tr class="foodtable__entry foodentry" *ngFor="let entry of journalList">
 
         <template [ngIf]="!entry.editable">
-            <td class="foodentry__block foodentry__block-time"> {{entry.date | date: 'HH:mm' }} Uhr</td>
+            <td class="foodentry__block foodentry__block-time"> {{entry.date | momentjs: 'HH:mm' }} Uhr</td>
             <td class="foodentry__block foodentry__block-foodname">
               {{entry.name}}
             </td>
