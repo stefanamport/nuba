@@ -1,10 +1,4 @@
-export enum State {
-  WAY_TOO_MUCH,
-  TOO_MUCH,
-  OK,
-  TOO_LITTLE,
-  WAY_TOO_LITTLE
-}
+export type State = 'WAY_TOO_MUCH' | 'TOO_MUCH' | 'OK' | 'TOO_LITTLE' | 'WAY_TOO_LITTLE';
 
 export type ComponentCategory =
   'macronutrient' | 'element' | 'vitamin';

@@ -1,5 +1,5 @@
 import { ComponentAnalysis } from './componentAnalysis';
-import { WAY_TOO_MUCH, State, TOO_MUCH, WAY_TOO_LITTLE, TOO_LITTLE, ComponentName } from './constants';
+import { WAY_TOO_MUCH, TOO_MUCH, WAY_TOO_LITTLE, TOO_LITTLE, ComponentName } from './constants';
 import { User } from '../../login/user';
 
 export class ConsumptionReport {
@@ -179,19 +179,19 @@ export class ConsumptionReport {
     compAnalysisMap.forEach((analysis: ComponentAnalysis) => {
       let percentage = analysis.currentAmount / analysis.targetAmount;
       if (percentage > WAY_TOO_MUCH) {
-        analysis.state = State.WAY_TOO_MUCH;
+        analysis.state = 'WAY_TOO_MUCH';
         this.wayTooMuch.push(analysis.name);
       } else if (percentage > TOO_MUCH) {
-        analysis.state = State.TOO_MUCH;
+        analysis.state = 'TOO_MUCH';
         this.tooMuch.push(analysis.name);
       } else if (percentage < WAY_TOO_LITTLE) {
-        analysis.state = State.WAY_TOO_LITTLE;
+        analysis.state = 'WAY_TOO_LITTLE';
         this.wayTooLittle.push(analysis.name);
       } else if (percentage < TOO_LITTLE) {
-        analysis.state = State.TOO_LITTLE;
+        analysis.state = 'TOO_LITTLE';
         this.tooLittle.push(analysis.name);
       } else {
-        analysis.state = State.OK;
+        analysis.state = 'OK';
         this.ok.push(analysis.name);
       }
       this.componentAnalysis.push(analysis);
