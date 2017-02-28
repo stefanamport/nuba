@@ -18,6 +18,16 @@ export class AnalysisComponent implements OnInit {
               private dateChooserService: DateChooserService
   ) { }
 
+  public numberToPercent(input: number) {
+
+    if (input > 100) {
+      input = 100;
+    }
+
+    let percent = input + '%';
+    return percent;
+  }
+
   ngOnInit() {
     let selectedDate = this.dateChooserService.getChosenDate();
     this.analysisService.initConsumptionAnalysis(selectedDate);

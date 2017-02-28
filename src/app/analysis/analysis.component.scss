@@ -1,6 +1,83 @@
 @import '../../assets/styles/_vars';
 @import '../../assets/styles/_global';
 
+.chart {
+  position: relative;
+
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 10px;
+
+}
+.chart__indicator {
+  position: absolute;
+  transition: .2s all;
+}
+
+.chart__label,
+.chart__currentvalue,
+.chart__targetvalue {
+  font-size: 0.8em;
+}
+
+.chart__label {
+  font-weight: bold;
+  font-size: 1em;
+  width: 100%;
+}
+
+.chart-rect {
+
+  .chart__targetvalue {
+    width: 100%;
+    text-align: right;
+  }
+
+  .chart__currentvalue {
+    position: absolute;
+    top: -20px;
+    left: 0px;
+  }
+
+  .chart__bar {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right, darken($light-gray, 30), $light-gray);
+  }
+
+  .chart__indicator {
+    top: 0px;
+    height: 100%;
+    width: 0;
+
+    background-blend-mode: multiply;
+    opacity: .8;
+
+    transform-origin: left top;
+  }
+}
+
+.chart-OK {
+  .chart__indicator {
+    background-color: $main-color;
+  }
+}
+.chart-WAY_TOO_LITTLE,
+.chart-WAY_TOO_MUCH {
+  .chart__indicator {
+    background-color: red;
+  }
+}
+
+.chart-TOO_LITTLE,
+.chart-TOO_MUCH {
+  .chart__indicator {
+    background-color: orange;
+  }
+}
+
+/*
 .evaluation {
 
   .evalLine {
@@ -86,3 +163,4 @@
   }
 
 }
+*/

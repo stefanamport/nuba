@@ -8,14 +8,15 @@
           <h2 class="whitebox__title">Deine Auswertung</h2>
 
           <div class="whitebox__content">
-			<ul>
-				<li *ngFor="let entry of report.componentAnalysis">
-					{{entry.name}}<br>
-					current: {{entry.currentAmount}} {{entry.unit}}<br>
-					state: {{entry.state}}<br>
-					target: {{entry.targetAmount}}<br>
-				</li>
-			</ul>
+
+            <div *ngFor="let entry of report.componentAnalysis" class="chart chart-rect chart-{{entry.state}}">
+              <div class="chart__label">{{entry.name}}</div>
+              <div class="chart__targetvalue">{{entry.targetAmount}} {{entry.unit}}</div>
+              <div class="chart__bar">
+                <div class="chart__currentvalue">{{entry.currentAmount}}</div>
+                <div class="chart__indicator" [style.width]="numberToPercent(entry.currentAmount)"></div>
+              </div>
+            </div>
 
           </div>
         </div>
