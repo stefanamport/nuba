@@ -30,7 +30,7 @@ class JournalEntriesServiceStub {
 }
 
 class AnalysisServiceStub {
-  public initConsumptionTracking() { }
+  public initConsumptionAnalysis() { }
   public getConsumptionReport() {
     let report = new ConsumptionReport();
     return Observable.of(report);

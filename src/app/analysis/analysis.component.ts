@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalysisService } from './service/analysis.service';
 import { JournalEntriesService } from '../journal/journalEntries.service';
-import { ComponentAnalysis } from './model/componentAnalysis';
 import { ConsumptionReport } from './model/consumptionReport';
 import { UserService } from '../login/user.service';
 import { FirebaseService } from '../firebase/firebase.service';
@@ -23,7 +22,7 @@ export class AnalysisComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.analysisService.initConsumptionTracking();
+    this.analysisService.initConsumptionAnalysis(new Date());
     this.analysisService.getConsumptionReport().subscribe((report) => {
       console.log(report);
     });

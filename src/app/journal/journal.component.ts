@@ -20,17 +20,10 @@ export class JournalComponent implements OnInit {
   }
 
   ngOnInit() {
-
-  	// MOCK for showing functionalti
-  	// Shakes the Coach Box ;-)
-       this.coachTip = 'Du hast zu wenig Vitamine und Kohlenhydrate zu dir genommen. - Iss doch eine Banane.';
-       this.showNewHint();
-    // end mock
-
-    this.analysisService.initConsumptionTracking();
+    this.analysisService.initConsumptionAnalysis(new Date());
     this.analysisService.getConsumptionReport().subscribe((report) => {
       this.coachTip = report.recommendation;
-      console.log(report);
+      this.showNewHint();
     });
   }
 
@@ -54,5 +47,4 @@ export class JournalComponent implements OnInit {
   private switchShowNewHint() {
     this.newHintAvailable = !this.newHintAvailable;
   }
-
 }

@@ -14,7 +14,7 @@ export type ComponentName =
   'Wasser' | 'Kohlenhydrate' | 'Ballaststoffe' | 'Protein' |
   'Kalzium' | 'Eisen' | 'Magnesium' | 'Phosphor' | 'Zink' | 'Natrium' | 'Chlorid' | 'Kalium';
 
-export const WAY_TOO_MUCH = 1.5;
-export const TOO_MUCH = 1.2;
-export const TOO_LITTLE = 0.8;
-export const WAY_TOO_LITTLE = 0.5;
+export const WAY_TOO_MUCH = 1.3;
+export const TOO_MUCH = 1.1;
+export const TOO_LITTLE = 0.9;
+export const WAY_TOO_LITTLE = 0.7;

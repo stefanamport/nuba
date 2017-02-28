@@ -1,13 +1,11 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
 import { SearchComponent } from './nubaSearch.component';
-import { FormsModule } from '@angular/forms';
 import { FoodService } from '../food/food.service';
 import { JournalEntriesService } from './journalEntries.service';
 import { Observable, Subject } from 'rxjs';
 import { Food } from '../food/food';
 import { JournalEntry } from './journalEntry';
-import { DebugElement } from '@angular/core';
 
 import { Injectable, Output, EventEmitter } from '@angular/core';
 
