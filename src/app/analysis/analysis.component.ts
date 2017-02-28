@@ -21,6 +21,16 @@ export class AnalysisComponent implements OnInit {
               private journalEntriesService: JournalEntriesService
   ) { }
 
+  public numberToPercent(input: number) {
+
+    if (input > 100) {
+      input = 100;
+    }
+
+    let percent = input + '%';
+    return percent;
+  }
+
   ngOnInit() {
     this.analysisService.initConsumptionAnalysis(new Date());
     this.analysisService.getConsumptionReport().subscribe((report) => {
