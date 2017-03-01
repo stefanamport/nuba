@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 
 import { JournalEntriesService } from './journalEntries.service';
 import { AnalysisService } from '../analysis/service/analysis.service';
+import { UserAccountService } from '../user-account/user-account.service';
 
 @Component({
   selector: 'app-journal',
   templateUrl: './journal.component.html',
   styleUrls: ['./journal.component.scss'],
-  providers: [ JournalEntriesService, AnalysisService ]
+  providers: [ JournalEntriesService, AnalysisService, UserAccountService ]
 })
 export class JournalComponent implements OnInit {
 

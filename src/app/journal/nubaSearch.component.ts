@@ -5,7 +5,8 @@ import { Food } from '../food/food';
 import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
 
-import { UserService } from '../login/user.service';
+import { UserAccountService } from '../user-account/user-account.service';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-search',
@@ -29,7 +30,8 @@ export class SearchComponent {
   constructor(
     private foodService: FoodService,
     private journalEntriesService: JournalEntriesService,
-    public userService: UserService
+    private loginService: LoginService,
+    private userAccountService: UserAccountService
   ) {
 
     this.foodList = this.foodService.getFoodList();
@@ -39,7 +41,7 @@ export class SearchComponent {
     });
 
     // most used Foods
-    this.userService.data.subscribe((data: any) => {
+    this.loginService.data.subscribe((data: any) => {
       if ( data.foodShortlist ) {
         this.foodShortlist = data.foodShortlist;
       }
@@ -130,7 +132,7 @@ export class SearchComponent {
 
     this.journalEntriesService.notifyAddJournalEntry(newEntry);
 
-    this.userService.addMostUsedFoods(this.selectedFood.$key);
+    this.userAccountService.addMostUsedFoods(this.selectedFood.$key);
 
     this.resetSearchResults();
     this.clearForm();

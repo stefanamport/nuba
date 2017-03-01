@@ -11,7 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './journal/nubaSearch.component';
 import { JournalComponent } from './journal/journal.component';
 import { JournalListComponent } from './journal/journalList.component';
-import { UserService } from './login/user.service';
+import { LoginService } from './login/login.service';
 
 import { MomentPipe } from './journal/pipes/momentjs.pipe';
 import { OrderByAlphabetPipe } from './journal/pipes/orderByAlphabet.pipe';
@@ -20,7 +20,7 @@ import { SearchFilterPipe } from './journal/pipes/searchFilter.pipe';
 describe('AppComponent', () => {
   class AngularFireStub {}
 
-  class UserServiceStub implements UserService {
+  class LoginServiceStub {
     @Output() data = new EventEmitter();
 
     public getUser() {}
@@ -49,7 +49,7 @@ describe('AppComponent', () => {
     }).overrideComponent(AppComponent, {
       set: {
         providers: [
-          { provide: UserService, useClass: UserServiceStub }
+          { provide: LoginService, useClass: LoginServiceStub }
         ]
       }
     }).compileComponents();

@@ -1,7 +1,7 @@
 import { EventEmitter } from '@angular/core';
 import { Output } from '@angular/core';
 
-export class UserServiceStub {
+export class LoginServiceStub {
 
   @Output() data = new EventEmitter();
 

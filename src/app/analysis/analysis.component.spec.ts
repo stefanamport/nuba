@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AnalysisComponent } from './analysis.component';
-import {UserService} from '../login/user.service';
+import {LoginService} from '../login/login.service';
 import {User} from '../login/user';
 import {AnalysisService} from './service/analysis.service';
 import {JournalEntriesService} from '../journal/journalEntries.service';
 
-class UserServiceStub {
+class LoginServiceStub {
   public getUser(): User {
     let user = new User();
     return user;
@@ -29,7 +29,7 @@ describe('AnalysisComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AnalysisComponent ],
       providers: [
-        { provide: UserService, useClass: UserServiceStub },
+        { provide: LoginService, useClass: LoginServiceStub },
       ]
     }).overrideComponent(AnalysisComponent, {
       set: {

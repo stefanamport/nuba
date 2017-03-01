@@ -8,7 +8,7 @@
           <h2 class="whitebox__title">Deine Daten</h2>
 
           <div class="whitebox__content">
-            
+
             <div class="loadingPlaceholder searchbar__loading" *ngIf="!user.dataCompleted"></div>
 
             <form id="userData" *ngIf="user.dataCompleted">
@@ -57,7 +57,7 @@
               <div class="formrow">
 
               <button type="submit" class="button button-big" aria-label="speichern" (click)="saveUser()"><span class="fa fa-check" aria-hidden="true"></span> speichern</button>
-              
+
 
               <div class="button button-message button-big button-light" [ngClass]="{'button-hidden': savedMessage.length <= 0 }">
                 {{savedMessage}}
@@ -98,7 +98,7 @@
           <h2 class="whitebox__title">Log Out</h2>
 
           <div class="whitebox__content">
-              <button (click)="userService.logout()" class="button button-light button-small">
+              <button (click)="loginService.logout()" class="button button-light button-small">
                 Logout
               </button>
           </div>

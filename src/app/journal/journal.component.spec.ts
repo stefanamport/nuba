@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { FirebaseListObservable } from 'angularfire2';
 import { JournalEntriesService } from './journalEntries.service';
 import { FoodService } from '../food/food.service';
-import { UserService } from '../login/user.service';
+import { LoginService } from '../login/login.service';
 import { User } from '../login/user';
 import { JournalEntry } from './journalEntry';
 import { Subject, Observable } from 'rxjs';
@@ -19,6 +19,7 @@ import { OrderByAlphabetPipe } from './pipes/orderByAlphabet.pipe';
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { AnalysisService } from '../analysis/service/analysis.service';
 import { ConsumptionReport } from '../analysis/model/consumptionReport';
+import {UserAccountService} from '../user-account/user-account.service';
 
 class JournalEntriesServiceStub {
   private addJournalEntrySource = new Subject<JournalEntry>();
@@ -48,7 +49,11 @@ class FoodServiceStub {
 
 }
 
-class UserServiceStub {
+class UserAccountServiceStub {
+
+}
+
+class LoginServiceStub {
 
   @Output() data = new EventEmitter();
 
@@ -84,8 +89,9 @@ describe('JournalComponent', () => {
         providers: [
           { provide: FoodService, useClass: FoodServiceStub },
           { provide: JournalEntriesService, useClass: JournalEntriesServiceStub },
-          { provide: UserService, useClass: UserServiceStub },
-          { provide:  AnalysisService, useClass: AnalysisServiceStub }
+          { provide: LoginService, useClass: LoginServiceStub },
+          { provide:  AnalysisService, useClass: AnalysisServiceStub },
+          { provide: UserAccountService, useClass: UserAccountServiceStub }
         ]
       }
     })

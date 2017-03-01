@@ -9,7 +9,8 @@ import { JournalEntry } from './journalEntry';
 
 import { Injectable, Output, EventEmitter } from '@angular/core';
 
-import { UserService } from '../login/user.service';
+import {LoginService} from '../login/login.service';
+import {UserAccountService} from '../user-account/user-account.service';
 
 const banana: Food = { $key: 1, name: 'Banane', category: 'Frucht', matrix_unit: 'g', matrix_amount: 100 };
 
@@ -19,7 +20,7 @@ class JournalEntriesServiceSpy {
   addJournalEntryNotification$ = this.addJournalEntrySource.asObservable();
 }
 
-class UserServiceStub {
+class UserAccountServiceStub {
 
   @Output() data = new EventEmitter();
 
@@ -32,7 +33,11 @@ class UserServiceStub {
 
 }
 
-class FoodServiceStub {
+class LoginServiceStub {
+  @Output() data = new EventEmitter();
+}
+
+class FoodServiceStub implements FoodService {
 
   @Output() foodList = new EventEmitter();
 
@@ -59,18 +64,22 @@ describe('SearchComponent', () => {
 
   let component: SearchComponent;
   let foodService: FoodService;
-  let userService: UserService;
+  let loginService: LoginService;
   let journalEntriesService: JournalEntriesService;
+  let userAccountService: UserAccountService;
 
   beforeEach(() => {
     foodService = new FoodServiceStub();
-    userService = new UserServiceStub();
+    loginService = new LoginServiceStub();
     journalEntriesService = new JournalEntriesServiceSpy();
+    userAccountService = new UserAccountServiceStub();
 
     component = new SearchComponent(
         foodService,
         journalEntriesService,
-        userService);
+        loginService,
+        userAccountService
+    );
   });
 
   it('should create NubaSearchComponent', () => {
@@ -127,7 +136,7 @@ describe('SearchComponent', () => {
 
     // assert
     expect(component.journalEntriesService.notifyAddJournalEntry).toHaveBeenCalledWith(expectedJournalEntry);
-    expect(component.userService.addMostUsedFoods).toHaveBeenCalledWith(expectedJournalEntry.foodID);
+    expect(component.userAccountService.addMostUsedFoods).toHaveBeenCalledWith(expectedJournalEntry.foodID);
 
     expect(component.resetSearchResults).toHaveBeenCalled();
     expect(component.clearForm).toHaveBeenCalled();

@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 
 import { User } from './login/user';
-import { UserService } from './login/user.service';
+import { LoginService } from './login/login.service';
 
 @Component({
   selector: 'app-component',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ UserService ]
+  providers: [ LoginService ]
 })
 export class AppComponent {
   user: User;
 
-  constructor (private UserService: UserService) {
-    this.UserService.data.subscribe((data: any) => {
+  constructor (private loginService: LoginService) {
+    this.loginService.data.subscribe((data: any) => {
           this.user = data;
     });
   }

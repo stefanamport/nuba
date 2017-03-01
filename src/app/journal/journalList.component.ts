@@ -3,13 +3,12 @@ import {Component, OnInit, EventEmitter} from '@angular/core';
 import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
 
-import {UserService} from '../login/user.service';
-import {User} from '../login/user';
-import {FirebaseListObservable} from 'angularfire2';
-import {Output, Input} from '@angular/core/src/metadata/directives';
+import { LoginService } from '../login/login.service';
+import { User } from '../login/user';
+import { FirebaseListObservable } from 'angularfire2';
+import { Output, Input } from '@angular/core/src/metadata/directives';
 
 import { MomentPipe } from './pipes/momentjs.pipe';
-import { AnalysisService } from '../analysis/service/analysis.service';
 
 @Component({
   selector: 'app-journal-list',
@@ -31,13 +30,13 @@ export class JournalListComponent implements OnInit {
   componentIsLoading = true;
 
   constructor(private journalEntriesService: JournalEntriesService,
-              private userService: UserService,
+              private loginService: LoginService,
               private momentPipe: MomentPipe
   ) { }
 
   ngOnInit() {
     this.selectedDate = new Date();
-    this.user = this.userService.getUser();
+    this.user = this.loginService.getUser();
     this.getJournalEntries(this.selectedDate);
     this.journalEntriesService.addJournalEntryNotification$.subscribe(
       journalEntry => {

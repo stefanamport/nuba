@@ -4,7 +4,7 @@ import {EventEmitter} from '@angular/core';
 
 import {Router} from '@angular/router';
 
-import { UserService } from '../login/user.service';
+import { LoginService } from '../login/login.service';
 import {AngularFire} from 'angularfire2';
 
 import { HeaderComponent } from './header.component';
@@ -17,7 +17,7 @@ describe('HeaderComponent', () => {
 
   class AngularFireStub {}
 
-  class UserServiceStub implements UserService {
+  class LoginServiceStub {
     @Output() data = new EventEmitter();
 
     public getUser() {
@@ -41,7 +41,7 @@ describe('HeaderComponent', () => {
     }).overrideComponent(HeaderComponent, {
       set: {
         providers: [
-          { provide: UserService, useClass: UserServiceStub }
+          { provide: LoginService, useClass: LoginServiceStub }
         ]
       }
     }).compileComponents();

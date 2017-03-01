@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 
 import { User } from '../login/user';
-import { UserService } from '../login/user.service';
 import { FirebaseService } from '../firebase/firebase.service';
-import { Genders, ActivityLevels } from '../login/user.specs';
+import { UserAccountService } from './user-account.service';
+import { LoginService } from '../login/login.service';
+import { Genders, ActivityLevels } from './user-account.constants';
 
 @Component({
   templateUrl: './user-account.component.html',
-  providers: [ UserService, FirebaseService ]
+  providers: [ LoginService, FirebaseService, UserAccountService ]
 })
 export class UserAccountComponent  {
 
@@ -17,16 +18,15 @@ export class UserAccountComponent  {
   formValidation: any = {};
   savedMessage = '';
 
-  constructor (private userService: UserService) {
-
+  constructor ( private loginService: LoginService,
+                private userAccountService: UserAccountService) {
     this.genders = Genders;
     this.activityLevels = ActivityLevels;
-    this.user = this.userService.getUser();
+    this.user = this.loginService.getUser();
 
-    this.userService.data.subscribe((data: any) => {
+    this.loginService.data.subscribe((data: any) => {
       this.user = data;
     });
-
   }
 
   // helper that *ngFoor can loop over object keys
@@ -35,7 +35,6 @@ export class UserAccountComponent  {
   }
 
   validateForm(): boolean {
-
     this.formValidation.valid = true;
     this.formValidation.messages = [];
 
@@ -76,7 +75,7 @@ export class UserAccountComponent  {
   }
 
   private validateAge() {
-     let age = this.userService.calcAge(this.user.birthday);
+     let age = this.userAccountService.calculateAge(this.user.birthday);
 
      if (this.user.birthday.length <= 0 || age > 120) {
         this.formValidation.messages.push( 'Bitte gültiges Geburtsdatum angeben.' );
@@ -89,7 +88,7 @@ export class UserAccountComponent  {
 
   saveUser() {
     if (this.validateForm()) {
-      this.userService.updateUserInfo(this.user);
+      this.userAccountService.updateUserInfo(this.user);
       this.savedMessage = 'Angaben wurden gespeichert';
     } else {
       this.savedMessage = 'Nicht gespeichert, bitte Angaben prüfen.';

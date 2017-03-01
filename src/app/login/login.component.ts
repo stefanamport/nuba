@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { User } from './user';
-import { UserService } from './user.service';
+import { LoginService } from './login.service';
 
 import {Router} from '@angular/router';
 
@@ -13,10 +13,10 @@ export class LogInComponent {
 
   user: User;
 
-  constructor( private UserService: UserService, private Router: Router) {
-      this.user = this.UserService.getUser();
+  constructor( private loginService: LoginService, private Router: Router) {
+      this.user = this.loginService.getUser();
 
-      this.UserService.data.subscribe((data: any) => {
+      this.loginService.data.subscribe((data: any) => {
           this.user = data;
 
           if (data.uid) {
@@ -30,6 +30,6 @@ export class LogInComponent {
   }
 
   login(method: string) {
-    this.UserService.login(method);
+    this.loginService.login(method);
   }
 }

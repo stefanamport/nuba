@@ -10,9 +10,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 
 import { LoginGuard } from './login/login.guard';
-import { UserService } from './login/user.service';
-
 import { LogInComponent } from './login/login.component';
+import { LoginService } from './login/login.service';
 import { HeaderComponent } from './header/header.component';
 import { FirebaseService } from './firebase/firebase.service';
 
@@ -42,7 +41,7 @@ export const firebaseConfig = {
         method: AuthMethods.Popup
       })
   ],
-  providers: [ UserService, FirebaseService, LoginGuard, FoodService ],
+  providers: [ LoginService, FirebaseService, LoginGuard, FoodService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
