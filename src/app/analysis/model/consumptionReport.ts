@@ -177,7 +177,8 @@ export class ConsumptionReport {
    */
   private compareTargetCurrentConsumption(compAnalysisMap: Map<string, ComponentAnalysis>) {
     compAnalysisMap.forEach((analysis: ComponentAnalysis) => {
-      let percentage = analysis.currentAmount / analysis.targetAmount;
+      let percentage = analysis.currentAmount / analysis.targetAmount * 100;
+      analysis.percentage = percentage;
       if (percentage > WAY_TOO_MUCH) {
         analysis.state = 'WAY_TOO_MUCH';
         this.wayTooMuch.push(analysis.name);
