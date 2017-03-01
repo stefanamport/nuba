@@ -14,7 +14,7 @@
               <div class="chart__targetvalue">{{entry.targetAmount}} {{entry.unit}}</div>
               <div class="chart__bar">
                 <div class="chart__currentvalue">{{entry.currentAmount}}</div>
-                <div class="chart__indicator" [style.width]="numberToPercent(entry.currentAmount)"></div>
+                <div class="chart__indicator" [style.width]="numberToPercent(entry.percentage)"></div>
               </div>
             </div>
 
