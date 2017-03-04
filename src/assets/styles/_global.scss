@@ -127,8 +127,8 @@ h1 {
 
 h2 {
 	font-family: $font-family-headlines;
-	font-size: 1.5em;
-	line-height: 1.5em;
+	font-size: 1.3em;
+	line-height: 1.3em;
 	font-weight: 500;
 	margin-bottom: 0px;
 }
@@ -289,23 +289,26 @@ input {
 
 .whitebox {
 	background: #fff;
-	margin-bottom: $boxpadding;
+	margin-bottom: $boxpadding*2;
 	padding: $boxpadding;
 
 	position: relative;
 
-	box-shadow: 0 0 2px rgba(0,0,0,.2);
+	box-shadow: 0 0 8px rgba(0,0,0,.1);
+
 }
 
 	.whitebox__title {
 		margin: 0px -$boxpadding;
 		padding: $boxpadding/2 $boxpadding;
 
-		border-bottom: 1px solid $darker-gray;
+		background: lighten($main-color, 10);
+		border-top: 2px solid $main-color;
+		color: #fff;
 	}
 
 	.whitebox__content {
-		padding-top: $boxpadding;
+		padding-top: $boxpadding*2;
 		
 	}
 
@@ -337,10 +340,10 @@ input {
 	display: flex;
 	flex-flow: row wrap;
 
-	margin: 0 -$boxpadding/2;
+	margin: 0 -$boxpadding;
 }	
 	.grid__item {
-		padding: 0 $boxpadding/2;
+		padding: 0 $boxpadding;
 		box-sizing: border-box;
 	}
 		.w-8 {
