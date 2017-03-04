@@ -14,6 +14,7 @@ import { UserService } from './login/user.service';
 
 import { LogInComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
+import { ImpressumComponent } from './impressum/impressum.component';
 import { FirebaseService } from './firebase/firebase.service';
 
 import { FoodService } from './food/food.service';
@@ -30,7 +31,8 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     LogInComponent,
-    HeaderComponent
+    HeaderComponent,
+    ImpressumComponent
   ],
   imports: [
     BrowserModule,

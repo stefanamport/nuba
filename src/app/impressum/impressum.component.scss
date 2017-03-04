@@ -1,0 +1,386 @@
+// Module dailyFood
+@import '../../assets/styles/_vars';
+
+.searchbar__overlay {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  top: 0px;
+  left: 0px;
+  
+  background: $main-gradient;
+  opacity: .3;
+
+}
+
+.searchbar {
+
+  position: relative;
+
+  padding: calc(4rem + 50px) 0 4rem 0;
+
+  background-image: url('/assets/images/food2-k.jpg');
+  background-size: cover;
+  background-position: center left;
+}
+
+  .searchbar input,
+  .searchbar__loading {
+    box-sizing : border-box;
+    width: 100%;
+
+    padding: $boxpadding;
+
+    font-size: 1.4em;
+    font-family: inherit;
+
+    border: 0px;
+
+    transition: .4s all;
+
+    border-radius: 4px;
+
+    height: $hero-form-height;
+
+    &:focus {
+      outline: none;
+      border: 0px;
+      box-shadow: 0 0 20px rgba(0,0,0,.1);
+    }
+  }
+
+  .searchbar__loading {
+    color: $dark-gray;
+  }
+
+  
+  // First inner Wrap
+  .searchbar__inner {
+
+    background: rgba(0,0,0,.5);
+    padding: $boxpadding;
+    border-radius: 6px;
+
+    position: relative;
+  }
+  
+  // Form Wrap
+  .searchbar__form {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+  
+  .searchbar__fieldgroup {
+    padding-right: $boxpadding/2;
+    transition: .4s all;
+  }
+
+  .searchbar__food {
+    width: 60%;
+  }
+
+  .searchbar__quantity {
+
+      border-radius: 5px;
+      overflow: hidden;
+
+      width: 20%;
+
+      padding-right: 30px;
+      margin: 0 $boxpadding/2;
+
+      position: relative;
+
+      input {
+        border-width: 0 1px 0 0;
+      }
+
+      label {
+
+        font-size: 1.4em;
+        color: $dark-gray-font;
+        height: $hero-form-height;
+        line-height: $hero-form-height;
+
+        background: $white;
+
+        width: 25px;
+        padding-right: 4px;
+        text-align: center;
+
+        position: absolute;
+        right: 0px;
+        top: 0px;
+
+      }
+  }
+
+  .searchbar__submit {
+    width: 20%;
+  }
+
+  .searchbar__submitbutton {
+    width: 100%; 
+    height: $hero-form-height;
+    font-size: 2em;
+  }
+
+  .searchbar__results {
+    position: absolute;
+    top: $hero-form-height + 10*2 + 2;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 99;
+  }
+
+  // Hide fileds when nothing is selected
+  .searchbar__form-noSelection {
+
+    .searchbar__food {
+        width: 100%;
+        padding: 0px;
+    }
+
+    .searchbar__quantity,
+    .searchbar__submit {
+      width: 0;
+      overflow: hidden;
+      padding: 0;
+      border: 0px;
+      margin: 0px;
+      opacity: 0;
+    }
+
+  }
+
+
+$dropdownMaxHeight: 50vh;
+
+.resultlist {
+
+    // reset
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+
+   display: block;
+   overflow: hidden;
+
+   background: #fff;
+   box-shadow: 0 1px 1px rgba(0,0,0,.2);
+   border-radius: 5px;
+}
+
+  .resultlist-hidden {
+   visibility: hidden;
+  }
+
+  .resultlist__infomessage {
+    padding: $boxpadding/2 $boxpadding;
+    color: $dark-gray-font;
+  }
+
+  .resultlist__scrollshadow {
+    position: absolute;
+    bottom: 0px;
+    top: $dropdownMaxHeight;
+    
+    width: 100%;
+    height: 10px;
+    box-shadow: 0 0px 40px rgba(0,0,0,.6);
+  }
+
+  .resultlist__wrap {
+    padding: 0px;
+    margin: 0px;
+
+   max-height: $dropdownMaxHeight;
+   overflow-y: scroll;
+  }
+  
+  .resultlist__entry {
+    padding: $boxpadding;
+
+    &:hover {
+      cursor: pointer;
+      background: $light-gray;
+    }
+
+  }
+  .resultlist__entry-active {
+    background: $light-gray;
+  }
+
+.foodList {
+
+  margin-top: 20px;
+}
+    
+  .foodlist__date {
+    padding: 20px 0 20px 0;
+    margin: 0px;
+  }
+
+  .datechooser__block {
+      list-style: none;
+      margin: 0px;
+      padding: 0px 10px;
+      display: inline-block;
+
+      &:first-child {
+        padding-left: 0px;
+      }
+      &:last-child {
+        padding-right: 0px;
+      }
+    }
+
+
+  .foodtable {
+    width: 100%;
+  }
+  
+    .foodentry {
+      border-bottom: 1px solid $darker-gray;
+    }
+
+    .foodentry__block-time,
+    .foodentry__block-triggers {
+      width:20%;
+    }
+    .foodentry__block-quantity {
+      width: 15%;
+    }
+
+    .foodentry__block-quantity,
+    .foodentry__block-time {
+      input {
+        width: 50px;
+        padding: 0px;
+        border-width: 0 0 2px 0;
+        font-family: inherit;
+        font-size: inherit;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    .foodentry__block-time {
+      input {
+        display: inline;
+        width: 30px;
+      
+        -moz-appearance:textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+      }
+    }
+
+      .foodentry__block-foodname {
+        width: 45%;
+      }
+
+      .foodentry__block-triggers {
+        text-align: right;
+      }
+
+
+@media screen and (max-width: $bp-mobile) {
+  
+  .searchbar {
+    padding: 40px 10px 10px 10px;
+    min-height: 50vh;
+
+    display: flex;
+    align-items: center;
+
+    > * {
+      width: 100%;
+    }
+  }
+
+  .searchbar__form {
+    flex-flow: row wrap;
+  }
+  
+  .searchbar__food,
+  .searchbar__quantity,
+  .searchbar__submit {
+    width: 100%;
+
+    margin: 0 0 4px 0;
+    padding: 0px;
+
+    * {
+      text-align: center;
+    }
+  }
+
+  .searchbar__submit {
+    margin-bottom: 0px;
+  }
+
+  .searchbar__form-noSelection {
+    .searchbar__food {
+      margin-bottom: 0px;
+    }
+  }
+
+  .foodtable__entry {
+      border: 0px;
+      background: $light-gray;
+      padding: 5px;
+      margin-bottom: 3px;
+  }
+
+
+  .foodentry {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  .foodentry__block {
+    display: block;
+    box-sizing: border-box;
+  }
+
+  .foodentry__block-time {
+    width: 50%;
+    order: 1;
+
+    font-size: 0.8em;
+    color: $dark-gray-font;
+  }
+  
+  .foodentry__block-triggers {
+    width: 50%;
+    order: 2;
+  }
+
+  .foodentry__block-foodname {
+    width: auto;
+    order: 4;
+  }
+
+  .foodentry__block-quantity {
+    width: auto;
+    order: 3;
+    text-align: right;
+
+    &:after {
+      content: " -";
+    }
+  }
+
+}

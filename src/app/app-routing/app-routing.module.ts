@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginGuard } from '../login/login.guard';
 
 import { LogInComponent } from '../login/login.component';
+import { ImpressumComponent } from '../impressum/impressum.component';
 import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
     loadChildren: 'app/user-account/user-account.module#UserAccountModule',
     canActivate: [LoginGuard]
   },
+  { path: 'impressum', component: ImpressumComponent },
   { path: 'login', component: LogInComponent }
 ];
 
