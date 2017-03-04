@@ -18,13 +18,31 @@ export class AnalysisComponent implements OnInit {
               private dateChooserService: DateChooserService
   ) { }
 
-  public numberToPercent(input: number) {
+  public cartBarLength(input: number) {
 
     if (input > 100) {
       input = 100;
     }
 
     let percent = input + '%';
+    return percent;
+  }
+
+  public chartCurrentPos (input: number) {
+
+    let pos = 100 - input;
+
+    // maximale Ausrichtung rechts
+    if (pos < 0) {
+      pos = 0;
+    }
+
+    // minimale Ausrichtung links
+    if (pos > 99.5) {
+      pos = 99.5;
+    }
+
+    let percent = pos + '%';
     return percent;
   }
 

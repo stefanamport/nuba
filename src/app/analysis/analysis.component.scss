@@ -1,6 +1,12 @@
 @import '../../assets/styles/_vars';
 @import '../../assets/styles/_global';
 
+$chart-bar-height: 14px;
+
+$chart-orange: orange;
+$chart-red: red;
+$chart-green: green;
+
 .chart {
   position: relative;
 
@@ -12,6 +18,18 @@
 .chart__indicator {
   position: absolute;
   transition: .2s all;
+
+  &:after {
+    content: "";
+    width: $chart-bar-height;
+    height: $chart-bar-height;
+
+    border-radius: $chart-bar-height;
+
+    position: absolute;
+    right: -$chart-bar-height/2;
+    top: 0px;
+  }
 }
 
 .chart__label,
@@ -23,27 +41,35 @@
 .chart__label {
   font-weight: bold;
   font-size: 1em;
-  width: 100%;
+  width: 50%;
 }
 
 .chart-rect {
 
+  margin-bottom: $chart-bar-height;
+
   .chart__targetvalue {
-    width: 100%;
+    width: 50%;
     text-align: right;
   }
 
   .chart__currentvalue {
     position: absolute;
-    top: -20px;
-    left: 0px;
+    z-index: 20;
+
+    color: #fff;
+
+    margin-left: 2px;
+
+    font-size: 0.6em;
+    line-height: $chart-bar-height;
   }
 
   .chart__bar {
     position: relative;
     width: 100%;
-    height: 10px;
-    background: linear-gradient(to right, darken($light-gray, 30), $light-gray);
+    height: $chart-bar-height;
+    background: linear-gradient(to right, darken($light-gray, 20), $light-gray);
   }
 
   .chart__indicator {
@@ -66,16 +92,51 @@
 .chart-WAY_TOO_LITTLE,
 .chart-WAY_TOO_MUCH {
   .chart__indicator {
-    background-color: red;
+    &, &:after {
+       background-color: $chart-red;
+    }
   }
 }
 
 .chart-TOO_LITTLE,
 .chart-TOO_MUCH {
   .chart__indicator {
-    background-color: orange;
+      &, &:after {
+        background-color: $chart-orange;
+      }
   }
 }
+
+.chart-TOO_MUCH,
+.chart-WAY_TOO_MUCH {
+  .chart__indicator:after {
+    
+    // Triangle istead of round
+    width: 0px;
+    height: 0px;
+    border-radius: 0;
+    background: transparent;
+
+    border-top: $chart-bar-height/2 solid transparent;
+    border-bottom: $chart-bar-height/2 solid transparent;
+    border-left: $chart-bar-height/2 solid $chart-red;
+  }
+}
+
+.chart-OK {
+  .chart__indicator {
+    
+    & {
+      background: $chart-green;
+    }
+
+    &:after {
+      display: none;
+    }
+    
+  }
+}
+
 
 /*
 .evaluation {
