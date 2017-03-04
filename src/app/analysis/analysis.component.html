@@ -17,7 +17,7 @@
               <div class="chart__label">{{entry.name}}</div>
               <div class="chart__targetvalue">{{entry.targetAmount}} {{entry.unit}}</div>
               <div class="chart__bar">
-                <div class="chart__currentvalue" [style.right]="chartCurrentPos(entry.percentage)">{{entry.currentAmount}}</div>
+                <div class="chart__currentvalue" [style.right]="chartCurrentPos(entry.percentage)">{{entry.currentAmount | round }}</div>
                 <div class="chart__indicator" [style.width]="cartBarLength(entry.percentage)"></div>
               </div>
             </div>

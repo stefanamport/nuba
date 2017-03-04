@@ -6,6 +6,8 @@ import {User} from '../login/user';
 import {AnalysisService} from './service/analysis.service';
 import {JournalEntriesService} from '../journal/journalEntries.service';
 
+import {RoundPipe} from './pipes/round.pipe';
+
 class UserServiceStub {
   public getUser(): User {
     let user = new User();
@@ -27,7 +29,7 @@ describe('AnalysisComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AnalysisComponent ],
+      declarations: [ AnalysisComponent, RoundPipe],
       providers: [
         { provide: UserService, useClass: UserServiceStub },
       ]
