@@ -1,12 +1,6 @@
 @import '../../assets/styles/_vars';
 @import '../../assets/styles/_global';
 
-$chart-bar-height: 14px;
-
-$chart-orange: orange;
-$chart-red: red;
-$chart-green: green;
-
 .droputGroup {
 
 }
@@ -15,11 +9,12 @@ $chart-green: green;
     padding: $boxpadding/2 $boxpadding;
 
     position: relative;
+    cursor: pointer;
     
     // dropout pfeil rechts
     &:after, &:before {
       position: absolute;
-      top: $boxpadding*2;
+      top: $boxpadding*1.7;
 
       content: "";
       display: block;
@@ -145,10 +140,10 @@ $chart-green: green;
 
 .chart-OK {
   .chart__indicator {
-    background-color: $main-color;
+    background-color: $chart-green;
   }
 }
-.chart-WAY_TOO_LITTLE,
+
 .chart-WAY_TOO_MUCH {
   .chart__indicator {
     &, &:after {
@@ -158,6 +153,7 @@ $chart-green: green;
 }
 
 .chart-TOO_LITTLE,
+.chart-WAY_TOO_LITTLE,
 .chart-TOO_MUCH {
   .chart__indicator {
       &, &:after {
