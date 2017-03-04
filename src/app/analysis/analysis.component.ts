@@ -36,8 +36,8 @@ export class AnalysisComponent implements OnInit {
     let pos = 100 - input;
 
     // maximale Ausrichtung rechts
-    if (pos < 0) {
-      pos = 0;
+    if (pos < 0.5) {
+      pos = 0.5;
     }
 
     // minimale Ausrichtung links

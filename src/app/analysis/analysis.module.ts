@@ -4,8 +4,10 @@ import { CommonModule } from '@angular/common';
 import { AnalysisComponent } from './analysis.component';
 import { analysisRouting } from './analysis.routes';
 
+import { RoundPipe } from './pipes/round.pipe';
+
 @NgModule({
-    declarations: [AnalysisComponent],
+    declarations: [AnalysisComponent, RoundPipe],
     imports: [
       analysisRouting,
       CommonModule
