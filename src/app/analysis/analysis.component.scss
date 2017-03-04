@@ -7,6 +7,65 @@ $chart-orange: orange;
 $chart-red: red;
 $chart-green: green;
 
+.droputGroup {
+
+}
+  .droputGroup__title {
+    background: $light-gray;
+    padding: $boxpadding/2 $boxpadding;
+
+    position: relative;
+    
+    // dropout pfeil rechts
+    &:after, &:before {
+      position: absolute;
+      top: $boxpadding*2;
+
+      content: "";
+      display: block;
+      width: $boxpadding*1.5;
+      height: 2px;
+      background: #000;
+
+      transition: all .2s;
+    }
+    &:before {
+      transform: rotate(-45deg);
+      right: $boxpadding;
+    }
+    &:after {
+      transform: rotate(45deg);
+      right: $boxpadding*2;
+    }
+  }
+
+  .droputGroup__content {
+    padding: $boxpadding;
+  }
+  
+  // optional dropout functionality
+  
+  .droputGroup__content {
+    opacity: 0;
+    display: none;
+
+    transition: opacity .2s;
+  }
+  .dropoutGroup-open {
+    .droputGroup__content {
+      opacity: 1;
+      display: block;
+    }
+    // pfeil rchts animation
+    .droputGroup__title {
+      &:after {
+        transform: rotate(225deg);
+        right: $boxpadding;
+      }
+    }
+  }
+
+
 .chart {
   position: relative;
 

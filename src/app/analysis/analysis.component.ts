@@ -5,6 +5,8 @@ import { ConsumptionReport } from './model/consumptionReport';
 import { UserService } from '../login/user.service';
 import { FirebaseService } from '../firebase/firebase.service';
 
+import { ComponentCategory } from './model/constants';
+
 @Component({
   selector: 'app-analysis',
   templateUrl: './analysis.component.html',
@@ -14,17 +16,27 @@ import { FirebaseService } from '../firebase/firebase.service';
 export class AnalysisComponent implements OnInit {
 
   public report: ConsumptionReport;
+  public categories: Array<any>;
 
   constructor(private analysisService: AnalysisService,
               private userService: UserService,
               private firebaseService: FirebaseService,
               private journalEntriesService: JournalEntriesService
-  ) { }
+  ) {
+
+    this.categories = [
+      {title: 'Makronährstoffe', catTitle: 'macronutrient'}
+      ];
+
+  }
 
   public cartBarLength(input: number) {
 
     if (input > 100) {
       input = 100;
+    }
+    if (input < 3) {
+      input = 3;
     }
 
     let percent = input + '%';
@@ -41,12 +53,24 @@ export class AnalysisComponent implements OnInit {
     }
 
     // minimale Ausrichtung links
-    if (pos > 99.5) {
-      pos = 99.5;
+    if (pos > 97) {
+      pos = 97;
     }
 
     let percent = pos + '%';
     return percent;
+  }
+
+  public dropoutGroup(category) {
+    if (category.open) {
+      category.open = false;
+    } else {
+      category.open = true;
+    }
+  }
+
+  private openFirstDropoutGroup() {
+    this.dropoutGroup(this.categories[0]);
   }
 
   ngOnInit() {
@@ -54,6 +78,11 @@ export class AnalysisComponent implements OnInit {
     this.analysisService.getConsumptionReport().subscribe((report) => {
       console.log(report);
       this.report = report;
+
+      if (this.report.componentAnalysis.length > 0) {
+        this.openFirstDropoutGroup();
+      }
+
     });
   }
 }

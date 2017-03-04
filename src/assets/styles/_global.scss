@@ -267,6 +267,34 @@ input {
 	}
 
 
+.message {
+	margin: $boxpadding 0;
+	padding: $boxpadding;
+
+	background: $light-gray;
+}
+
+.message-info {
+	
+	position: relative;
+	padding-left: $boxpadding*3;
+
+	&:before {
+		position: absolute;
+		left: 0px;
+		top: $boxpadding*2;
+
+		width: $boxpadding*3;
+
+		content: "!";
+		font-size: 3em;
+		font-weight: bold;
+		text-align: center;
+
+		color: darken($light-gray, 10);
+	}
+}
+
 .whitebox {
 	background: #fff;
 	margin-bottom: $boxpadding;
@@ -288,6 +316,7 @@ input {
 		padding-top: $boxpadding;
 		
 	}
+
 
 .coachTip {
 	margin-top: 0px;
