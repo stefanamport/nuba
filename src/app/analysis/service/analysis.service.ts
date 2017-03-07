@@ -8,7 +8,7 @@ import { ConsumptionReport } from '../model/consumptionReport';
 import { JournalEntry } from '../../journal/journalEntry';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../../login/user';
-import { AgeRange } from '../model/constants';
+import { AgeRange, ComponentCategory } from '../model/constants';
 
 @Injectable()
 export class AnalysisService {
@@ -45,11 +45,13 @@ export class AnalysisService {
     let url: string = user.gender === 'male' ? 'targetMale' : 'targetFemale';
     let ageRange = AnalysisService.getAgeRange(user.age);
 
+    // get target consumption
     this.firebaseService.getList(url).subscribe((result) => {
       // add calories manually as there is no general target
       result.push('Energie kcal');
       this.getTargetConsumption(result, ageRange, user);
 
+      // get current consumption
       this.journalEntriesService.getJournalEntries(date, user.uid).subscribe((journalEntries: JournalEntry[]) => {
         this.resetCurrentConsumption();
 
@@ -61,6 +63,8 @@ export class AnalysisService {
           this.firebaseService.getObject('foodDetails', journalEntry.foodID).subscribe((foodDetails: FoodDetails) => {
             this.calculateCurrentConsumption(foodDetails, journalEntry.quantity);
             if (journalIndex === journalEntries.length - 1) {
+
+              // create consumption report
               let report = new ConsumptionReport();
               report = report.createConsumptionReport(this.consumptionMap, this.userService.getUser());
               this.reportSubject.next(report);
@@ -91,6 +95,8 @@ export class AnalysisService {
           component.targetAmount = +comp.amount;
           component.currentAmount = 0;
           component.unit = comp.unit;
+          component.category = targetConsumption.category;
+
           this.consumptionMap.set(comp.name, component);
         }
       }
@@ -107,6 +113,7 @@ export class AnalysisService {
     component.targetAmount = + user.metabolicRate;
     component.currentAmount = 0;
     component.unit = 'kcal';
+    component.category = 'Makronährstoffe';
     this.consumptionMap.set(component.name, component);
   }
 
