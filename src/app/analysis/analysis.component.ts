@@ -79,7 +79,7 @@ export class AnalysisComponent implements OnInit {
       console.log(report);
       this.report = report;
 
-      if (this.report.componentAnalysis.length > 0) {
+      if (this.report.analysis.size > 0) {
         this.openFirstDropoutGroup();
       }
 

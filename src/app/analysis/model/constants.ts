@@ -1,7 +1,7 @@
 export type State = 'WAY_TOO_MUCH' | 'TOO_MUCH' | 'OK' | 'TOO_LITTLE' | 'WAY_TOO_LITTLE';
 
 export type ComponentCategory =
-  'macronutrient' | 'element' | 'vitamin';
+  'Makronährstoffe' | 'Elemente' | 'Vitamine';
 
 export type ComponentName =
   'Vitamin A' | 'Vitamin B6' | 'Vitamin B12' | 'Vitamin C' | 'Vitamin D' | 'Vitamin E' |
