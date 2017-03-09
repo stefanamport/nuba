@@ -14,8 +14,7 @@ export class AnalysisService {
 
   private consumptionMap: Map<string, ComponentAnalysis> = new Map<string, ComponentAnalysis>();
 
-  private report: ConsumptionReport = new ConsumptionReport();
-  private reportSubject = new BehaviorSubject(this.report);
+  private reportSubject = new BehaviorSubject(new ConsumptionReport());
 
   private static getAgeRange(age: number): AgeRange {
     if (age === 18) {
@@ -50,14 +49,18 @@ export class AnalysisService {
 
       this.journalEntriesService.getJournalEntries(date, user.uid).subscribe((journalEntries: JournalEntry[]) => {
         this.resetCurrentConsumption();
-        journalEntries.forEach((journalEntry, journalIndex) => {
 
+        if (journalEntries.length === 0) {
+          this.reportSubject.next(new ConsumptionReport());
+        }
+
+        journalEntries.forEach((journalEntry, journalIndex) => {
           this.firebaseService.getObject('foodDetails', journalEntry.foodID).subscribe((foodDetails: FoodDetails) => {
             this.calculateCurrentConsumption(foodDetails, journalEntry.quantity);
             if (journalIndex === journalEntries.length - 1) {
               let report = new ConsumptionReport();
-              this.report = report.createConsumptionReport(this.consumptionMap, this.userService.getUser());
-              this.reportSubject.next(this.report);
+              report = report.createConsumptionReport(this.consumptionMap, this.userService.getUser());
+              this.reportSubject.next(report);
             }
           });
         });

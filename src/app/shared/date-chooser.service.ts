@@ -12,7 +12,7 @@ export class DateChooserService {
     this.dateSubject.next(date);
   }
 
-  getChosenDateAsObservable() {
+  getChosenDateAsObservable(): Observable<Date> {
     return this.dateSubject.asObservable();
   }
 

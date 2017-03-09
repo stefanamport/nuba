@@ -21,10 +21,14 @@ export class JournalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.analysisService.initConsumptionAnalysis(new Date());
-    this.analysisService.getConsumptionReport().subscribe((report) => {
-      this.coachTip = report.recommendation;
-      this.showNewHint();
+    this.dateChooserService.getChosenDateAsObservable().subscribe((date) => {
+      this.analysisService.initConsumptionAnalysis(date);
+      this.analysisService.getConsumptionReport().subscribe((report) => {
+        this.coachTip = report.recommendation;
+        this.showNewHint();
+        console.log(date);
+        console.log(report);
+      });
     });
   }
 
