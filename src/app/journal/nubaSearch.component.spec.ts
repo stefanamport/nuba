@@ -10,13 +10,22 @@ import { JournalEntry } from './journalEntry';
 import { Injectable, Output, EventEmitter } from '@angular/core';
 
 import { UserService } from '../login/user.service';
+import {User} from '../login/user';
+import {DateChooserService} from '../shared/date-chooser.service';
 
 const banana: Food = { $key: 1, name: 'Banane', category: 'Frucht', matrix_unit: 'g', matrix_amount: 100 };
 
 class JournalEntriesServiceSpy {
   private addJournalEntrySource = new Subject<JournalEntry>();
   notifyAddJournalEntry = jasmine.createSpy('notifyAddJournalEntry');
+  addEntry = jasmine.createSpy('addEntry');
   addJournalEntryNotification$ = this.addJournalEntrySource.asObservable();
+}
+
+class DateChooserServiceStub {
+  public getChosenDate() {
+    return new Date('January 10, 2017 00:00:00');
+  }
 }
 
 class UserServiceStub {
@@ -61,16 +70,20 @@ describe('SearchComponent', () => {
   let foodService: FoodService;
   let userService: UserService;
   let journalEntriesService: JournalEntriesService;
+  let dateChooserService: DateChooserService;
 
   beforeEach(() => {
     foodService = new FoodServiceStub();
     userService = new UserServiceStub();
     journalEntriesService = new JournalEntriesServiceSpy();
+    dateChooserService = new DateChooserServiceStub();
 
     component = new SearchComponent(
         foodService,
         journalEntriesService,
-        userService);
+        userService,
+        dateChooserService
+    );
   });
 
   it('should create NubaSearchComponent', () => {
@@ -111,6 +124,9 @@ describe('SearchComponent', () => {
     // arrange
     component.selectedFood = banana;
     component.selectedQuantity = 200;
+    let user = new User();
+    user.uid = 'user1';
+    component.user = user;
 
     let expectedJournalEntry: JournalEntry = new JournalEntry();
     expectedJournalEntry.name = banana.name;
@@ -118,6 +134,8 @@ describe('SearchComponent', () => {
     expectedJournalEntry.quantity = 200;
     expectedJournalEntry.unit = banana.matrix_unit;
     expectedJournalEntry.editable = false;
+    expectedJournalEntry.userId = 'user1';
+    expectedJournalEntry.date = new Date('January 10, 2017 00:00:00');
 
     spyOn(component, 'resetSearchResults');
     spyOn(component, 'clearForm');
@@ -126,7 +144,7 @@ describe('SearchComponent', () => {
     component.addToJournal();
 
     // assert
-    expect(component.journalEntriesService.notifyAddJournalEntry).toHaveBeenCalledWith(expectedJournalEntry);
+    expect(component.journalEntriesService.addEntry).toHaveBeenCalledWith(expectedJournalEntry);
     expect(component.userService.addMostUsedFoods).toHaveBeenCalledWith(expectedJournalEntry.foodID);
 
     expect(component.resetSearchResults).toHaveBeenCalled();

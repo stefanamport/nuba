@@ -19,6 +19,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { FirebaseService } from './firebase/firebase.service';
 
 import { FoodService } from './food/food.service';
+import { DateChooserService } from './shared/date-chooser.service';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBf7RiiafbN6IKzYoDdsZtOaQqFK-54oB0',
@@ -46,7 +47,7 @@ export const firebaseConfig = {
         method: AuthMethods.Popup
       })
   ],
-  providers: [ UserService, FirebaseService, LoginGuard, FoodService ],
+  providers: [ UserService, FirebaseService, LoginGuard, FoodService, DateChooserService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

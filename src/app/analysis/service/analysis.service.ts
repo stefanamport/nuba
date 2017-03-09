@@ -7,7 +7,7 @@ import { FoodDetails } from '../../food/foodDetails';
 import { ConsumptionReport } from '../model/consumptionReport';
 import { AgeRange } from '../model/ageRange';
 import { JournalEntry } from '../../journal/journalEntry';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
 export class AnalysisService {
@@ -36,8 +36,8 @@ export class AnalysisService {
               private journalEntriesService: JournalEntriesService) {
   }
 
-  public getConsumptionReport(): BehaviorSubject<ConsumptionReport> {
-    return this.reportSubject;
+  public getConsumptionReport(): Observable<ConsumptionReport> {
+    return this.reportSubject.asObservable();
   }
 
   public initConsumptionAnalysis(date: Date) {

@@ -10,7 +10,7 @@ import { SearchComponent } from './nubaSearch.component';
 
 import { SearchFilterPipe } from './pipes/searchFilter.pipe';
 import { OrderByAlphabetPipe } from './pipes/orderByAlphabet.pipe';
-import { MomentPipe } from './pipes/momentjs.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -18,13 +18,13 @@ import { MomentPipe } from './pipes/momentjs.pipe';
       SearchComponent,
       JournalListComponent,
       SearchFilterPipe,
-      OrderByAlphabetPipe,
-      MomentPipe
+      OrderByAlphabetPipe
     ],
     imports: [
       journalRouting,
       CommonModule,
-      FormsModule
+      FormsModule,
+      SharedModule
     ]
 })
 export class JournalModule { }

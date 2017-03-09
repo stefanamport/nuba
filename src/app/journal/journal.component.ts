@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { JournalEntriesService } from './journalEntries.service';
 import { AnalysisService } from '../analysis/service/analysis.service';
+import { DateChooserService } from '../shared/date-chooser.service';
 
 @Component({
   selector: 'app-journal',
@@ -15,7 +16,7 @@ export class JournalComponent implements OnInit {
   newHintAvailable = false;
   coachTip: any;
 
-  constructor(private analysisService: AnalysisService) {
+  constructor(private analysisService: AnalysisService, private dateChooserService: DateChooserService) {
 
   }
 
