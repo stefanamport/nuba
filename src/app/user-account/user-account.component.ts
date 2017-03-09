@@ -7,7 +7,7 @@ import { Genders, ActivityLevels } from '../login/user.specs';
 
 @Component({
   templateUrl: './user-account.component.html',
-  providers: [ UserService, FirebaseService ]
+  providers: [ FirebaseService ]
 })
 export class UserAccountComponent  {
 

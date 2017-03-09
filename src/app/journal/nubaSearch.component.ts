@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FoodService } from '../food/food.service';
 
 import { Food } from '../food/food';
@@ -6,12 +6,14 @@ import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
 
 import { UserService } from '../login/user.service';
+import { DateChooserService } from '../shared/date-chooser.service';
+import { User } from '../login/user';
 
 @Component({
   selector: 'app-search',
   templateUrl: './nubaSearch.component.html',
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
 
   public foodList: Array<Food>;
 
@@ -26,23 +28,28 @@ export class SearchComponent {
   public foodListActiveRow = 0;
   private foodListActiveItemFoodObj: any;
 
+  public user: User;
+
   constructor(
     private foodService: FoodService,
-    private journalEntriesService: JournalEntriesService,
-    public userService: UserService
-  ) {
+    public journalEntriesService: JournalEntriesService,
+    public userService: UserService,
+    private dateChooserService: DateChooserService
+  ) { }
 
+  ngOnInit() {
     this.foodList = this.foodService.getFoodList();
 
     this.foodService.foodList.subscribe((data: any) => {
       this.foodList = data;
     });
-
+    this.user = this.userService.getUser();
     // most used Foods
-    this.userService.data.subscribe((data: any) => {
+    this.userService.data.subscribe((data: User) => {
       if ( data.foodShortlist ) {
         this.foodShortlist = data.foodShortlist;
       }
+      this.user = data;
     });
   }
 
@@ -127,8 +134,12 @@ export class SearchComponent {
     newEntry.quantity = this.selectedQuantity;
     newEntry.unit = this.selectedFood.matrix_unit;
     newEntry.editable = false;
+    newEntry.userId = this.user.uid;
 
-    this.journalEntriesService.notifyAddJournalEntry(newEntry);
+    let selectedDate = this.dateChooserService.getChosenDate();
+    newEntry.date = selectedDate;
+
+    this.journalEntriesService.addEntry(newEntry);
 
     this.userService.addMostUsedFoods(this.selectedFood.$key);
 
