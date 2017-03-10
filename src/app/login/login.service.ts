@@ -1,17 +1,18 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { User } from './user';
 import { FirebaseService } from '../firebase/firebase.service';
-import { AuthProviders } from 'angularfire2';
+import { AuthProviders, FirebaseAuthState } from 'angularfire2';
+import { BehaviorSubject, Observable } from 'rxjs';
+import Promise = firebase.Promise;
 
 @Injectable()
 export class LoginService {
-  userAuth: any;
-  userInfo: any;
-  user: User;
+  userAuth: FirebaseAuthState;
+  user: User = new User();
 
-  @Output() data = new EventEmitter();
+  private userSubject = new BehaviorSubject<User>(this.user);
 
   constructor(private firebaseService: FirebaseService,
               private router: Router) {
@@ -22,13 +23,12 @@ export class LoginService {
         this.userAuth = user;
 
         this.firebaseService.getObject('userData', this.userAuth.uid).subscribe(userInfo => {
-          this.userInfo = userInfo;
-          this.userInfo.dataCompleted = true;
-          this.userUpdated();
+          this.user = userInfo;
+          this.updateUser();
         });
       } else {
-        this.userAuth = {};
-        this.userUpdated();
+        this.userAuth = null;
+        this.updateUser();
       }
     });
   }
@@ -37,51 +37,42 @@ export class LoginService {
     return this.firebaseService.getAuth();
   }
 
-  public login(method: string) {
-    this.firebaseService.login({
+  public login(method: string): Promise<FirebaseAuthState> {
+    return this.firebaseService.login({
       provider: AuthProviders[method]
     }).catch(() => {
       this.cleanUpAuth();
     });
   }
 
-  public logout() {
-    this.firebaseService.logout().then(() => {
-      this.cleanUpAuth();
-    });
+  public getUserAsObservable(): Observable<User> {
+    return this.userSubject.asObservable();
+  }
+
+  public getUser(): User {
+    return this.userSubject.getValue();
+  }
+
+  private resetUser() {
+    this.user = new User();
+    this.userAuth = null;
+  }
+
+  private updateUser() {
+    if (this.userAuth) {
+      this.user.uid = this.userAuth.uid;
+
+      if (this.userAuth.google) {
+        this.user.avatar = this.userAuth.google.photoURL;
+      }
+    }
+
+    this.userSubject.next(this.user);
   }
 
   private cleanUpAuth() {
     this.resetUser();
-    this.userUpdated();
+    this.updateUser();
     this.router.navigate(['login']);
-  }
-
-  public getUser() {
-    if (this.userAuth) {
-      this.user.uid = this.userAuth.uid;
-    }
-
-    if (this.userAuth.google) {
-      this.user.avatar = this.userAuth.google.photoURL;
-    }
-
-    this.user = Object.assign(this.user, this.userInfo);
-
-    return this.user;
-  }
-
-  private resetUser() {
-    this.user = {};
-    this.userAuth = false;
-    this.userInfo = false;
-  }
-
-  private userUpdated() {
-    if (this.userInfo || this.userAuth) {
-      this.data.next(this.getUser());
-    } else {
-      this.data.next(false);
-    }
   }
 }

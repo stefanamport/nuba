@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FoodService } from '../food/food.service';
 
 import { Food } from '../food/food';
 import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
-
-import { UserService } from '../login/user.service';
 import { DateChooserService } from '../shared/date-chooser.service';
 import { User } from '../login/user';
+import { LoginService } from '../login/login.service';
+import { UserAccountService } from '../user-account/user-account.service';
 
 @Component({
   selector: 'app-search',
@@ -33,8 +33,9 @@ export class SearchComponent implements OnInit {
   constructor(
     private foodService: FoodService,
     public journalEntriesService: JournalEntriesService,
-    public userService: UserService,
-    private dateChooserService: DateChooserService
+    public loginService: LoginService,
+    private dateChooserService: DateChooserService,
+    public userAccountService: UserAccountService
   ) { }
 
   ngOnInit() {
@@ -43,9 +44,9 @@ export class SearchComponent implements OnInit {
     this.foodService.foodList.subscribe((data: any) => {
       this.foodList = data;
     });
-    this.user = this.userService.getUser();
+
     // most used Foods
-    this.userService.data.subscribe((data: User) => {
+    this.loginService.getUserAsObservable().subscribe((data: User) => {
       if ( data.foodShortlist ) {
         this.foodShortlist = data.foodShortlist;
       }
@@ -141,7 +142,7 @@ export class SearchComponent implements OnInit {
 
     this.journalEntriesService.addEntry(newEntry);
 
-    this.userService.addMostUsedFoods(this.selectedFood.$key);
+    this.userAccountService.addMostUsedFoods(this.selectedFood.$key);
 
     this.resetSearchResults();
     this.clearForm();

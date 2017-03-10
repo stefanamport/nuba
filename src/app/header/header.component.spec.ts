@@ -1,59 +1,23 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {EventEmitter} from '@angular/core';
-
-import {Router} from '@angular/router';
-
-import { LoginService } from '../login/login.service';
-import {AngularFire} from 'angularfire2';
-
 import { HeaderComponent } from './header.component';
-import {Output} from '@angular/core/src/metadata/directives';
+import {User} from '../login/user';
+import {Observable} from 'rxjs';
+
+class LoginServiceStub {
+
+  getUserAsObservable() {
+    return Observable.of(new User());
+  }
+}
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
-  let router: Router;
-
-  class AngularFireStub {}
-
-  class LoginServiceStub {
-    @Output() data = new EventEmitter();
-
-    public getUser() {
-      return [];
-    }
-  }
-
-  // FIXME: @Stefan: I commented this out as it did not work and I don't fully understand it.
-  // I think assigning a UserAccountComponent to a component of type HeaderComponent does not work.
-  // beforeAll(() => {
-      // router = jasmine.createSpyObj('Router', ['navigate']);
-      // component = new UserAccountComponent(router);
- // });
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ],
-      providers: [
-        { provide: AngularFire, useClass: AngularFireStub },
-      ]
-    }).overrideComponent(HeaderComponent, {
-      set: {
-        providers: [
-          { provide: LoginService, useClass: LoginServiceStub }
-        ]
-      }
-    }).compileComponents();
-  }));
+  let loginService: LoginServiceStub = new LoginServiceStub();
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = new HeaderComponent(loginService);
   });
 
-  it('should create', () => {
+  it('should create HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 });

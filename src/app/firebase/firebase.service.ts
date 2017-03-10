@@ -11,7 +11,7 @@ export class FirebaseService {
     return this.af.database.list(resource);
   }
 
-  getObject(resource: string, id: number): FirebaseObjectObservable<any> {
+  getObject(resource: string, id: string): FirebaseObjectObservable<any> {
     return this.af.database.object(resource + '/' + id);
   }
 

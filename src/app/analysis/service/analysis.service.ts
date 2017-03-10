@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { UserService } from '../../login/user.service';
 import { FirebaseService } from '../../firebase/firebase.service';
 import { ComponentAnalysis } from '../model/componentAnalysis';
 import { JournalEntriesService } from '../../journal/journalEntries.service';
@@ -8,6 +7,7 @@ import { ConsumptionReport } from '../model/consumptionReport';
 import { AgeRange } from '../model/ageRange';
 import { JournalEntry } from '../../journal/journalEntry';
 import { BehaviorSubject } from 'rxjs';
+import { LoginService } from '../../login/login.service';
 
 @Injectable()
 export class AnalysisService {
@@ -31,7 +31,7 @@ export class AnalysisService {
     }
   }
 
-  constructor(private userService: UserService,
+  constructor(private loginService: LoginService,
               private firebaseService: FirebaseService,
               private journalEntriesService: JournalEntriesService) {
   }
@@ -41,7 +41,7 @@ export class AnalysisService {
   }
 
   public initConsumptionAnalysis(date: Date) {
-    let user = this.userService.getUser();
+    let user = this.loginService.getUser();
     let url: string = user.gender === 'male' ? 'targetMale' : 'targetFemale';
     let ageRange = AnalysisService.getAgeRange(user.age);
 
@@ -56,11 +56,11 @@ export class AnalysisService {
         }
 
         journalEntries.forEach((journalEntry, journalIndex) => {
-          this.firebaseService.getObject('foodDetails', journalEntry.foodID).subscribe((foodDetails: FoodDetails) => {
+          this.firebaseService.getObject('foodDetails', journalEntry.foodID.toString()).subscribe((foodDetails: FoodDetails) => {
             this.calculateCurrentConsumption(foodDetails, journalEntry.quantity);
             if (journalIndex === journalEntries.length - 1) {
               let report = new ConsumptionReport();
-              report = report.createConsumptionReport(this.consumptionMap, this.userService.getUser());
+              report = report.createConsumptionReport(this.consumptionMap, user);
               this.reportSubject.next(report);
             }
           });

@@ -16,7 +16,7 @@ export class JournalComponent implements OnInit {
   newHintAvailable = false;
   coachTip: any;
 
-  constructor(private analysisService: AnalysisService) {
+  constructor(private analysisService: AnalysisService, private dateChooserService: DateChooserService) {
 
   }
 

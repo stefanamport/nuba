@@ -1,25 +1,16 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-
+import { async } from '@angular/core/testing';
 import { SearchComponent } from './nubaSearch.component';
-import { FoodService } from '../food/food.service';
-import { JournalEntriesService } from './journalEntries.service';
 import { Observable, Subject } from 'rxjs';
 import { Food } from '../food/food';
 import { JournalEntry } from './journalEntry';
-
-import { Injectable, Output, EventEmitter } from '@angular/core';
-
-import { UserService } from '../login/user.service';
-import {User} from '../login/user';
-import {DateChooserService} from '../shared/date-chooser.service';
+import { Output, EventEmitter } from '@angular/core';
+import { User } from '../login/user';
+import { LoginServiceStub } from '../login/testing/fake.user.service';
 
 const banana: Food = { $key: 1, name: 'Banane', category: 'Frucht', matrix_unit: 'g', matrix_amount: 100 };
 
 class JournalEntriesServiceSpy {
-  private addJournalEntrySource = new Subject<JournalEntry>();
-  notifyAddJournalEntry = jasmine.createSpy('notifyAddJournalEntry');
   addEntry = jasmine.createSpy('addEntry');
-  addJournalEntryNotification$ = this.addJournalEntrySource.asObservable();
 }
 
 class DateChooserServiceStub {
@@ -28,11 +19,10 @@ class DateChooserServiceStub {
   }
 }
 
-class UserServiceStub {
-
-  @Output() data = new EventEmitter();
-
+class UserAccountServiceStub {
   addMostUsedFoods = jasmine.createSpy('addMostUsedFoods');
+
+  public addMostUsedFoods(foodID: number) { }
 
   public getFoodList() {
     let foodShortlist: Array<number> = [1, 2, 3, 4];
@@ -67,22 +57,25 @@ class FoodServiceStub {
 describe('SearchComponent', () => {
 
   let component: SearchComponent;
-  let foodService: FoodService;
-  let userService: UserService;
-  let journalEntriesService: JournalEntriesService;
-  let dateChooserService: DateChooserService;
+  let foodService: FoodServiceStub;
+  let loginService: LoginServiceStub;
+  let journalEntriesService: JournalEntriesServiceSpy;
+  let dateChooserService: DateChooserServiceStub;
+  let userAccountService: UserAccountServiceStub;
 
   beforeEach(() => {
     foodService = new FoodServiceStub();
-    userService = new UserServiceStub();
+    loginService = new LoginServiceStub();
     journalEntriesService = new JournalEntriesServiceSpy();
     dateChooserService = new DateChooserServiceStub();
+    userAccountService = new UserAccountServiceStub();
 
     component = new SearchComponent(
         foodService,
         journalEntriesService,
-        userService,
-        dateChooserService
+        loginService,
+        dateChooserService,
+        userAccountService
     );
   });
 
@@ -145,7 +138,7 @@ describe('SearchComponent', () => {
 
     // assert
     expect(component.journalEntriesService.addEntry).toHaveBeenCalledWith(expectedJournalEntry);
-    expect(component.userService.addMostUsedFoods).toHaveBeenCalledWith(expectedJournalEntry.foodID);
+    expect(component.userAccountService.addMostUsedFoods).toHaveBeenCalledWith(expectedJournalEntry.foodID);
 
     expect(component.resetSearchResults).toHaveBeenCalled();
     expect(component.clearForm).toHaveBeenCalled();

@@ -13,7 +13,9 @@ export class UserAccountService {
     private firebaseService: FirebaseService,
     private loginService: LoginService
   ) {
-    this.user = this.loginService.getUser();
+    this.loginService.getUserAsObservable().subscribe((user: User) => {
+      this.user = user;
+    });
   }
 
   updateUserInfo(userInfo: any) {

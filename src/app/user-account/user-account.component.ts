@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 import { User } from '../login/user';
-import { UserService } from '../login/user.service';
 import { FirebaseService } from '../firebase/firebase.service';
-import { Genders, ActivityLevels } from '../login/user.specs';
+import { Genders, ActivityLevels } from './user-account.constants';
+import { LoginService } from '../login/login.service';
+import { UserAccountService } from './user-account.service';
 
 @Component({
   templateUrl: './user-account.component.html',
@@ -17,13 +18,12 @@ export class UserAccountComponent  {
   formValidation: any = {};
   savedMessage = '';
 
-  constructor (private userService: UserService) {
+  constructor (private loginService: LoginService, private userAccountService: UserAccountService) {
 
     this.genders = Genders;
     this.activityLevels = ActivityLevels;
-    this.user = this.userService.getUser();
 
-    this.userService.data.subscribe((data: any) => {
+    this.loginService.getUserAsObservable().subscribe((data: any) => {
       this.user = data;
     });
 
@@ -46,6 +46,21 @@ export class UserAccountComponent  {
      this.validateHoursOfSport();
 
      return this.formValidation.valid;
+  }
+
+  saveUser() {
+    if (this.validateForm()) {
+      this.userAccountService.updateUserInfo(this.user);
+      this.savedMessage = 'Angaben wurden gespeichert';
+    } else {
+      this.savedMessage = 'Nicht gespeichert, bitte Angaben prüfen.';
+    }
+
+    let that = this;
+    setTimeout(function(){
+      that.savedMessage = '';
+    }, 3000);
+
   }
 
   private validateBodyweight() {
@@ -86,20 +101,4 @@ export class UserAccountComponent  {
        this.formValidation.valid = false;
      }
   }
-
-  saveUser() {
-    if (this.validateForm()) {
-      this.userAccountService.updateUserInfo(this.user);
-      this.savedMessage = 'Angaben wurden gespeichert';
-    } else {
-      this.savedMessage = 'Nicht gespeichert, bitte Angaben prüfen.';
-    }
-
-    let that = this;
-    setTimeout(function(){
-        that.savedMessage = '';
-     }, 3000);
-
-  }
-
 }

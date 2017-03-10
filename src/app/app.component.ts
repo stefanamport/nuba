@@ -12,9 +12,5 @@ import { LoginService } from './login/login.service';
 export class AppComponent {
   user: User;
 
-  constructor (private loginService: LoginService) {
-    this.loginService.data.subscribe((data: any) => {
-          this.user = data;
-    });
-  }
+  constructor () { }
 }

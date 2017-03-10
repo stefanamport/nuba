@@ -32,7 +32,7 @@ export class FoodService {
   getFood(id: number): Observable<Food> {
     let food = this.filterFoodId(id);
     if (food === null) {
-      return this.FirebaseService.getObject('food', id);
+      return this.FirebaseService.getObject('food', id.toString());
     } else {
       return Observable.of(food);
     }

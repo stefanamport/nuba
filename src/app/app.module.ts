@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 
 import { LoginGuard } from './login/login.guard';
-import { UserService } from './login/user.service';
 
 import { LogInComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
@@ -21,6 +20,7 @@ import { FirebaseService } from './firebase/firebase.service';
 
 import { FoodService } from './food/food.service';
 import { DateChooserService } from './shared/date-chooser.service';
+import { UserAccountService } from './user-account/user-account.service';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBf7RiiafbN6IKzYoDdsZtOaQqFK-54oB0',
@@ -48,7 +48,7 @@ export const firebaseConfig = {
         method: AuthMethods.Popup
       })
   ],
-  providers: [ UserService, FirebaseService, LoginGuard, FoodService, DateChooserService ],
+  providers: [ LoginService, FirebaseService, LoginGuard, FoodService, DateChooserService, UserAccountService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

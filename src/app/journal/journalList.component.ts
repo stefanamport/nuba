@@ -1,12 +1,10 @@
-import {Component, OnInit, EventEmitter} from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 
 import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
-
-import { UserService } from '../login/user.service';
-import { FirebaseListObservable } from 'angularfire2';
 import { DateChooserService } from '../shared/date-chooser.service';
 import { MomentPipe } from '../shared/momentjs.pipe';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-journal-list',
@@ -16,13 +14,11 @@ import { MomentPipe } from '../shared/momentjs.pipe';
 
 export class JournalListComponent implements OnInit {
   journalList: Array<JournalEntry> = [];
-
   selectedDate: Date;
-  journalListObs: FirebaseListObservable<JournalEntry[]>;
   componentIsLoading = true;
 
   constructor(private journalEntriesService: JournalEntriesService,
-              private userService: UserService,
+              private loginService: LoginService,
               private momentPipe: MomentPipe,
               private dateChooserService: DateChooserService
 
@@ -39,10 +35,6 @@ export class JournalListComponent implements OnInit {
     entry.timeProvH = this.momentPipe.transform(entry.date, 'HH');
     entry.timeProvM = this.momentPipe.transform(entry.date, 'mm');
     entry.editable = true;
-  }
-
-  toTime(input) {
-    return input;
   }
 
   updateEntry(entry: JournalEntry) {
@@ -68,9 +60,8 @@ export class JournalListComponent implements OnInit {
 
   private getJournalEntries(date: Date) {
     this.journalList = [];
-    let user = this.userService.getUser();
-    this.journalListObs = this.journalEntriesService.getJournalEntries(date, user.uid);
-    this.journalListObs.subscribe((journalEntries: JournalEntry[]) => {
+    let user = this.loginService.getUser();
+    this.journalEntriesService.getJournalEntries(date, user.uid).subscribe((journalEntries: JournalEntry[]) => {
       this.journalList = journalEntries;
       this.componentIsLoading = false;
     });
