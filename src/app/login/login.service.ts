@@ -45,6 +45,12 @@ export class LoginService {
     });
   }
 
+  public logout() {
+    this.firebaseService.logout().then(() => {
+      this.cleanUpAuth();
+    });
+  }
+
   public getUserAsObservable(): Observable<User> {
     return this.userSubject.asObservable();
   }

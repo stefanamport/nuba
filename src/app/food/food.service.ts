@@ -19,7 +19,6 @@ export class FoodService {
         this.cachedFoodList = food;
         this.foodListUpdated();
      });
-
   }
 
   foodListUpdated() {
