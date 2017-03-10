@@ -39,9 +39,7 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.foodList = this.foodService.getFoodList();
-
-    this.foodService.foodList.subscribe((data: any) => {
+    this.foodService.getFoodListAsObservable().subscribe((data: Array<Food>) => {
       this.foodList = data;
     });
 

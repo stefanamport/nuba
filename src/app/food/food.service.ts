@@ -1,16 +1,17 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Food } from './food';
 import { FirebaseService } from '../firebase/firebase.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class FoodService {
 
   private cachedFoodList: Array<Food> = [];
 
-  @Output() foodList = new EventEmitter();
+  private foodSubject = new BehaviorSubject<Array<Food>>(this.cachedFoodList);
 
   constructor(private FirebaseService: FirebaseService) {
 
@@ -22,11 +23,11 @@ export class FoodService {
   }
 
   foodListUpdated() {
-    this.foodList.next(this.cachedFoodList);
+    this.foodSubject.next(this.cachedFoodList);
   }
 
-  getFoodList() {
-    return this.cachedFoodList;
+  getFoodListAsObservable() {
+    return this.foodSubject.asObservable();
   }
 
   getFood(id: number): Observable<Food> {
