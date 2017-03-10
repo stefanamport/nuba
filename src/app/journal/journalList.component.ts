@@ -3,12 +3,10 @@ import {Component, OnInit, EventEmitter} from '@angular/core';
 import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
 
-import { LoginService } from '../login/login.service';
-import { User } from '../login/user';
+import { UserService } from '../login/user.service';
 import { FirebaseListObservable } from 'angularfire2';
-import { Output, Input } from '@angular/core/src/metadata/directives';
-
-import { MomentPipe } from './pipes/momentjs.pipe';
+import { DateChooserService } from '../shared/date-chooser.service';
+import { MomentPipe } from '../shared/momentjs.pipe';
 
 @Component({
   selector: 'app-journal-list',
@@ -19,30 +17,21 @@ import { MomentPipe } from './pipes/momentjs.pipe';
 export class JournalListComponent implements OnInit {
   journalList: Array<JournalEntry> = [];
 
-  @Input()
   selectedDate: Date;
-
-  @Output()
-  dateChangeEmitter: EventEmitter<Date> = new EventEmitter<Date>();
-
-  private user: User;
   journalListObs: FirebaseListObservable<JournalEntry[]>;
   componentIsLoading = true;
 
   constructor(private journalEntriesService: JournalEntriesService,
-              private loginService: LoginService,
-              private momentPipe: MomentPipe
+              private userService: UserService,
+              private momentPipe: MomentPipe,
+              private dateChooserService: DateChooserService
+
   ) { }
 
   ngOnInit() {
-    this.selectedDate = new Date();
-    this.user = this.loginService.getUser();
-    this.getJournalEntries(this.selectedDate);
-    this.journalEntriesService.addJournalEntryNotification$.subscribe(
-      journalEntry => {
-        journalEntry.date = this.selectedDate;
-        journalEntry.userId = this.user.uid;
-        this.journalEntriesService.addEntry(journalEntry);
+    this.dateChooserService.getChosenDateAsObservable().subscribe((selectedDate) => {
+      this.selectedDate = selectedDate;
+      this.getJournalEntries(selectedDate);
     });
   }
 
@@ -77,16 +66,10 @@ export class JournalListComponent implements OnInit {
     this.journalEntriesService.deleteEntry(entry);
   }
 
-  dateChange(step: number) {
-    this.selectedDate.setDate(this.selectedDate.getDate() + step);
-    this.selectedDate = new Date(this.selectedDate);
-    this.dateChangeEmitter.emit(this.selectedDate);
-    this.getJournalEntries(this.selectedDate);
-  }
-
   private getJournalEntries(date: Date) {
     this.journalList = [];
-    this.journalListObs = this.journalEntriesService.getJournalEntries(date, this.user.uid);
+    let user = this.userService.getUser();
+    this.journalListObs = this.journalEntriesService.getJournalEntries(date, user.uid);
     this.journalListObs.subscribe((journalEntries: JournalEntry[]) => {
       this.journalList = journalEntries;
       this.componentIsLoading = false;

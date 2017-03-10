@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 
 import { User } from '../login/user';
+import { UserService } from '../login/user.service';
 import { FirebaseService } from '../firebase/firebase.service';
-import { UserAccountService } from './user-account.service';
-import { LoginService } from '../login/login.service';
-import { Genders, ActivityLevels } from './user-account.constants';
+import { Genders, ActivityLevels } from '../login/user.specs';
 
 @Component({
   templateUrl: './user-account.component.html',
-  providers: [ LoginService, FirebaseService, UserAccountService ]
+  providers: [ FirebaseService ]
 })
 export class UserAccountComponent  {
 
@@ -18,15 +17,16 @@ export class UserAccountComponent  {
   formValidation: any = {};
   savedMessage = '';
 
-  constructor ( private loginService: LoginService,
-                private userAccountService: UserAccountService) {
+  constructor (private userService: UserService) {
+
     this.genders = Genders;
     this.activityLevels = ActivityLevels;
-    this.user = this.loginService.getUser();
+    this.user = this.userService.getUser();
 
-    this.loginService.data.subscribe((data: any) => {
+    this.userService.data.subscribe((data: any) => {
       this.user = data;
     });
+
   }
 
   // helper that *ngFoor can loop over object keys
@@ -35,6 +35,7 @@ export class UserAccountComponent  {
   }
 
   validateForm(): boolean {
+
     this.formValidation.valid = true;
     this.formValidation.messages = [];
 

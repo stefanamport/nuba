@@ -13,9 +13,10 @@ import { JournalComponent } from './journal/journal.component';
 import { JournalListComponent } from './journal/journalList.component';
 import { LoginService } from './login/login.service';
 
-import { MomentPipe } from './journal/pipes/momentjs.pipe';
 import { OrderByAlphabetPipe } from './journal/pipes/orderByAlphabet.pipe';
 import { SearchFilterPipe } from './journal/pipes/searchFilter.pipe';
+import { MomentPipe } from './shared/momentjs.pipe';
+import { DateChooserComponent } from './shared/date-chooser.component';
 
 describe('AppComponent', () => {
   class AngularFireStub {}
@@ -37,7 +38,8 @@ describe('AppComponent', () => {
         JournalListComponent,
         OrderByAlphabetPipe,
         SearchFilterPipe,
-        MomentPipe
+        MomentPipe,
+        DateChooserComponent
       ],
       imports: [
         RouterTestingModule,

@@ -9,18 +9,26 @@ import { JournalEntry } from './journalEntry';
 
 import { Injectable, Output, EventEmitter } from '@angular/core';
 
-import {LoginService} from '../login/login.service';
-import {UserAccountService} from '../user-account/user-account.service';
+import { UserService } from '../login/user.service';
+import {User} from '../login/user';
+import {DateChooserService} from '../shared/date-chooser.service';
 
 const banana: Food = { $key: 1, name: 'Banane', category: 'Frucht', matrix_unit: 'g', matrix_amount: 100 };
 
 class JournalEntriesServiceSpy {
   private addJournalEntrySource = new Subject<JournalEntry>();
   notifyAddJournalEntry = jasmine.createSpy('notifyAddJournalEntry');
+  addEntry = jasmine.createSpy('addEntry');
   addJournalEntryNotification$ = this.addJournalEntrySource.asObservable();
 }
 
-class UserAccountServiceStub {
+class DateChooserServiceStub {
+  public getChosenDate() {
+    return new Date('January 10, 2017 00:00:00');
+  }
+}
+
+class UserServiceStub {
 
   @Output() data = new EventEmitter();
 
@@ -33,11 +41,7 @@ class UserAccountServiceStub {
 
 }
 
-class LoginServiceStub {
-  @Output() data = new EventEmitter();
-}
-
-class FoodServiceStub implements FoodService {
+class FoodServiceStub {
 
   @Output() foodList = new EventEmitter();
 
@@ -64,21 +68,21 @@ describe('SearchComponent', () => {
 
   let component: SearchComponent;
   let foodService: FoodService;
-  let loginService: LoginService;
+  let userService: UserService;
   let journalEntriesService: JournalEntriesService;
-  let userAccountService: UserAccountService;
+  let dateChooserService: DateChooserService;
 
   beforeEach(() => {
     foodService = new FoodServiceStub();
-    loginService = new LoginServiceStub();
+    userService = new UserServiceStub();
     journalEntriesService = new JournalEntriesServiceSpy();
-    userAccountService = new UserAccountServiceStub();
+    dateChooserService = new DateChooserServiceStub();
 
     component = new SearchComponent(
         foodService,
         journalEntriesService,
-        loginService,
-        userAccountService
+        userService,
+        dateChooserService
     );
   });
 
@@ -120,6 +124,9 @@ describe('SearchComponent', () => {
     // arrange
     component.selectedFood = banana;
     component.selectedQuantity = 200;
+    let user = new User();
+    user.uid = 'user1';
+    component.user = user;
 
     let expectedJournalEntry: JournalEntry = new JournalEntry();
     expectedJournalEntry.name = banana.name;
@@ -127,6 +134,8 @@ describe('SearchComponent', () => {
     expectedJournalEntry.quantity = 200;
     expectedJournalEntry.unit = banana.matrix_unit;
     expectedJournalEntry.editable = false;
+    expectedJournalEntry.userId = 'user1';
+    expectedJournalEntry.date = new Date('January 10, 2017 00:00:00');
 
     spyOn(component, 'resetSearchResults');
     spyOn(component, 'clearForm');
@@ -135,8 +144,8 @@ describe('SearchComponent', () => {
     component.addToJournal();
 
     // assert
-    expect(component.journalEntriesService.notifyAddJournalEntry).toHaveBeenCalledWith(expectedJournalEntry);
-    expect(component.userAccountService.addMostUsedFoods).toHaveBeenCalledWith(expectedJournalEntry.foodID);
+    expect(component.journalEntriesService.addEntry).toHaveBeenCalledWith(expectedJournalEntry);
+    expect(component.userService.addMostUsedFoods).toHaveBeenCalledWith(expectedJournalEntry.foodID);
 
     expect(component.resetSearchResults).toHaveBeenCalled();
     expect(component.clearForm).toHaveBeenCalled();

@@ -35,6 +35,14 @@
       </li>
 
       <li *ngIf="!this.user.uid" class="mainnav__link">
+        <a routerLink="/welcome" routerLinkActive="navbutton-active" class="navbutton">
+          <div class="navbutton__inner">
+            <div class="navbutton__title">Willkommen</div>
+          </div>
+        </a>
+      </li>
+
+      <li *ngIf="!this.user.uid" class="mainnav__link">
         <a routerLink="/login" routerLinkActive="navbutton-active" class="navbutton">
           <div class="navbutton__inner">
             <div class="navbutton__title">Login</div>

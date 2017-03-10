@@ -3,18 +3,11 @@ import {JournalEntry, JournalEntryFirebase} from './journalEntry';
 
 import { FirebaseService } from '../firebase/firebase.service';
 import { FirebaseListObservable } from 'angularfire2';
-import {Subject} from 'rxjs';
 
 @Injectable()
 export class JournalEntriesService {
-  private addJournalEntrySource = new Subject<JournalEntry>();
-  addJournalEntryNotification$ = this.addJournalEntrySource.asObservable();
 
   constructor(private firebaseService: FirebaseService) { }
-
-  notifyAddJournalEntry(journalEntry: JournalEntry) {
-    this.addJournalEntrySource.next(journalEntry);
-  }
 
   getJournalEntries(date: Date, userId: string): FirebaseListObservable<JournalEntry[]> {
     let url: string = this.getUrl(userId, date);

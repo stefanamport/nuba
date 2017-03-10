@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalysisService } from './service/analysis.service';
 import { JournalEntriesService } from '../journal/journalEntries.service';
+import { ConsumptionReport } from './model/consumptionReport';
+import { DateChooserService } from '../shared/date-chooser.service';
 
 @Component({
   selector: 'app-analysis',
@@ -10,10 +12,15 @@ import { JournalEntriesService } from '../journal/journalEntries.service';
 })
 export class AnalysisComponent implements OnInit {
 
-  constructor(private analysisService: AnalysisService) { }
+  public report: ConsumptionReport;
+
+  constructor(private analysisService: AnalysisService,
+              private dateChooserService: DateChooserService
+  ) { }
 
   ngOnInit() {
-    this.analysisService.initConsumptionAnalysis(new Date());
+    let selectedDate = this.dateChooserService.getChosenDate();
+    this.analysisService.initConsumptionAnalysis(selectedDate);
     this.analysisService.getConsumptionReport().subscribe((report) => {
 
     });

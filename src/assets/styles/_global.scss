@@ -116,13 +116,21 @@ a {
 	padding: $boxpadding/2;
 }
 
+p {
+	margin: 0 0 $boxpadding 0 ;
+	padding: 0px;
+}
 
+h1 {
+	font-size: 1.4em;
+}
 
 h2 {
 	font-family: $font-family-headlines;
-	font-size: 1.5em;
-	line-height: 1.5em;
-	font-weight: 100;
+	font-size: 1.3em;
+	line-height: 1.3em;
+	font-weight: 500;
+	margin-bottom: 0px;
 }
 
 h3 {
@@ -191,7 +199,6 @@ input {
 	cursor: pointer;
 
 	color: lighten($main-color, 40);
-	text-shadow: 1px 1px 0px $main-color-dark;
 	border: 1px solid $main-color;
 
 	&:focus {
@@ -222,6 +229,19 @@ input {
 		font-size: 1em;
 		padding: 2px 3px;
 		font-weight: bold;
+	}
+	.button-big {
+		display: inline-block;
+		color: #fff;
+		font-weight: bold;
+		font-size: 1.2em;
+		padding: 5px 30px;
+
+		transition: .2s opacity;
+
+		&:hover {
+			opacity: .8;
+		}
 	}
 	.button-light {
 		background: $darker-gray;
@@ -269,23 +289,26 @@ input {
 
 .whitebox {
 	background: #fff;
-	margin-bottom: $boxpadding;
+	margin-bottom: $boxpadding*2;
 	padding: $boxpadding;
 
 	position: relative;
 
-	box-shadow: 0 0 2px rgba(0,0,0,.2);
+	box-shadow: 0 0 8px rgba(0,0,0,.1);
+
 }
 
 	.whitebox__title {
 		margin: 0px -$boxpadding;
 		padding: $boxpadding/2 $boxpadding;
 
-		border-bottom: 1px solid $darker-gray;
+		background: lighten($main-color, 10);
+		border-top: 2px solid $main-color;
+		color: #fff;
 	}
 
 	.whitebox__content {
-		padding-top: $boxpadding;
+		padding-top: $boxpadding*2;
 		
 	}
 
@@ -317,10 +340,10 @@ input {
 	display: flex;
 	flex-flow: row wrap;
 
-	margin: 0 -$boxpadding/2;
+	margin: 0 -$boxpadding;
 }	
 	.grid__item {
-		padding: 0 $boxpadding/2;
+		padding: 0 $boxpadding;
 		box-sizing: border-box;
 	}
 		.w-8 {
@@ -337,6 +360,13 @@ input {
 		padding-top: $headerheight*2;
 	}
 }
+
+.footer {
+	background: #fff;
+	padding: $boxpadding 0;
+	text-align: right;
+}
+
 
 @media screen and (max-width: $bp-big + 20) {
 	.middler {

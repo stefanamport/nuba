@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 
 import { JournalEntriesService } from './journalEntries.service';
 import { AnalysisService } from '../analysis/service/analysis.service';
-import { UserAccountService } from '../user-account/user-account.service';
+import { DateChooserService } from '../shared/date-chooser.service';
 
 @Component({
   selector: 'app-journal',
   templateUrl: './journal.component.html',
   styleUrls: ['./journal.component.scss'],
-  providers: [ JournalEntriesService, AnalysisService, UserAccountService ]
+  providers: [ JournalEntriesService, AnalysisService ]
 })
 export class JournalComponent implements OnInit {
 
@@ -21,10 +21,14 @@ export class JournalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.analysisService.initConsumptionAnalysis(new Date());
-    this.analysisService.getConsumptionReport().subscribe((report) => {
-      this.coachTip = report.recommendation;
-      this.showNewHint();
+    this.dateChooserService.getChosenDateAsObservable().subscribe((date) => {
+      this.analysisService.initConsumptionAnalysis(date);
+      this.analysisService.getConsumptionReport().subscribe((report) => {
+        this.coachTip = report.recommendation;
+        this.showNewHint();
+        console.log(date);
+        console.log(report);
+      });
     });
   }
 

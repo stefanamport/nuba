@@ -1,21 +1,11 @@
 <div class="screen search">
   <h2 class="whitebox__title">Das hast heute gegessen:</h2>
   <div class="whitebox__content">
-    
+
     <div class="loadingPlaceholder searchbar__loading" *ngIf="componentIsLoading"></div>
 
     <div class="foodlist" *ngIf="componentIsLoading == false">
-      <ul class="datechooser foodlist__date">
-        <li class="datechooser__block datechooser__prev">
-          <button class="button button-small button-light" (click)="dateChange(-1)"><span class="fa fa-arrow-left" aria-hidden="true"></span>
-          </button>
-        </li>
-        <li class="datechooser__block datechooser___actualdate">{{ selectedDate | momentjs: 'Do MMMM YYYY' }}</li>
-        <li class="datechooser__block datechooser___next">
-          <button class="button button-small button-light" (click)="dateChange(1)"><span class="fa fa-arrow-right" aria-hidden="true"></span>
-          </button>
-        </li>
-      </ul>
+      <app-date-chooser></app-date-chooser>
       <table class="foodtable" *ngIf="journalList.length > 0">
         <tr class="foodtable__entry foodentry" *ngFor="let entry of journalList">
 
