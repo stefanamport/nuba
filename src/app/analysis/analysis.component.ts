@@ -6,6 +6,8 @@ import { DateChooserService } from '../shared/date-chooser.service';
 
 import { ComponentCategory } from './model/constants';
 
+import { ComponentCategory } from './model/constants';
+
 @Component({
   selector: 'app-analysis',
   templateUrl: './analysis.component.html',

@@ -60,6 +60,7 @@ export class AnalysisService {
         }
 
         journalEntries.forEach((journalEntry, journalIndex) => {
+
           this.firebaseService.getObject('foodDetails', journalEntry.foodID).subscribe((foodDetails: FoodDetails) => {
             this.calculateCurrentConsumption(foodDetails, journalEntry.quantity);
             if (journalIndex === journalEntries.length - 1) {
