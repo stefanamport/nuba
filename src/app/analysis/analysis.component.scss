@@ -2,7 +2,7 @@
 @import '../../assets/styles/_global';
 
 .droputGroup {
-
+  padding-bottom: $boxpadding/2;
 }
   .droputGroup__title {
     background: $light-gray;
@@ -34,24 +34,30 @@
     }
   }
 
-  .droputGroup__content {
-    padding: $boxpadding;
-  }
-  
-  // optional dropout functionality
-  
+  // dropout functionality
   .droputGroup__content {
     opacity: 0;
-    display: none;
+    transform: scaleY(0);
+    transform-origin: top left;
 
-    transition: opacity .2s;
+    max-height: 0px;
+
+    transition: all .4s;
+
+    padding: 0px;
+    overflow: hidden;
   }
+
+  // dropout open
   .dropoutGroup-open {
     .droputGroup__content {
       opacity: 1;
-      display: block;
+      max-height: 99999px;
+      transform: scaleY(1);
+
+      padding: $boxpadding;
     }
-    // pfeil rchts animation
+    // arrow to cross animation
     .droputGroup__title {
       &:after {
         transform: rotate(225deg);
