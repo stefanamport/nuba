@@ -16,17 +16,13 @@ import { ComponentCategory } from './model/constants';
 export class AnalysisComponent implements OnInit {
 
   public report: ConsumptionReport;
-  public categories: Array<any>;
+  public reportArray: Array<any>;
 
   constructor(private analysisService: AnalysisService,
               private userService: UserService,
               private firebaseService: FirebaseService,
               private journalEntriesService: JournalEntriesService
   ) {
-
-    this.categories = [
-      {title: 'Makronährstoffe', catTitle: 'macronutrient'}
-      ];
 
   }
 
@@ -69,19 +65,42 @@ export class AnalysisComponent implements OnInit {
     }
   }
 
-  private openFirstDropoutGroup() {
-    this.dropoutGroup(this.categories[0]);
+  private initialDropoutStates() {
+
+    // open first Entry afert 1 Second
+    // To show of dropout functionality
+    let localReportArray = this.reportArray;
+
+    setTimeout( function(){
+      localReportArray[0].open = true;
+    }, 1000);
+
+  }
+
+  private setReportVars(report) {
+
+      let rArr = [];
+
+      report.analysis.forEach((val, key) => {
+            rArr.push({
+                title: key,
+                vals: val
+            });
+      });
+
+      this.report = report;
+      this.reportArray = rArr;
+
+      if (this.reportArray.length > 0) {
+        this.initialDropoutStates();
+      }
   }
 
   ngOnInit() {
     this.analysisService.initConsumptionAnalysis(new Date());
     this.analysisService.getConsumptionReport().subscribe((report) => {
-      console.log(report);
-      this.report = report;
 
-      if (this.report.analysis.size > 0) {
-        this.openFirstDropoutGroup();
-      }
+      this.setReportVars(report);
 
     });
   }
