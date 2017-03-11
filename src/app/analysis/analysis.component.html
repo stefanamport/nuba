@@ -13,6 +13,8 @@
             Der folgenden Tagesbedarf wird anhand deiner Angaben im Konto berechnet. Weitere Informationen im <a href="#">Impressum & Disclaimer</a>.
             </div>
 
+            <app-date-chooser></app-date-chooser>
+
             <div class="droputGroup" *ngFor="let cat of reportArray" [ngClass]="{'dropoutGroup-open': cat.open }">
               <div class="droputGroup__title" (click)="dropoutGroup(cat)">
                 {{cat.title}}

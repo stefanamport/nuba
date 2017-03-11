@@ -4,10 +4,6 @@ import { JournalEntriesService } from '../journal/journalEntries.service';
 import { ConsumptionReport } from './model/consumptionReport';
 import { DateChooserService } from '../shared/date-chooser.service';
 
-import { ComponentCategory } from './model/constants';
-
-import { ComponentCategory } from './model/constants';
-
 @Component({
   selector: 'app-analysis',
   templateUrl: './analysis.component.html',
@@ -20,12 +16,8 @@ export class AnalysisComponent implements OnInit {
   public reportArray: Array<any>;
 
   constructor(private analysisService: AnalysisService,
-              private userService: UserService,
-              private firebaseService: FirebaseService,
-              private journalEntriesService: JournalEntriesService
-  ) {
-
-  }
+              private dateChooserService: DateChooserService
+  ) { }
 
   public cartBarLength(input: number) {
 
@@ -68,13 +60,13 @@ export class AnalysisComponent implements OnInit {
 
   private initialDropoutStates() {
 
-    // open first Entry afert 1 Second
+    // open first Entry after 0.5 Seconds
     // To show of dropout functionality
     let localReportArray = this.reportArray;
 
     setTimeout( function(){
       localReportArray[0].open = true;
-    }, 1000);
+    }, 500);
 
   }
 
@@ -97,13 +89,19 @@ export class AnalysisComponent implements OnInit {
       }
   }
 
-  ngOnInit() {
-    let selectedDate = this.dateChooserService.getChosenDate();
+  private setSelectedDate(selectedDate) {
     this.analysisService.initConsumptionAnalysis(selectedDate);
+  }
+
+  ngOnInit() {
+
+    this.dateChooserService.getChosenDateAsObservable().subscribe((newdate) => {
+      this.setSelectedDate(newdate);
+    });
+
     this.analysisService.getConsumptionReport().subscribe((report) => {
-
       this.setReportVars(report);
-
     });
   }
+
 }

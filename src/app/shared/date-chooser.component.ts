@@ -18,6 +18,7 @@ export class DateChooserComponent implements OnInit {
   }
 
   dateChange(step: number) {
+
     // updates view
     this.selectedDate.setDate(this.selectedDate.getDate() + step);
     this.selectedDate = new Date(this.selectedDate);

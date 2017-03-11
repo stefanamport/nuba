@@ -6,11 +6,14 @@ import { analysisRouting } from './analysis.routes';
 
 import { RoundPipe } from './pipes/round.pipe';
 
+import { SharedModule } from '../shared/shared.module';
+
 @NgModule({
     declarations: [AnalysisComponent, RoundPipe],
     imports: [
       analysisRouting,
-      CommonModule
+      CommonModule,
+      SharedModule
     ]
 })
 export class AnalysisModule {
