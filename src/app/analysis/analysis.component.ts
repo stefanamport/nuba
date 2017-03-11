@@ -13,7 +13,11 @@ import { DateChooserService } from '../shared/date-chooser.service';
 export class AnalysisComponent implements OnInit {
 
   public report: ConsumptionReport;
-  public reportArray: Array<any>;
+  public reportArray = [];
+
+  public animatedListViewState = 'loaded';
+
+  public componentIsLoading = true;
 
   constructor(private analysisService: AnalysisService,
               private dateChooserService: DateChooserService
@@ -51,10 +55,12 @@ export class AnalysisComponent implements OnInit {
   }
 
   public dropoutGroup(category) {
-    if (category.open) {
-      category.open = false;
-    } else {
-      category.open = true;
+    if (category) {
+      if (category.open) {
+        category.open = false;
+      } else {
+        category.open = true;
+      }
     }
   }
 
@@ -81,10 +87,14 @@ export class AnalysisComponent implements OnInit {
             });
       });
 
+      // load reports in class variables
+      let prevReportArray = this.reportArray;
+
       this.report = report;
       this.reportArray = rArr;
 
-      if (this.reportArray.length > 0) {
+      // slide out first category, only on first load
+      if (prevReportArray.length < 1 && this.reportArray.length > 0) {
         this.initialDropoutStates();
       }
   }
@@ -100,7 +110,13 @@ export class AnalysisComponent implements OnInit {
     });
 
     this.analysisService.getConsumptionReport().subscribe((report) => {
+
       this.setReportVars(report);
+
+      if (report.analysisComplete) {
+        this.componentIsLoading = false;
+      }
+
     });
   }
 

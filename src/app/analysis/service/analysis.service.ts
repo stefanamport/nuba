@@ -56,7 +56,11 @@ export class AnalysisService {
         this.resetCurrentConsumption();
 
         if (journalEntries.length === 0) {
-          this.reportSubject.next(new ConsumptionReport());
+
+           let emptyReport = new ConsumptionReport();
+           emptyReport.analysisComplete = true;
+
+          this.reportSubject.next(emptyReport);
         }
 
         journalEntries.forEach((journalEntry, journalIndex) => {
@@ -68,6 +72,8 @@ export class AnalysisService {
               // create consumption report
               let report = new ConsumptionReport();
               report = report.createConsumptionReport(this.consumptionMap, this.userService.getUser());
+
+              report.analysisComplete = true;
               this.reportSubject.next(report);
             }
           });

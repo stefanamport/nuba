@@ -8,34 +8,51 @@
           <h2 class="whitebox__title">Deine Auswertung</h2>
 
           <div class="whitebox__content">
-            
-            <div class="message message-info">
-            Der folgenden Tagesbedarf wird anhand deiner Angaben im Konto berechnet. Weitere Informationen im <a href="#">Impressum & Disclaimer</a>.
-            </div>
 
             <app-date-chooser></app-date-chooser>
+            
+            <div class="dropoutGroup"  *ngIf="componentIsLoading">
+              <div class="loadingPlaceholder droputGroup__wrap droputGroup__loading"></div>
+              <div class="loadingPlaceholder droputGroup__wrap droputGroup__loading"></div>
+              <div class="loadingPlaceholder droputGroup__wrap droputGroup__loading"></div>
+            </div>
+            
+            <div class="dropoutGroup" *ngIf="!componentIsLoading">
 
-            <div class="droputGroup" *ngFor="let cat of reportArray" [ngClass]="{'dropoutGroup-open': cat.open }">
-              <div class="droputGroup__title" (click)="dropoutGroup(cat)">
-                {{cat.title}}
+              <div *ngIf="reportArray.length < 1">
+                Du hast noch nichts eingetragen...
               </div>
-              <div class="droputGroup__content">
-                <div *ngFor="let entry of cat.vals" class="chart chart-rect chart-{{entry.state}}">
-                  <div class="chart__label">{{entry.name}}</div>
-                  <div class="chart__targetvalue">{{entry.targetAmount}} {{entry.unit}}</div>
-                  <div class="chart__bar">
-                    <div class="chart__currentvalue" [style.right]="chartCurrentPos(entry.percentage)">{{entry.currentAmount | round }}</div>
-                    <div class="chart__indicator" [style.width]="cartBarLength(entry.percentage)"></div>
-                  </div>
-                </div>
 
-              </div> <!-- Dropout Content -->
-            </div> <!-- Dropout Title -->
+              <div class="droputGroup__wrap" *ngFor="let cat of reportArray" [ngClass]="{'dropoutGroup-open': cat.open }">
+                <div class="droputGroup__title" (click)="dropoutGroup(cat)">
+                  {{cat.title}}
+                </div>
+                <div class="droputGroup__content">
+                  <div *ngFor="let entry of cat.vals" class="chart chart-rect chart-{{entry.state}}">
+                    <div class="chart__label">{{entry.name}}</div>
+                    <div class="chart__targetvalue">{{entry.targetAmount}} {{entry.unit}}</div>
+                    <div class="chart__bar">
+                      <div class="chart__currentvalue" [style.right]="chartCurrentPos(entry.percentage)">{{entry.currentAmount | round }}</div>
+                      <div class="chart__indicator" [style.width]="cartBarLength(entry.percentage)"></div>
+                    </div>
+                  </div>
+
+                </div> <!-- Dropout Content -->
+              </div> <!-- Dropout Title -->
+            </div> <!-- Dropout -->
 
           </div>
         </div>
 
      </main>
+
+     <aside class="grid__item w-4">
+      <div class="whitebox">
+      <div class="message message-info">
+        Der Tagesbedarf wird anhand deiner Angaben im Konto berechnet. Weitere Informationen im <a href="#">Impressum & Disclaimer</a>.
+      </div>
+      </div>
+    </aside>
 
 
    </div>

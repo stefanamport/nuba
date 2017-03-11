@@ -6,6 +6,8 @@ export class ConsumptionReport {
   // holds component analyses per component category
   public analysis:  Map<ComponentCategory, Array<ComponentAnalysis>>
       = new Map<ComponentCategory, Array<ComponentAnalysis>>();
+  public analysisComplete = false;
+
   public recommendation: string;
 
   private wayTooLittle: Array<string> = [];

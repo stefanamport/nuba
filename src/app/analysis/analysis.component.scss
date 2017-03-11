@@ -2,8 +2,23 @@
 @import '../../assets/styles/_global';
 
 .droputGroup {
-  padding-bottom: $boxpadding/2;
+  margin-bottom: 2px;
 }
+
+  .droputGroup__wrap {
+    margin-bottom: $boxpadding/2;
+  }
+
+  // Fake Groups for Loading
+  .droputGroup__loading {
+    width: 100%;
+    height: 25px;
+    margin-bottom: 4px;
+    position: relative;
+
+    border: 1px solid $light-gray;
+  }
+
   .droputGroup__title {
     background: $light-gray;
     padding: $boxpadding/2 $boxpadding;
