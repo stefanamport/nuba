@@ -6,7 +6,7 @@ import { JournalEntriesService } from '../../journal/journalEntries.service';
 import { FoodDetails } from '../../food/foodDetails';
 import { ConsumptionReport } from '../model/consumptionReport';
 import { JournalEntry } from '../../journal/journalEntry';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../login/user';
 import { AgeRange, ComponentCategory } from '../model/constants';
 
