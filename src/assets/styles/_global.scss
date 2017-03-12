@@ -71,6 +71,21 @@ a {
 	}
 }
 
+// Transition on loading new content
+.aniList {
+	transition: .5s transform, .5s opacity;
+	transform-origin: top center;
+}
+
+	.aniList-loaded {
+		opacity: 1;
+		transform: scale(1);
+	}
+	.aniList-changing {
+		opacity: 0;
+		transform: scale(.8);
+	}
+
 @keyframes placeholderLoading{
 	0%{
         background-position: -999px 0

@@ -17,7 +17,7 @@
               <div class="loadingPlaceholder droputGroup__wrap droputGroup__loading"></div>
             </div>
             
-            <div class="dropoutGroup" *ngIf="!componentIsLoading">
+            <div class="dropoutGroup aniList aniList-{{aniListState}}" *ngIf="!componentIsLoading">
 
               <div *ngIf="reportArray.length < 1">
                 Du hast noch nichts eingetragen...

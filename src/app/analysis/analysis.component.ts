@@ -15,8 +15,7 @@ export class AnalysisComponent implements OnInit {
   public report: ConsumptionReport;
   public reportArray = [];
 
-  public animatedListViewState = 'loaded';
-
+  public aniListState = 'loaded';
   public componentIsLoading = true;
 
   constructor(private analysisService: AnalysisService,
@@ -103,6 +102,17 @@ export class AnalysisComponent implements OnInit {
     this.analysisService.initConsumptionAnalysis(selectedDate);
   }
 
+  private indicateDayChange() {
+    // visually show, that data has changed
+    this.aniListState = 'changing';
+
+    let that = this;
+
+    setTimeout( function(){
+      that.aniListState = 'loaded';
+    }, 500);
+  }
+
   ngOnInit() {
 
     this.dateChooserService.getChosenDateAsObservable().subscribe((newdate) => {
@@ -112,6 +122,10 @@ export class AnalysisComponent implements OnInit {
     this.analysisService.getConsumptionReport().subscribe((report) => {
 
       this.setReportVars(report);
+
+      if (!this.componentIsLoading) {
+        this.indicateDayChange();
+      }
 
       if (report.analysisComplete) {
         this.componentIsLoading = false;
