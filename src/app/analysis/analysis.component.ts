@@ -111,7 +111,7 @@ export class AnalysisComponent implements OnInit {
       this.aniListState = 'loaded';
 
      // symphony after first load
-     } else {
+     } else if (report.analysisComplete) {
 
       this.aniListState = 'changing';
 
@@ -127,7 +127,7 @@ export class AnalysisComponent implements OnInit {
 
   }
 
-  // open first Entry after 0.5 Seconds
+  // open first Entry after 1 Second
   // To show off dropout functionality
   private initialDropoutStates() {
 
@@ -146,7 +146,6 @@ export class AnalysisComponent implements OnInit {
     });
 
     this.analysisService.getConsumptionReport().subscribe((report) => {
-
       // start symphony on new report
       this.transitionSymphony(report);
 
