@@ -5,7 +5,7 @@
   </li>
   <li class="datechooser__block datechooser___actualdate">{{ selectedDate | momentjs: 'Do MMMM YYYY' }}</li>
   <li class="datechooser__block datechooser___next">
-    <button class="button button-small button-light" (click)="dateChange(1)"><span class="fa fa-arrow-right" aria-hidden="true"></span>
+    <button class="button button-small button-light" [disabled]="isToday(selectedDate)" (click)="dateChange(1)"><span class="fa fa-arrow-right" aria-hidden="true"></span>
     </button>
   </li>
 </ul>

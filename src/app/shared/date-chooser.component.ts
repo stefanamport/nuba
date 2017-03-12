@@ -21,6 +21,17 @@ export class DateChooserComponent implements OnInit {
 
   }
 
+  isToday (date) {
+
+    let momentpipe = new MomentPipe();
+    let format = 'DD.MM.YYYY';
+
+    let toCompare = momentpipe.transform(date, format);
+    let today = momentpipe.transform(new Date(), format);
+
+    return today === toCompare;
+  }
+
   dateChange(step: number) {
 
     // Change Date

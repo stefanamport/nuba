@@ -220,7 +220,7 @@ input {
 		border: 1px solid rgba(0,0,0,.2);
 	}
 
-	&:disabled {
+	&:disabled, &:disabled:hover {
 		cursor: auto;
 		opacity: .3;
 	}
@@ -248,6 +248,10 @@ input {
 		color: $dark-gray-font;
 		text-shadow: none;
 		border: 1px solid $darker-gray;
+
+		&:disabled:hover {
+			color: $dark-gray-font;
+		}
 	}
 	.button-login {
 
