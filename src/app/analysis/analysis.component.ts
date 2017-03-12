@@ -22,6 +22,31 @@ export class AnalysisComponent implements OnInit {
               private dateChooserService: DateChooserService
   ) { }
 
+  private setReportVars(report) {
+
+      let rArr = [];
+
+      report.analysis.forEach((val, key) => {
+            rArr.push({
+                title: key,
+                vals: val
+            });
+      });
+
+      // load reports in class variables
+      let prevReportArray = this.reportArray;
+
+      this.report = report;
+      this.reportArray = rArr;
+  }
+
+  private setSelectedDate(selectedDate) {
+    this.analysisService.initConsumptionAnalysis(selectedDate);
+  }
+
+  // Methods for displaying charts
+
+  // length of chart bar
   public cartBarLength(input: number) {
 
     if (input > 100) {
@@ -35,6 +60,7 @@ export class AnalysisComponent implements OnInit {
     return percent;
   }
 
+  // Position of current value
   public chartCurrentPos (input: number) {
 
     let pos = 100 - input;
@@ -53,6 +79,7 @@ export class AnalysisComponent implements OnInit {
     return percent;
   }
 
+  // dropout functionality
   public dropoutGroup(category) {
     if (category) {
       if (category.open) {
@@ -63,54 +90,53 @@ export class AnalysisComponent implements OnInit {
     }
   }
 
+  // method for visual loading indication
+  // a little symphony ;-)
+  private transitionSymphony (report) {
+
+    let timeout = 300;
+    let that = this;
+
+    // fast forward on first load
+    if (report.analysisComplete && this.componentIsLoading) {
+
+      this.setReportVars(report);
+
+      // component isnt loading anymore
+      this.componentIsLoading = false;
+
+      // slide out first category
+      this.initialDropoutStates();
+
+      this.aniListState = 'loaded';
+
+     // symphony after first load
+     } else {
+
+      this.aniListState = 'changing';
+
+      setTimeout( function(){
+          that.setReportVars(report);
+      }, timeout);
+
+      setTimeout( function(){
+          that.aniListState = 'loaded';
+      }, timeout * 2);
+
+    }
+
+  }
+
+  // open first Entry after 0.5 Seconds
+  // To show off dropout functionality
   private initialDropoutStates() {
-
-    // open first Entry after 0.5 Seconds
-    // To show of dropout functionality
-    let localReportArray = this.reportArray;
-
-    setTimeout( function(){
-      localReportArray[0].open = true;
-    }, 500);
-
-  }
-
-  private setReportVars(report) {
-
-      let rArr = [];
-
-      report.analysis.forEach((val, key) => {
-            rArr.push({
-                title: key,
-                vals: val
-            });
-      });
-
-      // load reports in class variables
-      let prevReportArray = this.reportArray;
-
-      this.report = report;
-      this.reportArray = rArr;
-
-      // slide out first category, only on first load
-      if (prevReportArray.length < 1 && this.reportArray.length > 0) {
-        this.initialDropoutStates();
-      }
-  }
-
-  private setSelectedDate(selectedDate) {
-    this.analysisService.initConsumptionAnalysis(selectedDate);
-  }
-
-  private indicateDayChange() {
-    // visually show, that data has changed
-    this.aniListState = 'changing';
 
     let that = this;
 
     setTimeout( function(){
-      that.aniListState = 'loaded';
-    }, 500);
+      that.reportArray[0].open = true;
+    }, 1000);
+
   }
 
   ngOnInit() {
@@ -121,15 +147,8 @@ export class AnalysisComponent implements OnInit {
 
     this.analysisService.getConsumptionReport().subscribe((report) => {
 
-      this.setReportVars(report);
-
-      if (!this.componentIsLoading) {
-        this.indicateDayChange();
-      }
-
-      if (report.analysisComplete) {
-        this.componentIsLoading = false;
-      }
+      // start symphony on new report
+      this.transitionSymphony(report);
 
     });
   }
