@@ -45,10 +45,6 @@ a {
   animation-iteration-count: infinite;
 }
 
-.justmobile {
-	display: none;
-}
-
 .loadingAnimation {
 	opacity: .7;
 	
@@ -384,6 +380,10 @@ input {
 		font-weight: bold;
 	}
 
+	.coachTip__buttons {
+		margin-top: 10px;
+	}
+
 
 .grid {
 	
@@ -417,6 +417,10 @@ input {
 	text-align: right;
 }
 
+.justmobile {
+	display: none;
+}
+
 @media screen and (max-width: $bp-big + 20) {
 	.middler {
 		padding: 0 10px; 
@@ -426,7 +430,7 @@ input {
 @media screen and (max-width: $bp-mobile) {
 
 	.justmobile {
-		display: block;
+		display: inline-block;
 	}
 
 	.row {
