@@ -26,8 +26,6 @@ export class JournalComponent implements OnInit {
       this.analysisService.getConsumptionReport().subscribe((report) => {
         this.coachTip = report.recommendation;
         this.showNewHint();
-        console.log(date);
-        console.log(report);
       });
     });
   }

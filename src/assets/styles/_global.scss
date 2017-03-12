@@ -307,10 +307,12 @@ input {
 
 
 .message {
-	margin: $boxpadding 0;
 	padding: $boxpadding;
 
 	background: $light-gray;
+
+	font-size: .8em;
+	line-height: 1.5em;
 }
 
 .message-info {
