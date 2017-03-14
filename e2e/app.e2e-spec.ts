@@ -55,6 +55,10 @@ describe('angular-cli-project App', function() {
 
       // switch back to nuba's window
       browser.driver.switchTo().window(handles[0]);
+
+      // check whether search input field is available after login
+      let searchInput = element(by.css('.searchbar__maininput'));
+      expect(searchInput.isPresent()).toBeTruthy();
     });
   });
 
