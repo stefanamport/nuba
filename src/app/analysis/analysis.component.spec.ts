@@ -6,6 +6,11 @@ import {User} from '../login/user';
 import {AnalysisService} from './service/analysis.service';
 import {JournalEntriesService} from '../journal/journalEntries.service';
 
+import {RoundPipe} from './pipes/round.pipe';
+
+import {MomentPipe} from '../shared/momentjs.pipe';
+import {DateChooserComponent} from '../shared/date-chooser.component';
+
 class LoginServiceStub {
   public getUser(): User {
     let user = new User();
@@ -27,7 +32,7 @@ describe('AnalysisComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AnalysisComponent ],
+      declarations: [ AnalysisComponent, RoundPipe, MomentPipe, DateChooserComponent],
       providers: [
         { provide: LoginService, useClass: LoginServiceStub },
       ]

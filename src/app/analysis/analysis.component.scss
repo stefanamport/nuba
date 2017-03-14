@@ -1,6 +1,220 @@
 @import '../../assets/styles/_vars';
 @import '../../assets/styles/_global';
 
+.droputGroup {
+  margin-bottom: 2px;
+}
+
+  .droputGroup__wrap {
+    margin-bottom: $boxpadding/2;
+  }
+
+  // Fake Groups for Loading
+  .droputGroup__loading {
+    width: 100%;
+    height: 25px;
+    margin-bottom: 4px;
+    position: relative;
+
+    border: 1px solid $light-gray;
+  }
+
+  .droputGroup__title {
+    background: $light-gray;
+    padding: $boxpadding/2 $boxpadding;
+
+    position: relative;
+    cursor: pointer;
+    
+    // dropout pfeil rechts
+    &:after, &:before {
+      position: absolute;
+      top: $boxpadding*1.7;
+
+      content: "";
+      display: block;
+      width: $boxpadding*1.5;
+      height: 2px;
+      background: #000;
+
+      transition: all .2s;
+    }
+    &:before {
+      transform: rotate(-45deg);
+      right: $boxpadding;
+    }
+    &:after {
+      transform: rotate(45deg);
+      right: $boxpadding*2;
+    }
+  }
+
+  // dropout functionality
+  .droputGroup__content {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top left;
+
+    max-height: 0px;
+
+    transition: all .4s;
+
+    padding: 0px;
+    overflow: hidden;
+  }
+
+  // dropout open
+  .dropoutGroup-open {
+    .droputGroup__content {
+      opacity: 1;
+      max-height: 99999px;
+      transform: scaleY(1);
+
+      padding: $boxpadding;
+    }
+    // arrow to cross animation
+    .droputGroup__title {
+      &:after {
+        transform: rotate(225deg);
+        right: $boxpadding;
+      }
+    }
+  }
+
+
+.chart {
+  position: relative;
+
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 10px;
+
+}
+.chart__indicator {
+  position: absolute;
+  transition: .2s all;
+
+  &:after {
+    content: "";
+    width: $chart-bar-height;
+    height: $chart-bar-height;
+
+    border-radius: $chart-bar-height;
+
+    position: absolute;
+    right: -$chart-bar-height/2;
+    top: 0px;
+  }
+}
+
+.chart__label,
+.chart__currentvalue,
+.chart__targetvalue {
+  font-size: 0.8em;
+}
+
+.chart__label {
+  font-weight: bold;
+  font-size: 1em;
+  width: 50%;
+}
+
+.chart-rect {
+
+  margin-bottom: $chart-bar-height;
+
+  .chart__targetvalue {
+    width: 50%;
+    text-align: right;
+  }
+
+  .chart__currentvalue {
+    position: absolute;
+    z-index: 5;
+
+    color: #fff;
+
+    margin-left: 2px;
+
+    font-size: 0.6em;
+    line-height: $chart-bar-height;
+  }
+
+  .chart__bar {
+    position: relative;
+    width: 100%;
+    height: $chart-bar-height;
+    background: linear-gradient(to right, darken($light-gray, 20), $light-gray);
+  }
+
+  .chart__indicator {
+    top: 0px;
+    height: 100%;
+    width: 0;
+
+    background-blend-mode: multiply;
+    opacity: .8;
+
+    transform-origin: left top;
+  }
+}
+
+.chart-OK {
+  .chart__indicator {
+    background-color: $chart-green;
+  }
+}
+
+.chart-WAY_TOO_MUCH {
+  .chart__indicator {
+    &, &:after {
+       background-color: $chart-red;
+    }
+  }
+}
+
+.chart-TOO_LITTLE,
+.chart-WAY_TOO_LITTLE,
+.chart-TOO_MUCH {
+  .chart__indicator {
+      &, &:after {
+        background-color: $chart-orange;
+      }
+  }
+}
+
+.chart-TOO_MUCH,
+.chart-WAY_TOO_MUCH {
+  .chart__indicator:after {
+    
+    // Triangle istead of round
+    width: 0px;
+    height: 0px;
+    border-radius: 0;
+    background: transparent;
+
+    border-top: $chart-bar-height/2 solid transparent;
+    border-bottom: $chart-bar-height/2 solid transparent;
+    border-left: $chart-bar-height/2 solid $chart-red;
+  }
+}
+
+.chart-OK {
+  .chart__indicator {
+    
+    & {
+      background: $chart-green;
+    }
+
+    &:after {
+      display: none;
+    }
+    
+  }
+}
+
+
+/*
 .evaluation {
 
   .evalLine {
@@ -86,3 +300,4 @@
   }
 
 }
+*/

@@ -4,9 +4,10 @@ import { ComponentAnalysis } from '../model/componentAnalysis';
 import { JournalEntriesService } from '../../journal/journalEntries.service';
 import { FoodDetails } from '../../food/foodDetails';
 import { ConsumptionReport } from '../model/consumptionReport';
-import { AgeRange } from '../model/ageRange';
 import { JournalEntry } from '../../journal/journalEntry';
 import { BehaviorSubject } from 'rxjs';
+import { User } from '../../login/user';
+import { AgeRange } from '../model/constants';
 import { LoginService } from '../../login/login.service';
 
 @Injectable()
@@ -45,22 +46,31 @@ export class AnalysisService {
     let url: string = user.gender === 'male' ? 'targetMale' : 'targetFemale';
     let ageRange = AnalysisService.getAgeRange(user.age);
 
+    // get target consumption
     this.firebaseService.getList(url).subscribe((result) => {
-      this.getTargetConsumption(result, ageRange);
+      // add calories manually as there is no general target
+      result.push('Energie kcal');
+      this.getTargetConsumption(result, ageRange, user);
 
+      // get current consumption
       this.journalEntriesService.getJournalEntries(date, user.uid).subscribe((journalEntries: JournalEntry[]) => {
         this.resetCurrentConsumption();
 
         if (journalEntries.length === 0) {
-          this.reportSubject.next(new ConsumptionReport());
+          let emptyReport = new ConsumptionReport();
+          emptyReport.analysisComplete = true;
+          this.reportSubject.next(emptyReport);
         }
 
         journalEntries.forEach((journalEntry, journalIndex) => {
           this.firebaseService.getObject('foodDetails', journalEntry.foodID.toString()).subscribe((foodDetails: FoodDetails) => {
             this.calculateCurrentConsumption(foodDetails, journalEntry.quantity);
             if (journalIndex === journalEntries.length - 1) {
+
+              // create consumption report
               let report = new ConsumptionReport();
               report = report.createConsumptionReport(this.consumptionMap, user);
+              report.analysisComplete = true;
               this.reportSubject.next(report);
             }
           });
@@ -80,7 +90,7 @@ export class AnalysisService {
     });
   }
 
-  private getTargetConsumption(result, ageRange) {
+  private getTargetConsumption(result, ageRange, user) {
     for (let targetConsumption of result) {
       if (targetConsumption.age === ageRange) {
         for (let comp of targetConsumption.components) {
@@ -89,10 +99,26 @@ export class AnalysisService {
           component.targetAmount = +comp.amount;
           component.currentAmount = 0;
           component.unit = comp.unit;
+          component.category = targetConsumption.category;
+
           this.consumptionMap.set(comp.name, component);
         }
       }
     }
+
+    // Target calories need to be added separately as there is no general target amount
+    // per gender / age. The target amount for calories depends on the specific user.
+    this.addTargetCalories(user);
+  }
+
+  private addTargetCalories(user: User) {
+    let component = new ComponentAnalysis();
+    component.name = 'Energie kcal';
+    component.targetAmount = + user.metabolicRate;
+    component.currentAmount = 0;
+    component.unit = 'kcal';
+    component.category = 'Makronährstoffe';
+    this.consumptionMap.set(component.name, component);
   }
 
   private resetCurrentConsumption() {

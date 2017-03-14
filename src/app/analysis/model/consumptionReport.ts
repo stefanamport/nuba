@@ -1,9 +1,13 @@
 import { ComponentAnalysis } from './componentAnalysis';
-import { WAY_TOO_MUCH, TOO_MUCH, WAY_TOO_LITTLE, TOO_LITTLE, ComponentName } from './constants';
+import { WAY_TOO_MUCH, TOO_MUCH, WAY_TOO_LITTLE, TOO_LITTLE, ComponentName, ComponentCategory } from './constants';
 import { User } from '../../login/user';
 
 export class ConsumptionReport {
-  public componentAnalysis: Array<ComponentAnalysis> = [];
+  // holds component analyses per component category
+  public analysis:  Map<ComponentCategory, Array<ComponentAnalysis>>
+      = new Map<ComponentCategory, Array<ComponentAnalysis>>();
+  public analysisComplete = false;
+
   public recommendation: string;
 
   private wayTooLittle: Array<string> = [];
@@ -155,8 +159,12 @@ export class ConsumptionReport {
     muchWater.push('Bouillonsuppe');
     recommendationMap.set('Wasser', muchWater);
 
-    let array = recommendationMap.get(componentName);
+    let muchKcal: Array<string> = [];
+    muchKcal.push('ein paar Nüsse');
+    muchKcal.push('ein Bauernschüblig');
+    recommendationMap.set('Energie kcal', muchKcal);
 
+    let array = recommendationMap.get(componentName);
     let rand = ConsumptionReport.pickRandomVal(array.length);
     return array[rand];
   }
@@ -173,28 +181,36 @@ export class ConsumptionReport {
   }
 
   /*
-   * Compares current consumption with the target consumption for each of the food components (e.gcarbs)
+   * Compares current consumption with the target consumption for each of the food components (e.carbs)
    */
   private compareTargetCurrentConsumption(compAnalysisMap: Map<string, ComponentAnalysis>) {
-    compAnalysisMap.forEach((analysis: ComponentAnalysis) => {
-      let percentage = analysis.currentAmount / analysis.targetAmount;
+    compAnalysisMap.forEach((compAnalysis: ComponentAnalysis) => {
+      let percentage = compAnalysis.currentAmount / compAnalysis.targetAmount * 100;
+      compAnalysis.percentage = percentage;
       if (percentage > WAY_TOO_MUCH) {
-        analysis.state = 'WAY_TOO_MUCH';
-        this.wayTooMuch.push(analysis.name);
+        compAnalysis.state = 'WAY_TOO_MUCH';
+        this.wayTooMuch.push(compAnalysis.name);
       } else if (percentage > TOO_MUCH) {
-        analysis.state = 'TOO_MUCH';
-        this.tooMuch.push(analysis.name);
+        compAnalysis.state = 'TOO_MUCH';
+        this.tooMuch.push(compAnalysis.name);
       } else if (percentage < WAY_TOO_LITTLE) {
-        analysis.state = 'WAY_TOO_LITTLE';
-        this.wayTooLittle.push(analysis.name);
+        compAnalysis.state = 'WAY_TOO_LITTLE';
+        this.wayTooLittle.push(compAnalysis.name);
       } else if (percentage < TOO_LITTLE) {
-        analysis.state = 'TOO_LITTLE';
-        this.tooLittle.push(analysis.name);
+        compAnalysis.state = 'TOO_LITTLE';
+        this.tooLittle.push(compAnalysis.name);
       } else {
-        analysis.state = 'OK';
-        this.ok.push(analysis.name);
+        compAnalysis.state = 'OK';
+        this.ok.push(compAnalysis.name);
       }
-      this.componentAnalysis.push(analysis);
+
+      // group all component analyses by component category
+      let analysisOfCategory: Array<ComponentAnalysis> = this.analysis.get(compAnalysis.category);
+      if (analysisOfCategory === undefined) {
+        analysisOfCategory = [];
+      }
+      analysisOfCategory.push(compAnalysis);
+      this.analysis.set(compAnalysis.category, analysisOfCategory);
     });
   }
 

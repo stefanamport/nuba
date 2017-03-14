@@ -45,10 +45,6 @@ a {
   animation-iteration-count: infinite;
 }
 
-.justmobile {
-	display: none;
-}
-
 .loadingAnimation {
 	opacity: .7;
 	
@@ -70,6 +66,21 @@ a {
 		height: auto;
 	}
 }
+
+// Transition on loading new content
+.aniList {
+	transition: .3s transform, .3s opacity;
+	transform-origin: top center;
+}
+
+	.aniList-loaded {
+		opacity: 1;
+		transform: scale(1);
+	}
+	.aniList-changing {
+		opacity: 0;
+		transform: scale(.8);
+	}
 
 @keyframes placeholderLoading{
 	0%{
@@ -220,7 +231,7 @@ input {
 		border: 1px solid rgba(0,0,0,.2);
 	}
 
-	&:disabled {
+	&:disabled, &:disabled:hover {
 		cursor: auto;
 		opacity: .3;
 	}
@@ -248,6 +259,10 @@ input {
 		color: $dark-gray-font;
 		text-shadow: none;
 		border: 1px solid $darker-gray;
+
+		&:disabled:hover {
+			color: $dark-gray-font;
+		}
 	}
 	.button-login {
 
@@ -287,6 +302,36 @@ input {
 	}
 
 
+.message {
+	padding: $boxpadding;
+
+	background: $light-gray;
+
+	font-size: .8em;
+	line-height: 1.5em;
+}
+
+.message-info {
+	
+	position: relative;
+	padding-left: $boxpadding*3;
+
+	&:before {
+		position: absolute;
+		left: 0px;
+		top: $boxpadding*2;
+
+		width: $boxpadding*3;
+
+		content: "!";
+		font-size: 3em;
+		font-weight: bold;
+		text-align: center;
+
+		color: darken($light-gray, 10);
+	}
+}
+
 .whitebox {
 	background: #fff;
 	margin-bottom: $boxpadding*2;
@@ -312,6 +357,7 @@ input {
 		
 	}
 
+
 .coachTip {
 	margin-top: 0px;
 }
@@ -332,6 +378,10 @@ input {
 
 	.coachTip__hint {
 		font-weight: bold;
+	}
+
+	.coachTip__buttons {
+		margin-top: 10px;
 	}
 
 
@@ -367,6 +417,9 @@ input {
 	text-align: right;
 }
 
+.justmobile {
+	display: none;
+}
 
 @media screen and (max-width: $bp-big + 20) {
 	.middler {
@@ -377,7 +430,7 @@ input {
 @media screen and (max-width: $bp-mobile) {
 
 	.justmobile {
-		display: block;
+		display: inline-block;
 	}
 
 	.row {

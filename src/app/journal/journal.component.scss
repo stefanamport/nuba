@@ -217,36 +217,15 @@ $dropdownMaxHeight: 50vh;
   }
 
 .foodList {
-
   margin-top: 20px;
 }
-    
-  .foodlist__date {
-    padding: 20px 0 20px 0;
-    margin: 0px;
-  }
-
-  .datechooser__block {
-      list-style: none;
-      margin: 0px;
-      padding: 0px 10px;
-      display: inline-block;
-
-      &:first-child {
-        padding-left: 0px;
-      }
-      &:last-child {
-        padding-right: 0px;
-      }
-    }
-
 
   .foodtable {
     width: 100%;
   }
-  
-    .foodentry {
-      border-bottom: 1px solid $darker-gray;
+
+    .foodentry__block {
+      vertical-align: top;
     }
 
     .foodentry__block-time,

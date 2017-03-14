@@ -7,4 +7,5 @@ export class ComponentAnalysis {
   targetAmount: number;
   unit: string;
   state: State;
+  percentage: number;
 }
