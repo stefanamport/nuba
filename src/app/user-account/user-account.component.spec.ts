@@ -35,10 +35,15 @@ describe('UserAccountComponent', () => {
 
   beforeEach(() => {
     component = new UserAccountComponent(loginService, userAccountService);
+    component.ngOnInit();
   });
 
   it('should create UserAccountComponent', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should load user', () => {
+    expect(component.user).toBeDefined();
   });
 
   it('should load genders', () => {
