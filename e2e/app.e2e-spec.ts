@@ -20,7 +20,13 @@ describe('angular-cli-project App', function() {
     expect(elem.isPresent()).toBeTruthy();
   });
 
-  it('should do login and search for food', () => {
+  /*
+   * This test works locally but is commented out because of security issues:
+   * 1. Password needs to be checked in
+   * 2. Travis CI server is located in the US. Google blocks login because they notice it is not possible
+   *    that I am in the US now.
+   */
+  /*it('should do login and search for food', () => {
     page.navigateTo('login');
 
     // login first
@@ -30,7 +36,7 @@ describe('angular-cli-project App', function() {
     // then search for food
     let searchExec = new SearchExecution();
     searchExec.searchFood();
-  });
+  });*/
 
   class LoginExecution {
 
@@ -51,7 +57,7 @@ describe('angular-cli-project App', function() {
         // set email
         let emailInput = element(by.css('#Email'));
         expect(emailInput.isPresent()).toBeTruthy();
-        emailInput.sendKeys('nubaawesometest@gmail.com');
+        emailInput.sendKeys('xxx');
 
         // click on next button
         let nextButton = element(by.css('#next'));
@@ -62,15 +68,15 @@ describe('angular-cli-project App', function() {
         // set password
         let pwInput = element(by.css('#Passwd'));
         expect(pwInput.isPresent()).toBeTruthy();
-        pwInput.sendKeys('1nuba2awesome3test');
+        pwInput.sendKeys('xxx');
 
         // click signin button
         let signinButton = element(by.css('#signIn'));
         expect(signinButton.isPresent()).toBeTruthy();
         signinButton.click();
 
-        // wait 10 seconds while authentication takes place
-        browser.driver.sleep(60000);
+        // wait 5 seconds while authentication takes place
+        browser.driver.sleep(5000);
 
         // switch back to nuba's window
         browser.driver.switchTo().window(handles[0]);
