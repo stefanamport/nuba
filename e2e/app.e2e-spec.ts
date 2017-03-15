@@ -49,21 +49,28 @@ describe('angular-cli-project App', function() {
         expect(browser.getCurrentUrl()).toContain('https://accounts.google.com/ServiceLogin');
 
         // set email
-        element(by.css('#Email')).sendKeys('nubaawesometest@gmail.com');
+        let emailInput = element(by.css('#Email'));
+        expect(emailInput.isPresent()).toBeTruthy();
+        emailInput.sendKeys('nubaawesometest@gmail.com');
 
         // click on next button
         let nextButton = element(by.css('#next'));
+        expect(nextButton.isPresent()).toBeTruthy();
         nextButton.click();
         browser.driver.sleep(2000);
 
         // set password
-        element(by.css('#Passwd')).sendKeys('1nuba2awesome3test');
+        let pwInput = element(by.css('#Passwd'));
+        expect(pwInput.isPresent()).toBeTruthy();
+        pwInput.sendKeys('1nuba2awesome3test');
 
         // click signin button
-        element(by.css('#signIn')).click();
+        let signinButton = element(by.css('#signIn'));
+        expect(signinButton.isPresent()).toBeTruthy();
+        signinButton.click();
 
         // wait 10 seconds while authentication takes place
-        browser.driver.sleep(20000);
+        browser.driver.sleep(30000);
 
         // switch back to nuba's window
         browser.driver.switchTo().window(handles[0]);
