@@ -70,7 +70,7 @@ describe('angular-cli-project App', function() {
         signinButton.click();
 
         // wait 10 seconds while authentication takes place
-        browser.driver.sleep(30000);
+        browser.driver.sleep(60000);
 
         // switch back to nuba's window
         browser.driver.switchTo().window(handles[0]);
