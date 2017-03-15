@@ -13,9 +13,9 @@ export class FoodService {
 
   private foodSubject = new BehaviorSubject<Array<Food>>(this.cachedFoodList);
 
-  constructor(private FirebaseService: FirebaseService) {
+  constructor(private firebaseService: FirebaseService) {
 
-    this.FirebaseService.getList('food').subscribe(food => {
+    this.firebaseService.getList('food').subscribe(food => {
         this.cachedFoodList = food;
         this.foodListUpdated();
      });
@@ -32,7 +32,7 @@ export class FoodService {
   getFood(id: number): Observable<Food> {
     let food = this.filterFoodId(id);
     if (food === null) {
-      return this.FirebaseService.getObject('food', id.toString());
+      return this.firebaseService.getObject('food', id.toString());
     } else {
       return Observable.of(food);
     }

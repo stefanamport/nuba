@@ -150,6 +150,7 @@ export class SearchComponent implements OnInit {
   activateFoodlist() {
     this.foodListActive = true;
   }
+
   deactivateFoodlist() {
     this.foodListActive = false;
   }

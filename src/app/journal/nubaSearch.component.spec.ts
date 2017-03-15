@@ -1,11 +1,12 @@
+/* tslint:disable:no-unused-variable */
 import { async } from '@angular/core/testing';
 import { SearchComponent } from './nubaSearch.component';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Food } from '../food/food';
 import { JournalEntry } from './journalEntry';
-import { Output, EventEmitter } from '@angular/core';
 import { User } from '../login/user';
 import { LoginServiceStub } from '../login/testing/fake.user.service';
+import any = jasmine.any;
 
 const banana: Food = { $key: 1, name: 'Banane', category: 'Frucht', matrix_unit: 'g', matrix_amount: 100 };
 
@@ -20,28 +21,23 @@ class DateChooserServiceStub {
 }
 
 class UserAccountServiceStub {
-  addMostUsedFoods = jasmine.createSpy('addMostUsedFoods');
-
   public addMostUsedFoods(foodID: number) { }
 
   public getFoodList() {
-    let foodShortlist: Array<number> = [1, 2, 3, 4];
-    return foodShortlist;
+    return [1, 2, 3, 4];
   };
 
 }
 
 class FoodServiceStub {
-
-  @Output() foodList = new EventEmitter();
+  private cachedFoodList: Array<Food> = [];
 
   constructor() {
     this.cachedFoodList = [banana];
   }
 
-  public getFoodList() {
-    let foodList: Array<Food> = [banana];
-    return foodList;
+  public getFoodList(id) {
+    return [banana];
   }
 
   public getFood(id: number): Observable<Food> {
@@ -57,11 +53,11 @@ class FoodServiceStub {
 describe('SearchComponent', () => {
 
   let component: SearchComponent;
-  let foodService: FoodServiceStub;
-  let loginService: LoginServiceStub;
-  let journalEntriesService: JournalEntriesServiceSpy;
-  let dateChooserService: DateChooserServiceStub;
-  let userAccountService: UserAccountServiceStub;
+  let foodService: any;
+  let loginService: any;
+  let journalEntriesService: any;
+  let dateChooserService: any;
+  let userAccountService: any;
 
   beforeEach(() => {
     foodService = new FoodServiceStub();
@@ -84,7 +80,6 @@ describe('SearchComponent', () => {
   });
 
   it('should add to Form', () => {
-
     spyOn(component, 'resetSearchResults');
 
     component.addToForm(1);
@@ -95,11 +90,10 @@ describe('SearchComponent', () => {
   });
 
   it('should not add to form', async(() => {
-
     spyOn(component, 'resetSearchResults');
 
-    // no id passed, therefore no food item can be added
-    component.addToForm();
+    // no valid id passed, therefore no food item can be added
+    component.addToForm(undefined);
 
     expect(component.selectedFood).toBeFalsy();
     expect(component.selectedQuantity).toBe(0);
@@ -132,6 +126,7 @@ describe('SearchComponent', () => {
 
     spyOn(component, 'resetSearchResults');
     spyOn(component, 'clearForm');
+    spyOn(component.userAccountService, 'addMostUsedFoods');
 
     // act
     component.addToJournal();
