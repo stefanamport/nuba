@@ -5,7 +5,7 @@ import { FirebaseService } from '../firebase/firebase.service';
 import { Genders, ActivityLevels } from './user-account.constants';
 import { LoginService } from '../login/login.service';
 import { UserAccountService } from './user-account.service';
-import { FormValidation } from "./form-validation";
+import { FormValidation } from './form-validation';
 
 @Component({
   templateUrl: './user-account.component.html',
