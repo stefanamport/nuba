@@ -138,19 +138,26 @@
    .header {
       height: auto;
       overflow: visible;
+
+      display: block;
+
+      padding: 10px 0;
    }
 
    .header__left {
-    margin: auto;
+    margin: 0px;
    }
 
    .logo {
       transform: scale(.8,.8);
       line-height: normal;
+
+      margin-left: 10px;
    }
 
    .mainnav {
     position: fixed;
+    z-index: 99;
     bottom: 0px;
     width: 100%;
     background: $main-gradient;
