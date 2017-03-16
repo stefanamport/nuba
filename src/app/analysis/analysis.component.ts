@@ -144,11 +144,14 @@ export class AnalysisComponent implements OnInit {
   // To show off dropout functionality
   private initialDropoutStates() {
 
-    let that = this;
+    if (this.reportArray.length > 0) {
+      let that = this;
 
-    setTimeout( function(){
-      that.reportArray[0].open = true;
-    }, 1000);
+      setTimeout( function(){
+        that.reportArray[0].open = true;
+      }, 1000);
+
+    }
 
   }
 }
