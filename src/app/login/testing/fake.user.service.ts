@@ -1,9 +1,12 @@
 import { EventEmitter } from '@angular/core';
 import { Output } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from '../user';
 
 export class LoginServiceStub {
 
   @Output() data = new EventEmitter();
+  user = new User();
 
   constructor () {
     this.data.next(this.getUser());
@@ -35,5 +38,9 @@ export class LoginServiceStub {
     };
 
     return testuser;
+  }
+
+  getUserAsObservable() {
+    return Observable.of(this.getUser());
   }
 }

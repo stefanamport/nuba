@@ -15,18 +15,17 @@ class JournalEntriesServiceSpy {
 }
 
 class DateChooserServiceStub {
-  public getChosenDate() {
+  getChosenDate() {
     return new Date('January 10, 2017 00:00:00');
   }
 }
 
 class UserAccountServiceStub {
-  public addMostUsedFoods(foodID: number) { }
+  addMostUsedFoods(foodID: number) { }
 
-  public getFoodList() {
+  getFoodList() {
     return [1, 2, 3, 4];
   };
-
 }
 
 class FoodServiceStub {
@@ -36,11 +35,7 @@ class FoodServiceStub {
     this.cachedFoodList = [banana];
   }
 
-  public getFoodList(id) {
-    return [banana];
-  }
-
-  public getFood(id: number): Observable<Food> {
+  getFood(id: number): Observable<Food> {
     if (id === undefined) {
       return Observable.of(null);
     } else {
@@ -48,10 +43,12 @@ class FoodServiceStub {
     }
   }
 
+  getFoodListAsObservable() {
+    return Observable.of([banana]);
+  }
 }
 
 describe('SearchComponent', () => {
-
   let component: SearchComponent;
   let foodService: any;
   let loginService: any;
@@ -73,10 +70,116 @@ describe('SearchComponent', () => {
         dateChooserService,
         userAccountService
     );
+
+    component.ngOnInit();
   });
 
   it('should create NubaSearchComponent', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should select item in food list - key up', () => {
+    component.foodListActiveRow = 1;
+
+    let event = { 'key': 'ArrowUp' };
+    component.keyDown('', event);
+
+    expect(component.foodListActiveRow).toBe(0);
+  });
+
+  it('should not select item in food list - key up, top item selected', () => {
+    component.foodListActiveRow = 0;
+
+    let event =  { 'key': 'ArrowUp' };
+    component.keyDown('', event);
+
+    expect(component.foodListActiveRow).toBe(0);
+  });
+
+  it('should select item in food list - key down', () => {
+    component.foodListActiveRow = 1;
+    component.foodListCanIncrease = true;
+
+    let event = { 'key': 'ArrowDown'};
+    component.keyDown('', event);
+
+    expect(component.foodListActiveRow).toBe(2);
+  });
+
+  it('should select item in food list - key down,  bottom item selected', () => {
+    component.foodListActiveRow = 4;
+    component.foodListCanIncrease = false;
+
+    let event = { 'key': 'ArrowDown'};
+    component.keyDown('', event);
+
+    expect(component.foodListActiveRow).toBe(4);
+  });
+
+  it('should set search filter string', () => {
+    component.searchFilterString = 'Salat';
+
+    let event = { 'key': 'ArrowDown'};
+    component.keyDown('Brot', event);
+
+    expect(component.searchFilterString).toEqual('Brot');
+  });
+
+  it('should add item to journal list form', () => {
+    let event = { 'key': 'Enter'};
+    component.foodListActiveItemFoodObj = banana;
+    spyOn(component, 'addToForm');
+
+    component.keyDown('', event);
+
+    expect(component.addToForm).toHaveBeenCalledWith(banana.$key);
+  });
+
+  it('should check if item selected - not active, not last', () => {
+    let active = false;
+    let last = false;
+    let food = banana;
+
+    let isSelected = component.isSelectedItem(active, last, food);
+
+    expect(isSelected).toBe(false);
+    expect(component.foodListCanIncrease).toBe(true);
+  });
+
+  it('should check if item selected - not active, last', () => {
+    let active = false;
+    let last = true;
+    let food = banana;
+
+    let isSelected = component.isSelectedItem(active, last, food);
+
+    expect(isSelected).toBe(false);
+    // check first what the outcome should be
+    // expect(component.foodListCanIncrease).toBe(false);
+  });
+
+  it('should check if item selected - active, not last', () => {
+    let active = true;
+    let last = false;
+    let food = banana;
+
+    let isSelected = component.isSelectedItem(active, last, food);
+
+    expect(isSelected).toBe(true);
+    expect(component.foodListCanIncrease).toBe(true);
+    expect(component.foodListActiveItemFoodObj).toEqual(banana);
+  });
+
+  it('should check if item selected - active, last', () => {
+    let active = true;
+    let last = true;
+    let food = banana;
+
+    let isSelected = component.isSelectedItem(active, last, food);
+
+    expect(isSelected).toBe(true);
+    expect(component.foodListCanIncrease).toBe(false);
+    expect(component.foodListActiveItemFoodObj).toEqual(banana);
   });
 
   it('should add to Form', () => {
@@ -102,7 +205,9 @@ describe('SearchComponent', () => {
   it('should clear form', () => {
     component.selectedFood = banana;
     component.selectedQuantity = 300;
+
     component.clearForm();
+
     expect(component.selectedFood).toEqual(null);
     expect(component.selectedQuantity).toBe(0);
   });
@@ -138,5 +243,35 @@ describe('SearchComponent', () => {
     expect(component.resetSearchResults).toHaveBeenCalled();
     expect(component.clearForm).toHaveBeenCalled();
   }));
+
+  it('should activate food list', () => {
+    component.foodListActive = false;
+
+    component.activateFoodlist();
+
+    expect(component.foodListActive).toBeTruthy();
+  });
+
+  it('should deactivate food list', () => {
+    component.foodListActive = true;
+
+    component.deactivateFoodlist();
+
+    expect(component.foodListActive).toBeFalsy();
+  });
+
+  it('should reset search results', () => {
+    component.searchFilterString = 'Brot';
+    component.foodListActiveRow = 3;
+    component.foodListActiveItemFoodObj = banana;
+    component.foodListCanIncrease = false;
+
+    component.resetSearchResults();
+
+    expect(component.searchFilterString).toEqual('');
+    expect(component.foodListActiveRow).toBe(0);
+    expect(component.foodListActiveItemFoodObj).toBeNull();
+    expect(component.foodListCanIncrease).toBeTruthy();
+  });
 
 });
