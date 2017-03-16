@@ -13,6 +13,7 @@ import { LoginService } from '../../login/login.service';
 @Injectable()
 export class AnalysisService {
 
+  // Holds component analyses (key is the component name)
   private consumptionMap: Map<string, ComponentAnalysis> = new Map<string, ComponentAnalysis>();
 
   private report: ConsumptionReport = new ConsumptionReport();

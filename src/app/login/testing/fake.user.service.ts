@@ -21,7 +21,7 @@ export class LoginServiceStub {
         uid: 'xxx',
         name: 'Hans Ueli',
 
-        birthday: '2017-01-15', // Format: yyyy-mm-dd
+        birthday: '1997-01-15', // Format: yyyy-mm-dd
         age: 20,
 
         avatar: 'http://www.nuba.ch/fakeUser.jpg',
