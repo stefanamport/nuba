@@ -24,9 +24,9 @@ export class SearchComponent implements OnInit {
 
   public foodShortlist: Array<number> = [];
   public foodListActive = false;
-  private foodListCanIncrease = true;
+  public foodListCanIncrease = true;
   public foodListActiveRow = 0;
-  private foodListActiveItemFoodObj: any;
+  public foodListActiveItemFoodObj: Food = null;
 
   public user: User;
 
@@ -54,31 +54,28 @@ export class SearchComponent implements OnInit {
 
   // List-Navigation with Keyboard
   keyDown (searchFilterString: string, event: any) {
-
     if ( this.searchFilterString !== searchFilterString ) {
-
       this.searchFilterString = searchFilterString;
 
       if ( this.selectedFood ) {
         this.clearForm();
         this.resetSearchResults();
       }
-
     }
 
     if ( event.key === 'ArrowUp' ) {
       this.listSelect(-1);
     }
+
     if ( event.key === 'ArrowDown' ) {
       this.listSelect(1);
     }
 
     if ( event.key === 'Enter' ) {
-      if ( this.foodListActiveItemFoodObj.$key ) {
+      if ( this.foodListActiveItemFoodObj !== null && this.foodListActiveItemFoodObj !== undefined ) {
         this.addToForm(this.foodListActiveItemFoodObj.$key);
       }
     }
-
   }
 
   // helper function for arrow navigation
@@ -150,6 +147,7 @@ export class SearchComponent implements OnInit {
   activateFoodlist() {
     this.foodListActive = true;
   }
+
   deactivateFoodlist() {
     this.foodListActive = false;
   }
@@ -171,7 +169,7 @@ export class SearchComponent implements OnInit {
   // selected Food Reset
   selectListItemReset() {
     this.foodListActiveRow = 0;
-    this.foodListActiveItemFoodObj = false;
+    this.foodListActiveItemFoodObj = null;
     this.foodListCanIncrease = true;
   }
 

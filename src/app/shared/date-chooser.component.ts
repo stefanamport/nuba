@@ -14,7 +14,6 @@ export class DateChooserComponent implements OnInit {
   constructor(private dateChooserService: DateChooserService) { }
 
   ngOnInit() {
-
     this.dateChooserService.getChosenDateAsObservable().subscribe((date) => {
       this.selectedDate = date;
     });
@@ -22,18 +21,16 @@ export class DateChooserComponent implements OnInit {
   }
 
   isToday (date) {
-
     let momentpipe = new MomentPipe();
     let format = 'DD.MM.YYYY';
 
     let toCompare = momentpipe.transform(date, format);
-    let today = momentpipe.transform(new Date(), format);
+    let today = momentpipe.transform(this.getDateToday(), format);
 
     return today === toCompare;
   }
 
   dateChange(step: number) {
-
     // Change Date
     let newDate = this.selectedDate;
     newDate.setDate(newDate.getDate() + step);
@@ -42,5 +39,9 @@ export class DateChooserComponent implements OnInit {
     // updates current chosen date in the shared service dateChooserService.
     // This is required so that other services/components can retrieve the current selected date.
     this.dateChooserService.setChosenDate(newDate);
+  }
+
+  private getDateToday() {
+    return new Date();
   }
 }

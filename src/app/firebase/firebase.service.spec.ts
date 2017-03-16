@@ -1,20 +1,16 @@
-import { TestBed, async, inject } from '@angular/core/testing';
 import { FirebaseService } from './firebase.service';
-import {AngularFire} from 'angularfire2';
 
-class AngularFireFake { }
+class AngularFireStub { }
 
-describe('FirebaseService', () => {
+describe('Firebase service', () => {
+  let service: any;
+  let angularFire: any = new AngularFireStub();
+
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        FirebaseService,
-        {provide: AngularFire, useClass: AngularFireFake}
-      ]
-    });
+    service = new FirebaseService(angularFire);
   });
 
-  it('should ...', inject([FirebaseService], (service: FirebaseService) => {
+  it('should create firebase service', () => {
     expect(service).toBeTruthy();
-  }));
+  });
 });

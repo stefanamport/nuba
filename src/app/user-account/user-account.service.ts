@@ -18,7 +18,7 @@ export class UserAccountService {
     });
   }
 
-  updateUserInfo(userInfo: any) {
+  updateUserInfo(userInfo: User) {
     this.user = userInfo;
     this.doCalculations();
     this.saveUserToFirebase();
@@ -42,6 +42,23 @@ export class UserAccountService {
 
       this.saveUserToFirebase();
     }
+  }
+
+  calculateAge(birthday: string) {
+    let age = 0;
+
+    if (birthday) {
+      let birthdayDate = new Date(birthday);
+      let today = this.getDateToday();
+
+      age = today.getFullYear() - birthdayDate.getFullYear();
+      let monthDiff = today.getMonth() - birthdayDate.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdayDate.getDate())) {
+        age = age - 1;
+      }
+    }
+
+    return age;
   }
 
   private saveUserToFirebase() {
@@ -90,7 +107,7 @@ export class UserAccountService {
     let mr = calcVars[this.user.gender]['cv1'] +
       (calcVars[this.user.gender]['cv2'] * this.user.bodyweight) +
       (calcVars[this.user.gender]['cv3'] * this.user.bodyheight) -
-      (calcVars[this.user.gender]['cv3'] * this.user.age);
+      (calcVars[this.user.gender]['cv4'] * this.user.age);
 
     // Multiplikation mit Aktivitätslevel
     // Ausgehend von 8 Arbeitsstunden
@@ -123,20 +140,7 @@ export class UserAccountService {
     this.user.age = this.calculateAge(this.user.birthday);
   }
 
-  public calculateAge(birthday: string) {
-    let age = 0;
-
-    if (birthday) {
-      let birthdayDate = new Date(birthday);
-      let today = new Date();
-
-      age = today.getFullYear() - birthdayDate.getFullYear();
-      let monthDiff = today.getMonth() - birthdayDate.getMonth();
-      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdayDate.getDate())) {
-        age = age - 1;
-      }
-    }
-
-    return age;
+  private getDateToday() {
+    return new Date();
   }
 }

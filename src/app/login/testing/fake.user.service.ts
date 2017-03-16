@@ -1,9 +1,12 @@
 import { EventEmitter } from '@angular/core';
 import { Output } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from '../user';
 
 export class LoginServiceStub {
 
   @Output() data = new EventEmitter();
+  user = new User();
 
   constructor () {
     this.data.next(this.getUser());
@@ -18,7 +21,7 @@ export class LoginServiceStub {
         uid: 'xxx',
         name: 'Hans Ueli',
 
-        birthday: '2017-01-15', // Format: yyyy-mm-dd
+        birthday: '1997-01-15', // Format: yyyy-mm-dd
         age: 20,
 
         avatar: 'http://www.nuba.ch/fakeUser.jpg',
@@ -35,5 +38,9 @@ export class LoginServiceStub {
     };
 
     return testuser;
+  }
+
+  getUserAsObservable() {
+    return Observable.of(this.getUser());
   }
 }

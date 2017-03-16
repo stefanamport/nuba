@@ -1,32 +1,30 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import { User } from '../login/user';
 import { FirebaseService } from '../firebase/firebase.service';
 import { Genders, ActivityLevels } from './user-account.constants';
 import { LoginService } from '../login/login.service';
 import { UserAccountService } from './user-account.service';
+import { FormValidation } from './form-validation';
 
 @Component({
   templateUrl: './user-account.component.html',
   providers: [ FirebaseService ]
 })
-export class UserAccountComponent  {
+export class UserAccountComponent implements OnInit {
 
   user: User;
-  genders: any;
-  activityLevels: any;
-  formValidation: any = {};
+  genders = Genders;
+  activityLevels = ActivityLevels;
+  formValidation = new FormValidation();
   savedMessage = '';
 
-  constructor (private loginService: LoginService, private userAccountService: UserAccountService) {
+  constructor (private loginService: LoginService, private userAccountService: UserAccountService) { }
 
-    this.genders = Genders;
-    this.activityLevels = ActivityLevels;
-
-    this.loginService.getUserAsObservable().subscribe((data: any) => {
+  ngOnInit() {
+    this.loginService.getUserAsObservable().subscribe((data: User) => {
       this.user = data;
     });
-
   }
 
   // helper that *ngFoor can loop over object keys
@@ -35,17 +33,15 @@ export class UserAccountComponent  {
   }
 
   validateForm(): boolean {
+    this.formValidation.clearFormValidation();
 
-    this.formValidation.valid = true;
-    this.formValidation.messages = [];
+    // check age
+    this.validateAge();
+    this.validateBodyweight();
+    this.validateBodyheight();
+    this.validateHoursOfSport();
 
-     // check age
-     this.validateAge();
-     this.validateBodyweight();
-     this.validateBodyheight();
-     this.validateHoursOfSport();
-
-     return this.formValidation.valid;
+    return this.formValidation.valid;
   }
 
   saveUser() {
@@ -73,7 +69,6 @@ export class UserAccountComponent  {
   }
 
   private validateBodyheight() {
-
     let height = this.user.bodyheight;
 
     if (!height || height < 60 || height > 200 ) {
