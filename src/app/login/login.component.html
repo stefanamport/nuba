@@ -34,11 +34,11 @@
 			</div>
             <div class="logged-in-info" *ngIf="user.uid">
                 <p>Du bist erfolgreich eingeloggt.</p>
-                
-                <div class="message message-info" *ngIf="!user.birthday || !user.bodyweight || !user.bodyheight">
-                <p><strong>Aha, ein Neuling.</strong></p>
+
+                <div class="message" *ngIf="!user.birthday || !user.bodyweight || !user.bodyheight">
+                <p><strong>Hallo, ich bin Kari, dein Coach.</strong></p>
                 <p><img src="../assets/images/coach-pc.png" width="100" alt="Coach am iPad" /></p>
-                <p>Willkommen bei nu<sup>ba</sup>. - Ich bin Kari, dein Coach und helfe dir, dich ausgewogen zu ernähren. - Am Besten vervollständigst du dein Profil, dann kann ich dir Tipps zu deiner Ernährung geben.</p>
+                <p>Ich helfe dir, dich ausgewogen zu ernähren. - Am Besten vervollständigst du dein Profil, dann kann ich dir Tipps zu deiner Ernährung geben.</p>
 
                 <p><a class="button" routerLink="/account">Profil vervollständigen</a></p>
                 <p><a class="button button-light" routerLink="/journal">gleich loslegen</a>

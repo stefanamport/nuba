@@ -80,13 +80,39 @@ export class UserAccountService {
   }
 
   private doCalculations() {
-    this.setBMI();
-    this.setAge();
-    this.setMetabolicRate();
+
+    // bmi
+    if (this.user.bodyweight && this.user.bodyheight) {
+        this.user.bmi = this.setBMI();
+    } else {
+        this.user.bmi = 0;
+    }
+
+    // age
+    if (this.user.birthday) {
+        this.user.age = this.setAge();
+    } else {
+        this.user.age = 0;
+    }
+
+    // metabolics rate
+    if (
+      this.user.gender &&
+      this.user.bodyweight &&
+      this.user.bodyheight &&
+      this.user.age &&
+      this.user.activityLevel
+      ) {
+        this.user.metabolicRate = this.setMetabolicRate();
+    } else {
+        this.user.metabolicRate = 0;
+    }
+
   };
 
   // Kaloreien Grundumsatz
   private setMetabolicRate() {
+
     const calcVars = {
       male: {
         cv1: 66.47,
@@ -113,7 +139,11 @@ export class UserAccountService {
     // Ausgehend von 8 Arbeitsstunden
     let workingHours = 8;
     let hourlyMetabolic = mr / 24;
-    let dailySportHours = this.user.hoursOfSport / 7;
+    let dailySportHours = 0;
+
+    if (this.user.hoursOfSport) {
+      dailySportHours = this.user.hoursOfSport / 7;
+    }
 
     let workingMetabolic = (hourlyMetabolic * workingHours) * ActivityLevels[this.user.activityLevel]['pal'];
     let sportMetabolic = (hourlyMetabolic * dailySportHours) * 2;
@@ -121,7 +151,7 @@ export class UserAccountService {
 
     mr = Math.round(workingMetabolic + sportMetabolic + restMetabolic);
 
-    this.user.metabolicRate = mr;
+    return mr;
   }
 
   private setBMI() {
@@ -133,11 +163,11 @@ export class UserAccountService {
       bmi = Math.round(bmi * 10) / 10;
     }
 
-    this.user.bmi = bmi;
+    return bmi;
   }
 
   private setAge() {
-    this.user.age = this.calculateAge(this.user.birthday);
+    return this.calculateAge(this.user.birthday);
   }
 
   private getDateToday() {

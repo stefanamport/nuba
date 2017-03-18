@@ -9,8 +9,6 @@ import { ImpressumComponent } from '../impressum/impressum.component';
 
 import { CommonModule } from '@angular/common';
 
-console.log(LoginGuard);
-
 const routes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
   { path: 'analysis',

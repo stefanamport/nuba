@@ -23,7 +23,13 @@ export class LogInComponent implements OnInit {
   ngOnInit() {
 
     this.loginService.getUserAsObservable().subscribe((user) => {
+
         this.user = user;
+
+        if (this.user.birthday && this.user.bodyweight && this.user.bodyheight) {
+          this.router.navigate(['journal']);
+        }
+
     });
 
   }

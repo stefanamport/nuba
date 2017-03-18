@@ -9,10 +9,9 @@
 
           <div class="whitebox__content">
 
-            <div class="loadingPlaceholder searchbar__loading" *ngIf="!user.dataCompleted"></div>
+            <div class="loadingPlaceholder searchbar__loading" *ngIf="componentIsLoading"></div>
 
-            <form id="userData" *ngIf="user.dataCompleted">
-
+            <form id="userData" *ngIf="!componentIsLoading">
               <div class="formrow">
                 <label>Geschlecht</label>
                 <select [(ngModel)]="user.gender" name="gender" id="gender">
@@ -28,17 +27,17 @@
 
               <div class="formrow">
                 <label>Geburtsdatum</label>
-                <input [(ngModel)]="user.birthday" type="date" name="geburtsdatum" required>
+                <input [(ngModel)]="user.birthday" type="date" name="geburtsdatum">
               </div>
 
               <div class="formrow">
                 <label>Gewicht (kg)</label>
-                <input type="number" [(ngModel)]="user.bodyweight" name="gewicht" min="30" max="200" required>
+                <input type="number" [(ngModel)]="user.bodyweight" name="gewicht" min="30" max="200">
               </div>
 
               <div class="formrow">
                 <label>Grösse (cm)</label>
-                <input type="number" [(ngModel)]="user.bodyheight" name="groesse" min="60" max="200" required>
+                <input type="number" [(ngModel)]="user.bodyheight" name="groesse" min="60" max="200">
               </div>
 
               <div class="formrow">
@@ -77,24 +76,19 @@
       </main>
 
       <aside class="grid__item w-4">
-        <div class="whitebox">
+        <div class="whitebox" *ngIf="user.isUserInfoComplete">
           <h2 class="whitebox__title">Berechnungen</h2>
 
-          <div class="loadingPlaceholder" *ngIf="!user.dataCompleted"></div>
+          <div class="loadingPlaceholder" *ngIf="componentIsLoading"></div>
 
-          <div class="whitebox__content" *ngIf="user.dataCompleted">
+          <div class="whitebox__content" *ngIf="!componentIsLoading">
               BMI: {{ user.bmi }}<br>
               Alter: {{ user.age }}<br>
               Geschätzter Kalorien Grundumsatz: {{ user.metabolicRate }} kcal
-              <hr>
-              <h3>Dein täglicher Bedarf:</h3>
-              Vitamin-C: xxx<br>
-              Eisen: xxx<br>
-              etc...<br>
           </div>
         </div>
 
-        <div class="whitebox" *ngIf="user.dataCompleted">
+        <div class="whitebox" *ngIf="user.uid">
           <h2 class="whitebox__title">Log Out</h2>
 
           <div class="whitebox__content">

@@ -4,7 +4,17 @@
 
       <main class="grid__item w-8">
 
-        <div class="whitebox">
+        <div class="whitebox" *ngIf="user.loadingComplete && !user.isUserInfoComplete">
+          <div class="message">
+              <p><strong>Bist du neu hier?</strong></p>
+              <p><img src="../assets/images/coach-pc.png" width="100" alt="Coach am iPad" /></p>
+              <p>Damit ich deine Auswertung erstellen kann, brauche ich einige Angaben:</p>
+
+              <p><a class="button" routerLink="/account">Profil ergänzen</a></p>
+          </div>
+        </div>
+
+        <div class="whitebox" *ngIf="user.loadingComplete && user.isUserInfoComplete">
           <h2 class="whitebox__title">Deine Auswertung für den {{selectedDate | momentjs: 'Do MMMM'}}</h2>
 
           <div class="whitebox__content">

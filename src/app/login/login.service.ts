@@ -26,6 +26,7 @@ export class LoginService {
 
         this.firebaseService.getObject('userData', this.userAuth.uid).subscribe(userInfo => {
           this.user = userInfo;
+          this.user.loadingComplete = true;
           this.updateUser();
         });
       } else {

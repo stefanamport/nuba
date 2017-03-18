@@ -4,6 +4,9 @@ import { JournalEntriesService } from '../journal/journalEntries.service';
 import { ConsumptionReport } from './model/consumptionReport';
 import { DateChooserService } from '../shared/date-chooser.service';
 
+import { LoginService } from '../login/login.service';
+import { User } from '../login/user';
+
 @Component({
   selector: 'app-analysis',
   templateUrl: './analysis.component.html',
@@ -20,8 +23,11 @@ export class AnalysisComponent implements OnInit {
 
   public selectedDate: Date;
 
+  user: User;
+
   constructor(private analysisService: AnalysisService,
-              private dateChooserService: DateChooserService
+              private dateChooserService: DateChooserService,
+              private loginService: LoginService
   ) {
   }
 
@@ -35,7 +41,10 @@ export class AnalysisComponent implements OnInit {
     this.analysisService.getConsumptionReport().subscribe((report) => {
       // start symphony on new report
       this.transitionSymphony(report);
+    });
 
+    this.loginService.getUserAsObservable().subscribe((data: User) => {
+      this.user = data;
     });
   }
 
