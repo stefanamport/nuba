@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { User } from './user';
 import { Reginfo } from './reginfo';
 import { FirebaseService } from '../firebase/firebase.service';
-import { AuthProviders, FirebaseAuthState } from 'angularfire2';
+import { AuthProviders, AuthMethods, FirebaseAuthState } from 'angularfire2';
 import { BehaviorSubject, Observable } from 'rxjs';
 import Promise = firebase.Promise;
 
@@ -40,19 +40,32 @@ export class LoginService {
     return this.firebaseService.getAuth();
   }
 
+  public newUser(reginfo?: Reginfo): Promise<FirebaseAuthState> {
+    return this.firebaseService.newUser(reginfo);
+  }
+
   public login(method: string, reginfo?: Reginfo): Promise<FirebaseAuthState> {
 
-    if (method === 'mail') {
+    if (method === 'Password') {
 
-      return this.firebaseService.newUser(reginfo);
+      return this.firebaseService.login({
+        email: reginfo.email,
+        password: reginfo.pass
+      });
 
     } else if (method === 'Google') {
 
+      // not used anymore
+      // support for google Accounts dropped
+
+      /*
+
       return this.firebaseService.login({
-        provider: AuthProviders[method]
+        provider: AuthProviders.Google
       }).catch(() => {
         this.cleanUpAuth();
       });
+      */
 
     }
 

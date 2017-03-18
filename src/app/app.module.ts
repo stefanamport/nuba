@@ -44,8 +44,8 @@ export const firebaseConfig = {
     FormsModule,
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig, {
-        provider: AuthProviders.Google,
-        method: AuthMethods.Popup
+        provider: AuthProviders.Password,
+        method: AuthMethods.Password
       })
   ],
   providers: [ LoginService, FirebaseService, LoginGuard, FoodService, DateChooserService, UserAccountService ],

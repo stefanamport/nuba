@@ -18,6 +18,8 @@ export class LogInComponent implements OnInit {
   reginfo: Reginfo = {};
   formValidation: any = {messages: [] };
 
+  loginmode = 'newaccount';
+
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
@@ -65,13 +67,33 @@ export class LogInComponent implements OnInit {
       event.preventDefault();
     }
 
-    this.loginService.login(method, this.reginfo).then((authState: FirebaseAuthState) => {
+    // make new user
+    if (this.loginmode === 'newaccount' && method === 'Password') {
+
+      this.loginService.newUser(this.reginfo).then((authState: FirebaseAuthState) => {
       if (authState.uid) {
         this.user = authState;
-      }
-    }).catch((error) => {
-       this.setFirebaseValidateError(error);
-    });
+        }
+      }).catch((error) => {
+         this.setFirebaseValidateError(error);
+      });
 
+    } else {
+
+      this.loginService.login(method, this.reginfo).then((authState: FirebaseAuthState) => {
+        if (authState.uid) {
+          this.user = authState;
+        }
+      }).catch((error) => {
+         this.setFirebaseValidateError(error);
+      });
+
+    }
+
+  }
+
+  switchLoginMode(mode: any) {
+    this.loginmode = mode;
+    this.formValidation.messages = [];
   }
 }

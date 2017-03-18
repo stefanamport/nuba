@@ -5,6 +5,32 @@
 	max-width: 300px;
 	margin: 0px auto;
 }
+	.loginbox__tabs {
+		padding: 0px;
+	}
+	.loginbox__tab {
+		border: 0px;
+		padding: $boxpadding;
+		border-radius: 5px 5px 0 0;
+
+		margin-right: 10px;
+		background: none;
+		text-decoration: underline;
+
+		cursor: pointer;
+
+		&:focus {
+			outline: none;
+			border: 1px solid $dark-gray;
+			border-bottom: 0px;
+		}
+	}
+		.loginbox__tab-active {
+			background: #fff;
+			box-shadow: 0 0 10px rgba(0,0,0,.3);
+
+			text-decoration: none;
+		}
 
 .logininput {
 	margin-bottom: $boxpadding;
