@@ -40,10 +40,10 @@
           </template>
         </tr>
       </table>
-      <div *ngIf="!journalList.length">
-        Hey, trage ein was du gegessen hast.<br>
-        So kann ich dir helfen, deine Ernährung zu optimieren.<br>
-        <img src="../assets/images/coach-ipad.jpg" width="100" alt="Coach am iPad" />
+      <div class="message message-info" *ngIf="!journalList.length">
+        <p>Hey, trage ein was du gegessen hast.<br>
+        So kann ich dir helfen, deine Ernährung zu optimieren.</p>
+        <img src="../assets/images/coach-ipad.png" width="100" alt="Coach am iPad" />
       </div>
     </div>
   </div>

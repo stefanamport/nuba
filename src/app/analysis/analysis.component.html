@@ -19,10 +19,10 @@
             
             <div class="dropoutGroup aniList aniList-{{aniListState}}" *ngIf="!componentIsLoading">
 
-              <div *ngIf="reportArray.length < 1">
-                Ich habe leider noch keine Daten zum Auswerten<br>
-                <a routerLink="/journal">Trage ein was du gegessen hast</a>, dann probiere ich's nochmal...
-                <img src="../assets/images/coach-ipad.jpg" width="100" alt="Coach am iPad" />
+              <div class="message message-info"  *ngIf="reportArray.length < 1">
+                <p>Ich habe leider noch keine Daten zum Auswerten<br>
+                <a routerLink="/journal">Trage ein was du gegessen hast</a>, dann probiere ich's nochmal...</p>
+                <img src="../assets/images/coach-ipad.png" width="100" alt="Coach am iPad" />
               </div>
 
               <div class="droputGroup__wrap" *ngFor="let cat of reportArray" [ngClass]="{'dropoutGroup-open': cat.open }">
@@ -50,7 +50,7 @@
 
      <aside class="grid__item w-4">
       <div class="whitebox">
-        <div class="message message-info">
+        <div class="message message-info message-small">
           Der Tagesbedarf wird anhand deiner Angaben im Konto berechnet. Weitere Informationen im <a routerLink="/impressum">Impressum & Disclaimer</a>.
         </div>
       </div>
