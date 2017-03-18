@@ -4,7 +4,9 @@ import { JournalEntry } from './journalEntry';
 import { JournalEntriesService } from './journalEntries.service';
 import { DateChooserService } from '../shared/date-chooser.service';
 import { MomentPipe } from '../shared/momentjs.pipe';
+
 import { LoginService } from '../login/login.service';
+import { User } from '../login/user';
 
 @Component({
   selector: 'app-journal-list',
@@ -60,10 +62,18 @@ export class JournalListComponent implements OnInit {
 
   private getJournalEntries(date: Date) {
     this.journalList = [];
-    let user = this.loginService.getUser();
-    this.journalEntriesService.getJournalEntries(date, user.uid).subscribe((journalEntries: JournalEntry[]) => {
-      this.journalList = journalEntries;
-      this.componentIsLoading = false;
+
+    // Show data as soon as user data is loaded
+    this.loginService.getUserAsObservable().subscribe((user: User) => {
+
+       if (user.uid) {
+          this.journalEntriesService.getJournalEntries(date, user.uid).subscribe((journalEntries: JournalEntry[]) => {
+            this.journalList = journalEntries;
+            this.componentIsLoading = false;
+          });
+       }
+
     });
+
   }
 }

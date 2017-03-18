@@ -43,40 +43,47 @@ export class AnalysisService {
   }
 
   public initConsumptionAnalysis(date: Date) {
-    let user = this.loginService.getUser();
-    let url: string = user.gender === 'male' ? 'targetMale' : 'targetFemale';
-    let ageRange = AnalysisService.getAgeRange(user.age);
 
-    // get target consumption
-    this.firebaseService.getList(url).subscribe((result) => {
-      // add calories manually as there is no general target
-      result.push('Energie kcal');
-      this.getTargetConsumption(result, ageRange, user);
+    this.loginService.getUserAsObservable().subscribe((user: User) => {
 
-      // get current consumption
-      this.journalEntriesService.getJournalEntries(date, user.uid).subscribe((journalEntries: JournalEntry[]) => {
-        this.resetCurrentConsumption();
+      if (user.uid) {
 
-        if (journalEntries.length === 0) {
-          let emptyReport = new ConsumptionReport();
-          emptyReport.analysisComplete = true;
-          this.reportSubject.next(emptyReport);
-        }
+        let url: string = user.gender === 'male' ? 'targetMale' : 'targetFemale';
+        let ageRange = AnalysisService.getAgeRange(user.age);
 
-        journalEntries.forEach((journalEntry, journalIndex) => {
-          this.firebaseService.getObject('foodDetails', journalEntry.foodID.toString()).subscribe((foodDetails: FoodDetails) => {
-            this.calculateCurrentConsumption(foodDetails, journalEntry.quantity);
-            if (journalIndex === journalEntries.length - 1) {
+        // get target consumption
+        this.firebaseService.getList(url).subscribe((result) => {
+          // add calories manually as there is no general target
+          result.push('Energie kcal');
+          this.getTargetConsumption(result, ageRange, user);
 
-              // create consumption report
-              let report = new ConsumptionReport();
-              report = report.createConsumptionReport(this.consumptionMap, user);
-              report.analysisComplete = true;
-              this.reportSubject.next(report);
+          // get current consumption
+          this.journalEntriesService.getJournalEntries(date, user.uid).subscribe((journalEntries: JournalEntry[]) => {
+            this.resetCurrentConsumption();
+
+            if (journalEntries.length === 0) {
+              let emptyReport = new ConsumptionReport();
+              emptyReport.analysisComplete = true;
+              this.reportSubject.next(emptyReport);
             }
+
+            journalEntries.forEach((journalEntry, journalIndex) => {
+              this.firebaseService.getObject('foodDetails', journalEntry.foodID.toString()).subscribe((foodDetails: FoodDetails) => {
+                this.calculateCurrentConsumption(foodDetails, journalEntry.quantity);
+                if (journalIndex === journalEntries.length - 1) {
+
+                  // create consumption report
+                  let report = new ConsumptionReport();
+                  report = report.createConsumptionReport(this.consumptionMap, user);
+                  report.analysisComplete = true;
+                  this.reportSubject.next(report);
+                }
+              });
+            });
           });
         });
-      });
+
+      } // end if user
     });
   }
 
