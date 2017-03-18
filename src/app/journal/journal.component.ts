@@ -4,6 +4,9 @@ import { JournalEntriesService } from './journalEntries.service';
 import { AnalysisService } from '../analysis/service/analysis.service';
 import { DateChooserService } from '../shared/date-chooser.service';
 
+import { User } from '../login/user';
+import { LoginService } from '../login/login.service';
+
 @Component({
   selector: 'app-journal',
   templateUrl: './journal.component.html',
@@ -16,9 +19,12 @@ export class JournalComponent implements OnInit {
   newHintAvailable = false;
   coachTip: any;
 
-  constructor(private analysisService: AnalysisService, private dateChooserService: DateChooserService) {
+  user: User;
 
-  }
+  constructor(
+    private analysisService: AnalysisService,
+    private dateChooserService: DateChooserService,
+    private loginService: LoginService) {}
 
   ngOnInit() {
     this.dateChooserService.getChosenDateAsObservable().subscribe((date) => {
@@ -28,6 +34,11 @@ export class JournalComponent implements OnInit {
         this.showNewHint();
       });
     });
+
+    this.loginService.getUserAsObservable().subscribe((user) => {
+        this.user = user;
+    });
+
   }
 
   public mobCoachVisibility() {

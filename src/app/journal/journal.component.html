@@ -41,6 +41,16 @@
             
           </div>
         </div>
+        
+        <div class="whitebox" *ngIf="!user.birthday || !user.bodyweight || !user.bodyheight">
+          <div class="message">
+              <p><strong>Bist du neu hier?</strong></p>
+              <p><img src="../assets/images/coach-pc.png" width="100" alt="Coach am iPad" /></p>
+              <p>Ich möchte gerne deine Auswertung erstellen. Dazu brauche ich einige Angaben von dir:</p>
+
+              <p><a class="button" routerLink="/account">Profil ergänzen</a></p>
+          </div>
+        </div>
       
       </aside>
 

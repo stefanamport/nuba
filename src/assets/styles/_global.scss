@@ -289,6 +289,12 @@ input {
 		
 	}
 
+		.button-login-small {
+			font-size: 1.0em;
+			border: 0px;
+			margin-top: $boxpadding;
+		}
+
 	.button-message {
 		&, &:hover {
 			color: darken($dark-gray-font, 20);

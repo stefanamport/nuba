@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { User } from './user';
+import { Reginfo } from './reginfo';
 import { FirebaseService } from '../firebase/firebase.service';
 import { AuthProviders, FirebaseAuthState } from 'angularfire2';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -38,12 +39,22 @@ export class LoginService {
     return this.firebaseService.getAuth();
   }
 
-  public login(method: string): Promise<FirebaseAuthState> {
-    return this.firebaseService.login({
-      provider: AuthProviders[method]
-    }).catch(() => {
-      this.cleanUpAuth();
-    });
+  public login(method: string, reginfo?: Reginfo): Promise<FirebaseAuthState> {
+
+    if (method === 'mail') {
+
+      return this.firebaseService.newUser(reginfo);
+
+    } else if (method === 'Google') {
+
+      return this.firebaseService.login({
+        provider: AuthProviders[method]
+      }).catch(() => {
+        this.cleanUpAuth();
+      });
+
+    }
+
   }
 
   public logout() {

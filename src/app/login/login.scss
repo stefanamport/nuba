@@ -6,6 +6,23 @@
 	margin: 0px auto;
 }
 
+.logininput {
+	margin-bottom: $boxpadding;
+}
+
+.logininput__label {
+	display: block;
+}
+
+.logininput__input {
+	width: 100%;
+
+	&:invalid {
+		border-bottom-color: $dark-gray;
+		background: #fff;
+	}
+}
+
 @media screen and (max-width: $bp-mobile) {
 	
 	.row-welcome {
