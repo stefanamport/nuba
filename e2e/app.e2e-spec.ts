@@ -20,13 +20,7 @@ describe('angular-cli-project App', function() {
     expect(elem.isPresent()).toBeTruthy();
   });
 
-  /*
-   * This test works locally but is commented out because of security issues:
-   * 1. Password needs to be checked in
-   * 2. Travis CI server is located in the US. Google blocks login because they notice it is not possible
-   *    that I am in the US now.
-   */
-  /*it('should do login and search for food', () => {
+  it('should do login and search for food', () => {
     page.navigateTo('login');
 
     // login first
@@ -36,55 +30,43 @@ describe('angular-cli-project App', function() {
     // then search for food
     let searchExec = new SearchExecution();
     searchExec.searchFood();
-  });*/
+  });
 
   class LoginExecution {
 
     doLogin() {
-      let button = element(by.buttonText('Login mit Google Konto'));
-      expect(button.isPresent()).toBeTruthy();
 
-      // click 'Login mit Google Konto' button
-      button.click();
-      browser.driver.sleep(2000);
+      // acitvate login
+      let buttonLogin = element(by.buttonText('log in'));
+      expect(buttonLogin.isPresent()).toBeTruthy();
+      buttonLogin.click();
 
-      browser.getAllWindowHandles().then(function (handles) {
-        // pop up opens to login with Google account
-        browser.switchTo().window(handles[1]);
-        browser.driver.sleep(2000);
-        expect(browser.getCurrentUrl()).toContain('https://accounts.google.com/ServiceLogin');
+      // enter account details
+      let emailInput = element(by.css('input[name="reginfoMail"]'));
+      expect(emailInput.isPresent()).toBeTruthy();
+      emailInput.sendKeys('e2e@nuba.ch');
 
-        // set email
-        let emailInput = element(by.css('#Email'));
-        expect(emailInput.isPresent()).toBeTruthy();
-        emailInput.sendKeys('xxx');
+      let passInput = element(by.css('input[name="reginfoPass"]'));
+      expect(passInput.isPresent()).toBeTruthy();
+      passInput.sendKeys('e2etest');
 
-        // click on next button
-        let nextButton = element(by.css('#next'));
-        expect(nextButton.isPresent()).toBeTruthy();
-        nextButton.click();
-        browser.driver.sleep(2000);
+      // log in
+      let buttonAnmelden = element(by.buttonText('anmelden mit E-Mail'));
+      expect(buttonAnmelden.isPresent()).toBeTruthy();
+      buttonAnmelden.click();
 
-        // set password
-        let pwInput = element(by.css('#Passwd'));
-        expect(pwInput.isPresent()).toBeTruthy();
-        pwInput.sendKeys('xxx');
+      browser.driver.sleep(1000);
 
-        // click signin button
-        let signinButton = element(by.css('#signIn'));
-        expect(signinButton.isPresent()).toBeTruthy();
-        signinButton.click();
+      // Go to Search Page
+      let buttonLoslegen = element(by.linkText('gleich loslegen'));
+      expect(buttonLoslegen.isPresent()).toBeTruthy();
+      buttonLoslegen.click();
 
-        // wait 5 seconds while authentication takes place
-        browser.driver.sleep(5000);
+      browser.driver.sleep(5000);
 
-        // switch back to nuba's window
-        browser.driver.switchTo().window(handles[0]);
-
-        // check whether search input field is available after login
-        let searchInput = element(by.css('.searchbar__maininput'));
-        expect(searchInput.isPresent()).toBeTruthy();
-      });
+      // check whether search input field is available after login
+      let searchInput = element(by.css('.searchbar__maininput'));
+      expect(searchInput.isPresent()).toBeTruthy();
     }
   }
 
