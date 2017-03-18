@@ -21,6 +21,7 @@ export class LoginService {
     this.firebaseService.getAuth().subscribe(user => {
       if (user) {
         this.userAuth = user;
+        this.updateUser();
 
         this.firebaseService.getObject('userData', this.userAuth.uid).subscribe(userInfo => {
           this.user = userInfo;
