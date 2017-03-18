@@ -27,12 +27,22 @@
       
       <div class="searchbar__results searchbar__fieldgroup resultlist" [ngClass]="{'resultlist-hidden': !foodListActive }">
         <div class="resultlist__scrollshadow"></div>
+        
         <div class="resultlist__infomessage" *ngIf="searchFilterString.length < 3">Zuletzt benutzte Nahrungsmittel:</div>
+
+        <div class="resultlist__infomessage resultlist__infomessage-alert"
+          *ngIf="(foodList | searchFilter: searchFilterString:foodShortlist).length === 0
+          && searchFilterString.length > 2"
+        >
+        
+        <b>«{{searchFilterString}}» gibts in unserer Datenbank leider nicht.</b><br>Hast du schon probiert nach einzelnen Komponenten zu suchen?<br>
+        z.B. Mozzarella & Tomaten statt Caprese?</div>
+
         <ul class="resultlist__wrap">
            <li
             *ngFor="
-              let result of foodList | searchFilter: searchFilterString:foodShortlist | orderByAlphabet: 'name'; let i = index; let last = last"
-              (click)="addToForm(result.$key)" class="resultlist__entry" [ngClass]="{'resultlist__entry-active': isSelectedItem(i == foodListActiveRow, last, result) }" >{{result.name}}</li>
+              let result of foodList | searchFilter: searchFilterString:foodShortlist | orderByAlphabet: 'name' let i = index; let last = last"
+              (click)="addToForm(result.$key)" class="resultlist__entry" [ngClass]="{'resultlist__entry-active': isSelectedItem(i == foodListActiveRow, last, i, result) }">{{result.name}}</li>
         </ul>
       </div>
 

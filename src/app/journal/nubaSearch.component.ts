@@ -96,7 +96,7 @@ export class SearchComponent implements OnInit {
   }
 
   // helper function for ngFor List
-  isSelectedItem(active: boolean, last: boolean, item: Food) {
+  isSelectedItem(active: boolean, last: boolean, index: number, item: Food) {
 
     if (active) {
 
