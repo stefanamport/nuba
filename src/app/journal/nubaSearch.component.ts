@@ -64,17 +64,23 @@ export class SearchComponent implements OnInit {
     }
 
     if ( event.key === 'ArrowUp' ) {
+
       this.listSelect(-1);
-    }
 
-    if ( event.key === 'ArrowDown' ) {
+    } else if ( event.key === 'ArrowDown' ) {
+
       this.listSelect(1);
-    }
 
-    if ( event.key === 'Enter' ) {
+    } else if ( event.key === 'Enter' ) {
+
       if ( this.foodListActiveItemFoodObj !== null && this.foodListActiveItemFoodObj !== undefined ) {
         this.addToForm(this.foodListActiveItemFoodObj.$key);
       }
+
+    } else {
+
+      // reset listSelect
+      this.foodListActiveRow = 0;
     }
   }
 
@@ -92,18 +98,17 @@ export class SearchComponent implements OnInit {
   // helper function for ngFor List
   isSelectedItem(active: boolean, last: boolean, item: Food) {
 
-    if (active && last) {
-      this.foodListCanIncrease = false;
-    } else {
-      this.foodListCanIncrease = true;
+    if (active) {
+
+      // set active item to selected item
+      this.foodListActiveItemFoodObj = item;
+
+      // cant increase if it's last item
+      this.foodListCanIncrease = !last;
+
     }
 
-    if (active) {
-      this.foodListActiveItemFoodObj = item;
-      return true;
-    } else {
-      return false;
-    }
+    return active;
 
   }
 
