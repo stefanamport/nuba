@@ -1,5 +1,5 @@
 <div class="screen search">
-  <h2 class="whitebox__title">Das hast heute gegessen:</h2>
+  <h2 class="whitebox__title">Das hast am {{selectedDate | momentjs: 'Do MMMM'}} gegessen:</h2>
   <div class="whitebox__content">
 
     <div class="loadingPlaceholder searchbar__loading" *ngIf="componentIsLoading"></div>
@@ -41,7 +41,9 @@
         </tr>
       </table>
       <div *ngIf="!journalList.length">
-        noch keine Einträge
+        Hey, trage doch ein was du gegessen hast.<br>
+        Ich kann dir dann helfen, deine Ernährung zu optimieren.
+        <img src="../assets/images/coach-ipad.jpg" width="100" alt="Coach am iPad" />
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@
       <main class="grid__item w-8">
 
         <div class="whitebox">
-          <h2 class="whitebox__title">Deine Auswertung</h2>
+          <h2 class="whitebox__title">Deine Auswertung für den {{selectedDate | momentjs: 'Do MMMM'}}</h2>
 
           <div class="whitebox__content">
 
@@ -20,7 +20,9 @@
             <div class="dropoutGroup aniList aniList-{{aniListState}}" *ngIf="!componentIsLoading">
 
               <div *ngIf="reportArray.length < 1">
-                Du hast noch nichts eingetragen...
+                Ich habe leider noch keine Daten zum Auswerten<br>
+                <a routerLink="/journal">Trage ein was du gegessen hast</a>, dann probiere ich's nochmals...
+                <img src="../assets/images/coach-ipad.jpg" width="100" alt="Coach am iPad" />
               </div>
 
               <div class="droputGroup__wrap" *ngFor="let cat of reportArray" [ngClass]="{'dropoutGroup-open': cat.open }">

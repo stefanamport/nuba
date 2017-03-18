@@ -18,13 +18,17 @@ export class AnalysisComponent implements OnInit {
   public aniListState = 'loaded';
   public componentIsLoading = true;
 
+  public selectedDate: Date;
+
   constructor(private analysisService: AnalysisService,
               private dateChooserService: DateChooserService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
 
     this.dateChooserService.getChosenDateAsObservable().subscribe((newdate) => {
+      this.selectedDate = newdate;
       this.setSelectedDate(newdate);
     });
 
