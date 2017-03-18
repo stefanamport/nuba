@@ -7,7 +7,7 @@ import { Reginfo } from '../login/reginfo';
 @Injectable()
 export class FirebaseService {
 
-  constructor(private af: AngularFire) { console.log(af) }
+  constructor(private af: AngularFire) { console.log(af); }
 
   getList(resource: string): FirebaseListObservable<any[]> {
     return this.af.database.list(resource);
