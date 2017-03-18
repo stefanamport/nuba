@@ -30,6 +30,10 @@ export class SearchComponent implements OnInit {
 
   public user: User;
 
+  // has to be declared, otherwise Lint error appears that
+  // pipe is used in *ngIf :-/
+  public searchFilter: any;
+
   constructor(
     private foodService: FoodService,
     public journalEntriesService: JournalEntriesService,
