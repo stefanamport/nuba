@@ -8,6 +8,12 @@ class DateChooserServiceStub {
   }
 }
 
+class LoginServicStub {
+  getUserAsObservable(): Observable<Date> {
+    return Observable.of({});
+  }
+}
+
 class AnalysisServiceStub {
   initConsumptionAnalysis() { }
 
@@ -20,9 +26,10 @@ describe('JournalComponent', () => {
   let component: JournalComponent;
   let analysisService: any = new AnalysisServiceStub();
   let dateChooserService: any = new DateChooserServiceStub();
+  let loginService: any = new LoginServicStub();
 
   beforeEach(() => {
-    component = new JournalComponent(analysisService, dateChooserService);
+    component = new JournalComponent(analysisService, dateChooserService, loginService);
     component.ngOnInit();
   });
 

@@ -19,11 +19,16 @@ export class UserAccountComponent implements OnInit {
   formValidation = new FormValidation();
   savedMessage = '';
 
+  componentIsLoading = true;
+
   constructor (private loginService: LoginService, private userAccountService: UserAccountService) { }
 
   ngOnInit() {
     this.loginService.getUserAsObservable().subscribe((data: User) => {
       this.user = data;
+      if (this.user.uid) {
+        this.componentIsLoading = false;
+      }
     });
   }
 
@@ -45,6 +50,9 @@ export class UserAccountComponent implements OnInit {
   }
 
   saveUser() {
+
+    this.isUserInfoComplete();
+
     if (this.validateForm()) {
       this.userAccountService.updateUserInfo(this.user);
       this.savedMessage = 'Angaben wurden gespeichert';
@@ -59,21 +67,44 @@ export class UserAccountComponent implements OnInit {
 
   }
 
+  isUserInfoComplete() {
+
+    if (
+       this.user.bodyweight &&
+       this.user.birthday &&
+       this.user.bodyweight &&
+       this.user.bodyheight &&
+       this.user.gender &&
+       this.user.activityLevel ) {
+
+       this.user.isUserInfoComplete = true;
+
+    } else {
+
+       this.user.isUserInfoComplete = false;
+
+    }
+
+  }
+
   private validateBodyweight() {
     let weight = this.user.bodyweight;
-
-    if (!weight || weight < 30 || weight > 200) {
-      this.formValidation.messages.push( 'Bitte trage dein korrektes Gewicht ein' );
-      this.formValidation.valid = false;
+    if (weight) {
+      if (weight < 30 || weight > 200) {
+        this.formValidation.messages.push( 'Bitte trage dein korrektes Gewicht ein' );
+        this.formValidation.valid = false;
+      }
     }
   }
 
   private validateBodyheight() {
     let height = this.user.bodyheight;
 
-    if (!height || height < 60 || height > 200 ) {
-      this.formValidation.messages.push( 'Bitte trage deine korrekte Körpergrösse ein' );
-      this.formValidation.valid = false;
+    if (height) {
+      if (height < 60 || height > 200 ) {
+        this.formValidation.messages.push( 'Bitte trage deine korrekte Körpergrösse ein' );
+        this.formValidation.valid = false;
+      }
     }
 
   }
@@ -86,14 +117,21 @@ export class UserAccountComponent implements OnInit {
   }
 
   private validateAge() {
-     let age = this.userAccountService.calculateAge(this.user.birthday);
 
-     if (this.user.birthday.length <= 0 || age > 120) {
-        this.formValidation.messages.push( 'Bitte gültiges Geburtsdatum angeben.' );
-        this.formValidation.valid = false;
-     } else if (age < 18) {
-       this.formValidation.messages.push( 'Zu jung... Leider können wir für unter 18-jährige keine zuverlässigen Berechnungen anbieten.' );
-       this.formValidation.valid = false;
-     }
+    if (this.user.birthday) {
+
+       let age = this.userAccountService.calculateAge(this.user.birthday);
+
+       if (age > 120) {
+          this.formValidation.messages.push( 'Bitte gültiges Geburtsdatum angeben.' );
+          this.formValidation.valid = false;
+       } else if (age < 18) {
+         this.formValidation.messages.push(
+            'Zu jung... Leider können wir für unter 18-jährige keine zuverlässigen Berechnungen anbieten.' );
+         this.formValidation.valid = false;
+       }
+    }
+
   }
+
 }

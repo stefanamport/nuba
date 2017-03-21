@@ -9,52 +9,51 @@
 
           <div class="whitebox__content">
 
-            <div class="loadingPlaceholder searchbar__loading" *ngIf="!user.dataCompleted"></div>
+            <div class="loadingPlaceholder searchbar__loading" *ngIf="componentIsLoading"></div>
 
-            <form id="userData" *ngIf="user.dataCompleted">
-
-              <div class="formrow">
-                <label>Geschlecht</label>
-                <select [(ngModel)]="user.gender" name="gender" id="gender">
+            <form id="userData" class="userform" *ngIf="!componentIsLoading">
+              <div class="userform__formrow">
+                <label class="userform__label">Geschlecht</label>
+                <select class="userform__select" [(ngModel)]="user.gender" name="gender" id="gender">
                   <option value="">bitte auswählen...</option>
                     <option *ngFor="let gender of this.objKeys(genders)" value="{{gender}}">{{genders[gender].title}}</option>
                 </select>
               </div>
 
-              <div class="formrow">
-                <label>Vorname</label>
-                <input type="text" [(ngModel)]="user.name" name="vorname">
+              <div class="userform__formrow">
+                <label class="userform__label">Vorname</label>
+                <input class="userform__input" type="text" [(ngModel)]="user.name" name="vorname">
               </div>
 
-              <div class="formrow">
-                <label>Geburtsdatum</label>
-                <input [(ngModel)]="user.birthday" type="date" name="geburtsdatum" required>
+              <div class="userform__formrow">
+                <label class="userform__label">Geburtsdatum</label>
+                <input class="userform__input" [(ngModel)]="user.birthday" type="date" name="geburtsdatum">
               </div>
 
-              <div class="formrow">
-                <label>Gewicht (kg)</label>
-                <input type="number" [(ngModel)]="user.bodyweight" name="gewicht" min="30" max="200" required>
+              <div class="userform__formrow">
+                <label class="userform__label">Gewicht (kg)</label>
+                <input class="userform__input" type="number" [(ngModel)]="user.bodyweight" name="gewicht" min="30" max="200">
               </div>
 
-              <div class="formrow">
-                <label>Grösse (cm)</label>
-                <input type="number" [(ngModel)]="user.bodyheight" name="groesse" min="60" max="200" required>
+              <div class="userform__formrow">
+                <label class="userform__label">Grösse (cm)</label>
+                <input class="userform__input" type="number" [(ngModel)]="user.bodyheight" name="groesse" min="60" max="200">
               </div>
 
-              <div class="formrow">
-                <label>allgemeines Aktivitätslevel</label>
-                <select [(ngModel)]="user.activityLevel" name="activityLevel" id="activityLevel">
+              <div class="userform__formrow">
+                <label class="userform__label">allgemeines Aktivitätslevel</label>
+                <select class="userform__select" [(ngModel)]="user.activityLevel" name="activityLevel" id="activityLevel">
                   <option value="">bitte auswählen...</option>
                   <option *ngFor="let level of this.objKeys(activityLevels)" value="{{level}}">{{activityLevels[level].title}}</option>
                 </select>
               </div>
 
-              <div class="formrow">
-                <label>Anzahl Stunden Sport pro Woche</label>
-                <input type="number" [(ngModel)]="user.hoursOfSport" name="hoursOfSport" min="0" max="50">
+              <div class="userform__formrow">
+                <label class="userform__label">Anzahl Stunden Sport pro Woche</label>
+                <input class="userform__input" type="number" [(ngModel)]="user.hoursOfSport" name="hoursOfSport" min="0" max="50">
               </div>
 
-              <div class="formrow">
+              <div class="userform__formrow">
 
               <button type="submit" class="button button-big" aria-label="speichern" (click)="saveUser()"><span class="fa fa-check" aria-hidden="true"></span> speichern</button>
 
@@ -77,24 +76,19 @@
       </main>
 
       <aside class="grid__item w-4">
-        <div class="whitebox">
+        <div class="whitebox" *ngIf="user.isUserInfoComplete">
           <h2 class="whitebox__title">Berechnungen</h2>
 
-          <div class="loadingPlaceholder" *ngIf="!user.dataCompleted"></div>
+          <div class="loadingPlaceholder" *ngIf="componentIsLoading"></div>
 
-          <div class="whitebox__content" *ngIf="user.dataCompleted">
+          <div class="whitebox__content" *ngIf="!componentIsLoading">
               BMI: {{ user.bmi }}<br>
               Alter: {{ user.age }}<br>
               Geschätzter Kalorien Grundumsatz: {{ user.metabolicRate }} kcal
-              <hr>
-              <h3>Dein täglicher Bedarf:</h3>
-              Vitamin-C: xxx<br>
-              Eisen: xxx<br>
-              etc...<br>
           </div>
         </div>
 
-        <div class="whitebox" *ngIf="user.dataCompleted">
+        <div class="whitebox" *ngIf="user.uid">
           <h2 class="whitebox__title">Log Out</h2>
 
           <div class="whitebox__content">

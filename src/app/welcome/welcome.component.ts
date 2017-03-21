@@ -13,11 +13,12 @@ export class WelcomeComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
-    let user = this.loginService.getUser();
-    console.log(user);
-    if (user.uid) {
-      this.router.navigate(['journal']);
-    }
+
+     this.loginService.getUserAsObservable().subscribe((user) => {
+        if (user.uid) {
+          this.router.navigate(['journal']);
+        }
+    });
   }
 
 }

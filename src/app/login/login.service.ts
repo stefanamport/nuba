@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { User } from './user';
+import { Reginfo } from './reginfo';
 import { FirebaseService } from '../firebase/firebase.service';
-import { AuthProviders, FirebaseAuthState } from 'angularfire2';
+import { AuthProviders, AuthMethods, FirebaseAuthState } from 'angularfire2';
 import { BehaviorSubject, Observable } from 'rxjs';
 import Promise = firebase.Promise;
 
@@ -21,9 +22,11 @@ export class LoginService {
     this.firebaseService.getAuth().subscribe(user => {
       if (user) {
         this.userAuth = user;
+        this.updateUser();
 
         this.firebaseService.getObject('userData', this.userAuth.uid).subscribe(userInfo => {
           this.user = userInfo;
+          this.user.loadingComplete = true;
           this.updateUser();
         });
       } else {
@@ -37,12 +40,35 @@ export class LoginService {
     return this.firebaseService.getAuth();
   }
 
-  public login(method: string): Promise<FirebaseAuthState> {
-    return this.firebaseService.login({
-      provider: AuthProviders[method]
-    }).catch(() => {
-      this.cleanUpAuth();
-    });
+  public newUser(reginfo?: Reginfo): Promise<FirebaseAuthState> {
+    return this.firebaseService.newUser(reginfo);
+  }
+
+  public login(method: string, reginfo?: Reginfo): Promise<FirebaseAuthState> {
+
+    if (method === 'Password') {
+
+      return this.firebaseService.login({
+        email: reginfo.email,
+        password: reginfo.pass
+      });
+
+    } else if (method === 'Google') {
+
+      // not used anymore
+      // support for google Accounts dropped
+
+      /*
+
+      return this.firebaseService.login({
+        provider: AuthProviders.Google
+      }).catch(() => {
+        this.cleanUpAuth();
+      });
+      */
+
+    }
+
   }
 
   public logout() {

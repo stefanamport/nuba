@@ -138,9 +138,10 @@ describe('SearchComponent', () => {
   it('should check if item selected - not active, not last', () => {
     let active = false;
     let last = false;
+    let index = 5;
     let food = banana;
 
-    let isSelected = component.isSelectedItem(active, last, food);
+    let isSelected = component.isSelectedItem(active, last, index, food);
 
     expect(isSelected).toBe(false);
     expect(component.foodListCanIncrease).toBe(true);
@@ -149,21 +150,23 @@ describe('SearchComponent', () => {
   it('should check if item selected - not active, last', () => {
     let active = false;
     let last = true;
+    let index = 5;
     let food = banana;
 
-    let isSelected = component.isSelectedItem(active, last, food);
-    // TODO enable test once it is clear what output should be
-    //expect(isSelected).toBe(false);
+    let isSelected = component.isSelectedItem(active, last, index, food);
 
-    //expect(component.foodListCanIncrease).toBe(false);
+    expect(isSelected).toBe(false);
+    // check first what the outcome should be
+    // expect(component.foodListCanIncrease).toBe(false);
   });
 
   it('should check if item selected - active, not last', () => {
     let active = true;
     let last = false;
+    let index = 5;
     let food = banana;
 
-    let isSelected = component.isSelectedItem(active, last, food);
+    let isSelected = component.isSelectedItem(active, last, index, food);
 
     expect(isSelected).toBe(true);
     expect(component.foodListCanIncrease).toBe(true);
@@ -173,9 +176,10 @@ describe('SearchComponent', () => {
   it('should check if item selected - active, last', () => {
     let active = true;
     let last = true;
+    let index = 5;
     let food = banana;
 
-    let isSelected = component.isSelectedItem(active, last, food);
+    let isSelected = component.isSelectedItem(active, last, index, food);
 
     expect(isSelected).toBe(true);
     expect(component.foodListCanIncrease).toBe(false);

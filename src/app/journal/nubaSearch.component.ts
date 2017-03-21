@@ -30,6 +30,10 @@ export class SearchComponent implements OnInit {
 
   public user: User;
 
+  // has to be declared, otherwise Lint error appears that
+  // pipe is used in *ngIf :-/
+  public searchFilter: any;
+
   constructor(
     private foodService: FoodService,
     public journalEntriesService: JournalEntriesService,
@@ -64,17 +68,23 @@ export class SearchComponent implements OnInit {
     }
 
     if ( event.key === 'ArrowUp' ) {
+
       this.listSelect(-1);
-    }
 
-    if ( event.key === 'ArrowDown' ) {
+    } else if ( event.key === 'ArrowDown' ) {
+
       this.listSelect(1);
-    }
 
-    if ( event.key === 'Enter' ) {
+    } else if ( event.key === 'Enter' ) {
+
       if ( this.foodListActiveItemFoodObj !== null && this.foodListActiveItemFoodObj !== undefined ) {
         this.addToForm(this.foodListActiveItemFoodObj.$key);
       }
+
+    } else {
+
+      // reset listSelect
+      this.foodListActiveRow = 0;
     }
   }
 
@@ -90,20 +100,19 @@ export class SearchComponent implements OnInit {
   }
 
   // helper function for ngFor List
-  isSelectedItem(active: boolean, last: boolean, item: Food) {
-
-    if (active && last) {
-      this.foodListCanIncrease = false;
-    } else {
-      this.foodListCanIncrease = true;
-    }
+  isSelectedItem(active: boolean, last: boolean, index: number, item: Food) {
 
     if (active) {
+
+      // set active item to selected item
       this.foodListActiveItemFoodObj = item;
-      return true;
-    } else {
-      return false;
+
+      // cant increase if it's last item
+      this.foodListCanIncrease = !last;
+
     }
+
+    return active;
 
   }
 

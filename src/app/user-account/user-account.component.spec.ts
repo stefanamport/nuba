@@ -77,18 +77,6 @@ describe('UserAccountComponent', () => {
     expect(expectedMsg).toEqual(component.formValidation.messages[0]);
   });
 
-  it('should validate nok - missing birthdate', () => {
-    let user = loginService.getUser();
-    component.user = user;
-    component.user.birthday = '';
-    spyOn(userAccountService, 'calculateAge').and.returnValue(0);
-    let valid = component.validateForm();
-
-    expect(false).toEqual(valid);
-    let expectedMsg = 'Bitte gültiges Geburtsdatum angeben.';
-    expect(expectedMsg).toEqual(component.formValidation.messages[0]);
-  });
-
   it('should validate nok - too tall / heavy ', () => {
     let user = loginService.getUser();
     user.bodyheight = 300;

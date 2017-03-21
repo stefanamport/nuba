@@ -1,13 +1,20 @@
 import { AnalysisComponent } from './analysis.component';
 import { Observable } from 'rxjs';
 import {ConsumptionReport} from './model/consumptionReport';
-import {ComponentAnalysis} from "./model/componentAnalysis";
-import {ComponentCategory} from "./model/constants";
-import {async} from "@angular/core/testing";
+import {ComponentAnalysis} from './model/componentAnalysis';
+import {ComponentCategory} from './model/constants';
+import {async} from '@angular/core/testing';
+import {User} from '../login/user';
 
 class DateChooserServiceStub {
   getChosenDateAsObservable() {
     return Observable.of(new Date());
+  }
+}
+
+class LoginServiceStub {
+  getUserAsObservable() {
+    return Observable.of(new User());
   }
 }
 
@@ -48,14 +55,17 @@ describe('AnalysisComponent', () => {
   let component: AnalysisComponent;
   let dateChooserService: any;
   let analysisService: any;
+  let loginService: any;
 
   beforeEach(() => {
     dateChooserService = new DateChooserServiceStub();
     analysisService = new AnalysisServiceStub();
+    loginService = new LoginServiceStub();
 
     component = new AnalysisComponent(
       analysisService,
-      dateChooserService
+      dateChooserService,
+      loginService
     );
 
     component.ngOnInit();
@@ -102,7 +112,7 @@ describe('AnalysisComponent', () => {
   });
 
   it('should open category group', () => {
-    let category = { title: "Elemente", vals: Array[8], open: false };
+    let category = { title: 'Elemente', vals: Array[8], open: false };
 
     component.dropoutGroup(category);
 
@@ -110,7 +120,7 @@ describe('AnalysisComponent', () => {
   });
 
   it('should close category group', () => {
-    let category = { title: "Elemente", vals: Array[8], open: true };
+    let category = { title: 'Elemente', vals: Array[8], open: true };
 
     component.dropoutGroup(category);
 

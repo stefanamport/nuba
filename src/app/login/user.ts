@@ -19,5 +19,6 @@ export class User {
 
   foodShortlist?: Array<number>;
 
-  dataCompleted?: boolean;
+  loadingComplete?: boolean;
+  isUserInfoComplete?: boolean;
 }

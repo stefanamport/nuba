@@ -1,22 +1,62 @@
 <div class="logIn row">
     <div class="middler">
 
+        <div class="loginbox loginbox__tabs" *ngIf="!user.uid">
+            <button class="loginbox__tab" [ngClass]="
+            {'loginbox__tab-active': loginmode === 'newaccount'}" (click)="switchLoginMode('newaccount')">neu anmelden</button>
+            <button class="loginbox__tab" [ngClass]="
+            {'loginbox__tab-active': loginmode === 'login'}" (click)="switchLoginMode('login')">log in</button>
+        </div>
+
     	<div class="loginbox whitebox">
     		<div class="loginbox__buttons" *ngIf="!user.uid">
-		    	<button ng (click)="login('Mail')" class="button button-login" disabled>
-                  <span class="fa fa-envelope" aria-hidden="true"></span> Login mit E-Mail
-                </button>
-                <button ng (click)="login('Google')" class="button button-login">
-				  <span class="fa fa-google" aria-hidden="true"></span> Login mit Google Konto
+
+                <form (ngSubmit)="login('Password', $event)" action="">
+                    <div class="formrow logininput">
+                        <label for="reginfoMail logininput__label">E-Mail</label>
+                        <input class="logininput__input" type="email" [(ngModel)]="reginfo.email" name="reginfoMail" required>
+                    </div>
+                    <div class="formrow logininput">
+                        <label for="reginfoPass logininput__label">Passwort</label>
+                        <input class="logininput__input" type="password" [(ngModel)]="reginfo.pass" name="reginfoPass" required>
+                    </div>
+                    <div class="formrow logininput" *ngIf="loginmode === 'newaccount'">
+                        <label for="reginfoPass logininput__label">Passwort wiederholen</label>
+                        <input class="logininput__input" type="password" [(ngModel)]="reginfo.pass2" name="reginfoPass" required>
+                    </div>
+
+                    <div class="validation validation__message" *ngFor="
+                      let error of formValidation.messages">
+                       {{error}}
+                      </div>
+
+                    <button class="button button-login" type="submit">
+                      <span class="fa fa-envelope" aria-hidden="true"></span> anmelden mit E-Mail
+                    </button>
+                </form>
+                
+                <!--
+                <button (click)="login('Google')" class="button button-login button-login-small">
+				  <span class="fa fa-google" aria-hidden="true"></span> anmelden mit Google Konto
 				</button>
-                <button ng (click)="login('Facebook')" class="button button-login" disabled>
-                  <span class="fa fa-facebook" aria-hidden="true"></span> Login mit Facebook
-                </button>
+                -->
 			</div>
             <div class="logged-in-info" *ngIf="user.uid">
                 <p>Du bist erfolgreich eingeloggt.</p>
-                <p class="alert" *ngIf="!user.birthday || !user.bodyweight || !user.bodyheight">Bitte vervollständige dein Profil, dann kanns losgehen... <a href="account">zum deinem Account</a></p>
+
+                <div class="message" *ngIf="!user.birthday || !user.bodyweight || !user.bodyheight">
+                <p><strong>Hallo, ich bin Kari... dein Coach.</strong></p>
+                <p><img src="../assets/images/coach-pc.png" width="100" alt="Coach am iPad" /></p>
+                <p>Ich helfe dir, dich ausgewogen zu ernähren. - Am Besten vervollständigst du dein Profil, dann kann ich dir Tipps zu deiner Ernährung geben.</p>
+
+                <p><a class="button" routerLink="/account">Profil vervollständigen</a></p>
+                <p><a class="button button-light" routerLink="/journal">gleich loslegen</a>
+                </p>
+                
             </div>
+
+            </div>
+            
 		</div>
     </div>
 </div>

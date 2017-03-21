@@ -28,7 +28,7 @@
           <div class="navbutton__inner">
             <div class="fa fa-user navbutton__icon" aria-hidden="true"></div>
             <div class="navbutton__title ">Konto</div>
-            <div class="avatar"><img src="{{user.avatar}}" alt="{{user.name}}" class="avatar__image">
+            <div class="avatar" *ngIf="user.avatar"><img src="{{user.avatar}}" alt="{{user.name}}" class="avatar__image">
             </div>
           </div>
         </a>

@@ -2,21 +2,16 @@
 @import '../../assets/styles/_vars';
 @import '../../assets/styles/_global';
 
-form#userData {
-
-  .formrow {
+  .userform__formrow {
     display: block;
     margin-bottom: 5px;
   }
 
-  label {
-    @extend .small;
-  }
-
-  input, select {
+  .userform__input, .userform__select {
     width: 100%;
     font-family: inherit;
   }
 
-
-}
+  .userform__label {
+    @extend .small;
+  }

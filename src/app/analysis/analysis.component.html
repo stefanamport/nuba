@@ -4,8 +4,18 @@
 
       <main class="grid__item w-8">
 
-        <div class="whitebox">
-          <h2 class="whitebox__title">Deine Auswertung</h2>
+        <div class="whitebox" *ngIf="user.loadingComplete && !user.isUserInfoComplete">
+          <div class="message">
+              <p><strong>Bist du neu hier?</strong></p>
+              <p><img src="../assets/images/coach-pc.png" width="100" alt="Coach am iPad" /></p>
+              <p>Damit ich deine Auswertung erstellen kann, brauche ich einige Angaben:</p>
+
+              <p><a class="button" routerLink="/account">Profil ergänzen</a></p>
+          </div>
+        </div>
+
+        <div class="whitebox" *ngIf="user.loadingComplete && user.isUserInfoComplete">
+          <h2 class="whitebox__title">Deine Auswertung für den {{selectedDate | momentjs: 'Do MMMM'}}</h2>
 
           <div class="whitebox__content">
 
@@ -19,8 +29,10 @@
 
             <div class="dropoutGroup aniList aniList-{{aniListState}}" *ngIf="!componentIsLoading">
 
-              <div *ngIf="reportArray.length < 1">
-                Du hast noch nichts eingetragen...
+              <div class="message message-info"  *ngIf="reportArray.length < 1">
+                <p>Ich habe leider noch keine Daten zum Auswerten<br>
+                <a routerLink="/journal">Trage ein was du gegessen hast</a>, dann probiere ich's nochmal...</p>
+                <img src="../assets/images/coach-ipad.png" width="100" alt="Coach am iPad" />
               </div>
 
               <div class="droputGroup__wrap" *ngFor="let cat of reportArray" [ngClass]="{'dropoutGroup-open': cat.open }">
@@ -48,7 +60,7 @@
 
      <aside class="grid__item w-4">
       <div class="whitebox">
-        <div class="message message-info">
+        <div class="message message-info message-small">
           Der Tagesbedarf wird anhand deiner Angaben im Konto berechnet. Weitere Informationen im <a routerLink="/impressum">Impressum & Disclaimer</a>.
         </div>
       </div>

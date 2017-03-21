@@ -114,7 +114,8 @@ a {
 }
 
 .small {
-	font-size: 0.7em;
+	font-size: .8em;
+	line-height: 1.5em;
 }
 
 .light {
@@ -288,6 +289,12 @@ input {
 		
 	}
 
+		.button-login-small {
+			font-size: 1.0em;
+			border: 0px;
+			margin-top: $boxpadding;
+		}
+
 	.button-message {
 		&, &:hover {
 			color: darken($dark-gray-font, 20);
@@ -306,9 +313,11 @@ input {
 	padding: $boxpadding;
 
 	background: $light-gray;
+}
 
-	font-size: .8em;
-	line-height: 1.5em;
+.message-small {
+
+	@extend .small;
 }
 
 .message-info {

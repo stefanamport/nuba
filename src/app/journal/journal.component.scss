@@ -184,6 +184,10 @@ $dropdownMaxHeight: 50vh;
     padding: $boxpadding/2 $boxpadding;
     color: $dark-gray-font;
   }
+    .resultlist__infomessage-alert {
+      background: $alert-color;
+      color: #fff;
+    }
 
   .resultlist__scrollshadow {
     position: absolute;
