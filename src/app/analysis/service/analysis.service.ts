@@ -5,7 +5,7 @@ import { JournalEntriesService } from '../../journal/journalEntries.service';
 import { FoodDetails } from '../../food/foodDetails';
 import { ConsumptionReport } from '../model/consumptionReport';
 import { JournalEntry } from '../../journal/journalEntry';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../login/user';
 import { AgeRange } from '../model/constants';
 import { LoginService } from '../../login/login.service';
@@ -38,8 +38,8 @@ export class AnalysisService {
               private journalEntriesService: JournalEntriesService) {
   }
 
-  public getConsumptionReport(): BehaviorSubject<ConsumptionReport> {
-    return this.reportSubject;
+  public getConsumptionReport(): Observable<ConsumptionReport> {
+    return this.reportSubject.asObservable();
   }
 
   public initConsumptionAnalysis(date: Date) {

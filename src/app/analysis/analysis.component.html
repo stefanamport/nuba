@@ -10,13 +10,13 @@
           <div class="whitebox__content">
 
             <app-date-chooser></app-date-chooser>
-            
+
             <div class="dropoutGroup"  *ngIf="componentIsLoading">
               <div class="loadingPlaceholder droputGroup__wrap droputGroup__loading"></div>
               <div class="loadingPlaceholder droputGroup__wrap droputGroup__loading"></div>
               <div class="loadingPlaceholder droputGroup__wrap droputGroup__loading"></div>
             </div>
-            
+
             <div class="dropoutGroup aniList aniList-{{aniListState}}" *ngIf="!componentIsLoading">
 
               <div *ngIf="reportArray.length < 1">
@@ -33,7 +33,7 @@
                     <div class="chart__targetvalue">{{entry.targetAmount}} {{entry.unit}}</div>
                     <div class="chart__bar">
                       <div class="chart__currentvalue" [style.right]="chartCurrentPos(entry.percentage)">{{entry.currentAmount | round }}</div>
-                      <div class="chart__indicator" [style.width]="cartBarLength(entry.percentage)"></div>
+                      <div class="chart__indicator" [style.width]="chartBarLength(entry.percentage)"></div>
                     </div>
                   </div>
 

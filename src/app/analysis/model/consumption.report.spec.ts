@@ -208,16 +208,6 @@ class TestHelper {
     return analysisMap;
   }
 
-  static prepareAnalysis(adjustmentMap: Map<string, number>) {
-    let analysis = this.getPerfectConsumption();
-
-    adjustmentMap.forEach((value, key) => {
-      analysis = this.getAdjustedConsumption(analysis, key, value);
-    });
-
-    return analysis;
-  }
-
   static getAdjustedConsumption(analysis, componentStr: string, consumptionPercentage: number) {
     let component = analysis.get(componentStr);
     if (consumptionPercentage === TOO_LITTLE_PERCENTAGE || consumptionPercentage === WAY_TOO_LITTLE_PERCENTAGE) {

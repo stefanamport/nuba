@@ -35,32 +35,11 @@ export class AnalysisComponent implements OnInit {
     });
   }
 
-  private setReportVars(report) {
-
-      let rArr = [];
-
-      report.analysis.forEach((val, key) => {
-            rArr.push({
-                title: key,
-                vals: val
-            });
-      });
-
-      // load reports in class variables
-      let prevReportArray = this.reportArray;
-
-      this.report = report;
-      this.reportArray = rArr;
-  }
-
-  private setSelectedDate(selectedDate) {
-    this.analysisService.initConsumptionAnalysis(selectedDate);
-  }
 
   // Methods for displaying charts
 
   // length of chart bar
-  public cartBarLength(input: number) {
+  public chartBarLength(input: number) {
 
     if (input > 100) {
       input = 100;
@@ -101,6 +80,28 @@ export class AnalysisComponent implements OnInit {
         category.open = true;
       }
     }
+  }
+
+  private setReportVars(report) {
+
+      let rArr = [];
+
+      report.analysis.forEach((val, key) => {
+            rArr.push({
+                title: key,
+                vals: val
+            });
+      });
+
+      // load reports in class variables
+      let prevReportArray = this.reportArray;
+
+      this.report = report;
+      this.reportArray = rArr;
+  }
+
+  private setSelectedDate(selectedDate) {
+    this.analysisService.initConsumptionAnalysis(selectedDate);
   }
 
   // method for visual loading indication
