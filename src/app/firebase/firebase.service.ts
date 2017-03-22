@@ -7,7 +7,7 @@ import { Reginfo } from '../login/reginfo';
 @Injectable()
 export class FirebaseService {
 
-  constructor(private af: AngularFire) { console.log(af); }
+  constructor(public af: AngularFire) { }
 
   getList(resource: string): FirebaseListObservable<any[]> {
     return this.af.database.list(resource);
@@ -29,8 +29,7 @@ export class FirebaseService {
 
   // removes an item from a list
   deleteItem(resource: string, id: string) {
-    const items = this.af.database.list(resource);
-    items.remove(id);
+    return this.af.database.list(resource).remove(id);
   }
 
   getAuth() {

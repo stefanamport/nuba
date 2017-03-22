@@ -50,7 +50,6 @@ class AnalysisServiceStub {
   }
 }
 
-
 describe('AnalysisComponent', () => {
   let component: AnalysisComponent;
   let dateChooserService: any;

@@ -1,6 +1,6 @@
-import {FoodComponent} from './foodComponent';
+import { FoodComponent } from './foodComponent';
 
-export interface FoodDetails {
+export class FoodDetails {
   category: string;
   matrix_amount: number;
   matrix_unit: string;

@@ -147,19 +147,6 @@ describe('SearchComponent', () => {
     expect(component.foodListCanIncrease).toBe(true);
   });
 
-  it('should check if item selected - not active, last', () => {
-    let active = false;
-    let last = true;
-    let index = 5;
-    let food = banana;
-
-    let isSelected = component.isSelectedItem(active, last, index, food);
-
-    expect(isSelected).toBe(false);
-    // check first what the outcome should be
-    // expect(component.foodListCanIncrease).toBe(false);
-  });
-
   it('should check if item selected - active, not last', () => {
     let active = true;
     let last = false;

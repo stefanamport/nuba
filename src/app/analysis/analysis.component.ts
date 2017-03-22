@@ -48,7 +48,6 @@ export class AnalysisComponent implements OnInit {
     });
   }
 
-
   // Methods for displaying charts
 
   // length of chart bar

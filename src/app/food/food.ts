@@ -1,4 +1,4 @@
-export interface Food {
+export class Food {
   $key: number;
   name: string;
   category: string;

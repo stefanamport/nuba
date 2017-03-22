@@ -7,9 +7,14 @@ export class LoginServiceStub {
 
   @Output() data = new EventEmitter();
   user = new User();
+  private age = 20;
 
   constructor () {
     this.data.next(this.getUser());
+  }
+
+  setAge(age) {
+    this.age = age;
   }
 
   updateUserInfo() {
@@ -18,11 +23,12 @@ export class LoginServiceStub {
 
   getUser() {
     let testuser = {
-        uid: 'xxx',
+        // uid of test user in firebase database
+        uid: 'BRIu6Iu3ZpSEGqbbfEMTUODihM53',
         name: 'Hans Ueli',
 
         birthday: '1997-01-15', // Format: yyyy-mm-dd
-        age: 20,
+        age: this.age,
 
         avatar: 'http://www.nuba.ch/fakeUser.jpg',
 

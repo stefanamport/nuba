@@ -3,7 +3,7 @@ import { ComponentAnalysis } from './componentAnalysis';
 import { ComponentCategory, ComponentName, TOO_LITTLE_PERCENTAGE, WAY_TOO_LITTLE_PERCENTAGE, TOO_MUCH_PERCENTAGE,
   WAY_TOO_MUCH_PERCENTAGE} from './constants';
 import { LoginServiceStub } from '../../login/testing/fake.user.service';
-import { TargetConsumptionMock_Male_19_30 } from '../testing/targetConsumptionMock';
+import { TargetConsumptionMock_Male } from '../testing/targetConsumptionMock';
 import { Recommendation } from '../testing/recommendationMock';
 
 describe('Consumption report', () => {
@@ -186,7 +186,7 @@ class TestHelper {
 
   static getPerfectConsumption() {
     let analysisMap = new Map<string, ComponentAnalysis>();
-    let targetConsumption = TargetConsumptionMock_Male_19_30;
+    let targetConsumption = TargetConsumptionMock_Male;
 
     for (let key of Object.keys(targetConsumption)) {
       let obj = targetConsumption[key];
