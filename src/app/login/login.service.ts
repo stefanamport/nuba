@@ -53,21 +53,16 @@ export class LoginService {
         password: reginfo.pass
       });
 
-    } else if (method === 'Google') {
+    } /* else if (method === 'Google') {
+       // not used anymore
+       // support for google Accounts dropped
 
-      // not used anymore
-      // support for google Accounts dropped
-
-      /*
-
-      return this.firebaseService.login({
+       return this.firebaseService.login({
         provider: AuthProviders.Google
       }).catch(() => {
         this.cleanUpAuth();
       });
-      */
-
-    }
+    }*/
 
   }
 
