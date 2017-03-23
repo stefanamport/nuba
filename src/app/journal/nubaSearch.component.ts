@@ -142,6 +142,11 @@ export class SearchComponent implements OnInit {
     newEntry.userId = this.user.uid;
 
     let selectedDate = this.dateChooserService.getChosenDate();
+
+    let yet = new Date();
+    selectedDate.setHours(yet.getHours());
+    selectedDate.setMinutes(yet.getMinutes());
+
     newEntry.date = selectedDate;
 
     this.journalEntriesService.addEntry(newEntry);
