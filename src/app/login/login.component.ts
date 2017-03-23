@@ -57,6 +57,9 @@ export class LogInComponent implements OnInit {
   }
 
   private setFirebaseValidateError(error) {
+
+    this.formValidation.messages = [];
+
     this.formValidation.state = false;
     this.formValidation.messages.push(error.message);
   }
