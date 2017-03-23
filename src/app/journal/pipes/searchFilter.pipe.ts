@@ -12,9 +12,16 @@ export class SearchFilterPipe implements PipeTransform {
 
     if (filter.length > 2) {
 
-      // show string filtered List
-      let filteredList: Array<Food> = foodList.filter(
-      food => food.name.toLowerCase().indexOf(filter.toLowerCase()) > -1);
+      let filters = filter.split(' ');
+      let filteredList: Array<Food> = foodList.filter(function (food) {
+        let includesAllSearchItems = true;
+        for (let key in filters) {
+          if (food.name.toLowerCase().indexOf(filters[key].toLowerCase()) === -1) {
+            includesAllSearchItems = false;
+          }
+        }
+        return includesAllSearchItems;
+      });
 
       return filteredList;
 
