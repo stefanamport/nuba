@@ -220,6 +220,10 @@ describe('SearchComponent', () => {
     expectedJournalEntry.userId = 'user1';
     expectedJournalEntry.date = new Date('January 10, 2017 00:00:00');
 
+    let yet = new Date();
+    expectedJournalEntry.date.setHours(yet.getHours());
+    expectedJournalEntry.date.setMinutes(yet.getMinutes());
+
     spyOn(component, 'resetSearchResults');
     spyOn(component, 'clearForm');
     spyOn(component.userAccountService, 'addMostUsedFoods');
