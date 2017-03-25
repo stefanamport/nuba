@@ -23,6 +23,6 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 ## Continous integration
 This project integrates Travis CI for testing and deploying the web application.
-Builds: https://travis-ci.org/stefanamport/nuba
-Deployment: https://nuba-c3e84.firebaseapp.com/journal
+- Builds: https://travis-ci.org/stefanamport/nuba
+- Deployment: https://nuba-c3e84.firebaseapp.com/journal
 
