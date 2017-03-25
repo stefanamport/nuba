@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-
-import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-welcome',
@@ -10,15 +7,10 @@ import { LoginService } from '../login/login.service';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
 
-     this.loginService.getUserAsObservable().subscribe((user) => {
-        if (user.uid) {
-          this.router.navigate(['journal']);
-        }
-    });
   }
 
 }
