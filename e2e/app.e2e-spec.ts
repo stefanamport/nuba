@@ -55,7 +55,7 @@ describe('angular-cli-project App', function() {
       expect(buttonAnmelden.isPresent()).toBeTruthy();
       buttonAnmelden.click();
 
-      browser.driver.sleep(1000);
+      browser.driver.sleep(2000);
 
       // Go to Search Page
       let buttonLoslegen = element(by.linkText('gleich loslegen'));

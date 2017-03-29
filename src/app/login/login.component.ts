@@ -28,7 +28,12 @@ export class LogInComponent implements OnInit {
 
         this.user = user;
 
-        if (this.user.birthday && this.user.bodyweight && this.user.bodyheight) {
+        if (
+          this.user.birthday &&
+          this.user.bodyweight &&
+          this.user.bodyheight &&
+          this.router.url === '/login'
+          ) {
           this.router.navigate(['journal']);
         }
 
