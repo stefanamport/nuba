@@ -38,12 +38,12 @@ export class LogInComponent implements OnInit {
     });
   }
 
-  private setFirebaseValidateError(errorMessages) {
+  private setFirebaseValidateError(error) {
 
     this.formValidation.messages = [];
 
     this.formValidation.state = false;
-    this.formValidation.messages.push(errorMessages);
+    this.formValidation.messages.push(error);
   }
 
   login(method: string, event?: Event) {
