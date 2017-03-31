@@ -55,7 +55,7 @@
 
               <div class="userform__formrow">
 
-              <button type="submit" class="button button-big" aria-label="speichern" (click)="saveUser()"><span class="fa fa-check" aria-hidden="true"></span> speichern</button>
+              <button type="submit" type="submit" class="button button-big" aria-label="speichern" (click)="saveUser()"><span class="fa fa-check" aria-hidden="true"></span> speichern</button>
 
 
               <div class="button button-message button-big button-light" [ngClass]="{'button-hidden': savedMessage.length <= 0 }">
@@ -93,16 +93,19 @@
 
           <div class="whitebox__content">
             <div class="userform__formrow">
-              <label class="userform__label">Neues Passwort</label>
-              <input #password class="userform__input" [(ngModel)]="newPassword" type="password" name="Passwort">
-              <label class="userform__label">Passwort bestätigen</label>
-              <input #passwordConfirmed class="userform__input" [(ngModel)]="newPasswordConfirmed" type="password" name="Passwort bestätigen">
-              <div class="validation validation__message" *ngFor="
-                let message of passwordValidation.messages">
-                {{message}}
-              </div>
-              <button (click)="changePassword()" class="button button-light button-small button-block">
-                Passwort ändern</button>
+
+              <form>
+                <label class="userform__label">Neues Passwort</label>
+                <input #password class="userform__input" [(ngModel)]="newPassword" type="password" name="Passwort">
+                <label class="userform__label">Passwort bestätigen</label>
+                <input #passwordConfirmed class="userform__input" [(ngModel)]="newPasswordConfirmed" type="password" name="Passwort bestätigen">
+                <div class="validation validation__message" *ngFor="
+                  let message of passwordValidation.messages">
+                  {{message}}
+                </div>
+                <button (click)="changePassword()" type="submit" class="button button-light button-small button-block">
+                  Passwort ändern</button>
+              </form>
 
               <div class="button button-message button-small button-light button-block" [ngClass]="{'button-hidden': changedPassword.length <= 0 }">
                 {{changedPassword}}
