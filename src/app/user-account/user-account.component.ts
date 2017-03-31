@@ -17,9 +17,12 @@ export class UserAccountComponent implements OnInit {
   genders = Genders;
   activityLevels = ActivityLevels;
   formValidation = new FormValidation();
+  passwordValidation = new FormValidation();
   savedMessage = '';
-
+  changedPassword = '';
   componentIsLoading = true;
+  newPassword = '';
+  newPasswordConfirmed = '';
 
   constructor (private loginService: LoginService, private userAccountService: UserAccountService) { }
 
@@ -85,6 +88,40 @@ export class UserAccountComponent implements OnInit {
 
     }
 
+  }
+
+  changePassword() {
+    let passwordOk = this.validatePasswords(this.newPassword, this.newPasswordConfirmed);
+
+    if (passwordOk) {
+      let self = this;
+      this.loginService.changePassword(this.newPassword).then(function() {
+        self.changedPassword = 'Passwort wurde geändert';
+        self.newPassword = '';
+        self.newPasswordConfirmed = '';
+
+        setTimeout(function() {
+         self.changedPassword = '';
+        }, 3000);
+      }).catch((error) => {
+        self.passwordValidation.messages.push(error.message);
+        self.passwordValidation.valid = false;
+      });
+    }
+  }
+
+  private validatePasswords(newPassword, passwordConfirmed): boolean {
+    this.passwordValidation.clearFormValidation();
+    let validationMessages = this.loginService.validatePassword(newPassword, passwordConfirmed);
+
+    if (validationMessages.length > 0) {
+      this.passwordValidation.messages = validationMessages;
+      this.passwordValidation.valid = false;
+
+      return false;
+    }
+
+    return true;
   }
 
   private validateBodyweight() {

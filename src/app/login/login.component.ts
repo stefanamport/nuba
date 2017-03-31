@@ -23,7 +23,6 @@ export class LogInComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
-
     this.loginService.getUserAsObservable().subscribe((user) => {
 
         this.user = user;
@@ -36,68 +35,51 @@ export class LogInComponent implements OnInit {
           ) {
           this.router.navigate(['journal']);
         }
-
     });
-
   }
 
-  private validateReginfo() {
-
-    this.formValidation.messages = [];
-
-    if (this.reginfo.pass !== this.reginfo.pass2) {
-      this.formValidation.messages.push('Die Passwörter stimmen nicht überein.');
-    }
-
-    if (this.reginfo.pass.length < 6) {
-      this.formValidation.messages.push('Das Passwort muss mind. 6 Zeichen lang sein.');
-    }
-
-    if (this.formValidation.messages.length > 0) {
-      return false;
-    } else {
-      return true;
-    }
-
-  }
-
-  private setFirebaseValidateError(error) {
+  private setFirebaseValidateError(errorMessages) {
 
     this.formValidation.messages = [];
 
     this.formValidation.state = false;
-    this.formValidation.messages.push(error.message);
+    this.formValidation.messages.push(errorMessages);
   }
 
   login(method: string, event?: Event) {
-
     if (event) {
       event.preventDefault();
     }
 
     // make new user
     if (this.loginmode === 'newaccount' && method === 'Password') {
-
-      this.loginService.newUser(this.reginfo).then((authState: FirebaseAuthState) => {
-      if (authState.uid) {
-        this.user = authState;
-        }
-      }).catch((error) => {
-         this.setFirebaseValidateError(error);
-      });
-
+      this.createNewUser();
     } else {
-
       this.loginService.login(method, this.reginfo).then((authState: FirebaseAuthState) => {
         if (authState.uid) {
           this.user = authState;
         }
       }).catch((error) => {
-         this.setFirebaseValidateError(error);
+         this.setFirebaseValidateError(error.message);
       });
-
     }
+  }
 
+  private createNewUser() {
+    let validationMsgs = this.loginService.validatePassword(this.reginfo.pass, this.reginfo.pass2);
+    if (validationMsgs.length === 0) {
+      this.loginService.newUser(this.reginfo).then((authState: FirebaseAuthState) => {
+        if (authState.uid) {
+          this.user = authState;
+        }
+      }).catch((error) => {
+        this.setFirebaseValidateError(error);
+      });
+    } else {
+      for (let msg of validationMsgs) {
+        this.setFirebaseValidateError(msg);
+      }
+    }
   }
 
   switchLoginMode(mode: any) {

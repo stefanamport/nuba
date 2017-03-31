@@ -88,6 +88,30 @@
           </div>
         </div>
 
+        <div class="whitebox">
+          <h2 class="whitebox__title">Passwort ändern</h2>
+
+          <div class="whitebox__content">
+            <div class="userform__formrow">
+              <label class="userform__label">Neues Passwort</label>
+              <input #password class="userform__input" [(ngModel)]="newPassword" type="password" name="Passwort">
+              <label class="userform__label">Passwort bestätigen</label>
+              <input #passwordConfirmed class="userform__input" [(ngModel)]="newPasswordConfirmed" type="password" name="Passwort bestätigen">
+              <div class="validation validation__message" *ngFor="
+                let message of passwordValidation.messages">
+                {{message}}
+              </div>
+              <button (click)="changePassword()" class="button button-light button-small button-block">
+                Passwort ändern</button>
+
+              <div class="button button-message button-small button-light button-block" [ngClass]="{'button-hidden': changedPassword.length <= 0 }">
+                {{changedPassword}}
+              </div>
+            </div>
+
+          </div>
+        </div>
+
         <div class="whitebox" *ngIf="user.uid">
           <h2 class="whitebox__title">Log Out</h2>
 

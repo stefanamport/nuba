@@ -170,6 +170,10 @@ export class UserAccountService {
     return this.calculateAge(this.user.birthday);
   }
 
+  public updatePassword(newPassword: string) {
+    return this.loginService.changePassword(newPassword);
+  }
+
   private getDateToday() {
     return new Date();
   }

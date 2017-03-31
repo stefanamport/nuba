@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import {FirebaseListObservable, AngularFire, FirebaseObjectObservable, FirebaseAuthState} from 'angularfire2';
+import {
+  FirebaseListObservable, AngularFire, FirebaseObjectObservable, FirebaseAuthState,
+  AngularFireAuth
+} from 'angularfire2';
 import Promise = firebase.Promise;
 
 import { Reginfo } from '../login/reginfo';
@@ -32,7 +35,7 @@ export class FirebaseService {
     return this.af.database.list(resource).remove(id);
   }
 
-  getAuth() {
+  getAuth(): AngularFireAuth {
     return this.af.auth;
   }
 
@@ -41,12 +44,14 @@ export class FirebaseService {
   }
 
   newUser(reginfo: Reginfo): Promise<any> {
-
     return this.af.auth.createUser({
       email: reginfo.email,
       password: reginfo.pass
     });
+  }
 
+  updatePassword(auth, newPassword: string): Promise<any> {
+      return auth.updatePassword(newPassword);
   }
 
   logout(): Promise<void> {
