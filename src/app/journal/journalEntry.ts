@@ -1,5 +1,4 @@
 export class JournalEntry {
-  // FIXME sonja: try to convert $key into id
   $key: string;
   userId: string;
   id: string;

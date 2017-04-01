@@ -39,7 +39,7 @@ export class AnalysisComponent implements OnInit {
     });
 
     this.analysisService.getConsumptionReport().subscribe((report) => {
-      // start symphony on new report
+      // start animations on new report
       this.transitionSymphony(report);
     });
 
@@ -117,7 +117,6 @@ export class AnalysisComponent implements OnInit {
   }
 
   // method for visual loading indication
-  // a little symphony ;-)
   private transitionSymphony (report) {
 
     let timeout = 300;
@@ -136,7 +135,7 @@ export class AnalysisComponent implements OnInit {
 
       this.aniListState = 'loaded';
 
-     // symphony after first load
+     // animations after first load
      } else if (report.analysisComplete) {
 
       this.aniListState = 'changing';

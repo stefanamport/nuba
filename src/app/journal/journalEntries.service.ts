@@ -38,7 +38,6 @@ export class JournalEntriesService {
   }
 
   private getDateAsKey(date: Date): string {
-    // FIXME: sonja, 22.01.2016: convert string date retrieved from the firebase back to real dates.
     let realDate = new Date(date);
     let year: string = realDate.getUTCFullYear().toString();
     let month: string = (realDate.getUTCMonth() + 1).toString();

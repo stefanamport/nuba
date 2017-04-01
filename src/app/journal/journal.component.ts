@@ -47,7 +47,7 @@ export class JournalComponent implements OnInit {
 
   public showNewHint() {
 
-  	// shakes Coach Box by CSS Animation :-)
+  	// shakes Coach Box by CSS Animation
     this.switchShowNewHint();
 
     let scope = this;

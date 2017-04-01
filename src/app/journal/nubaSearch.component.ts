@@ -30,8 +30,6 @@ export class SearchComponent implements OnInit {
 
   public user: User;
 
-  // has to be declared, otherwise Lint error appears that
-  // pipe is used in *ngIf :-/
   public searchFilter: any;
 
   constructor(
@@ -166,7 +164,7 @@ export class SearchComponent implements OnInit {
     this.foodListActive = false;
   }
 
-    // UI Reset Methods
+  // UI Reset Methods
   resetSearchResults() {
     this.searchFilterString = '';
 
