@@ -55,7 +55,7 @@
 
               <div class="userform__formrow">
 
-              <button type="submit" class="button button-big" aria-label="speichern" (click)="saveUser()"><span class="fa fa-check" aria-hidden="true"></span> speichern</button>
+              <button type="submit" type="submit" class="button button-big" aria-label="speichern" (click)="saveUser()"><span class="fa fa-check" aria-hidden="true"></span> speichern</button>
 
 
               <div class="button button-message button-big button-light" [ngClass]="{'button-hidden': savedMessage.length <= 0 }">
@@ -85,6 +85,35 @@
               BMI: {{ user.bmi }}<br>
               Alter: {{ user.age }}<br>
               Geschätzter Kalorien Grundumsatz: {{ user.metabolicRate }} kcal
+          </div>
+        </div>
+
+        <div class="whitebox">
+          <h2 class="whitebox__title">Passwort ändern</h2>
+
+          <div class="whitebox__content">
+            <div class="userform__formrow">
+
+              <form>
+                <label class="userform__label">Altes Passwort</label>
+                <input class="userform__input" [(ngModel)]="oldPassword" type="password" name="Altes Passwort">
+                <label class="userform__label">Neues Passwort</label>
+                <input class="userform__input" [(ngModel)]="newPassword" type="password" name="Passwort">
+                <label class="userform__label">Passwort bestätigen</label>
+                <input class="userform__input" [(ngModel)]="newPasswordConfirmed" type="password" name="Passwort bestätigen">
+                <div class="validation validation__message" *ngFor="
+                  let message of passwordValidation.messages">
+                  {{message}}
+                </div>
+                <button (click)="changePassword()" type="submit" class="button button-light button-small button-block">
+                  Passwort ändern</button>
+              </form>
+
+              <div class="button button-message button-small button-light button-block" [ngClass]="{'button-hidden': changedPassword.length <= 0 }">
+                {{changedPassword}}
+              </div>
+            </div>
+
           </div>
         </div>
 

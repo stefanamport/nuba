@@ -3,7 +3,7 @@
 body {
 	font-family: $font-family-main;
 	background-color: $light-gray;
-	
+
 	color: $main-font-color;
 
 	font-size: 0.9em;
@@ -47,11 +47,11 @@ a {
 
 .loadingAnimation {
 	opacity: .7;
-	
+
 	background: #fff;
 
 	animation: rotate 2s infinite;
-	
+
 	width: 100px;
 	height: 100px;
 
@@ -96,16 +96,16 @@ a {
 	left: 0px;
 	top: 0px;
 	bottom: 0px;
-	
+
 	width: 100%;
 	height: 100%;
-	
+
 	display: flex;
 	align-items: center;
 
 	background: #fff;
     background: linear-gradient(to right, #fff 10%, $light-gray 20%, #fff 30%);
-	
+
 	animation-name: placeholderLoading;
 	animation-duration: 3s;
     animation-fill-mode: forwards;
@@ -286,7 +286,7 @@ input {
 			color: #000;
 			background: darken($light-gray, 5);
 		}
-		
+
 	}
 
 		.button-login-small {
@@ -304,8 +304,13 @@ input {
 		}
 	}
 
+  .button-block {
+    margin-top: 10px;
+    display: block;
+  }
+
 	.button-hidden {
-		opacity: 0;
+		display: none;
 	}
 
 
@@ -321,7 +326,7 @@ input {
 }
 
 .message-info {
-	
+
 	position: relative;
 	padding-left: $boxpadding*3;
 
@@ -363,14 +368,14 @@ input {
 
 	.whitebox__content {
 		padding-top: $boxpadding*2;
-		
+
 	}
 
 
 .coachTip {
 	margin-top: 0px;
 }
-	
+
 	.coachTip-newHint {
 		@extend .shake;
 	}
@@ -395,12 +400,12 @@ input {
 
 
 .grid {
-	
+
 	display: flex;
 	flex-flow: row wrap;
 
 	margin: 0 -$boxpadding;
-}	
+}
 	.grid__item {
 		padding: 0 $boxpadding;
 		box-sizing: border-box;
@@ -432,7 +437,7 @@ input {
 
 @media screen and (max-width: $bp-big + 20) {
 	.middler {
-		padding: 0 10px; 
+		padding: 0 10px;
 	}
 }
 
@@ -458,7 +463,7 @@ input {
 		right: 10px;
 		top: 50px;
 		z-index: 88;
-		
+
 		box-sizing: border-box;
 
 		background: $white;
@@ -469,11 +474,11 @@ input {
 		border-radius: 100%;
 
 		overflow: hidden;
-		
+
 		transition: .4s all;
-	}	
+	}
 		.coachTip__image {
-			
+
 			transition: .4s all;
 
 			top: -5px;
@@ -494,7 +499,7 @@ input {
 		.coachTip__buttons {
 			margin-top: 20px;
 		}
-	
+
 	.coachTip .boxcontent,
 	.coachTip .whitebox__title {
 		opacity: 0;
@@ -503,7 +508,7 @@ input {
 	}
 
 	.coachTip-visible {
-		
+
 		right: 0px;
 		top: 30vh;
 		z-index: 88;
@@ -519,7 +524,7 @@ input {
 		.boxcontent {
 			opacity: 1;
 		}
-		
+
 		.coachTip__image {
 			top: -31.4vh;
 			left: auto;
@@ -534,7 +539,7 @@ input {
 	}
 }
 @media screen and (max-width: $bp-mobile) {
-	
+
 	body {
 		padding-bottom: $headerheight;
 	}
@@ -542,7 +547,7 @@ input {
 	.w-8, .w-4 {
 		width: 100%;
 	}
-	
+
 	.button-small {
 		padding: 6px 9px;
 	}
@@ -556,7 +561,7 @@ input {
 			margin-bottom: 3px;
 			display: block;
 		}
-		
+
 	}
 
 }

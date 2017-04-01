@@ -17,9 +17,13 @@ export class UserAccountComponent implements OnInit {
   genders = Genders;
   activityLevels = ActivityLevels;
   formValidation = new FormValidation();
+  passwordValidation = new FormValidation();
   savedMessage = '';
-
+  changedPassword = '';
   componentIsLoading = true;
+  oldPassword = '';
+  newPassword = '';
+  newPasswordConfirmed = '';
 
   constructor (private loginService: LoginService, private userAccountService: UserAccountService) { }
 
@@ -85,6 +89,59 @@ export class UserAccountComponent implements OnInit {
 
     }
 
+  }
+
+  changePassword() {
+    let passwordOk = this.validatePasswords(this.newPassword, this.newPasswordConfirmed);
+
+    if (passwordOk) {
+      let self = this;
+
+      this.loginService.reauthenticateUser('email', this.oldPassword).then(function() {
+        self.loginService.changePassword(self.newPassword).then(function() {
+          self.resetPasswordForm();
+        }).catch((error) => {
+          self.setPasswordValidationMessage(error.message);
+        });
+      }).catch((error) => {
+        let errorMsg = error.message;
+        if (error['code'] !== undefined && error['code'] === 'auth/wrong-password') {
+          errorMsg = 'Das alte Passwort ist falsch.';
+        }
+        this.setPasswordValidationMessage(errorMsg);
+      });
+    }
+  }
+
+  private setPasswordValidationMessage(errorMsg: string) {
+    this.passwordValidation.messages.push(errorMsg);
+    this.passwordValidation.valid = false;
+  }
+
+  private resetPasswordForm() {
+    this.changedPassword = 'Passwort wurde geändert';
+    this.oldPassword = '';
+    this.newPassword = '';
+    this.newPasswordConfirmed = '';
+
+    let self = this;
+    setTimeout(function() {
+      self.changedPassword = '';
+    }, 3000);
+  }
+
+  private validatePasswords(newPassword, passwordConfirmed): boolean {
+    this.passwordValidation.clearFormValidation();
+    let validationMessages = this.loginService.validatePassword(newPassword, passwordConfirmed);
+
+    if (validationMessages.length > 0) {
+      this.passwordValidation.messages = validationMessages;
+      this.passwordValidation.valid = false;
+
+      return false;
+    }
+
+    return true;
   }
 
   private validateBodyweight() {

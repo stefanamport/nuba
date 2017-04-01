@@ -66,6 +66,28 @@ export class LoginService {
 
   }
 
+  public validatePassword(newPassword, confirmedPassword) {
+    let validationMessages = [];
+
+    if (newPassword !== confirmedPassword) {
+      validationMessages.push('Die Passwörter stimmen nicht überein.');
+    }
+
+    if (newPassword.length < 6) {
+      validationMessages.push('Das Passwort muss mind. 6 Zeichen lang sein.');
+    }
+
+    return validationMessages;
+  }
+
+  public changePassword(newPassword: string) {
+    return this.firebaseService.updatePassword(this.userAuth.auth, newPassword);
+  }
+
+  public reauthenticateUser(email: string, password: string) {
+    return this.firebaseService.reauthenticateUser(this.userAuth.auth, this.userAuth.auth.email, password);
+  }
+
   public logout() {
     this.firebaseService.logout().then(() => {
       this.cleanUpAuth();
