@@ -99,7 +99,7 @@ export class UserAccountComponent implements OnInit {
     if (passwordOk) {
       let self = this;
 
-      this.loginService.reauthenticateUser('email', this.oldPassword).then(function() {
+      this.loginService.reauthenticateUser(this.oldPassword).then(function() {
         self.loginService.changePassword(self.newPassword).then(function() {
           self.resetPasswordForm();
         }).catch((error) => {

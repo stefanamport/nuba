@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { User } from './user';
 import { Reginfo } from './reginfo';
 import { FirebaseService } from '../firebase/firebase.service';
-import { AuthProviders, AuthMethods, FirebaseAuthState } from 'angularfire2';
+import { FirebaseAuthState } from 'angularfire2';
 import { BehaviorSubject, Observable } from 'rxjs';
 import Promise = firebase.Promise;
 
@@ -75,7 +75,7 @@ export class LoginService {
     return this.firebaseService.updatePassword(this.userAuth.auth, newPassword);
   }
 
-  public reauthenticateUser(email: string, password: string) {
+  public reauthenticateUser(password: string) {
     return this.firebaseService.reauthenticateUser(this.userAuth.auth, this.userAuth.auth.email, password);
   }
 

@@ -2,8 +2,10 @@ import { UserAccountComponent } from './user-account.component';
 import { User } from '../login/user';
 import { Genders, ActivityLevels } from './user-account.constants';
 import { Observable } from 'rxjs';
+import * as firebase from 'firebase';
+import Promise = firebase.Promise;
 
-class LoginServiceStub {
+class LoginServiceMock {
 
   getUser() {
     let user = new User();
@@ -20,6 +22,25 @@ class LoginServiceStub {
   getUserAsObservable() {
     return Observable.of(this.getUser());
   }
+
+  reauthenticateUser(password) {
+    expect(password).toEqual('abcdefg');
+    return new Promise(function (resolve, reject) {
+      resolve(1);
+    });
+  }
+
+  changePassword(newPassword) {
+    expect(newPassword).toEqual('123456');
+    return new Promise(function (resolve, reject) {
+      resolve(1);
+    });
+  }
+
+  validatePassword(newPassword, newPasswordConfirmed) {
+    let validationMessages = [];
+    return validationMessages;
+  };
 }
 
 class UserAccountServiceStub {
@@ -31,7 +52,7 @@ class UserAccountServiceStub {
 describe('UserAccountComponent', () => {
   let component: UserAccountComponent;
   let userAccountService: any = new UserAccountServiceStub();
-  let loginService: any = new LoginServiceStub();
+  let loginService: any = new LoginServiceMock();
 
   beforeEach(() => {
     component = new UserAccountComponent(loginService, userAccountService);
@@ -77,6 +98,18 @@ describe('UserAccountComponent', () => {
     expect(expectedMsg).toEqual(component.formValidation.messages[0]);
   });
 
+  it('should validate nok - too old', () => {
+    let user = loginService.getUser();
+    component.user = user;
+
+    spyOn(userAccountService, 'calculateAge').and.returnValue(121);
+    let valid = component.validateForm();
+
+    expect(false).toEqual(valid);
+    let expectedMsg = 'Bitte gültiges Geburtsdatum angeben.';
+    expect(expectedMsg).toEqual(component.formValidation.messages[0]);
+  });
+
   it('should validate nok - too tall / heavy ', () => {
     let user = loginService.getUser();
     user.bodyheight = 300;
@@ -116,5 +149,18 @@ describe('UserAccountComponent', () => {
     spyOn(component, 'validateForm').and.returnValue(false);
     component.saveUser();
     expect(component.savedMessage.message).toEqual('Nicht gespeichert, bitte Angaben prüfen.');
+  });
+
+  it('should change password', () => {
+    component.oldPassword = 'abcdefg';
+    component.newPassword = '123456';
+    component.newPasswordConfirmed = '123456';
+    spyOn(loginService, 'reauthenticateUser').and.returnValue(Promise.resolve()).and.callThrough();
+
+    component.changePassword();
+
+    expect(loginService.reauthenticateUser).toHaveBeenCalled();
+
+    // further expect statements in LoginServiceMock
   });
 });
