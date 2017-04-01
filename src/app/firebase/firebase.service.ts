@@ -3,9 +3,12 @@ import {
   FirebaseListObservable, AngularFire, FirebaseObjectObservable, FirebaseAuthState,
   AngularFireAuth
 } from 'angularfire2';
+import * as firebase from 'firebase';
+
 import Promise = firebase.Promise;
 
 import { Reginfo } from '../login/reginfo';
+import User = firebase.User;
 
 @Injectable()
 export class FirebaseService {
@@ -52,6 +55,11 @@ export class FirebaseService {
 
   updatePassword(auth, newPassword: string): Promise<any> {
       return auth.updatePassword(newPassword);
+  }
+
+  reauthenticateUser(auth: firebase.User, email: string, password: string): Promise<any> {
+    const credentials = firebase.auth.EmailAuthProvider.credential(email, password);
+    return auth.reauthenticate(credentials);
   }
 
   logout(): Promise<void> {

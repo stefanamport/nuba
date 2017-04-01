@@ -95,10 +95,12 @@
             <div class="userform__formrow">
 
               <form>
+                <label class="userform__label">Altes Passwort</label>
+                <input class="userform__input" [(ngModel)]="oldPassword" type="password" name="Altes Passwort">
                 <label class="userform__label">Neues Passwort</label>
-                <input #password class="userform__input" [(ngModel)]="newPassword" type="password" name="Passwort">
+                <input class="userform__input" [(ngModel)]="newPassword" type="password" name="Passwort">
                 <label class="userform__label">Passwort bestätigen</label>
-                <input #passwordConfirmed class="userform__input" [(ngModel)]="newPasswordConfirmed" type="password" name="Passwort bestätigen">
+                <input class="userform__input" [(ngModel)]="newPasswordConfirmed" type="password" name="Passwort bestätigen">
                 <div class="validation validation__message" *ngFor="
                   let message of passwordValidation.messages">
                   {{message}}

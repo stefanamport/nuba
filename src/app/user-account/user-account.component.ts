@@ -21,6 +21,7 @@ export class UserAccountComponent implements OnInit {
   savedMessage = '';
   changedPassword = '';
   componentIsLoading = true;
+  oldPassword = '';
   newPassword = '';
   newPasswordConfirmed = '';
 
@@ -95,19 +96,38 @@ export class UserAccountComponent implements OnInit {
 
     if (passwordOk) {
       let self = this;
-      this.loginService.changePassword(this.newPassword).then(function() {
-        self.changedPassword = 'Passwort wurde geändert';
-        self.newPassword = '';
-        self.newPasswordConfirmed = '';
 
-        setTimeout(function() {
-         self.changedPassword = '';
-        }, 3000);
+      this.loginService.reauthenticateUser('email', this.oldPassword).then(function() {
+        self.loginService.changePassword(self.newPassword).then(function() {
+          self.resetPasswordForm();
+        }).catch((error) => {
+          self.setPasswordValidationMessage(error.message);
+        });
       }).catch((error) => {
-        self.passwordValidation.messages.push(error.message);
-        self.passwordValidation.valid = false;
+        let errorMsg = error.message;
+        if (error['code'] !== undefined && error['code'] === 'auth/wrong-password') {
+          errorMsg = 'Das alte Passwort ist falsch.';
+        }
+        this.setPasswordValidationMessage(errorMsg);
       });
     }
+  }
+
+  private setPasswordValidationMessage(errorMsg: string) {
+    this.passwordValidation.messages.push(errorMsg);
+    this.passwordValidation.valid = false;
+  }
+
+  private resetPasswordForm() {
+    this.changedPassword = 'Passwort wurde geändert';
+    this.oldPassword = '';
+    this.newPassword = '';
+    this.newPasswordConfirmed = '';
+
+    let self = this;
+    setTimeout(function() {
+      self.changedPassword = '';
+    }, 3000);
   }
 
   private validatePasswords(newPassword, passwordConfirmed): boolean {
