@@ -178,6 +178,8 @@ input {
 	padding: $boxpadding;
 	box-sizing: border-box;
 
+	transition: .2s all;
+
 	&:focus {
 		outline: none;
 		box-shadow: 0 0 10px rgba(0,0,0,.2);
@@ -197,6 +199,39 @@ input {
 	}
 
 }
+
+// Based on select styling of foundation.org
+select {
+  height: 2.7em;
+  margin: 0 0 boxpadding;
+  padding: $boxpadding;
+  appearance: none;
+  border: 1px solid $dark-gray;
+  border-radius: 0;
+  background-color: #fefefe;
+  font-family: inherit;
+  font-size: 1em;
+  line-height: normal;
+  color: #000;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28138, 138, 138%29'></polygon></svg>");
+  background-origin: content-box;
+  background-position: right -1rem center;
+  background-repeat: no-repeat;
+  background-size: 9px 6px;
+  padding-right: 1.5rem;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+  select:focus {
+    outline: none;
+	box-shadow: 0 0 10px rgba(0,0,0,.2);
+	border-color: darken($dark-gray, 10);
+  }
+
+  select::-ms-expand {
+    display: none;
+  }
+
 
 // Global Button STylings
 
@@ -375,6 +410,23 @@ input {
 
 	}
 
+
+.infobox {
+	margin-bottom: $boxpadding/2;
+}
+	.infobox__title {
+		@extend .small;
+		text-decoration: none;
+	}
+	.infobox__value {
+		font-weight: bold;
+	}
+
+	.infobox__icon {
+		margin-left: 5px;
+		vertical-align: super;
+		color: $dark-gray-font;
+	}
 
 .coachTip {
 	margin-top: 0px;

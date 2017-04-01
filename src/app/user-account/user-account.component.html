@@ -79,14 +79,25 @@
 
       <aside class="grid__item w-4">
         <div class="whitebox" *ngIf="user.isUserInfoComplete">
-          <h2 class="whitebox__title">Berechnungen</h2>
+          <h2 class="whitebox__title">Deine Daten</h2>
 
           <div class="loadingPlaceholder" *ngIf="componentIsLoading"></div>
 
           <div class="whitebox__content" *ngIf="!componentIsLoading">
-              BMI: {{ user.bmi }}<br>
-              Alter: {{ user.age }}<br>
-              Geschätzter Kalorien Grundumsatz: {{ user.metabolicRate }} kcal
+              <div class="infobox">
+                <a class="infobox__title" href="https://de.wikipedia.org/wiki/Body-Mass-Index" target="_blank">BMI<i class="infobox__icon fa fa-external-link" aria-hidden="true"></i></a>
+                <div class="infobox__value">
+                  {{ user.bmi }}
+                </div>
+              </div>
+              <div class="infobox">
+                <div class="infobox__title">Alter </div>
+                <div class="infobox__value">{{ user.age }} Jahre</div>
+              </div>
+              <div class="infobox">
+                <div class="infobox__title">geschätzter Grundumsatz</div>
+                <div class="infobox__value">{{ user.metabolicRate }} kcal / Tag</div>
+              </div>
           </div>
         </div>
 
