@@ -5,7 +5,7 @@ import { Food } from '../../food/food';
 describe('SearchFilterPipe', () => {
 
     let pipe: SearchFilterPipe;
-    let foodList: Array<Food> = [
+    let foodList: Array<any> = [
           {name: 'Apfelbanane', $key: 1},
           {name: 'Fleischbällchen vegetarisch', $key: 2},
           {name: 'Banane', $key: 3},
@@ -14,7 +14,7 @@ describe('SearchFilterPipe', () => {
 
     let filteredListToCompare = [foodList[0], foodList[2]];
 
-    let mostUsedFoods: Array<number> = [1, 2, 4];
+    let mostUsedFoods: any = [1, 2, 4];
     let mostUsedFoodsToCompare: Array<Food> = [foodList[0], foodList[1], foodList[3]];
 
     beforeEach(() => {

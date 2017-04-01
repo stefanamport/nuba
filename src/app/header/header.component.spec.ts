@@ -11,7 +11,7 @@ class LoginServiceStub {
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
-  let loginService: LoginServiceStub = new LoginServiceStub();
+  let loginService: <any> = new LoginServiceStub();
 
   beforeEach(() => {
     component = new HeaderComponent(loginService);
