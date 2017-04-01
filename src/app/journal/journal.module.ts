@@ -10,6 +10,7 @@ import { SearchComponent } from './nubaSearch.component';
 
 import { SearchFilterPipe } from './pipes/searchFilter.pipe';
 import { OrderByAlphabetPipe } from './pipes/orderByAlphabet.pipe';
+import { OrderByDatePipe } from './pipes/orderByDate.pipe';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SharedModule } from '../shared/shared.module';
       SearchComponent,
       JournalListComponent,
       SearchFilterPipe,
-      OrderByAlphabetPipe
+      OrderByAlphabetPipe,
+      OrderByDatePipe
     ],
     imports: [
       journalRouting,

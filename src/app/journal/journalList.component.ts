@@ -64,6 +64,8 @@ export class JournalListComponent implements OnInit {
     this.journalEntriesService.getJournalEntries(date, user.uid).subscribe((journalEntries: JournalEntry[]) => {
       this.journalList = journalEntries;
       this.componentIsLoading = false;
+
+      console.log(this.journalList);
     });
   }
 }
