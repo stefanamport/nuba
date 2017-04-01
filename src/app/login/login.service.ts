@@ -53,16 +53,7 @@ export class LoginService {
         password: reginfo.pass
       });
 
-    } /* else if (method === 'Google') {
-       // not used anymore
-       // support for google Accounts dropped
-
-       return this.firebaseService.login({
-        provider: AuthProviders.Google
-      }).catch(() => {
-        this.cleanUpAuth();
-      });
-    }*/
+    }
 
   }
 
@@ -110,10 +101,6 @@ export class LoginService {
   private updateUser() {
     if (this.userAuth) {
       this.user.uid = this.userAuth.uid;
-
-      if (this.userAuth.google) {
-        this.user.avatar = this.userAuth.google.photoURL;
-      }
     }
 
     this.userSubject.next(this.user);

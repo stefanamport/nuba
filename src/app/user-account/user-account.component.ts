@@ -18,7 +18,7 @@ export class UserAccountComponent implements OnInit {
   activityLevels = ActivityLevels;
   formValidation = new FormValidation();
   passwordValidation = new FormValidation();
-  savedMessage = {};
+  savedMessage = <any>{};
   changedPassword = '';
   componentIsLoading = true;
   oldPassword = '';
