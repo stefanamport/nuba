@@ -9,8 +9,8 @@ class LoginServiceMock {
 
   getUser() {
     let user = new User();
-    user.name = 'Hans';
-    user.birthday = '12.03.1990';
+    user.name = 'Kari';
+    user.birthday = '1990-03-12';
     user.activityLevel = ActivityLevels[0];
     user.bodyheight = 170;
     user.bodyweight = 65;
@@ -84,6 +84,16 @@ describe('UserAccountComponent', () => {
 
     let valid = component.validateForm();
     expect(true).toEqual(valid);
+  });
+
+  it('should validate nok - wrong date format', () => {
+    let user = loginService.getUser();
+    user.birthday = '12.03.1990';
+    component.user = user;
+    spyOn(userAccountService, 'calculateAge').and.returnValue(18);
+
+    let valid = component.validateForm();
+    expect(false).toEqual(valid);
   });
 
   it('should validate nok - too young', () => {

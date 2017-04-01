@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import * as moment from 'moment';
 
 import { User } from '../login/user';
 import { FirebaseService } from '../firebase/firebase.service';
@@ -177,6 +178,15 @@ export class UserAccountComponent implements OnInit {
 
   private validateAge() {
 
+    // validate date format
+    if (this.user.birthday) {
+      if (!moment(this.user.birthday, 'YYYY-MM-DD', true).isValid()) {
+        this.formValidation.messages.push( 'Bitte tragen dein Geburtsdatum im Format yyyy-mm-dd ein.' );
+        this.formValidation.valid = false;
+      }
+    }
+
+    // validate age
     if (this.user.birthday) {
 
        let age = this.userAccountService.calculateAge(this.user.birthday);
