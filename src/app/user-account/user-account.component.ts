@@ -18,7 +18,7 @@ export class UserAccountComponent implements OnInit {
   activityLevels = ActivityLevels;
   formValidation = new FormValidation();
   passwordValidation = new FormValidation();
-  savedMessage = '';
+  savedMessage = {};
   changedPassword = '';
   componentIsLoading = true;
   oldPassword = '';
@@ -59,14 +59,16 @@ export class UserAccountComponent implements OnInit {
 
     if (this.validateForm()) {
       this.userAccountService.updateUserInfo(this.user);
-      this.savedMessage = 'Angaben wurden gespeichert';
+      this.savedMessage.message = 'Angaben wurden gespeichert';
+      this.savedMessage.context = 'positive';
     } else {
-      this.savedMessage = 'Nicht gespeichert, bitte Angaben prüfen.';
+      this.savedMessage.message = 'Nicht gespeichert, bitte Angaben prüfen.';
+      this.savedMessage.context = 'negative';
     }
 
     let that = this;
     setTimeout(function(){
-      that.savedMessage = '';
+      that.savedMessage = {};
     }, 3000);
 
   }

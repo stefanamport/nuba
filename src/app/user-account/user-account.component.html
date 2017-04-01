@@ -54,19 +54,21 @@
               </div>
 
               <div class="userform__formrow">
+              
+              <div class="alert alert__{{savedMessage?.context}}" *ngIf="savedMessage.message">
+                <span *ngIf="savedMessage.context == 'positive'" class="fa fa-check" aria-hidden="true"></span>
+                <span *ngIf="savedMessage.context == 'negative'" class="fa fa-times" aria-hidden="true"></span>
+                {{savedMessage?.message}}
+              </div>
+
+              <div class="alert alert__negative" *ngFor="
+              let error of formValidation.messages">
+                <span class="fa fa-times" aria-hidden="true"></span>
+               {{error}}
+              </div>
 
               <button type="submit" type="submit" class="button button-big" aria-label="speichern" (click)="saveUser()"><span class="fa fa-check" aria-hidden="true"></span> speichern</button>
 
-
-              <div class="button button-message button-big button-light" [ngClass]="{'button-hidden': savedMessage.length <= 0 }">
-                {{savedMessage}}
-              </div>
-
-              </div>
-
-              <div class="validation validation__message" *ngFor="
-              let error of formValidation.messages">
-               {{error}}
               </div>
 
             </form>
@@ -101,16 +103,16 @@
                 <input class="userform__input" [(ngModel)]="newPassword" type="password" name="Passwort">
                 <label class="userform__label">Passwort bestätigen</label>
                 <input class="userform__input" [(ngModel)]="newPasswordConfirmed" type="password" name="Passwort bestätigen">
-                <div class="validation validation__message" *ngFor="
+                <div class="alert alert__negative" *ngFor="
                   let message of passwordValidation.messages">
-                  {{message}}
+                  <span class="fa fa-times" aria-hidden="true"></span> {{message}}
                 </div>
                 <button (click)="changePassword()" type="submit" class="button button-light button-small button-block">
                   Passwort ändern</button>
               </form>
 
-              <div class="button button-message button-small button-light button-block" [ngClass]="{'button-hidden': changedPassword.length <= 0 }">
-                {{changedPassword}}
+              <div class="alert alert__positive" *ngIf="changedPassword.length > 0">
+                <span class="fa fa-check" aria-hidden="true"></span> {{changedPassword}}
               </div>
             </div>
 

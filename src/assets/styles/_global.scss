@@ -123,10 +123,23 @@ a {
 	}
 
 .alert {
-	border: 1px solid darken($alert-color, 10);
-	background: $alert-color;
 	padding: $boxpadding/2;
+	color: #fff;
+	display: block;
+
+	margin: $boxpadding/2 0;
+	box-shadow: 0 0 2px rgba(0,0,0,.6);
 }
+	
+	.alert__negative {
+		background: $alert-color;
+	}
+	.alert__positive {
+		background: $alert-color-positive;
+	}
+	.alert__hidden {
+		display: none;
+	}
 
 p {
 	margin: 0 0 $boxpadding 0 ;
@@ -184,15 +197,6 @@ input {
 	}
 
 }
-
-.validation__message {
-	background-color: $alert-color;
-	color: #fff;
-
-	padding: $boxpadding;
-	font-weight: bold;
-}
-
 
 // Global Button STylings
 

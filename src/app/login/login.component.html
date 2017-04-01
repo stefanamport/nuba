@@ -25,7 +25,7 @@
                         <input class="logininput__input" type="password" [(ngModel)]="reginfo.pass2" name="reginfoPass" required>
                     </div>
 
-                    <div class="validation validation__message" *ngFor="
+                    <div class="alert alert__negative" *ngFor="
                       let error of formValidation.messages">
                        {{error}}
                       </div>
