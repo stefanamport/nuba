@@ -7,7 +7,7 @@
     <div class="foodlist" *ngIf="componentIsLoading == false">
       <app-date-chooser></app-date-chooser>
       <table class="foodtable" *ngIf="journalList.length > 0">
-        <tr class="foodtable__entry foodentry" *ngFor="let entry of journalList">
+        <tr class="foodtable__entry foodentry" *ngFor="let entry of journalList | orderByDate: 'date'">
 
         <template [ngIf]="!entry.editable">
             <td class="foodentry__block foodentry__block-time"> {{entry.date | momentjs: 'HH:mm' }} Uhr</td>
