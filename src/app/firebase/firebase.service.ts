@@ -57,6 +57,7 @@ export class FirebaseService {
       return auth.updatePassword(newPassword);
   }
 
+  // user needs to be reauthenticated for exampe before a password change
   reauthenticateUser(auth: firebase.User, email: string, password: string): Promise<any> {
     const credentials = firebase.auth.EmailAuthProvider.credential(email, password);
     return auth.reauthenticate(credentials);

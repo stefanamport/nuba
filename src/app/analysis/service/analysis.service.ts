@@ -63,12 +63,13 @@ export class AnalysisService {
           this.reportSubject.next(emptyReport);
         }
 
+        // get the food details for each journalEntry
         journalEntries.forEach((journalEntry, journalIndex) => {
           this.firebaseService.getObject('foodDetails', journalEntry.foodID.toString()).subscribe((foodDetails: FoodDetails) => {
             this.calculateCurrentConsumption(foodDetails, journalEntry.quantity);
             if (journalIndex === journalEntries.length - 1) {
 
-              // create consumption report
+              // create consumption report based on the current and target consumption
               let report = new ConsumptionReport();
               report = report.createConsumptionReport(this.consumptionMap, user);
               report.analysisComplete = true;
