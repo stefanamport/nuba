@@ -3,7 +3,8 @@
 This project was generated with angular-cli
 
 ## Requirements
-- If angular-cli not installed yet: npm install -g @angular/cli@latest
+- Node.js & npm
+- angular-cli: npm install -g @angular/cli@latest
 
 ## Installation
 - npm install
