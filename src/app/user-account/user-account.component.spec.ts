@@ -109,12 +109,12 @@ describe('UserAccountComponent', () => {
   it('should save user', () => {
     spyOn(component, 'validateForm').and.returnValue(true);
     component.saveUser();
-    expect(component.savedMessage).toEqual('Angaben wurden gespeichert');
+    expect(component.savedMessage.message).toEqual('Angaben wurden gespeichert');
   });
 
   it('should not save user', () => {
     spyOn(component, 'validateForm').and.returnValue(false);
     component.saveUser();
-    expect(component.savedMessage).toEqual('Nicht gespeichert, bitte Angaben prüfen.');
+    expect(component.savedMessage.message).toEqual('Nicht gespeichert, bitte Angaben prüfen.');
   });
 });
